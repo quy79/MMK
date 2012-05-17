@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-
+using DatabaseLayer;
 namespace EmailSite
 {
     public class Global : System.Web.HttpApplication
@@ -13,7 +13,7 @@ namespace EmailSite
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
-
+            Globals.ConnectionString = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EmailConnectionString"].ToString());
         }
 
         void Application_End(object sender, EventArgs e)

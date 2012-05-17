@@ -330,6 +330,75 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+
+    public bool IsExistUsername()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@USERNAME",USERNAME)
+			};
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CHECK_EXISTUSERNAME", Params);
+            
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
+    public bool IsExistEmail()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@EMAIL",EMAIL)
+			};
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CHECK_EXISTEMAIL", Params);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public bool CheckUserPass()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@USERNAME",USERNAME)
+			};
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CHECK_USERPASS", Params);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                if((ds.Tables[0].Rows[0]["PASSWORD"].ToString().Equals(PASSWORD) ))  return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
+        return false;
+    }
 	#endregion
 
 	}

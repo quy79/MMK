@@ -71,6 +71,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="UserDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
