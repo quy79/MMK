@@ -1,0 +1,1734 @@
+@charset "utf-8";
+/* CSS Document */
+
+ 
+
+/* CC BASE STYLES ( version 12/11/2009 )
+-------------------------------------------------------------------- */
+BODY {
+font-size:72%; /* for IE% Win */
+voice-family: "\"}\"";
+voice-family: inherit;
+background: #FAE4BB;
+font-size:76%; /* for all other 'compliant' browsers */
+font-family:arial, sans-serif;
+color:#333;
+margin:0 auto;
+padding:0;
+background:#035b7a; 
+
+
+ 
+}
+body.nobkgrd { background:#FFF; }
+body.graybkgrd { background:#CCC; }
+html>body { font-size:76%; }
+
+
+
+/*  LINKS 
+-------------------------------------------------------------------- */
+a:link { color:#007BBF; text-decoration:underline; }
+a:visited { color:#007BBF; text-decoration:underline; }
+a:hover { text-decoration:none; } 
+/* use this class if a visited link color is needed */
+.traceable:link { color:#007BBF; text-decoration:underline; }
+.traceable:visited { color:#639; text-decoration:underline; }
+.traceable:hover { color:#FF5050; text-decoration:none; }
+/* use this class for links that enable in-page editing */
+.in-page-edit:link { color:#007BBF; text-decoration:none; border-bottom:1px dashed #3e69bd; position:relative; }
+.in-page-edit:visited { color:#007BBF; text-decoration:none; border-bottom:1px dashed #3e69bd; position:relative; }
+.in-page-edit:hover { color:#EA4949; text-decoration:none; border-bottom:1px dashed #EA4949; position:relative; background:#FFD; cursor:url(https://imgssl.constantcontact.com/ui/images1/cursor_edit.cur), pointer; }
+/* special case links */
+.popup { background:url(https://imgssl.constantcontact.com/ui/images1/icon_popup.gif) no-repeat right center; padding-right:17px; }
+.close { background:url(https://imgssl.constantcontact.com/ui/images1/icon_close.gif) no-repeat left center; padding-left:17px; }
+.back { background:url(https://imgssl.constantcontact.com/ui/images1/icon_back.gif) no-repeat left center; padding-left:14px; }
+.print { background:url(https://imgssl.constantcontact.com/ui/images1/icon_print2.gif) no-repeat left center; font-size:.9em; padding-left:20px; }
+.premium { background:url(https://imgssl.constantcontact.com/ui/images1/icon_premium_small.gif) no-repeat left center; padding-left:17px; }
+.hideshow-hidden { background:url(https://imgssl.constantcontact.com/ui/images1/tri_right2.gif) no-repeat left center; padding-left:15px; }
+.hideshow-showing { background:url(https://imgssl.constantcontact.com/ui/images1/tri_down2.gif) no-repeat left center; padding-left:15px; }
+.active-link { font-weight:bold; color:#FFF; background:#F60; padding:2px 4px; }
+.hide { display:none; }
+.show { visibility:visible; }
+hr { border:0; height:1px; color:#CCC; margin-top:2px; margin-bottom:2px; }
+/* making it look better in browsers other than IE */
+html>body hr { border:0; height:1px; color:#CCC; background-color:#CCC; margin-top:8px; margin-bottom:8px; }
+a.btn-primary-txt { font-size:1em; font-weight:bold; color:#614b00; text-decoration:none; background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg.gif) repeat-x left top; border:1px solid #c8a228; cursor:pointer; margin:0; padding:3px 5px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-box-shadow:0 1px 1px rgba(116,116,116,.3); -webkit-box-shadow:0 1px 1px rgba(116,116,116,.3); box-shadow:0 1px 1px rgba(116,116,116,.3); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+a.btn-primary-txt:hover { background:#d5960e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg-hover.gif) repeat-x left top }
+a.btn-primary-txt:visited { color:#614b00; text-decoration:none }
+
+/* FORM ELEMENT STYLES
+---------------------------------------------------------- */
+form { margin:0; padding:0; }
+fieldset { margin-bottom:30px }
+label.desc { display:block; margin-bottom:5px; font-weight:bold }
+input { padding:1px; }
+input[type="text"], input[type="password"], 
+textarea { border:1px solid #c9c9c9; padding:3px; margin-bottom:5px; background:#fff; font:1em arial, sans-serif; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px }
+select { font-size:1em; margin-bottom:5px; padding: 1px 0; }
+legend { font-size:1.16em; padding-bottom:15px; font-weight:bold }
+input.no-border { border-width:0; padding:1px; }
+input.dropdown { border-top:1px solid #CCC; border-bottom:1px solid #CCC; border-left:1px solid #CCC; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/textfield_dropdown.gif) no-repeat right top; font:0.9em Arial, Helvetica, sans-serif; cursor:pointer; border-right-width:0; border-right-style:none; margin:0; padding:3px 5px 3px 3px; }
+div.dropdown { border-top:1px solid #CCC; border-bottom:1px solid #CCC; border-left:1px solid #CCC; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/textfield_dropdown.gif) no-repeat right top; font:0.9em Arial, Helvetica, sans-serif; cursor:pointer; border-right-width:0; border-right-style:none; margin:0; padding:3px 5px 3px 3px; }
+div.ve-left-button { border:1px solid #CCC; background:#FFF; font:0.9em Arial, Helvetica, sans-serif; cursor:pointer; float:left; margin:0 3px 0 0; padding:3px 22px 3px 3px; }
+.small-select { font:.8em Arial, Helvetica, sans-serif; padding:1px; }
+.small-input { font:.8em Arial, Helvetica, sans-serif; padding:1px; }
+.option-disabled { color:#BEBEBE; }
+
+/* Icons
+---------------------------------------------------------*/
+#idSurvey { text-decoration:none; position:relative }
+#idSurvey span { font-size:11px; position:relative; top:-5px; right:-3px }
+
+
+/* NEW BUTTONS
+---------------------------------------------------------------------- */
+
+/* set base font */
+.btn-primary,.btn-primary-lg,.btn-primary-disabled,.btn-secondary,.btn-secondary-lg,.btn-secondary-disabled,.btn-preview,.btn-preview-disabled,.btn-small,.btn-primary-action, .btn-tertiary { font-family:arial, sans-serif }
+
+/* for anchor tags */
+a.btn-primary, a.btn-primary:visited { display:inline-block; font-size:1em; font-weight:bold; color:#614b00; text-decoration:none; background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg.gif) repeat-x left top; border:1px solid #c8a228; cursor:pointer; margin:0; padding:4px 8px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+a.btn-primary:hover { background:#d5960e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg-hover.gif) repeat-x left top; text-decoration:none }
+
+a.btn-primary-lg, a.btn-primary-lg:visited { display:inline-block; font-size:1.2em; font-weight:bold; color:#614b00; background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg.gif) repeat-x left top; border:1px solid #c8a228; text-decoration:none; cursor:pointer; margin:0; padding:4px 6px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+a.btn-primary-lg:hover { background:#d5960e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg-hover.gif) repeat-x left top; text-decoration:none }
+
+a.btn-primary-disabled, a.btn-primary-disabled:visited { font-size:1em; font-weight:bold; color:#868687; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-disabled-bg.gif) repeat-x left top; border:1px solid #cbcbcb; cursor:default; margin:0; padding:3px 5px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+
+a.btn-secondary, a.btn-secondary:visited { display:inline-block; font-size:1em; font-weight:bold; color:#444; text-decoration:none; background:#cfcfcf url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg.gif) repeat-x left top; border:1px solid #b7b7b7; cursor:pointer; margin:0; padding:4px 8px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+a.btn-secondary:hover { background:#bdbdbd url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg-hover.gif) repeat-x left top; text-decoration:none }
+a.btn-secondary:visited { color:#444; }
+
+a.btn-secondary-lg, a.btn-secondary-lg:visited { display:inline-block; font-size:1.2em; font-weight:bold; color:#444; background:#cfcfcf url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg.gif) repeat-x left top; border:1px solid #b7b7b7; text-decoration:none; cursor:pointer; margin:0; padding:4px 6px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+a.btn-secondary-lg:hover { background:#bdbdbd url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg-hover.gif) repeat-x left top; text-decoration:none }
+
+a.btn-secondary-disabled, a.btn-secondary-disabled:visited { display:inline-block; font-size:1em; font-weight:bold; color:#868687; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-disabled-bg.gif) repeat-x left top; border:1px solid #cbcbcb; cursor:default; margin:0; padding:4px 8px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+
+a.btn-primary-action, a.btn-primary-action:visited { display:inline-block; font-size:1.2em; font-weight:bold; color:#fff; background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-action-bg.gif) repeat-x left top; border:1px solid #a3af07; text-decoration:none !important; cursor:pointer; margin:0; padding:10px; text-shadow:0 -1px 0 rgba(54,58,04,.7); -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+a.btn-primary-action:hover { background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-action-hover-bg.gif) repeat-x left top; text-decoration:none }
+
+a.btn-tertiary { display:inline-block; text-decoration:none; color:#5F616C; font-weight:bold; padding:6px 8px; }
+
+a.btn-preview, a.btn-preview:visited { display:inline-block; font-size:1em; font-weight:bold; color:#444; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-preview-bg.gif) repeat-x left top; border:1px solid #b7b7b7; cursor:pointer; margin:0; padding:4px 7px 4px 20px; text-decoration:none !important; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+a.btn-small, a.btn-small:visited { display:inline-block; font-size:0.85em; color:#444; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-disabled-bg.gif) repeat-x left top; border:1px solid #cbcbcb; cursor:pointer; margin:0; padding:2px; font-weight:bold; text-decoration:none !important; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-box-shadow:0 1px 1px rgba(116,116,116,.2); -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px }
+
+
+/* PRIMARY BUTTONS */
+.btn-primary { font-size:1em; font-weight:bold; color:#614b00; background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg.gif) repeat-x left top; border:1px solid #c8a228; cursor:pointer; margin:0; padding:3px 5px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+.btn-primary-lg { font-size:1.2em; font-weight:bold; color:#614b00; background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg.gif) repeat-x left top; border:1px solid #c8a228; cursor:pointer; margin:0; padding:4px 6px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+/* hovers */
+.btn-primary:hover { background:#d5960e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg-hover.gif) repeat-x left top }
+.btn-primary-lg:hover { background:#d5960e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-bg-hover.gif) repeat-x left top }
+/* primary disabled */
+.btn-primary-disabled { font-size:1em; font-weight:bold; color:#868687; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-disabled-bg.gif) repeat-x left top; border:1px solid #cbcbcb; cursor:default; margin:0; padding:3px 5px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+
+/* SECONDARY BUTTONS */
+.btn-secondary { font-size:1em; font-weight:bold; color:#444; background:#cfcfcf url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg.gif) repeat-x left top; border:1px solid #b7b7b7; cursor:pointer; margin:0; padding:3px 5px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+button.btn-secondary { box-shadow:none; }
+.btn-secondary-lg { font-size:1.2em; font-weight:bold; color:#444; background:#cfcfcf url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg.gif) repeat-x left top; border:1px solid #b7b7b7; cursor:pointer; margin:0; padding:4px 6px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+/* hovers */
+.btn-secondary:hover { background:#bdbdbd url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg-hover.gif) repeat-x left top }
+.btn-secondary-lg:hover { background:#bdbdbd url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-secondary-bg-hover.gif) repeat-x left top }
+/* secondary disabled */
+.btn-secondary-disabled { font-size:1em; font-weight:bold; color:#868687; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-disabled-bg.gif) repeat-x left top; border:1px solid #cbcbcb; cursor:default; margin:0; padding:3px 5px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+
+/* PREVIEW BUTTONS */
+.btn-preview { font-size:1em; font-weight:bold; color:#444; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-preview-bg.gif) repeat-x left top; border:1px solid #b7b7b7; cursor:pointer; margin:0; padding:3px 5px 3px 14px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+.btn-preview-disabled { font-size:1em; font-weight:bold; color:#868687; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-preview-disabled-bg.gif) repeat-x left top; border:1px solid #cbcbcb; cursor:default; margin:0; padding:3px 5px 3px 14px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px }
+
+/* SMALL BUTTONS */
+.btn-small { font-size:0.85em; color:#444; background:#4e4e4e url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-disabled-bg.gif) repeat-x left top; border:1px solid #cbcbcb; cursor:pointer; margin:0; padding:2px; text-shadow:0 1px 0 rgba(255,255,255,.5); -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px }
+
+/* ACTION BUTTONS */
+.btn-primary-action { font-size:1.4em; font-weight:bold; color:#fff; background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-action-bg.gif) repeat-x left top; border:1px solid #a3af07; cursor:pointer; margin:0; padding:7px; text-shadow:0 -1px 0 rgba(54,58,04,.7); -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+.btn-primary-action:hover { background:#ebac1d url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn-primary-action-hover-bg.gif) repeat-x left top }
+
+/* TERTIARY BUTTONS */
+.btn-tertiary {color:#5F616C; text-shadow: 0 1px 0 rgba(255,255,255,.9); background:#d5d8e0 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/gradient_white_btn_sm2.png) repeat-x 0 0; border:1px solid; border-color:#aaaaab #aaaaab #848484; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
+.btn-tertiary:hover {background-image:none}
+.btn-tertiary:active {background-image:none}
+
+.btn-unstyled { color: #007BBF; text-decoration: underline; border:none; background:none; font-weight:normal; }
+
+.btn-feature-fb { display:inline-block; padding:0 16px 0 60px; height:47px; line-height:45px; font-size:1.1em; font-weight:bold; text-decoration:none !important; color:#FFF !important; text-shadow: 0 -1px 0 rgba(0,0,0,.4); background:#226AA1 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn_fb_bg.jpg) repeat-x 0 0; border:1px solid; border-color:#3590bf #256890 #154268 #256890; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px }
+
+.btn-area { padding-top:10px; }
+.navbar { color:#333; background-color:#f9f9f9; text-align:right; display:block; margin-top:5px; margin-bottom:5px; border:1px solid #DFDBDC; padding:8px; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px }
+.navbar1 { height:25px; float:left; width:946px; clear:both; }
+
+/* LISTS 
+------------------------------------------------------------------------------------ */
+ul.bullets { margin:0; padding:5px 0 0 0;}
+ul.bullets li { line-height:1em; margin:0 0 0 35px; padding:0 0 5px 0;}
+ul.arrows { margin:5px 0 5px 25px; padding:0; }
+ul.arrows li { padding-bottom:10px; list-style:url(https://imgssl.constantcontact.com/ui/images1/bullet_arrow.gif) none; }
+ul.greenarrows { margin:5px 0 5px 25px; padding:0; }
+ul.greenarrows li { padding-bottom:10px; list-style:url(https://imgssl.constantcontact.com/ui/images1/bullet_green_arrow.gif) none; }
+ul.standard { margin:5px 0 5px 65px; padding:0; }
+ul.standard li { padding-bottom:6px; }
+ul.no-indent { list-style:square; margin:0; padding:0; }
+ul.no-indent li { padding-bottom:6px; list-style:none; padding-left:0; }
+ol { margin:5px 0 5px 25px; padding:0; }
+ol li { padding-bottom:6px; }
+
+/* PAGE TITLE
+---------------------------------------------------------------------- */
+.pagetitlearea { position:relative; width:100%; margin-bottom:20px; padding:0; }
+.pagetitlearea:after { content:"."; display:block; height:0; clear:both; visibility:hidden }
+.pagetitlearea h1, .pagetitlearea-ve h1  { font-size:1.2em; color:#000; font-weight:normal; display:inline; text-align:left; margin:0; padding:0; }
+.pagetitlearea h1 .pageSectionTitle { color:#999; }
+.pagetitlearea h2 { font-size:1.2em; font-weight:normal; display:inline; text-align:left; }
+.pagetitle-sub { margin-bottom:20px; color:#525252; }
+/* popup page title */
+.popuptitlearea { margin-bottom:15px; padding-bottom:0; padding-top:20px; padding-left:15px; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/popup_title_bkgrd.gif) repeat-x bottom; vertical-align:bottom; height:35px; display:block; }
+.popuptitlearea h1 { font-size:1.7em; font-weight:bold; text-align:left; }
+.popuptitle-sub { margin-bottom:15px; color:#333; margin-top:-10px; padding-right:15px; padding-left:15px; font-size:.9em; }
+.pagetitlearea h1 a { position:relative; bottom:-2px; }
+
+/* TEXT STYLES 
+--------------------------------------------------------------------- */
+h1 { font-size:1.4em; display:inline; color:#333; margin:0 0 25px; padding:0; }
+h2 { font-size:1.2em; margin-bottom:0.8em; color:#000; display:inline; }
+h3 { font-size:1.1em; margin-bottom:0.8em; color:#000; display:inline; }
+.txt-xlarge { font-size:1.2em; }
+.txt-large { font-size:1.1em; }
+.txt-mid { font-size:.9em; }
+.txt-small { font-size:.8em; }
+.txt-hint { color:#666; font-size:0.9em; }
+.txt999 { color:#999; }
+.txt666 { color:#666; }
+.txt-clr1 {color:#D87D2C;}
+.txt-hilite { color:#CF6100; }
+.page-headline { font-size:1.7em; margin-bottom:0.8em; display:inline; font-weight:normal; }
+.page-subheadline { font-size:1.6em; margin-bottom:0.8em; display:inline; font-weight:normal; color:#005285; }
+.page-subtext { font-size:1.0em; color:#515151; }
+.required { color:red; font-weight:bold; display:inline; }
+.spam { font-weight:bold; color:#C00; }
+.warning { font-weight:bold; color:red; }
+.hilite { background:#FFFAD4; padding:4px; }
+.uppercase {text-transform:uppercase}
+
+/* MESSAGE TYPES 
+-------------------------------------------------------- */
+.error-page { font-weight:bold; color:#999; font-size:1.6em; background:url(https://imgssl.constantcontact.com/ui/images1/icon_error_page.gif) no-repeat; width:70%; padding:0 3px 15px 25px; }
+.error-page-secondary { font-weight:normal; color:#333; font-size:0.7em; }
+.error-primary { font-weight:bold; color:red; background:url(https://imgssl.constantcontact.com/ui/images1/icon_error.gif) no-repeat; padding-right:3px; padding-bottom:15px; padding-left:25px; display:block; font-size:1.2em; }
+.error-secondary { font-weight:normal; color:red; font-size:.9em; }
+.error-secondary-icon { font-weight:normal; color:red; font-size:.9em; background:url(https://imgssl.constantcontact.com/ui/images1/icon_error.gif) no-repeat; padding-left:25px; }
+.error-box { background:#FFF; border-top:2px solid #999; border-right:2px solid #333; border-bottom:2px solid #333; border-left:2px solid #999; padding:10px 7px; }
+.info-primary { font-weight:bold; color:#666; background:url(https://imgssl.constantcontact.com/ui/images1/icon_info.gif) no-repeat; padding-right:3px; padding-bottom:15px; padding-left:25px; display:block; }
+.info-secondary { font-weight:normal; color:#666; }
+.info-primary2 { font-weight:bold; color:#B94A00; background:url(https://imgssl.constantcontact.com/ui/images1/icon_info3.gif) no-repeat; padding-right:3px; padding-bottom:15px; padding-left:25px; display:block; font-size:1.2em; }
+.info-secondary2 { font-size:0.9em; font-weight:normal; color:#B94A00; }
+.confirm-primary { background:url(https://imgssl.constantcontact.com/ui/images1/icon_confirm.gif) no-repeat; color:#393; font-size:1.2em; font-weight:bold; padding-right:3px; padding-bottom:15px; padding-left:20px; display:block; }
+.confirm-visitor-msg { background-color:#fff; background-position:15px 22px; padding:20px 20px 20px 40px; }
+.info-subtle { padding-right:3px; display:block; font-size:.8em; }
+.confirm-secondary { font-weight:normal; color:#308F30; font-size:0.9em; }
+.enable-sitewide { background:#FEF3CB url(https://imgssl.constantcontact.com/ui/images1/icon_enable_page.gif) no-repeat; margin-bottom:20px; clear:left; border-bottom:3px solid #fde2aa; text-align:left; padding:10px 28px 10px 56px; }
+.enable-page { background:#FEF3CB url(https://imgssl.constantcontact.com/ui/images1/icon_enable_page2.gif) no-repeat; font-weight:normal; display:block; margin-bottom:20px; padding:3px 3px 3px 25px; }
+.enable-box1 { background:#FEF3CB; display:block; font-size:.9em; border-left:1px solid #999; padding:3px 3px 5px 25px; }
+.alert-sitewide { color:#000; background:#EEF8BE url(https://imgssl.constantcontact.com/ui/images1/icon_alert1_page.gif) no-repeat 15px 7px; margin:0 0 10px; clear:left; text-align:left; padding:10px 35px 10px 56px; border:1px solid #C6D67B; border-bottom:2px solid #A2AF62; }
+.system-alert-sitewide { margin:0px; background: #ffbc23 url(https://imgssl.constantcontact.com/ui/images1/alert_bar_yellow.png) 0 0 repeat-x; border:0; border-bottom:1px solid #bf8c19; padding:0; color:#614b00; min-width:995px; }
+.inset-close-button { display:block; width: 14px; height: 14px; background: url(https://imgssl.constantcontact.com/ui/images1/info_popup_close_btn.png) 0 0 no-repeat; }
+.system-alert-sitewide .alert-closelink { margin:0; padding:0;  }
+
+.alert-sitewide-content { padding:15px 10px 15px 40px;   }
+.alert-sitewide-wrapper { margin:0 auto; width:995px; background: url(https://imgssl.constantcontact.com/ui/images1/msg_icon_info.png) 0 10px no-repeat; }
+.alert-sitewide a:link { color:#007BBF; font-weight:bold; text-decoration:underline; }
+.alert-sitewide a:hover { color:#007BBF; text-decoration:none; }
+.alert-sitewide a:visited { color:#007BBF; text-decoration: underline;}
+.alert-closelink { float:right; margin-right:-7px; margin-bottom:10px; margin-left:10px; padding:2px 3px; }
+.coloricon-bkgrd { display:inline; background:red; margin:0; padding:0; }
+.tbl_row_lightgray { background:#F0F0F0; }
+.info-inline-msg { background:#fffaeb url(https://imgssl.constantcontact.com/ui/images1/icon_info.gif) no-repeat 10px 10px; border:1px solid #f0d08c; margin:20px 0 0 14px; padding:10px 10px 10px 35px; }
+.info-inline-msg p { color:#666; margin:0; padding:0; }
+.spamAlert { border:2px solid #CCC;background-color: #F3F3F3;}
+.spamAlert .inner{ padding:10px;}
+.alertHigh {background:#FFEFEF url(https://imgssl.constantcontact.com/ui/images1/icn_halert_32.png) no-repeat 5px 5px;border:2px solid #DF6F6F;padding:14px 14px 13px 50px;}
+.alertMedium {background:#FFF8AF url(https://imgssl.constantcontact.com/ui/images1/icn_malert_32.png) no-repeat 5px 5px;border:2px solid #9F7C1D;padding:14px 14px 13px 50px;}
+.alertLow {background:#E2EFC2 url(https://imgssl.constantcontact.com/ui/images1/icn_lalert_32.png) no-repeat 8px 5px;border:2px solid #85AF41;padding:14px 14px 13px 50px;}
+.alertNone {background:#E2EFC2 url(https://imgssl.constantcontact.com/ui/images1/icn_alert_32.png) no-repeat 5px 5px;border:2px solid #85AF41;padding:14px 14px 13px 50px;}
+
+/* CONTENT HOLDER STYLES 
+-------------------------------------------------------------*/
+/* primary box style */
+
+.box-body-disabled { background:#FFF url(https://imgssl.constantcontact.com/ui/images1/box-shadow-dim.gif) repeat-x; border-left:1px solid #CCC; margin:0; padding:14px 10px 10px 14px; }
+.box-body p { display:block; clear:left; margin-top:0; margin-bottom:0; }
+.boxhd1-disabled h2 { display:inline; color:#BFBFBF; font-size:1em; margin:0; padding:0; }
+.box-body-bg { border:1px solid #E0E0E0; background:#F9F9F9; padding:10px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
+
+/* OLD BOX H2
+.boxhd1 h2 { display:inline; color:#235F8F; font-size:1.5em; font-weight:bold; margin:0; padding:0; } */
+.boxhd1 h2 { color:#0d5878; text-shadow:0 1px #fff; font-size:1.4em; letter-spacing:-0.5px } /* new boxhd header */
+.boxhd1-alt h2 { color:#5a5a5a; text-shadow:0 1px #fff; font-size:1.3em; letter-spacing:-0.5px } /* new alternate grey header */
+
+.box-subtext { font-size:0.9em; color:#515151; margin-bottom:10px; }
+.box-subheading { color:#515151; margin-top:10px; }
+/* OLD DIV CONVERTION
+div.box-body { border:1px solid #D6D6D6; margin:0; padding:5px 10px 10px 14px; background:#F8F8F8 }
+div.side_bar div.box-body { background:#fff; } */
+/* I want to... box */
+.boxhd2-iwt { color:#FFF; background:url(https://imgssl.constantcontact.com/ui/images1/iwt_head.gif) no-repeat left top; height:22px; padding:0; }
+.box-body2-iwt { border-left:1px solid #CCC; clear:left; margin:0; padding:20px 10px 10px 20px; }
+/* wrapping content boxes with a wizard div will change the design to wizard L&F */
+.wizard .box-body { border:0; background:#FFF; margin:0; padding:0 10px 10px 20px; }
+.wizard .boxhd1-wrap { clear:left; margin:0; padding:0; }
+.wizard .boxhd1 { background:none; border:none }
+.wizard .boxhd1 h2 { display:inline; color:#3F729F; font-size:1.5em; font-weight:normal; margin:0; padding:0; }
+/* secondary box style */
+.boxhd2 { color:#FFF; padding:6px 20px 3px 15px; }
+.boxhd2-wrap { clear:left; margin:0; padding:0; }
+.col2 .boxhd2-wrap { background-color:#339FBC; }
+.boxhd2 h2 { display:inline; color:#FFF; font:bold 1.1em Arial, Helvetica, sans-serif; margin:0; padding:0; }
+.boxhd2 h2 strong.txt-hilite { display:inline; color:#FFF; font:bold 1.1em Arial, Helvetica, sans-serif; margin:0; padding:0; }
+.box-body2 { clear:left; margin:0; padding:10px 10px 10px 20px; border:1px solid #CCC; border-top:none; }
+.box-body2 ul { margin:0 0 0 15px; padding:0; }
+.box-body2 ul li { padding-bottom:10px; list-style:url(https://imgssl.constantcontact.com/ui/images1/bullet_green_arrow.gif) none; }
+.col2 td.box-body2 ( background-color:#EFFCFF; )
+.boxhd3 { color:#FFF; background-color:#efefef; padding:3px 10px 3px 15px; }
+.boxhd3-wrap { clear:left; background:url(https://imgssl.constantcontact.com/ui/images1/box3hed-right.gif) no-repeat right top; margin:0; padding:0; }
+.boxhd3 h2 { display:inline; color:#666; font:bold 1em Arial, Helvetica, sans-serif; margin:0; padding:0; }
+.box-body3 { border-top:1px solid #CCC; border-left:1px solid #CCC; padding:10px; }
+.bdr-btm-dot {border-bottom:1px dotted #CCC;padding-bottom:10px;}
+.bdr-top-dot {border-top:1px dotted #CCC;padding-top:10px;}
+
+
+/* CREATE BUTTONS
+---------------------------------------------------------*/
+.ccui-btn { display:inline-block; background:#dff0fc url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ccui-btn-grad.gif) repeat-x left top; border:1px solid #83b8ce; padding:5px 7px; color:#0875b2; font-size:13px; font-weight:bold; text-decoration:none !important; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -moz-box-shadow:0 1px 1px rgba(0,0,0,.1); -webkit-box-shadow:0 1px 1px rgba(0,0,0,.1); box-shadow:0 1px 1px rgba(0,0,0,.1); text-shadow:0 1px 0 #fff; cursor: pointer; }
+.ccui-btn:hover { background:#eff7fd }
+.ccui-btn span { margin-right:7px }
+.ccui-btn-em, .ccui-btn-evm, .ccui-btn-svy, .ccui-btn-poll, .ccui-btn-code, .ccui-btn-img, .ccui-btn-doc, .ccui-btn-addctcs, .ccui-btn-udctcs, .ccui-btn-gmail, .ccui-btn-stockimg { position:relative; height:16px; width:16px; display:block; float:left; background: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/icn_sprite.png) no-repeat left top }
+.ccui-btn-em { top:1px; background-position:0 -1073px }
+.ccui-btn-evm { top:1px; background-position:0 -1387px }
+.ccui-btn-svy { background-position:0 -1107px }
+.ccui-btn-poll { background-position:0 -1142px }
+.ccui-btn-code { background-position:0 -1178px }
+.ccui-btn-img { background-position:0 -1214px }
+.ccui-btn-doc { background-position:0 -1249px }
+.ccui-btn-addctcs { background-position:0 -1285px }
+.ccui-btn-udctcs { background-position:0 -1321px }
+.ccui-btn-gmail { top:2px; background-position:0 -1357px }
+.ccui-btn-stockimg { background-position:0 -1423px }
+.ccui-btn-alt { display:inline-block; background:#e1e1e1 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ccui-btn-alt-grad.gif) repeat-x left top; padding:5px 7px; border:1px solid; border-color:#cdcdcd #c1c1c1 #b0b0b0; color:#575757 !important; font-weight:bold; text-decoration:none !important; text-shadow:0 1px 0 #fff; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;  }
+.ccui-btn-alt:hover { background:#eff2f3 }
+
+
+/* TABLE styles
+---------------------------------------------------------*/
+/* global table formatting */
+.data-tbl th {text-align:left; }
+.vert-line { border-left:1px dotted #DDD; }
+.vert-line-solid-left { border-left:1px solid #CCC; }
+.vert-line-solid-both { border-right:1px solid #CCC; border-left:1px solid #CCC; }
+.tint { background:#F6F6F6; }
+.alt { background:#EFEFEF; }
+
+/* DATA TABLE styles 
+---------------------------------------------------------*/
+table.data-tbl { width:100%; background-color:#fff; border-collapse:collapse; border:1px solid #dedede; margin:5px 0 }
+.data-tbl tbody .even { background:#F9F9F9 }
+.data-tbl select { font-size:1em; margin:0; }
+.data-tbl input { font-size:1em; margin:0; }
+div.screen-width-indent .data-tbl th { vertical-align:middle; border:1px solid #dedede; border-top:none; border-bottom:none; background-color:#e4e4e4; color:#4a4a4a; font-size:1em; font-weight:bold; padding:10px; text-shadow:0 1px 0 rgba(255,255,255, .5) }
+.data-tbl th { background-color:#EFA768; vertical-align:middle; color:#CF6100; font-weight:bold; padding:12px 3px 7px 7px; text-shadow:0 1px 0 rgba(255,255,255, .5)  }
+.data-tbl th.tint { background:#CCC; padding:12px 3px 3px 7px; }
+.data-tbl th.colspan { text-align:center; border-bottom:1px solid #999; vertical-align:bottom; padding:10px 3px 3px 7px; }
+.data-tbl td { border:1px solid #e0e0e0; border-top:none; padding:10px }
+.data-tbl td .noline { border-bottom:0 solid #DDD; }
+.data-tbl td.noline { border-bottom-width:0; }
+.data-tbl td.wide-line { border-bottom-width:2px; }
+.data-tbl th a { color:#4a4a4a; text-decoration:underline; }
+.data-tbl td a:link { color:#0078c1; text-decoration:underline; }
+.data-tbl td a:visited { color:#0078c1; text-decoration:underline; }
+.data-tbl td a:hover { color:#0078c1; text-decoration:none; }
+.data-tbl td a:link.in-page-edit { color:#06C; text-decoration:none; border-bottom:1px dashed #06C; position:relative; }
+.data-tbl td a:visited.in-page-edit { color:#06C; text-decoration:none; border-bottom:1px dashed #06C; position:relative; }
+.data-tbl td a:hover.in-page-edit { color:#EA4949; text-decoration:none; border-bottom:1px dashed #EA4949; position:relative; background:#FFD; cursor:url(https://imgssl.constantcontact.com/ui/images1/cursor_edit.cur), pointer; }
+.data-tbl td a:link.nochange { color:#007BBF; text-decoration:underline; }
+.data-tbl td a:visited.nochange { color:#007BBF; text-decoration:underline; }
+.data-tbl td a:hover.nochange { color:#007BBF; text-decoration:none; }
+.data-tbl td.numeric-padleft0 { text-align:right; padding-left:0; }
+.data-tbl tr.head { background:#DEDEDE; font-size:1.2em; padding-top:3px; padding-bottom:3px; }
+.data-tbl td ul { margin:0 0 0 25px; }
+.data-tbl td ul li { list-style:disc; }
+.data-tbl.top-bdr {border-top:0}
+
+.data-tbl table.data-tbl-inner td { border: 0; padding: 0 10px 3px 0;}
+
+
+/* DATA LABEL styles 
+---------------------------------------------------------*/
+.data-lbl {border-right:1px solid #D6D6D6;border-top:1px solid #EFAF77; border-left:none; table-layout:fixed; }
+.data-lbl td {border-left:1px solid #e6e5e5; word-wrap: break-word;}
+.data-lbl th {border-left:1px solid #EFAF77;}
+.data-lbl.col-width th {width:250px;}
+.data-lbl tr.row-clr>td {background-color:#F8F8F8;}
+.data-lbl th form {display:inline;padding-left:5px;}
+.data-lbl.data-tbl th.warning-bg  {background:#FFEFEF; border-bottom:2px solid #FF0000; color:red;}
+
+/* used on datatb1 cells */
+.no-wrap{ white-space: nowrap; }
+
+/* DATA TABLE tabs
+---------------------------------------------------------*/
+.datatbl-tabs { list-style:none; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/nav_bg.gif) repeat-x left bottom; float:left; width:100%; clear:both; margin:0; padding:0; }
+.clear { clear:both; }
+.datatbl-tabs ul { list-style:none; margin:0 0 0 5px; padding:0; }
+.datatbl-tabs ul li { float:left; background:url(https://imgssl.constantcontact.com/ui/images1/datatbltab-off-l.gif) no-repeat left top; margin:0 4px 0 2px; padding:0 0 0 8px; }
+.datatbl-tabs ul li a { float:left; display:block; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/datatbltab-off-r.gif) no-repeat right top; margin:0; padding:2px 8px 2px 0; }
+.datatbl-tabs ul li.selected { float:left; background:url(https://imgssl.constantcontact.com/ui/images1/datatbltab-on-l.gif) no-repeat left top; margin:0 4px 0 2px; padding:0 0 0 8px; }
+.datatbl-tabs ul li.selected a { color:#333; float:left; display:block; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/datatbltab-on-r.gif) no-repeat right top; text-decoration:none; font-weight:bold; margin:0; padding:2px 8px 3px 0; }
+.datatbl-tabs ul li.empty a { float:none; text-align:right; display:inline; border-color:#FFF; }
+.datatbl-tabs ul li.empty a:hover { float:none; text-align:right; display:inline; border-color:#FFF; }
+
+/* DATA TABLE 
+( alternating row color and row hover state styles )
+---------------------------------------------------------*/
+.data-tbl-ar th.tint { background:#CCC; padding:12px 3px 3px 7px; }
+.data-tbl-ar th.colspan { text-align:center; border-bottom:1px solid #999; vertical-align:bottom; padding:10px 3px 3px 7px; }
+.data-tbl-ar td { vertical-align:top; border-bottom:1px solid #d4e1ec; padding:4px 3px 4px 7px; }
+.data-tbl-ar td .noline { border-bottom:0 solid #d4e1ec; }
+.data-tbl-ar td.noline { border-bottom-width:0; }
+.data-tbl-ar td.wide-line { border-bottom-width:2px; }
+.data-tbl-ar td a:link { color:#06C; text-decoration:underline; }
+.data-tbl-ar td a:visited { color:#639; text-decoration:underline; }
+.data-tbl-ar td a:hover { color:#FF5050; text-decoration:none; }
+.data-tbl-ar td a:link.in-page-edit { color:#06C; text-decoration:none; border-bottom:1px dashed #06C; position:relative; }
+.data-tbl-ar td a:visited.in-page-edit { color:#06C; text-decoration:none; border-bottom:1px dashed #06C; position:relative; }
+.data-tbl-ar td a:hover.in-page-edit { color:#EA4949; text-decoration:none; border-bottom:1px dashed #EA4949; position:relative; background:#FFD; cursor:url(https://imgssl.constantcontact.com/ui/images1/cursor_edit.cur), pointer; }
+.data-tbl-ar td a:link.nochange { color:#06C; text-decoration:underline; }
+.data-tbl-ar td a:visited.nochange { color:#06C; text-decoration:underline; }
+.data-tbl-ar td a:hover.nochange { color:#FF5050; text-decoration:none; }
+.data-tbl-ar td.numeric-padleft0 { text-align:right; padding-left:0; }
+.data-tbl-ar tr.head { background:#CCDAE8; font-size:1.2em; padding-top:3px; padding-bottom:3px; }
+.data-tbl-ar td ul { margin:0 0 0 25px; }
+.data-tbl-ar td ul li { list-style:disc; }
+/* NEW ( alternating row color and hover state color ) */
+.data-tbl-ar td.alt-row { background:#eff4f9; }
+.data-tbl-ar tr:hover { background:#e3ecf5; }
+
+/* FORM table 
+--------------------------------------------------------- */
+.form-tbl select { font-size:1em; }
+.form-tbl th { text-align:left; font-weight:bold; white-space:nowrap; padding:6px 6px 3px 3px; }
+.form-tbl td { padding:6px 6px 3px 5px; }
+.form-tbl td.top-pad-0 { padding-top:0; }
+.form-tbl .subrow { vertical-align:top; margin-top:0; margin-bottom:3px; padding-top:0; padding-bottom:3px; color:#666; font-size:0.9em; }
+li .subrow { vertical-align:top; margin-top:0; margin-bottom:3px; padding-top:0; padding-bottom:3px; color:#666; font-size:0.9em; }
+div .subrow { vertical-align:top; margin-top:0; margin-bottom:3px; padding-top:0; padding-bottom:3px; color:#666; font-size:0.9em; }
+.form-tbl table.data-tbl th { padding:3px; }
+.form-tbl table.data-tbl td { padding:3px; }
+
+/* FILE table ( used on image library )
+--------------------------------------------------------- */
+.file-tbl { width:100%; border-collapse:collapse; }
+.file-tbl th { font-weight:bold; background-color:#E2F6FE; color:#235F8F; padding:2px 2px 2px 10px; height:30px; border-bottom:1px dotted #95DAEF; text-align:left;}
+.file-tbl td { font-size:.9em; border-bottom:1px dotted #CCC; height:20px; padding:3px 5px 3px 10px; }
+.file-tbl td.noline { border-bottom:0 none; }
+.file-tbl td.center { text-align:center; }
+.file-tbl td.selected { background-color:#FFF6C6; font-size:.9em; font-weight:bold; height:20px; padding:3px 5px 3px 10px; }
+.item-selected { background:#FFF6C6; }
+.file-tbl td table td { border-left:0; border-bottom:0; font-size:1.1em; padding:0; }
+.file-tbl-bdr.sol-A {border:1px solid #95DAEF;}
+.file-tbl-bdr .dot-R {border-right:1px dotted #95DAEF;}
+.file-tbl-bdr.bdr-TBL1 {border:1px solid #54BFE2; border-left:1px dotted #54BFE2; border-right:none;}
+.file-tbl-bdr.bdr-TBL2 {border:1px solid #54BFE2; border-left:1px solid #54BFE2; border-right:none;}
+.file-tbl-bdr.bdr-TBR {border:1px solid #54BFE2; border-right:1px solid #54BFE2; border-left:1px dotted #54BFE2;}
+
+/* DOCUMENT table ( used for doc hosting )
+--------------------------------------------------------- */
+.fldr-tbl th,.prw-tbl th {height:30px;background-color:#E2F6FE; color:#235F8F;text-align:left;}
+.fldr-tbl td {padding:6px 10px; border-bottom:none;}
+.fldr-tbl td.selected {background-color:#2D9AB9; font-weight:bold; color:white; border-bottom:none;}
+.fldr-tbl td.selected span {background-color:#2D9AB9; font-weight:bold; color:white; border-bottom:none;}
+.prw-tbl td {border-bottom:1px dotted #CCC; text-align:left;}
+.prw-tbl2 td {text-align:left; border-bottom:none;}
+.prw-tbl td.selected {background-color:#FFF6C6;font-weight:bold;}
+.bg-clr1 {background-color:#FFF;}
+.bg-clr2 {background-color:#E2F6FE;}
+.fakeLink {color:#007BBF;text-decoration:underline;cursor:pointer;}
+.fakeLink:hover { text-decoration:none; }
+.handCursor {cursor:pointer;}
+.boldPage { font-weight:bold; }
+th.sorting_asc span {background: url(https://imgssl.constantcontact.com/ui/images1/icon_asc_2.gif) no-repeat center right;padding-right: 10px;}
+th.sorting_desc span {background: url(https://imgssl.constantcontact.com/ui/images1/icon_desc_2.gif) no-repeat center right;padding-right: 10px}
+.doc-thumbnail-flyover {font-size: 11px; color: #FFF; background: #666; padding: 10px;}
+.dochost_bg1 {background: url(https://imgssl.constantcontact.com/ui/images1/mylibrary_banner.png) no-repeat 480px 70px;}
+
+/* PROGRESS bars (used for doc hosting and images )
+--------------------------------------------------------- */
+.prg-bar {height:8px; float:left;}
+.prg-clr1 {background:#83D2E6 url(https://imgssl.constantcontact.com/ui/images1/prg-clr1.gif) repeat-x 0 0; border-left:1px solid #6890A4;}
+.prg-clr2 {background:#6FBED1 url(https://imgssl.constantcontact.com/ui/images1/prg-clr2.gif) repeat-x 0 0;border-right:1px solid #6890A4;}
+.prg-clr1-sm {width:6px; height:6px; background:#83D2E6; border:1px solid #6890A4;}
+.prg-clr2-sm {width:6px; height:6px; background:#3E839F; border:1px solid #6890A4;}
+.prg-none {width:124px; background-color:#DDD;}
+.prg-bg {height:16px;background-color:#F8F8F8;padding:1px 1px 1px 3px; border:1px solid #DDD;}
+
+/* Image and Document hosting hover preview thumbnail */
+.doc-thumbnail-flyover { font-size:11px; color:#FFF; background:#666; padding:10px; }
+
+/* RESPONSE table ( used for survey response results )
+--------------------------------------------------------- */
+.response-tbl { width:100%; border-spacing:2px; }
+.response-tbl th { margin:2px; }
+.response-tbl th.number { font-weight:bold; background:url(https://imgssl.constantcontact.com/ui/images1/response_circle.gif) no-repeat 50% top; color:#666; text-align:center; width:35px; vertical-align:top; padding:7px 4px 4px; }
+.response-tbl th.textblock { font-weight:bold; color:#666; text-align:center; width:1px; vertical-align:top; padding:7px 4px 4px; }
+.response-tbl th.question { border-top:3px solid #999; color:#666; font-size:1.2em; font-weight:bold; text-align:left; border-bottom:1px dashed #DDD; padding:7px 4px; }
+.response-tbl td.results { vertical-align:top; padding:5px 5px 30px; }
+.response-tbl tr.totals { background:#FFE; color:#333; }
+.response-tbl tr.alt { background:#ECECF2; }
+.response-tbl td table td { padding:2px; }
+.response-tbl td table.data-tbl th { font-weight:bold; vertical-align:bottom; background:#FFF; border-bottom:1px solid #999; padding:4px; }
+.legend td { font-size:.9em; font-weight:normal; border-bottom-width:0; padding:2px 6px 2px 2px; }
+.question-num { font-size:1.3em; font-weight:bold; color:#FFF; background:#666; text-align:center; padding:5px 8px; }
+.result-filter { background:url(https://imgssl.constantcontact.com/ui/images1/filter_border.gif) repeat-y; border:5px solid #DAD5BD; padding:15px; }
+.result-filter-header { background:#FFF9DD none repeat scroll 0; border-left:5px solid #DAD5BD; border-right:5px solid #DAD5BD; border-top:5px solid #DAD5BD; padding:8px 15px; }
+.result-filter-header2 { background:#FFF9DD none repeat scroll 0; border-bottom:1px solid #DAD5BD; border-top:1px solid #DAD5BD; color:#333; font-size:1.1em; font-weight:bold; padding:3px 5px; }
+.result-filter-header2bottom { background:#FFF9DD none repeat scroll 0; border-bottom:1px solid #DAD5BD; padding:2px; }
+
+/* MESSAGE table ( used on spam check )
+--------------------------------------------------------- */
+.msg-tbl th, .msg-tbl td {border-bottom:1px solid #CCC;text-align:left;}
+.msg-tbl thead tr{background-color:;}
+.msg-tbl th {color: #333; font-weight:bold;}
+.msg-tbl td {background-color:#FFF;}
+
+.numeric, th.numeric { text-align:right; } /* used to right align numeric table data  */
+
+/* BAR CHART ( colors )
+-----------------------------------------------------------------*/
+.bar1 { background:url(https://imgssl.constantcontact.com/ui/images1/bar1.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar2 { background:url(https://imgssl.constantcontact.com/ui/images1/bar2.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar3 { background:url(https://imgssl.constantcontact.com/ui/images1/bar3.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar4 { background:url(https://imgssl.constantcontact.com/ui/images1/bar4.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar5 { background:url(https://imgssl.constantcontact.com/ui/images1/bar5.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar6 { background:url(https://imgssl.constantcontact.com/ui/images1/bar6.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar7 { background:url(https://imgssl.constantcontact.com/ui/images1/bar7.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar8 { background:url(https://imgssl.constantcontact.com/ui/images1/bar8.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar9 { background:url(https://imgssl.constantcontact.com/ui/images1/bar9.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar10 { background:url(https://imgssl.constantcontact.com/ui/images1/bar10.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.bar11 { background:url(https://imgssl.constantcontact.com/ui/images1/bar11.gif) repeat-x; color:#FFF; font-size:.9em; text-align:right; padding:2px; }
+.report-details { padding-left:12px; border-left:3px solid #CCC; }
+.report-details h3 { font-size:1.5em; color:#999; margin-bottom:10px; background:#EFEFEF; display:block; padding:3px; }
+
+/* WIZARD
+-----------------------------------------------------------------*/
+fieldset { margin-bottom:25px; padding-top:8px; border-top:0; border-right-width:0; border-bottom-width:0; border-left-width:0; }
+fieldset legend { position:relative; display:block; color:#000; font:bold 1.2em Arial, Helvetica, sans-serif; margin-left:-7px; background:url(https://imgssl.constantcontact.com/ui/images1/icon_fieldset.gif) no-repeat; padding-left:20px; border-width:0; }
+fieldset legend span { display:block; }
+fieldset.txt-mid { padding-left:20px; }
+fieldset dl { margin-left:20px; margin-top:4px; margin-bottom:6px; }
+fieldset dt { font-size:1em; margin-top:8px; margin-bottom:2px; }
+fieldset dt.no-dd { margin-bottom:7px; }
+fieldset dt input { position:relative; top:2px; }
+fieldset dt.bttm-margin { font-size:1em; margin-bottom:6px; }
+fieldset dd { margin-bottom:7px; font-size:0.9em; color:#666; margin-left:25px; }
+fieldset dd.regular-text { font-size:1em; }
+
+/*  ROUNDED CORNERS */
+.rhead-container { margin-bottom:10px; }
+.rhead-container h1 { color:#000; font-weight:bold; font-size:1.3em; }
+
+/* ROUNDED CORNERS color 3 [ white ] used on features popups */
+.rhead-container3 { margin:15px; }
+.rhead-container3 h1 { color:#000; font-weight:bold; font-size:1.5em; }
+.rhead-container3 h2 { color:#666; font-weight:bold; font-size:1.3em; }
+.rtop-3 { display:block; }
+.rbottom-3 { display:block; }
+.rtop-3 * { display:block; height:1px; overflow:hidden; }
+.rbottom-3 * { display:block; height:1px; overflow:hidden; }
+.r1-3 { background:#FFF; margin:0 5px; }
+.r2-3 { background:#FFF; margin:0 3px; }
+.r3-3 { background:#FFF; margin:0 2px; }
+.r4-3 { height:2px; background:#FFF; margin:0 1px; }
+.rhead-3-content { background:#FFF; padding:8px; }
+
+/* WIZARD ( tabs )
+--------------------------------------------------------- */
+#tabs-sec { list-style:none; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/nav_bg.gif) repeat-x left bottom; float:left; width:100%; margin:0; padding:0; }
+.tabs-sec { list-style:none; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/nav_bg.gif) repeat-x left bottom; float:left; width:100%; margin:0; padding:0; }
+#tabs-sec ul { list-style:none; margin:0 0 0 5px; padding:0; }
+.tabs-sec ul { list-style:none; margin:0 0 0 5px; padding:0; }
+#tabs-sec ul li { float:left; font-size:.9em; margin:0; padding:0; }
+.tabs-sec ul li { float:left; font-size:.9em; margin:0; padding:0; }
+#tabs-sec ul li a { float:left; display:block; color:#007BBF; border:1px solid #007BBF; border-bottom:none; background:#effbff; margin:0 3px 0 0; padding:4px 8px; }
+.tabs-sec ul li a { float:left; display:block; color:#007BBF; border:1px solid #007BBF; border-bottom:none; background:#effbff; margin:0 3px 0 0; padding:4px 8px; }
+#tabs-sec ul li a:hover { padding-bottom:4px; background:#fff; text-decoration:underline; border-color:#999; }
+.tabs-sec ul li a:hover { padding-bottom:4px; background:#fff; text-decoration:underline; border-color:#999; }
+#tabs-sec .selected a { color:#333; padding-bottom:5px; background-color:#fff; font-weight:bold; text-decoration:none; border-color:#999; }
+.tabs-sec .selected a { color:#333; padding-bottom:5px; background-color:#fff; font-weight:bold; text-decoration:none; border-color:#999; }
+#tabs-sec .selected a:hover { padding-bottom:5px; background-color:#fff; border-color:#999; }
+.tabs-sec .selected a:hover { padding-bottom:5px; background-color:#fff; border-color:#999; }
+#tabs-sec .empty { color:#FFF; padding-bottom:10px; border-color:#FFF; }
+.tabs-sec .empty { color:#FFF; padding-bottom:10px; border-color:#FFF; }
+.preview-banner { background-color:#fff; padding-bottom:20px; }
+.preview-banner-maintext { color:red; font-weight:normal; }
+.preview-banner-infotext { color:#009; font-weight:normal; }
+.widthspread { width:95%; }
+.widthnarrow { width:1%; }
+
+/* WIDTH OPTIONS
+--------------------------------------------------------- */
+.width1 { width:1%; }
+.width3 { width:3%; }
+.width2 { width:2%; }
+.width5 { width:5%; }
+.width6 { width:6%; }
+.width10 { width:10%; }
+.width12 { width:12%; }
+.width13 { width:13%; }
+.width14 { width:14%; }
+.width15 { width:15%; }
+.width17 { width:17%; }
+.width20 { width:20%; }
+.width25 { width:25%; }
+.width30 { width:30%; }
+.width35 { width:35%; }
+.width40 { width:40%; }
+.width45 { width:45%; }
+.width50 { width:50%; }
+.width55 { width:55%; }
+.width60 { width:60%; }
+.width65 { width:65%; }
+.width70 { width:70%; }
+.width75 { width:75%; }
+.width80 { width:80%; }
+.width85 { width:85%; }
+.width90 { width:90%; }
+.width95 { width:95%; }
+.width100 { width:100%; }
+
+/* SPACE ( padding / height )
+--------------------------------------------------------- */
+.space-vertical { height:20px; }
+.space-vertical-short { height:7px; }
+.space-vertical-tall { height:30px; }
+.space-horizontal { padding-left:20px; }
+.space-horizontal-narrow { padding-left:10px; }
+.space-inner-5 { padding:5px; }
+.indent10 { padding-left:10px; }
+.indent20 { padding-left:20px; }
+.indent30 { padding-left:30px; }
+.line-vert { background:url(https://imgssl.constantcontact.com/ui/images1/line_vert_tile.gif) repeat-y; padding-right:3px; padding-left:3px; }
+.image-usage-bar { width:100px; margin-right:5px; margin-left:5px; border:1px solid #999; text-align:left; height:12px; }
+.space-btm-5 {margin-bottom:5px}
+.space-btm-10 {margin-bottom:10px}
+
+/* MESSAGE CENTER box 
+-----------------------------------------------------------------*/
+.mc-wrap { width:100%; margin:0 0 20px; }
+.mc1 { display:block; margin:0; padding:0; }
+.mc2 { display:block; margin:0; padding:0; }
+.mc3 { display:block; margin:0; padding:0; }
+.mc4 { font-style:normal; display:block; padding:20px; }
+.mc4 h1 { font-size:1.4em; }
+.mc4 h3 { color:#db7d2c; font-size:1.5em; font-weight:normal; }
+.mc4 dl dt { margin:0; padding:0; }
+.mc4 dl dd { margin:0 0 15px; padding:0; }
+.mc4 dl dt.flag { background:url(https://imgssl.constantcontact.com/ui/images1/bullet_green_arrow.gif) no-repeat; margin:0; padding:0 0 20px 20px; }
+.expire { font-size:.8em; color:#666; }
+
+/* OLD GETTING STARTED box ( TO BE DELETED )
+-----------------------------------------------------------------*/
+.gs-wrap { width:100%; margin:0 0 20px; }
+.gs_top_rt { background:url(https://imgssl.constantcontact.com/ui/images1/gsbox_top_rt.gif) no-repeat; font-size:24px; height:30px; color:#FFF; vertical-align:middle; padding:10px; }
+.gs_top_lft { background:url(https://imgssl.constantcontact.com/ui/images1/gsbox_top_lft.gif) no-repeat right; padding-right:10px; }
+.gs_bttm_rt { background:url(https://imgssl.constantcontact.com/ui/images1/gsbox_bttm_lft.gif) no-repeat; height:13px; }
+.gs_bttm_lft { background:url(https://imgssl.constantcontact.com/ui/images1/gsbox_bttm_rt.gif) no-repeat right; padding-right:10px; }
+.gs_center { border-right:1px solid #CCC; border-left:1px solid #CCC; background:url(https://imgssl.constantcontact.com/ui/images1/gsbox_cntr_bkgrd.gif) no-repeat left top; padding:10px; }
+.gs_todos { margin-top:15px; background:#e5ecf3; padding:5px; }
+.gs_todo_done { color:#999; background:url(https://imgssl.constantcontact.com/ui/images1/gsbox_todo_done.gif) no-repeat left top; padding-left:22px; padding-right:10px; }
+.gs_todo_do { color:#000; padding-left:22px; padding-right:10px; }
+.gs_buynow { margin-top:15px; padding:4px; }
+.gs_buynow_hilite { background:#FFFAD4; }
+.gs1 { background:url(https://imgssl.constantcontact.com/ui/images1/gs_right.gif) top right no-repeat; display:block; margin:0; padding:0; }
+.gs2 { background:url(https://imgssl.constantcontact.com/ui/images1/gs_left.gif) top left no-repeat; display:block; margin:0; padding:0; }
+.gs3 { background:url(https://imgssl.constantcontact.com/ui/images1/gs_bttm_left.gif) no-repeat left bottom; display:block; margin:0; padding:0; }
+.gs4 { font-style:normal; background:url(https://imgssl.constantcontact.com/ui/images1/gs_bttm_right.gif) no-repeat right bottom; display:block; vertical-align:bottom; padding:15px 20px 2px; }
+.gs4 h2 { font-size:1.6em; font-weight:bold; color:#D89C1A; display:inline; margin:0; padding:0; }
+.gs4 dl { margin:0; padding:0; }
+.gs4 dl dt { font-size:1.2em; font-weight:bold; background:url(https://imgssl.constantcontact.com/ui/images1/gs_bullet.gif) no-repeat; margin:0; padding:0 0 0 20px; }
+.gs4 dl dd { color:#666; font-size:0.9em; margin:0 0 10px; padding:0 0 0 20px; }
+.gs-box { background:#FFF7EA; border:1px solid #CCC; padding:7px; }
+.gs-box ul { margin:0; }
+html>body .gs-box ul { list-style:none; margin:0; padding:0; /* making it look better in browsers other than IE */}
+.gs-box ul li { margin-bottom:4px; margin-left:0; font-size:0.9em; }
+.gs4 img { margin-left:10px; padding:0 0 -15px; }
+.menubox { background:#EFEFEF; border-top:1px solid #CCC; border-bottom:2px solid #666; margin:0; padding:6px 15px 10px; }
+.menubox div.item { background:#EFEFEF; border-bottom:1px solid #CCC; }
+.menubox div.item a { display:block; padding:3px; }
+.menubox div.item a:visited { display:block; padding:3px; }
+.menubox div.item a:hover { color:#FFF; background:#999; display:block; padding:3px; }
+.menubox ul { margin:0; padding:0; }
+.menubox ul li { border-bottom:1px solid #CCC; list-style:none; margin:0; padding:0 0 5px; }
+.menubox ul li.bottom { border-bottom:0 solid #CCC; padding:0; }
+.mb-point-tl { background:url(https://imgssl.constantcontact.com/ui/images1/menu_point_tl.gif) no-repeat top; width:38px; height:45px; }
+.mb-point-tr { background:url(https://imgssl.constantcontact.com/ui/images1/menu_point_tr.gif) no-repeat top; width:38px; height:45px; }
+.mb-point-bl { background:url(https://imgssl.constantcontact.com/ui/images1/menu_point_bl.gif) no-repeat bottom; width:38px; height:45px; }
+.mb-point-br { background:url(https://imgssl.constantcontact.com/ui/images1/menu_point_br.gif) no-repeat bottom; width:38px; height:45px; }
+.mb-point-empty-l { border-right:2px solid #666; width:2px; height:45px; }
+.mb-point-empty-r { border-left:2px solid #666; width:2px; height:45px; }
+.mb-point-empty-thin-l { border-right:1px solid #CCC; height:45px; }
+.mb-point-empty-thin-r { border-left:1px solid #CCC; height:45px; }
+.text-menubox { background:#EFEFEF; text-align:center; border-top:1px solid #CCC; border-bottom:1px solid #CCC; border-left:1px solid #CCC; border-right:1px solid #CCC; margin:0; }
+.text-menubox ul { margin:0; padding:0; }
+.text-menubox ul li { border-bottom:1px solid #CCC; list-style:none; margin:0; padding:4px 10px; }
+.text-menubox div { border-bottom:1px solid #CCC; list-style:none; margin:0; padding:4px 10px; }
+.tool-tipbox { position:absolute; width:150px; background:#FF9; top:50px; left:30px; text-align:center; border-top:1px solid #CCC; border-bottom:1px solid #CCC; border-left:1px solid #CCC; border-right:1px solid #CCC; margin:0; }
+/* sri*/
+.eula { overflow-y:scroll; height:170px; border:1px solid; margin:8px 0; padding:0 6px; }
+
+/*  SURVEY and EMAIL ( top area of detail pages )
+-----------------------------------------------------------------*/
+.details-title { margin-bottom:35px; }
+.details-title h1 { font-weight:bold; font-size:1.8em; }
+.details-title .active { color:#FFF; font-weight:bold; background:#FAB41E; padding:3px 7px; }
+.details-title hr { border:0; height:1px; color:#CCC; margin-top:2px; margin-bottom:-5px; }
+html>body .details-title hr { border:0; height:1px; color:#CCC; background-color:#CCC; margin-top:8px; margin-bottom:5px; /* making it look better in browsers other than IE */}
+th.sorted a { display:block; background:no-repeat left; }
+th.sortable a { display:block; background:no-repeat; float:left;}
+th.numeric a { display:block; background:no-repeat; float:right;}
+th.order1 a { background:url(https://imgssl.constantcontact.com/ui/images1/icon_asc_1.gif) no-repeat right; padding-right:10px; }
+th.order2 a { background:url(https://imgssl.constantcontact.com/ui/images1/icon_desc_1.gif) no-repeat right; padding-right:10px; }
+.pagination { padding-top:8px; padding-bottom:8px; /* wraps around table pagination controls */}
+
+/* FILE TREE STYLES (used for template picker )
+-----------------------------------------------------------------*/
+.tree { width:100%; }
+.tree td.col1 { width:23%; vertical-align:top; padding:8px 0 4px 4px; }
+.tree td.col2 { width:77%; vertical-align:top; border:3px solid #999; padding:6px; }
+dl.tree { margin:0 0 20px; padding:0; }
+dl.tree dd.open { background:url(https://imgssl.constantcontact.com/ui/images1/tri_down.gif) no-repeat; padding-left:15px; }
+dl.tree dd.closed { background:url(https://imgssl.constantcontact.com/ui/images1/tri_sideways.gif) no-repeat; padding-left:15px; }
+dl.tree dd.end { padding-left:5px; }
+dl.tree dd.end-selected { font-weight:bold; padding-left:0; color:#F60; }
+dl.tree dd.lev1 { font-weight:bold; margin-left:0; margin-bottom:8px; padding-right:8px; line-height:1.1em; }
+dl.tree dd.lev2 { margin-left:10px; margin-bottom:8px; font-size:0.9em; padding-right:8px; line-height:1em; }
+dl.tree dd.lev3 { margin-left:20px; margin-bottom:8px; font-size:.9em; padding-right:8px; line-height:1em; }
+dl.tree dd.lev4 { margin-left:30px; margin-bottom:8px; font-size:.9em; padding-right:8px; line-height:1em; }
+dl.tree dd.vert-space { margin-bottom:11px; }
+dl.tree dd.selected { font-weight:bold; color:#FFF; background:#999 url(https://imgssl.constantcontact.com/ui/images1/tree_selected_background.gif) repeat-x bottom; display:block; padding:4px; }
+dl.tree dd.selected a { color:#fff; text-decoration:none; }
+dl.tree dd.end-selected a { font-weight:bold; text-decoration:none; padding-left:0; color:#F60; }
+
+/*  TEMPLATE PICKER 
+-----------------------------------------------------------------*/
+div.template { height:285px; width:180px; float:left; font-size:.9em; padding:7px 21px 0 20px; }
+div.selectedtemplate { height:285px; width:180px; float:left; font-size:.9em; background:url(https://imgssl.constantcontact.com/ui/images1/tp_selected.gif) no-repeat left top; color:#FFF; padding:7px 21px 0 20px; }
+div.selectedtemplate img.template { display:inline; float:left; margin-top:5px; margin-bottom:7px; margin-left:20px; border:1px solid #ccc; }
+div.template img.template { display:inline; float:left; margin-top:5px; margin-bottom:7px; margin-left:20px; border:1px solid #fff; }
+div.selectedtemplate div { clear:both; text-align:center; margin-bottom:7px; margin-left:25px; }
+div.template div { clear:both; text-align:center; margin-bottom:7px; margin-left:25px; }
+div.selectedtemplate label.template { font-weight:bold; }
+.template div:hover { border:2px #F60; }
+div.hr { height:1px; font-size:1px; border-bottom:1px solid #999; width:93%; float:left; margin:0 0 10px 15px; padding:0; }
+/* ROVING_menu is used as a popup menu holder - initially implemented for VE Left Tools for "more insert options", Mar08 */
+#ROVING_menu { cursor:inherit; z-index:100; color:#000; background-color:#fff; border:1px solid #CCC; padding:3px; }
+/* window border for inline popup */
+#TB_window { font:12px Arial, Helvetica, sans-serif; position:fixed; background:#fff; z-index:102; color:#000; display:none; border:4px solid #999; text-align:left; top:50%; left:50%; }
+#TB_secondLine { font:10px Arial, Helvetica, sans-serif; color:#666; }
+
+/* INLINE POPUP settings 
+-----------------------------------------------------------------*/
+#TB_overlay { position:fixed; z-index:100; top:0; left:0; height:100%; width:100%; }
+.TB_overlayMacFFBGHack { background:url(macFFBgHack.png) repeat; }
+.TB_overlayBG { background-color:#000; filter:alpha(opacity=40); -moz-opacity:0.40; opacity:0.40; }
+* html #TB_overlay { position:absolute; height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');}
+* html #TB_window { position:absolute; margin-top:expression(0 - parseInt(this.offsetHeight / 2) 0 (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) 0 'px');}
+/* the template preview for the template picker has a main image with this id */
+#TB_window img#TB_Image { display:block; margin-top:15px; }
+#TB_caption { height:25px; float:left; padding:7px 30px 10px 25px; }
+#TB_closeWindow { height:25px; float:right; padding:11px 25px 10px 0; }
+#TB_closeAjaxWindow { margin-bottom:1px; text-align:right; float:right; padding:7px 10px 5px 0; }
+/* this is also in the title area, inside TB_title */
+#TB_ajaxWindowTitle { float:left; margin-bottom:1px; padding:0; }
+/* title area for inline popup */
+#TB_title { padding-bottom:0; padding-top:5px; padding-left:15px; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/popup_title_bkgrd.gif) repeat-x bottom; vertical-align:bottom; height:45px; display:block; }
+/* this is for the Use This Template button */
+#TB_btn-primary { color:#333; text-decoration:none; border:1px solid #FAB41E; background:#FBC34C url(https://imgssl.constantcontact.com/ui/images1/ab_active_rb.gif) no-repeat; font:bold 1em Arial, helvetica, sans-serif; cursor:pointer; margin:0; padding:2px 6px; }
+#TB_ajaxContent { clear:both; overflow:auto; text-align:left; line-height:1.4em; padding:2px 15px 15px; }
+#TB_ajaxContent.TB_modal { padding:15px; }
+#TB_ajaxContent p { padding:5px 0; }
+#TB_load { position:fixed; display:none; height:13px; width:208px; z-index:103; top:50%; left:50%; margin:-6px 0 0 -104px; }
+* html #TB_load { position:absolute; margin-top:expression(0 - parseInt(this.offsetHeight / 2) 0 (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) 0 'px');}
+#TB_HideSelect { z-index:99; position:fixed; top:0; left:0; background-color:#fff; border:none; filter:alpha(opacity=0); -moz-opacity:0; opacity:0; height:100%; width:100%; }
+* html #TB_HideSelect { position:absolute; height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');}
+#TB_iframeContent { clear:both; border:none; margin-bottom:-1px; margin-top:1px; _margin-bottom:1px; }
+.evmlayer_bg1 { background:url(https://imgssl.constantcontact.com/ui/images1/evm_upsell_image.gif) no-repeat 375px 20px; }
+
+/* STOCK IMAGE PICKER classes 
+-----------------------------------------------------------------*/
+#stockImageGalleryImages { padding:4px 20px; }
+div.imageThumbnail { height:200px; text-align:center; display:table-cell; float:left; font-size:.9em; line-height:1.5em; padding:7px 15px 10px; }
+div.imageThumbnail input { margin:4px; }
+div.imageThumbnail div { text-align:center; display:table-cell; vertical-align:bottom; height:120px; width:120px; padding:5px; }
+.stockImage-confirm-primary { background:url(https://imgssl.constantcontact.com/ui/images1/icon_confirm.gif) no-repeat 0; color:#393; font-size:.8em; font-weight:bold; display:block; width:100px; margin-left:12px; text-align:left; line-height:1.1em; padding:6px 0 6px 20px; }
+dl.leftnav { margin:0; padding:0; }
+dl.leftnav dt { margin-bottom:3px; font-weight:bold; border-bottom:1px solid #CCC; border-left:1px solid #CCC; padding:3px 3px 3px 5px; }
+dl.leftnav dd { padding-left:15px; padding-bottom:5px; margin:0; }
+dl.leftnav dt.selected { font-weight:bold; }
+dl.leftnav dd.selected { font-weight:bold; }
+
+/* TABLE STYLES for "CLASSIC" EMAIL EDITOR 
+-----------------------------------------------------------------*/
+.wiz2col { width:100%; }
+.wiz2col .col1 { width:20%; vertical-align:top; padding:8px 4px 4px; }
+.wiz2col .col1 ul { list-style:none; margin:4px 0 0; padding:0; }
+.wiz2col .col1 ul li { list-style:none; border:1px solid #CCC; background:#FFF; margin:0 0 7px; padding:3px; }
+.wiz2col .col1 ul li.active { list-style:none; color:#FFF; background:#9F9F9F; font-weight:bold; margin:0 -6px 7px 0; padding:3px; border:1px solid #9F9F9F; }
+.wiz2col .col2 { width:80%; vertical-align:top; border:2px solid #9F9F9F; padding:10px; }
+.wiz-wrap { border:3px solid #666; margin:0; padding:10px; min-height:160px; }
+.wiz-wrap h2 { font-size:1.3em; display:inline; }
+
+/*  SMALL BOX STYLES ( for secondary content as well as specialty content i.e. mssg cntr and getting started box ) 
+-----------------------------------------------------------------*/ 
+div.sbox { position:relative; height:1%; margin-bottom:15px; padding:0; background-color:#F3F3F3; border:1px solid #D6D6D6;border-radius:.5em; -webkit-border-radius:.5em; -moz-border-radius:.5em; }
+div.sbox-noline { position:relative; height:1%; border:0; margin-bottom:15px; padding:0; }
+div.sboxbody-1 { background:#FFF; position:relative; height:1%; padding:10px 15px; }
+div.sboxbody-2 { position:relative; height:1%; padding:10px 15px; }
+div.sboxbody-2 div.data-tbl { border:none; background-color:#F3F3F3; }
+div.sboxbody-2 h3 { color:#db7d2c; font-size:1.5em; font-weight:normal; }
+div.sboxbody-3 { background:#FFF9DF; position:relative; height:1%; padding:10px 15px; }
+div.sboxbody-mc { background:#ffe url(https://imgssl.constantcontact.com/ui/images1/mc_bkgrd.gif) repeat-x; position:relative; height:1%; padding:10px 15px; }
+div.sboxbody-nav { background:#FFF url(https://imgssl.constantcontact.com/ui/images1/navbar_bkgrd_rb.gif) repeat-x; position:relative; height:1%; padding:10px; }
+div.sboxbottom { clear:both; position:relative; height:1%; }
+
+.sbox-titlebar { color:#0d5878; text-shadow:0 1px #fff; background:#C4E4F1 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/boxhd-default-bg.gif) top left repeat-x; border:1px solid #aac5cf; border-bottom:none; padding:8px; cursor:pointer; }
+.sbox-titlebar:hover {background:#d2eefa}
+.sbox-titlebar.expanded { border-bottom:1px solid #aac5cf; }
+.sbox-body { border:1px solid #aac5cf; border-top:none; border-bottom:none; padding:10px }
+.cc-accordian-max { background:url(https://imgssl.constantcontact.com/ui/images1/twist_open.gif) no-repeat 0 3px; width:16px;height:16px; float:left}
+.cc-accordian-min { background:url(https://imgssl.constantcontact.com/ui/images1/twist_closed.gif) no-repeat 0 3px; width:16px;height:16px; float:left}
+
+b.cn { position:absolute; height:10px; width:10px; margin:0; padding:0; }
+b.tl { top:-1px; left:-1px; background-position:top left; }
+b.tr { top:-1px; right:-1px; background-position:top right; }
+b.tr2 { top:-1px; right:-2px; background-position:top right; }
+b.bl { bottom:-1px; left:-1px; background-position:bottom left; }
+b.br { bottom:-1px; right:-1px; background-position:bottom right; }
+b.br2 { bottom:-1px; right:-2px; background-position:bottom right; }
+b.tl2px { top:-2px; left:-2px; background-position:top left; }
+b.tr2px { top:-2px; right:-2px; background-position:top right; }
+b.bl2px { bottom:-2px; left:-2px; background-position:bottom left; }
+b.br2px { bottom:-2px; right:-2px; background-position:bottom right; }
+
+/* MESSAGE CENTER ( content styles )
+    -----------------------------------------------------------------*/
+.sboxbody-mc h1 { font-size:2em; }
+.sboxbody-mc dl dt { margin:0; padding:0; }
+.sboxbody-mc dl dd { font-size:.9em; margin:0 0 15px; padding:0; }
+.sboxbody-mc dl dt.flag { background:url(https://imgssl.constantcontact.com/ui/images1/icon_mcflag.gif) no-repeat; margin:0; padding:0 0 0 20px; }
+.moreinfo-body { background:url(https://imgssl.constantcontact.com/ui/images1/more_info_tile.png) repeat-y; width:158px; padding:7px 20px; }
+
+/* BUBBLE HELP
+-----------------------------------------------------------------*/
+.bubble { position:absolute; z-index:102; width:298px; margin:-35px 0 0 -300px; }
+.bubble_top { background-image:url(https://imgssl.constantcontact.com/ui/images1/bubble_top.gif); width:298px; height:11px; }
+.bubble_arrow { background-image:url(https://imgssl.constantcontact.com/ui/images1/bubble_arrow.gif); width:298px; height:50px; }
+.bubble_blank { background-image:url(https://imgssl.constantcontact.com/ui/images1/bubble_blank.gif); width:298px; height:30px; }
+.bubble_bottom { background-image:url(https://imgssl.constantcontact.com/ui/images1/bubble_bottom.gif); width:298px; height:13px; }
+.bubble_text { margin-left:30px; border:0 solid #000; }
+.bubble_text img { float:left; }
+.bubble_text .big_text { font-size:14px; font-weight:bold; color:#65655d; display:inline; margin:2px 0 0 5px; }
+.bubble_text .bubble_optional { display:inline; font-size:11px; color:#9e9a8f; }
+.bubble_text .plane_text { display:block; width:200px; font-size:11px; color:#050200; float:right; padding-right:40px; }
+
+/* Footer
+----------------------------------------------------------*/
+#footer { position:relative; padding:32px 20px 20px; background:url(../../img/footer-bg.png) center top no-repeat; clear:both; }
+#footer a { margin:0; color:#838383; font-size:.925em; text-decoration:none; }
+#footer a:visited { /* TODO: visited link color? */}
+#footer a:hover { text-decoration:underline; }
+#footer h4 { color:#666; font-size:1.15em; margin:0 0 1.5em; font-weight:bold; text-shadow:0 1px 0 #fff; }
+#footer ul { overflow:hidden; padding:0; margin:0; }
+#footer ul.footer-top { background:url(https://imgssl.constantcontact.com/ui/images1/uxCommon/footer-divider.png) center bottom no-repeat; margin-bottom:15px; padding-bottom:30px; }
+#footer ul.footer-bottom h4 { line-height:1; margin-bottom:.07em; }
+#footer ul.footer-bottom h4 a { margin:0; color:#666; font-size:1em; text-decoration:none; }
+#footer ul.footer-bottom h4 a:hover { text-decoration:underline }
+#footer > ul > li { float:left; }
+#footer li { margin-bottom:.4em; padding:0; list-style:none; color:#838383 }
+#footer li.col-1 { width:245px; }
+#footer li.col-2 { width:250px;  }
+#footer li.col-3 { width:200px;  }
+#footer li.col-4 { width:175px;  }
+#footer li.col-5 { width:80px;  }
+#footer li.last { margin-right:0; float:right; }
+#footer li.copyright { color:#838383; font-size:.9em; line-height:1.4; text-align:right; width:auto; }
+#footer li.copyright a { color:#666; }
+
+/* TODO: Legacy footer classes, still needed? -DMORSE
+.bttmfooterorangeborder { clear:left; border-top:10px solid #2E87A9; display:block; font-size:0.9em; background:#236883; color:#81BBCF; height:60px; text-align:left; padding:10px 40px 10px 40px; }
+.bttmfooter-popup { clear:left; border-top:10px solid #2e87a9; margin-top:25px; display:block; font-size:0.8em; background:#236883 url(https://imgssl.constantcontact.com/ui/images1/ctctlogo_footer_white.gif) no-repeat right 10px; color:#fff; height:60px; text-align:left; padding:10px 10px 20px 15px; }
+.footer-toplink { font-size:0.9em; color:#000; margin-top:25px; text-align:left; display:block; clear:left; margin-bottom:-25px; padding:0 10px 10px 15px; }*/
+
+/* absolutely positioned right skyscraper block */
+.partner-rt-skyscraper { clear:none; float:left; position:absolute; left:790px; top:30px; padding:0; }
+/* top level block */
+.partner-topbar { background:#369; width:750px; padding:0 10px 0 0; }
+.bounding_box { margin:0 20px 20px 0; }
+.bounding_box_wide { margin:0 0 20px; }
+.bounding_box_left { position:relative; margin:0; padding:4px 15px 8px 8px; }
+.bounding_box_title { color:#3f729f; font-size:1.5em; font-weight:bold; }
+.bounding_box.side_bar { margin-left:10px; }
+.side_bar .bounding_box_title { font:normal 1.5em Arial, Helvetica, sans-serif; color:#d87d2c; }
+.data_box * { overflow:hidden; }
+.data_box, .layout_box { margin-top:10px; }
+.data_box p { text-align:justify; padding-top:5px; }
+.data_box .wasul { list-style-type:none; width:100%; clear:both; margin:0; padding:0; }
+.data_box .wasul .wasul.bullet { list-style-type:disc; margin:0; }
+.data_box .wasul .wasul.bullet .wasli { vertical-align:text-top; list-style-type:disc; margin:0; padding:0; }
+.data_box .data_header { margin-bottom:15px; }
+.data_box .wasul .wasli { padding:6px 0 2px; }
+.data_box_body, .layout_box_body { padding-top:10px; }
+.col_1 { float:left; clear:left; }
+.col_2 { float:left; }
+.withlines .wasul { border-bottom:1px solid #ddd; }
+.withlines .wasul.noline { border:0 solid #000; }
+
+/* LAYER ALERT BOXES
+-----------------------------------------------------------------*/
+.alert_box { margin:auto; }
+.alert_innerbox { display:inline-block; padding:5px 20px; }
+.alert_box h2 { font-size:1.3em; }
+.alert_box.xsmall { width:280px; }
+.xsmall .mid_top { width:240px; }
+.xsmall .mid_mid { width:274px; }
+.xsmall .mid_bottom { width:240px; }
+.alert_box.ssmall { width:390px; }
+.ssmall .mid_top { width:350px; }
+.ssmall .mid_mid { width:384px; }
+.ssmall .mid_bottom { width:350px; }
+.alert_box.small { width:500px; }
+.small .mid_top { width:460px; }
+.small .mid_mid { width:494px; }
+.small .mid_bottom { width:460px; }
+.alert_box.med { width:600px; }
+.med .mid_top { width:560px; }
+.med .mid_mid { width:594px; }
+.med .mid_bottom { width:560px; }
+.alert_box.medlarge { width:700px; }
+.medlarge .mid_top { width:660px; }
+.medlarge .mid_mid { width:694px; }
+.medlarge .mid_bottom { width:660px; }
+.alert_box.large { width:800px; }
+.large .mid_top { width:760px; }
+.large .mid_mid { width:794px; }
+.large .mid_bottom { width:760px; }
+.left_top { width:20px; height:20px; float:left; background-image:url(https://imgssl.constantcontact.com/ui/images1/top-left.gif); font-size:1px; }
+.mid_top { width:580px; height:17px; float:left; border-top:3px solid #f90; background-color:#FFF; font-size:1px; }
+.right_top { width:20px; height:20px; float:left; background-image:url(https://imgssl.constantcontact.com/ui/images1/top-right.gif); font-size:1px; }
+.mid_mid { border-left:3px solid #f90; border-right:3px solid #f90; clear:left; background-color:#FFF; width:580px; float:left; font-size:12px; text-align:left; background-image:url(https://imgssl.constantcontact.com/ui/images1/fade.gif); background-repeat:repeat-x; background-position:bottom; }
+.left_bottom { width:20px; height:20px; float:left; background-image:url(https://imgssl.constantcontact.com/ui/images1/bottom-left.gif); font-size:1px; }
+.mid_bottom { width:580px; height:16px; float:left; border-bottom:3px solid #f90; background-color:#e8e8e8; font-size:1px; }
+.right_bottom { width:20px; height:20px; float:left; background-image:url(https://imgssl.constantcontact.com/ui/images1/bottom-right.gif); font-size:1px; }
+
+/* INFO ICON BOXES
+-----------------------------------------------------------------*/
+.infobox { position:absolute; top:-2000px; left:-2000px; width:300px; margin:0; padding:0; }
+.infobox_top { width:300px; height:33px; background-image:url('https://imgssl.constantcontact.com/ui/images1/more_info_top.gif'); margin:0; padding:0; }
+.infobox_closebutton { float:right; padding:10px 15px 0 0; }
+.infobox_mid { display:block; background-image:url('https://imgssl.constantcontact.com/ui/images1/more_info_tile.gif'); margin:0; padding:0; }
+.infobox_lineing { width:260px; margin:0; padding:10px 20px 0; }
+.infobox_bottom { width:300px; height:21px; background-image:url('https://imgssl.constantcontact.com/ui/images1/more_info_bottom.gif'); margin:0; padding:0; }
+
+/* PAY FOR SERVICE
+-----------------------------------------------------------------*/
+.lineitem { width:100%; clear:both; padding:10px 0 0; }
+.lineitem div { padding-left:10px; }
+.wipeout { display:inline; margin:0; padding:0; }
+.upsell { height:15px; }
+
+
+
+/* PANEL
+----------------------------------------------------------------*/
+.ccui-panel-group { margin-bottom:10px; z-index:100 }
+.ccui-panel { margin-bottom: 0px; }
+.ccui-panel-group .ccui-panel { margin-bottom: 0; }
+.ccui-panel .ccui-panel-header {display:block;}
+.ccui-panel.collapsible .ccui-panel-header { cursor:pointer; }
+.ccui-panel .ccui-panel-header > span { display:block; padding-left:7px; }
+.ccui-panel-body { padding:5px; }
+.ccui-panel.collapsible .ccui-panel-header > span { background:url(https://imgssl.constantcontact.com/ui/images1/twist_open.gif) no-repeat 3px 50%; padding-left:19px;}
+.ccui-panel.collapsed .ccui-panel-header > span { background-image:url(https://imgssl.constantcontact.com/ui/images1/twist_closed.gif);}
+.ccui-panel:last-child { border-bottom:1px solid #aac5cf }
+.separated { margin-top:10px; }
+
+.section-panel > .ccui-panel-header { color:#0d5878; background:#dbf4ff url(https://imgssl.constantcontact.com/ui/images1/uxCommon/boxhd-default-bg.gif) bottom left repeat-x; border:1px solid #aac5cf; border-bottom:none; padding:8px; margin:0; cursor:pointer; }
+.section-panel .ccui-panel-body { border:1px solid #aac5cf; }
+
+.section-panel .ccui-panel-body { border-bottom:none; }
+.section-panel.collapsed .ccui-panel-header { border-bottom:none; }
+
+.toolbar-panel { margin:0px; }
+.toolbar-panel > .ccui-panel-header { 
+    background: red url(https://imgssl.constantcontact.com/ui/images1/blocktbar_bg.jpg) repeat-x 0 0;
+    color: #444d53;
+    border:1px solid #78808b;   
+    height:25px;
+    padding:0;              
+    line-height:25px;
+    font-weight:bold;
+    text-shadow:0 1px 0 rgba(255,255,255,.3); 
+    font-size:13px;
+    margin:0;
+    letter-spacing:1px; font-size:12px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    }
+.collapsible.toolbar-panel > .ccui-panel-header:hover { background:#E1E3E6; }
+.toolbar-panel > .ccui-panel-body { background-color:#f4f5f6; border:1px solid #78808b; border-top-width:0px; border-bottom-width:0px;  }
+.toolbar-panel > .ccui-panel-body { border-bottom-width:1px; }
+
+
+/* EVM/EVP specific styling
+-----------------------------------------------------------------*/
+/* tracking styles for Evp */
+.trackingSectionHeader { font-weight:bold; float:right; padding:2px 7px 0 3px; }
+.trackingSectionValue { font-weight:bold; float:left; padding:2px 7px 0 3px; }
+.trackingDataLine IMG { cursor:hand; padding:0 0 0 7px; }
+.trackingDataLine { font-size:15px; font-weight:bold; border:1px solid #CCC; background-color:#FFC; white-space:nowrap; padding:2px 5px; }
+.trackingDataLine a { background-color:#FFC; border:1px solid #CCC; font-size:15px; font-weight:bold; white-space:nowrap; padding:2px 5px; }
+.trackingDataLineEmail { padding:12px 0; }
+.trackingDataLineEmail a { border:1px solid #CCC; font-size:18px; font-weight:bold; white-space:nowrap; padding:3px 5px; }
+.trackingSectionStatusOpen { color:#9bb432; font-size:18px; font-weight:bold; padding-top:5px; }
+.trackingSectionStatusClose { color:#7e7e7e; font-size:18px; font-weight:bold; padding-top:5px; }
+.trackingSubLinks td { padding:0 5px 0 0; }
+.trackingReportIcon { float:left; margin-left:15px; margin-top:-20px; position:absolute; z-index:100; }
+.reportLeftCol { font-size:10px; padding:0 0 0 30px; }
+.reportRightCol { font-size:10px; padding:0 30px 0 0; }
+.status-Draft { font-size:20px; color:#d27407; }
+.status-Published { font-size:20px; color:#9bb432; }
+.status-Complete { font-size:20px; color:#7e7e7e; }
+.status-Cancelled { font-size:20px; color:#d35022; }
+.data-tbl-head { background:#E9E9E9 none repeat scroll 0 0; margin:5px 0; padding:3px 3px 3px 7px; }
+.data-tbl-1 th { background:#E9E9E9 none repeat scroll 0 0; border-bottom:1px solid #??C9; vertical-align:bottom; padding:3px 3px 3px 7px; }
+.eventTitle { font-weight:bold; font-size:1.6em; color:#235F8F; }
+.eventHideForV1 { display:none; }
+#futureDateSettings td { border:none }
+
+.toolTip {
+        padding-left: 5px;
+        padding-right: 5px;
+        color: #3366FF;
+        cursor: help;
+        position: relative;
+        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=100);
+        opacity: 1.0;
+        z-index: 10;
+}
+.toolTipWrapper {
+        width: 190px;
+        position: absolute;
+        top: 20px;
+        display: none;
+        color: #000000;
+        background: #FFFFFF;
+        font-weight: none;
+        font-size: 8pt;
+        border: 2px solid #000000;
+        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=100);
+        opacity: 1.0;
+        z-index: 20;
+}
+/*****************************************************************
+                                                                        UI REFRESH ( new styles )
+*****************************************************************/
+
+/* HOMEPAGE ( Header styles ) 
+-----------------------------------------------------------------*/
+#header { background:url(../../img/headerbg.png); float:left; height:65px; position:relative; width:100%; margin:0 auto; padding:0; }
+#content-main {background: #b9e3f1; float:left; min-height:829px;  position:relative; width:991px; margin:0 auto; padding:10px 0px; z-index:100;
+    border-left:2px solid #fff; border-right:2px solid #fff;
+	-moz-border-radius:0 0 10px 10px;
+    border-radius:0 0 10px 10px;
+    -webkit-border-radius:0 0 10px 10px;
+    border-bottom:2px solid #FFF;
+}
+
+#content-emails { background:url(../../img/design-email.jpg); float:left; height:466px; position:relative; width:993px; margin:0 auto; padding:0; z-index:100}
+
+#panel-left {float: left; position: relative; margin-top: 10px; margin-left: 10px; left: 0px; top: 10px; padding: 0; width: 590px; text-align: left;}
+#panel-right {float: right; position: relative; margin-top: 10px; margin-left: 0px; margin-right: 10px; top: 10px; : 0; width: 350px; text-align: left;}
+#last-message-container {position: absolute; width: 100%; margin: 0 0; padding: 0;}
+.title-box {position: relative; float: left; width: 120px; height: 33px; background:url(../../img/lastMsgTitle_bg.png) repeat-x bottom left;  padding: 0; margin: 0 0; clear: both;}
+.title-text {font-size: 12px; font-weight: bold; color: #FFFFFF; padding: 10px 12px;
+    text-align: right;
+    white-space: nowrap;
+	float:right;}
+	
+.message-title-text {font-size: 12px; color: #000; padding: 10px 5px;
+    text-align: left;
+    white-space: nowrap;
+	float:left;}
+
+.message-content-box {position: relative; width: 100%;  margin: 33px 0px; border: 1px solid #042b7a;}
+
+.message-title-box {position: absolute; float: left; width: 100%; background:url(../../img/message-title-bg.png) repeat-x top left;  height: 34px; padding: 0; margin: 0 0; clear: both;}
+
+#message-content-container {position: relative; width: 100%; margin: 0 0; padding: 0; height: auto;}
+
+#message-content-right {float: right; display: inline; position: relative; width: 200px; margin: 0px 0px; padding: 0; height: 100%; border: 1px solid #000;}
+#message-content-left {float: left; display: inline; position: relative; width: 360px; margin: 0px 0px; padding: 0; height: auto;  border: 1px solid #000;}
+
+#logo { float:left; height:65px; position:relative; width:356px; margin:0; padding:0; }
+.header-right {
+    float: right;
+    height: 35px;
+    margin: 0 7px;
+    padding: 0;
+    position: relative;
+	color:#FFF;
+	background:#003D6B;
+	-moz-border-radius:0 0 6px 6px;
+    border-radius:0 0 6px 6px;
+    -webkit-border-radius:0 0 6px 6px;
+    border-bottom:1px solid #357aa6;
+}
+.welcome { height:19px; position:absolute; top:38px; right:0; margin:0 7px; padding:9px 0 0; color:#95DAFE; font-style:italic }
+.topbar {
+    color:#256a8e;
+    font-size: 12px;
+    margin: 0;
+    padding: 10px 12px;
+    text-align: right;
+    white-space: nowrap;
+	float:right;
+}
+.topbar a {
+    color: #6DC2EE;
+    margin: 0 7px 0 2px;
+    text-decoration: none;
+}
+.topbar a:hover { text-decoration:underline;color:#FFF }
+.weAreHereToHelpLink{  background:url(https://imgssl.constantcontact.com/ui/images1/ccui-main_nav_sprite.png) no-repeat 0 -218px; height:30px;float:right;width:140px; margin:6px 0 0; padding:4px 0px 0px 0px;  }
+.weAreHereToHelpLink a {
+    float:right;
+    font-size: 12px;
+    font-style: italic;
+    color:#95DAFE; 
+    text-decoration:none; 
+    margin:0 14px 0 0; 
+}
+.weAreHereToHelpLink a:hover {
+    color:#FFF; 
+    text-decoration:underline; 
+}
+
+.callCoach{
+    background:url(https://imgssl.constantcontact.com/ui/images1/ccui-main_nav_sprite.png) no-repeat 0 -218px;
+    height:30px;
+    float:right;
+    width:110px;
+    margin:6px 0 0;
+    padding:4px 0px 0px 0px;
+}
+.callCoach span {
+    float:right;
+    font-size: 12px;
+    font-style: italic;
+    color:#95DAFE;
+    margin:0 14px 0 0;
+}
+
+/* Telephone menu ( Header styles ) 
+-----------------------------------------------------------------*/
+
+.telemenu {
+    height: 30px;
+    margin: 0;
+    padding:5px 0 0 0; 
+    position: relative;
+    width: 132px;
+	float:left;
+	z-index:100;
+}
+#telemenu_sales.telemenu {
+    width: 117px;
+}
+.telemenu h5 {
+    color: #357E86;
+    font: bold 12px Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 5px 25px 5px 0;
+}
+.telemenu ul.dropdown {
+    background:#003D6B;
+    float: right;
+    height: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 9px 0;
+    position: absolute;
+    width: 137px;
+    border-radius:4px;
+}
+#telemenu_sales.telemenu ul.dropdown {
+    width: 122px;
+}
+.telemenu ul.dropdown:hover {
+    background:#003D6B;
+}
+.telemenu ul.dropdown li {
+    display: none;
+    height: 18px;
+    font-size: 0;
+    padding: 3px 0 0 0;
+}
+.telemenu ul.dropdown li a {
+    display: block;
+    height: 18px;
+    margin: 0 0 0 10px;
+    outline: none;
+    text-indent: -9000px;
+    width: 94px;
+}
+.telemenu ul.dropdown li a.number_global {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_number_global.png) no-repeat 0 0;
+}
+.telemenu ul.dropdown li a.number_us {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_number_us.png) no-repeat 0 0;
+}
+#telemenu_sales.telemenu ul.dropdown li a.number_us {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_number_trialer_us.1.png) no-repeat 0 0;
+}
+.telemenu ul.dropdown.customer li a.number_global {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_number_global_customer.png) no-repeat 0 0;
+}
+.telemenu ul.dropdown.customer li a.number_uk {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_number_uk_customer.png) no-repeat 0 0;
+}
+.telemenu ul.dropdown.customer li a.number_us {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_number_us_customer.png) no-repeat 0 0;
+}
+#telemenu_sales.telemenu ul.dropdown.customer li a#number_us {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_number_trialer_us.1.png) no-repeat 0 0;
+}
+.telemenu ul.dropdown li.number_current {
+    display: block;
+}
+.telemenu ul.dropdown li.number_current a {
+    float: left;
+}
+.telemenu ul.dropdown li.number_current a:hover, .telemenu ul.dropdown.open li.number_current a:hover {
+    background-position: 0 0;
+    cursor: default;
+}
+.telemenu ul.dropdown li.number_current a.telemenu_button {
+    background: transparent url(https://imgssl.constantcontact.com/ui/images1/telemenu/telemenu-blue/ccui_telesales_arrows.png) no-repeat 0 0;
+    display: inline;
+    float: right;
+    height: 10px;
+    margin: 4px 10px 0 0;
+    width: 16px;
+}
+.telemenu ul.dropdown li.number_current a.telemenu_button:hover{
+    background-position: 0 -10px;
+    cursor: pointer;
+}
+.telemenu ul.open {
+    height: auto;
+	border-radius:4px;
+}
+.telemenu ul.open li {
+    display: block; 
+}
+.telemenu ul.dropdown.open li a:hover {
+    background-position: bottom left;
+}
+.telemenu ul.open li.number_current a.telemenu_button {
+    background-position: 0 -20px;
+}
+.telemenu ul.open li.number_current a.telemenu_button:hover {
+    background-position: 0 -30px;
+}
+
+/* PRIMARY NAVIGATION
+-----------------------------------------------------------------*/
+.nav-list-wrap { position:relative; top:0px; left:0; width:100%; margin:0; padding:0; }
+ul.nav-list { background:#FBFCFE url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ccui-main_nav_bg.png) repeat-x 0 0; float:left; list-style-type:none; width:100%; margin:0; padding:0; }
+.nav-list li { display:block; float:left; height:39px; margin:0; padding:0; }
+.nav-list li.maintools {float:right}
+.nav-list li.nav-prodtab { padding:0; }
+.nav-list li a { display:block; float:left; font-weight:bold; text-decoration:none; margin:0; padding:12px 25px 0; color:#575757 }
+ul.nav-list li a:hover {text-decoration:none; background:url(https://imgssl.constantcontact.com/ui/images1/ccui-main_nav_hvr.png) repeat-x 0 0;}
+.nav-list li.nav-prod-hometab a.nav-hometab { display:block; float:left; font-weight:bold; text-decoration:none; margin:0; padding:12px 25px 0; }
+.nav-list li.nav-prodtab a { font-weight:normal; padding:3px 25px 0; }
+.nav-list li a.nav-contacts { background:url(https://imgssl.constantcontact.com/ui/images1/ccui-main_nav_sprite.png) no-repeat 7px -67px; padding-left:35px; }
+.nav-list li a.nav-images { background:url(https://imgssl.constantcontact.com/ui/images1/ccui-main_nav_sprite.png) no-repeat 16px -101px; padding-left:35px; }
+.nav-list li a.nav-settings { background:url(https://imgssl.constantcontact.com/ui/images1/ccui-main_nav_sprite.png) no-repeat 12px -137px; padding-left:35px; }
+.nav-list li#current-tab { background:#fd9800 url(https://imgssl.constantcontact.com/ui/images1/ccui-main_nav_active.png) repeat-x right top; border-left:1px solid #db8607; color:#614B00; }
+.nav-list li#current-tab a {}
+.nav-list li#current-tab a:hover {background:none}
+
+/* HOMEPAGE ( Welcome Area )
+---------- -------------------------------------------------------*/
+.hp-welcomebar-wrap { background-color:#227796; float:left; position:relative; width:998px; margin:0; padding:10px; }
+.hp-welcomebar { float:left; position:relative; width:100%; margin:0; padding:5px 0; }
+.hp-welcomemsg { float:left; font-size:14px; position:relative; width:400px; padding:0; color:#8E8E8E; }
+.welbar-username { float:right; font-size:12px; position:relative; text-align:right; color:#8E8E8E; width:250px; margin:0; padding:0; }
+
+/* HOMEPAGE ( Product Push Bar )
+-----------------------------------------------------------------*/
+.hpProductPushBar a { color:#704C06; font-size:12px;font-style:italic; font-weight:normal; text-decoration:underline; }
+.hpProductPushBar { position:relative; width:100%; margin:5px 0 20px; padding:0; clear:both; overflow:hidden; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; }
+.hpProductPushBar .hpProductPush_Email a:hover, .hpProductPushBar .hpProductPush_Survey a:hover, .hpProductPushBar .hpProductPush_Event a:hover { text-decoration:none;font-style:italic; color:#684608 }
+.hpProductPushBar a.hpProductPush_head { font-size:14px; font-weight:bold; font-style:normal; text-decoration:none;text-shadow: 0px 1px 1px rgba(253, 243, 202, 0.9);}
+.hpProductPushBar  a.hpProductPush_head:hover { color:#4C3000; font-weight:bold; font-style:normal; text-decoration:none;}
+.hpProductPushBar a img { border:none; }
+.hpProductPushBar p { margin:0; padding:22px 0 0; }
+.hpProductPushBar img { float:left; padding:15px 5px 15px 15px; }
+.hpProductPush_Email,
+.hpProductPush_Survey, 
+.hpProductPush_Event { height:78px; border-left:1px solid #D6BA4D; float:left; width:100%;background:url(https://imgssl.constantcontact.com/ui/images1/uxCommon/gradient_gold_bg.jpg) no-repeat 0 0}
+
+.sbar-mod {background:#F9F9F9; border:1px solid #D6D6D6; border-radius: 4px; -moz-border-radius:4px; -webkit-border-radius:4px; margin-bottom:20px;}
+.sbar-mod:first-child h2 { color:#5a5a5a; text-shadow:0 1px #fff; font-size:1.3em; letter-spacing:-0.5px; display:block;overflow:hidden; background:#e0e0e0 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/boxhd-alt-bg.gif) repeat-x left top; border-bottom:1px solid #bbb; margin:0; padding:6px 8px  }
+.sbar-mod-inner {padding:10px}
+.contact-number { color:#5e8238; font-size:32px; font-weight:bold; float:left; margin-right:5px}
+.contact-active {padding-top:5px; font-size:0.9; color:#748265; text-transform:uppercase}
+ul.contact-btn-row  {background:#FFF; border:1px solid #CCC; border:1px solid #CC; overflow:hidden; margin:0 0 10px 0; padding:0; border-bottom-left-radius:4px; border-bottom-right-radius:4px; -webkit-border-bottom-left-radius:4px; -webkit-border-bottom-right-radius:4px; -moz-border-radius-bottomleft:4px; -moz-border-radius-bottomright:4px; }
+ul.contact-btn-row li {float:left; border:none; list-style-type:none; margin:0;padding:0; border-left:1px solid #CCC; text-align:center;width:33%}
+ul.contact-btn-row li:first-child {border-left:none}
+ul.contact-btn-row li a {width:100%; padding:5px 0;display:block;float:left}
+
+.contacts-wrap {background:#e6f3d8; border:1px solid #ccddba; border-bottom:none; padding:12px; border-top-left-radius:4px; border-top-right-radius:4px; -webkit-border-top-left-radius:4px; -webkit-border-top-right-radius:4px; -moz-border-radius-topleft:4px; -moz-border-radius-topright:4px }
+.contacts-wrap div {height:28px}
+.hpProductPush_Contacts { margin:5px 0 20px; padding:0 }
+.hpProductPush_Contacts ul.mod-list { list-style-type:none; margin:0; padding:6px 5px; background:#FFF; border:1px solid #D6D6D6;  border-radius:0 0 4px 4px; -moz-border-radius:0 0 4px 4px; -webkit-border-radius:0 0 4px 4px; }
+.hpProductPush_Contacts ul.mod-list li:first-child { border-top:none}
+.hpProductPush_Contacts ul.mod-list li { padding:7px 0 7px 23px; border-top:1px dotted #BBBBBB; margin:0 10px}
+
+.hpProductPush_Contacts ul.mod-list li.hp_Contacts_import { background:url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ic_contacts_plus.png) no-repeat 0 7px }
+.hpProductPush_Contacts ul.mod-list li.hp_Contacts_ovw { background:url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ic_lbulb.png) no-repeat 2px 7px; color:#CCC; }
+.hpProductPush_Contacts ul.mod-list li.hp_Contacts_jmml { background:url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ic_contactlist_plus.png) no-repeat 1px 8px }
+.hpProductPush_Contacts span.txt-mid { color:#CCC; }
+.hpProductLine { float:left; position:relative; margin:5px 0 0; padding:0; }
+.hpProductPushBar .hpProductLine_r img { float:right; position:relative; margin:5px 0 0; padding:0; }
+
+.hpProductPushBar:first-child td:first-child div { border-left:none}
+
+/* HOMEPAGE ( New User To Do List )
+-----------------------------------------------------------------*/
+.hp-dolist { background:#FFFBEF url(https://imgssl.constantcontact.com/ui/images1/hp_dolist_angle.gif) no-repeat 133px 0; border:1px solid #FFD98F; float:right; margin-bottom:20px; position:relative; }
+.hp-dolist ul { background:url(https://imgssl.constantcontact.com/ui/images1/hp_dolist_angle.gif) no-repeat 172px 0; float:left; list-style-type:none; margin:0 0 0 5px; padding:0 0 0 0; }
+.hp-dolist ul li { display:block; float:left; height:31px; position:relative; margin:0 25px 0 0; padding:2px 0 0 18px; }
+.hp-dolist ul li.hp-dolist-two { display:block; float:left; height:31px; position:relative; margin:0; padding:2px 3px 0 18px; }
+.hp-dolist h2 { color:#D87D2C; float:left; font-size:1.1em; margin:0 6px 0 0; padding:10px 0 0 8px; }
+.hp-dolist ul li strong { color:#D87D2C; }
+.hp-dolist ul li#hp-dolist-done { background:url(https://imgssl.constantcontact.com/ui/images1/check_green.gif) no-repeat 0 4px; color:#999; }
+
+/* HOMEPAGE
+-----------------------------------------------------------------*/
+table.ui-sitehome .box-body { padding-top:20px }
+table.ui-sitehome .box-body .even { background:#F9F9F9}
+table.ui-sitehome .box-body.sidebar { padding-top:10px; background:#F9F9F9; -moz-border-radius-bottomleft:4px; -moz-border-radius-bottomright:4px; -webkit-border-bottom-left-radius:4px; -webkit-border-bottom-right-radius:4px; border-bottom-left-radius:4px; border-bottom-right-radius:4px }
+table.ui-sitehome .box-body span.txt-large strong { color:#444; font-size:1.2em; font-weight:bold;}
+table.ui-sitehome div.indent10 {padding-left:0; }
+
+.sidehead { color:#D87D2C; font-size:1.4em; font-weight:bold; }
+.txt-active { color:#236EB2; font-size:26px; }
+.mc-wrap dl dt.flag { background:url(https://imgssl.constantcontact.com/ui/images1/archive_arrow_gray.gif) no-repeat scroll 7px 9px transparent}
+dl.msg-ctr {margin:0; padding:0; background:#FFF; border:1px solid #D6D6D6; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; }
+dl.msg-ctr dt { padding:7px 0 7px 23px; margin:0 10px; border-top:1px dotted #BBBBBB}
+dl.msg-ctr dt:first-child {border-top:none}
+.box-refer { background-color:#EFFDFF; border:1px solid #C2EAEF; padding:5px; }
+.topbar a:hover { text-decoration:underline; }
+.nav-list li.nav-prod-hometab a:hover { text-decoration:underline; }
+.grnmsg-content a:hover { text-decoration:underline; }
+.hpProductPushBar a:hover { text-decoration:underline; }
+.nav-list li a:hover { text-decoration:underline; }
+
+a.add-field { background: transparent url(https://imgssl.constantcontact.com/ui/images1/icon_add_field.gif) no-repeat  0 .1em; padding-left: 15px; }
+.input-text-disabled { background-color: #DFDFDF; }
+span.vbar { margin-left: 0.5em; margin-right: 0.5em; }
+span.vsep { padding-left: 0.5em; margin-right: 0.7em; border-right: 1px solid #CCCCCC; }
+span.smallleft-info-pu-arrow { background:transparent url(https://imgssl.constantcontact.com/ui/images1/popup_small_ltsidearrow.gif) no-repeat 0 0; position:absolute; bottom:60px; left:-1px; height: 21px; width:11px; overflow:auto; }
+span.smallright-info-pu-arrow { background:transparent url(https://imgssl.constantcontact.com/ui/images1/popup_small_rtsidearrow.gif) no-repeat 0 0; position:absolute; bottom:60px; height: 21px; width:11px; overflow:auto; }
+span.info-icon { margin-left: 0.3em; margin-right: 0.3em; }
+
+/* social campaign messaging */
+.sc-sm-fbcampaign-grey {border:1px solid #D3D3D3; background:#F1F1F1 url(https://imgssl.constantcontact.com/ui/images1/sc-sm-fbcampaign-grey-v1.jpg) no-repeat 124% 40px; padding:20px; margin-bottom:5px}
+.sc-sm-fbcampaign-grey  h3 {font-size:16px}
+.sc-lrg-fbcampaign-gold {color:#614B00; border:1px solid #d9bf51; background:url(https://imgssl.constantcontact.com/ui/images1/sc-lrg-fbcampaign-gold-v1.jpg) no-repeat -45px -55px; padding:20px}
+.sc-lrg-fbcampaign-gold h3 {font-size:16px; color:#614B00}
+a.btn-fb-small {
+    display:inline-block;
+    padding:0 16px 0 43px;
+    height:33px;
+    line-height:32px;
+    font-size:1em;
+    font-weight:bold;
+    color:#FFF;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+    background: url(https://imgssl.constantcontact.com/ui/images1/facebook-button-sprite.png) repeat-x 0 -88px; border-color:#3590bf #256890 #154268 #256890;
+    text-decoration:none;
+    cursor:pointer;
+    -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+}
+
+
+/* SURVEY DETAILS PAGE ( pop-up )
+-----------------------------------------------------------------*/
+.popup-large { -moz-background-clip:border; -moz-background-inline-policy:continuous; -moz-background-origin:padding; -moz-border-radius-bottomleft:1em; -moz-border-radius-bottomright:1em; -moz-border-radius-topleft:1em; -moz-border-radius-topright:1em; background:#FEF8EA none repeat scroll 0 0; border:2px solid #EED6AF; color:#333333; float:left; margin:0 0 15px; padding:0 0 10px; position:relative; width:100%; }
+.popup-large-inner { margin:8px 15px; }
+.popup-large-inner h2 { border-bottom:1px dashed #EED6AF; color:#DC6B00; float:left; font-size:1.5em; margin:0 0 8px; padding:0 0 8px; width:100%; }
+.popup-large-arrow1 { bottom:-17px; left:86px; position:absolute; }
+.popup-large-arrow2 { bottom:-17px; position:absolute; right:229px; }
+.popup-large-arrow2-center { bottom:-17px; position:absolute; right:155px; }
+.popup-large-left h5, .popup-large-right h5 { color:#333333; font-size:1.2em; margin:0; padding:0; }
+.popup-large p { -x-system-font:none; color:#333333; font-size:12px; font-size-adjust:none; font-stretch:normal; font-style:normal; font-variant:normal; font-weight:normal; line-height:150%; margin:0; padding:0; }
+.popup-large-left { float:left; margin:0; padding:0 0 0 20px; width:47%; }
+.popup-large-right { float:right; margin:0; padding:0; width:47%; }
+.popup-large-buttons { -x-system-font:none; font-size:11px; font-size-adjust:none; font-stretch:normal; font-style:normal; font-variant:normal; font-weight:normal; line-height:normal; position:absolute; right:15px; top:10px; }
+.popup-large-buttons img { padding-left:10px; }
+.popup-large-buttons a { color:#0066CC; }
+.popup-large-buttons a:hover { text-decoration:underline; }
+
+/* OOCSS
+-----------------------------------------------------------------*/
+.txtL, .msg-tbl .txtL td, .msg-tbl .txtL th {text-align:left;}
+.txtR, .msg-tbl .txtR td, .msg-tbl .txtR th {text-align:right;}
+
+
+
+/** Common UX Components **/
+.txt-drop { background:url(https://imgssl.constantcontact.com/ui/images1/text_link_drop.png) 100% 50% no-repeat; padding-right:12px; }
+
+.notify { 
+	background-repeat: no-repeat; 
+	margin:0 0 10px; 
+	border:1px solid #cccccc; 
+	border-width:1px; 
+}
+.notify-small-success ,
+.notify-small-alert ,
+.notify-small-warning ,
+.notify-small-error ,
+.notify-small-info  { padding:5px 5px 5px 30px; font-size:12px; background-position:5px 4px; }
+.notify-large-success ,
+.notify-large-alert ,
+.notify-large-warning ,
+.notify-large-error ,
+.notify-large-info { padding:14px 10px 14px 50px; font-size:14px; background-position:10px 5px; }
+
+.notify-small-success { background-color:#F2F9CC; background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_small_success.png); border-color: #ABC330; color:#65751C; }
+.notify-small-alert { background-color:#F2F9CC; background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_small_alert.png); border-color: #ABC330; color:#65751C; }
+.notify-small-warning { background-color:#FFFAE6; background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_small_warning.png); border-color: #EABC64; color:#A37216; }
+.notify-small-error { background-color:#FFDFDF; background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_small_error.png); border-color:#DF5353; color:#B12121; }
+.notify-small-info { background-color:#EDFEFF; background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_small_info.png); border-color:#72BCD1; color:#2F7A91;  }
+.notify-large-success { background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_large_success.png);  background-color:#F2F9CC; border-color: #ABC330; color:#65751C; }
+.notify-large-alert { background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_large_alert.png);  background-color:#F2F9CC; border-color: #ABC330; color:#65751C; }
+.notify-large-warning { background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_large_warning.png);  background-color:#FFFAE6; border-color: #EABC64; color:#A37216; }
+.notify-large-error { background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_large_error.png);  background-color:#FFDFDF; border-color:#DF5353; color:#B12121;  }
+.notify-large-info { background-image: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/notify_large_info.png);  background-color:#EDFEFF; border-color:#72BCD1; color:#2F7A91;  }
+
+.ui-dialog-type-message .notify  { font-size:13px; margin:0; background-color:transparent; border:0; padding:5px 10px 5px 60px; line-height: 1.3em; color: #666 !important; }
+
+.notify-large-success h3,
+.notify-large-alert h3,
+.notify-large-warning h3,
+.notify-large-error h3,
+.notify-large-info h3 { font-size:16px; }
+
+.notify-large-success h3,
+.notify-small-success h3 { color:#65751c; }
+.notify-large-alert h3,
+.notify-small-alert h3 { color:#65751c; }
+.notify-large-warning h3,
+.notify-small-warning h3 { color:#cf6100; }
+.notify-large-error h3,
+.notify-small-error h3 { color:#b12121; }
+.notify-large-info h3,
+.notify-small-info h3 { color:#2f7a91; }
+
+
+/* PrintVersion Reports 
+----------------------------------*/
+.printVerReport {margin: 10px}
+.printVerReport table { width:95%; border-top: solid 1px #535353; border-right: solid 1px #535353; *border-collapse:collapse;}
+.printVerReport td, .printVerReport th {border-left: solid 1px #535353; border-bottom: solid 1px #535353; padding: 4px;}
+.printVerReport table.noBorder,.printVerReport table.noBorder td { border: none }  
+.printVerReport .logo {	float: left; padding-bottom: 5px;}
+.printVerReport .print {float:right; background-position: left bottom; padding:35px 10px 0px 20px; }
+.printVerReport .print.bottom { padding-top:0px; }
+.printVerReport .headline { background-color:#ededed; height:55px; padding-top: 10px; text-align: center; border-bottom: solid 1px #535353; width:100%; }
+.printVerReport .databox { 	border:solid 2px #535353; width: 98%; display: table; *min-width:600px}
+.printVerReport .gray { background-color: #ededed; }
+.printVerReport .left-data { clear: both; float:left; padding:4px; width:30%;  font-weight: bold; }
+.printVerReport .aright { text-align: right }
+.printVerReport .right-data { float:left; padding:4px; width:60%; word-wrap: break-word }
+.printVerReport .report-content { width:100%; margin:20px; }
+.printVerReport .report-key { width: 100%; margin-top: 20px; }
+.printVerReport .numeric-data { text-align: right; }	 	
+
+/* Fusion Charts
+----------------------------------*/
+.FusionCharts { *display:inline }
+
+/* Contacts 
+------------*/
+.ctx-sprite {background:transparent url(https://imgssl.constantcontact.com/ui/images1/contacts_add_update_sprite.png) no-repeat;}
+#tabs .ui-state-default, #tabs .ui-state-hover { background: #E6CD96 url(https://imgssl.constantcontact.com/ui/images1/tab_fade_70.png) repeat-x 0 0;  border: solid 1px #b9a26d; }
+.icn-sprite {background:transparent url(https://imgssl.constantcontact.com/ui/images1/uxCommon/icn_sprite.png) no-repeat;}
+.back-shadow {background:url(https://imgssl.constantcontact.com/ui/images1/box-side-shdw.png) no-repeat 625px 0; overflow:hidden }
+.ic-jmml { background: transparent url(https://imgssl.constantcontact.com/ui/images1/ic-jmml.png) no-repeat top left }
+a#updateTitle, a#addTitle { background:#1b5285 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/hdr_bkgd.png) repeat-x 0 0}
+
+.off-screen { left:-9999px; position:absolute; }
+.add-contacts { background: transparent url(https://imgssl.constantcontact.com/ui/images1/icon_plus.gif) no-repeat; height: 15px; width: 15px; text-decoration: none !important; float: left; }
+#manage-search .form-label { margin:0 0 4px; }
+
+.email-wrap { width: 300px; word-wrap: break-word; }
+div.screen-width-indent .data-tbl th.checkbox-cell, .data-tbl td.checkbox-cell { padding: 0; text-align: center; width: 30px; }
+
+
+/* Template Picker Styles (used by the search version of the template picker)
+----------------------------------*/
+.tree td.templatepicker-col1 { width:28%; vertical-align:top; padding:0 4px 4px; }
+.tree td.templatepicker-col2 { width:72%; vertical-align:top; border-left:3px solid #999; padding:2px 10px 10px; }
+
+#templatePicker { margin-right: 18px; }
+#templatePicker label { display: block; margin:7px 0 3px 0; font-size:0.9em; }
+#templatePicker select, #templatePicker .select { width:100%; margin-bottom: 4px; }
+
+.color-opts, .layout-opts { list-style:none; margin:0; padding:0; overflow: hidden ;}
+.color-opts li { float:left; width:30px; height:30px; background-color:transparent; background-image: url(https://imgssl.constantcontact.com/ui/images1/color_swatch_sprite_md.png); background-repeat:none; margin:2px 0; border:1px solid transparent; padding:4px; }
+
+.color-swatch-all { background-position:    0       0; }
+.color-swatch-red { background-position:    -40px   0; }
+.color-swatch-orange { background-position: -80px   0; }
+.color-swatch-yellow { background-position: -120px   0; }
+.color-swatch-green { background-position:  -160px   0; }
+.color-swatch-cyan { background-position:   -200px  0; }
+.color-swatch-blue { background-position:   -240px  0; }
+.color-swatch-purple { background-position: -280px  0; }
+.color-swatch-pink { background-position:   -320px  0; }
+.color-swatch-brown { background-position:  -360px  0; }
+.color-swatch-white { background-position:  -400px  0; }
+.color-swatch-black { background-position:  -440px  0; }
+
+
+.layout-opts li { float:left; width:40px; height:40px; background-color:transparent; background-image: url(https://imgssl.constantcontact.com/ui/images1/tmp_layout_sprite.png); background-repeat:none; margin:2px 0; border:1px solid transparent; }
+
+.layout-all { background-position:      0       0; }
+.layout-left { background-position:     -40px   0; }
+.layout-right { background-position:    -80px   0; }
+.layout-one { background-position:      -120px  0; }
+.layout-split { background-position:    -160px  0; }
+
+
+.option-img { margin: 2px 0; padding:2px; border:1px solid transparent; }
+#templatePicker .active { border:1px solid #666 !important; background-color: #8a9daf !important; }
+
+div.templatepicker-template { width:190px; float:left; font-size:1.1em; padding:7px; margin-right: 0px; border: 2px solid transparent;  }
+div.templatepicker-selectedtemplate { width:190px; float:left; font-size:1.1em; background-color:#fffaea; background-color:#dadada; padding:7px; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; border:2px solid #666; }
+div.templatepicker-selectedtemplate img.templatepicker-template, div.templatepicker-template img.templatepicker-template { border: 1px solid #ccc; margin-bottom: 0px; margin-left: 0px; margin-top: 0px; }
+label.templatepicker-template { display: block; font-weight:bold; padding: 0 10px; color: #666666; }
+div.templatepicker-selectedtemplate label.templatepicker-template { color: #000; text-shadow: 0 1px 0 rgba(255,255,255,.3); }
+div.templatepicker-hr { width: 95%; height:1px; font-size:1px; border-bottom:1px solid #dadada; float:left; margin:20px 0px; padding:0; }
+div.templatepicker-selectedtemplate .thickbox, div.templatepicker-template .thickbox { height: 16px; }
+
+div.templatepicker-selectedtemplate .thickbox a img, div.templatepicker-template .thickbox a img { display: none; }
+div.templatepicker-selectedtemplate .thickbox a , div.templatepicker-template .thickbox a { display: block; background: url(https://imgssl.constantcontact.com/ui/images1/tmp_icon_sprite.png) 0 0 no-repeat; float: right; width: 16px; height: 16px; text-indent: -9999em; }
+div.templatepicker-selectedtemplate .thickbox button, div.templatepicker-template .thickbox button { float: left; }
+
+#templatePicker #category ul { list-style: none outside none; overflow: hidden; padding: 0.4em; margin: 0; }
+#templatePicker #category a { outline: medium none; }
+#templatePicker #category li { margin: 0.2em 0; padding: 0.4em !important; }
+#templatePicker #category li.active { background: none repeat scroll 0 0 transparent !important; border: medium none !important; }
+#templatePicker #category li a { padding: 0.5em; text-decoration: none; }
+#templatePicker #category li a:hover { text-decoration: underline; }
+#templatePicker #category li.active a { font-weight: bold; text-decoration: none; cursor: default; }
+#templatePicker #category li.active a:hover { font-weight: bold; text-decoration: none; }    
+
+span.universal-icon { background: url(https://imgssl.constantcontact.com/ui/images1/tmp_icon_sprite.png) 0 -16px no-repeat; width: 16px; height: 16px; display: block; float: left; }
+.cc-icon { display:inline; overflow:hidden; border: 1px solid #ccc; }
+
+div.templatepicker-selectedtemplate input, div.templatepicker-template input { display: none; }
+div.templatepicker-selectedtemplate a, div.templatepicker-template a { outline: medium none; }
+div.templatepicker-selectedtemplate div.frame-outer, div.templatepicker-template div.frame-outer { background:url(https://imgssl.constantcontact.com/ui/images1/tmp_drop_shad_bot.png) 0 100% no-repeat; text-align: left; margin:0; margin-left:0px; padding-bottom:10px; }
+div.templatepicker-selectedtemplate div.frame-inner, div.templatepicker-template div.frame-inner { background:url(https://imgssl.constantcontact.com/ui/images1/tmp_drop_shad_top.png) 0 0 no-repeat; margin:0; padding: 18px 18px 8px 18px; }
+
+.msg-no-templates { font-size: 14px; padding: 0pt 10px; color: rgb(51, 51, 51); }
+.msg-no-templates h4 { font-size:18px; margin:0; color:#d87d2c; }
+.msg-no-templates em { text-transform: capitalize; }
+
+.ui-icon-tag-x { background: url(https://imgssl.constantcontact.com/ui/images1/tag_x.png) no-repeat 0 0; width: 16px; height: 16px; display: block; text-indent: -99999px; overflow: hidden; }   
+.tag { background:#dff0f5; border:1px solid #89b7c5; padding:1px 20px 1px 7px; border-radius:1em; -webkit-border-radius:1em; -moz-border-radius:1em; position:relative; text-transform:capitalize;}
+.tag:hover { background-color:#c7e4ee; border-color: #5f97a7; cursor:pointer; }
+.tag .ui-icon-tag-x { position:absolute; right:0px; top:4px }
+.tag:hover .ui-icon-tag-x { background: url(https://imgssl.constantcontact.com/ui/images1/tag_x_hover.png) no-repeat 0 0; }
+
+.btn-primary-alt { border: 1px solid #d76601; border-bottom-color: #903e00; -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, .2); background: #d76601 url(https://imgssl.constantcontact.com/ui/images1/btn_primary_alt_bg.png) repeat-x 0 0; color: #ffffff; text-shadow:0 -1px 0 rgba(0,0,0,.2); padding:2px 3px; font-size:12px; }
+.btn-slim { padding-top:0px; padding-bottom:0px; font-size:11px; cursor: pointer; }
+.btn-pill { padding-left:6px; padding-right:6px; border-radius: 1em; -webkit-border-radius: 1em; -moz-border-radius: 1em; }
+
+.tweet-account-pic { display: inline-block;	border: 1px solid #ddd;	vertical-align: top; cursor: pointer; height: 40px;	width: 40px; }
+
+.tweet-account-icon { position: absolute; bottom: 2px; right: 2px; width: 16px;	cursor: pointer; }
+
+body.success { background-color: #F4F4F4; }
+.horiz-line-solid { border-top: 1px solid #ccc; border-bottom: 1px solid #CCC; }
+table.success { background-color: #FFF; }
+
+/*Social Share*/
+.btn-bar-tggle-wrap {background:#FFF; border:1px solid #D6D6D6; border-top-color:#dddddd; border-bottom-color:#c0c0c0; border-radius:4px;margin-bottom:10px; overflow:hidden}
+.btn-bar-tggle {background:#e0e0e0 url(https://imgssl.constantcontact.com/ui/images1/grdnt_btn_tggle.png) repeat-x 0 0; padding:10px; position:relative}
+.btn-bar-tggle-inner {padding:20px 20px 5px; border-top:1px solid #c0c0c0}
+.btn-bar-tggle-rt {position:absolute; top:10px; right:10px}
+.btn-bar-tggle-wrap .file-tbl td {border-bottom:none; border-top:1px dotted #CCC; padding-top:7px }
+.btn-bar-tggle .tggle-hide, .btn-bar-tggle .tggle-show { background: url(https://imgssl.constantcontact.com/ui/images1/ic_tri_open_clsd_navy.png) no-repeat 0 0; padding-left:20px; }
+.btn-bar-tggle .tggle-hide { background-position: 0 -33px }
+.btn-bar-tggle .tggle-show { background-position: 0 4px }
+
+/*NEW*/
+
+/* Main Navigation
+-----------------------------------------------------------*/
+.main-nav {background:#ededed url(../../img/navbg.png) repeat-x 0 0; height:39px; float:left; width:100%; font-size:14px; margin:0}
+.main-nav li {position:relative;float:left; display:block; line-height:2.5; background:url(../../img/navbg.png) repeat-x 0 0; padding-left:0px; margin: 0; border-left: solid #fff 1px;  border-right: solid #fff 1px;}
+.main-nav li a {position:relative;text-decoration:none; font-weight:bold; color:#575757; float:left; padding:0 15px;text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.9); display:block}
+.main-nav li.mn-nav-prdcts a:hover {background:url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ccui-main_nav_hvr.png) repeat-x 0 0}
+.main-nav li.mn-nav-tools {float:right;font-size:12px; line-height:3;background:none }
+.main-nav li.mn-nav-tools a {padding:0 10px 0 8px; position:relative}
+.main-nav li.mn-nav-tools a:hover {color:#212121}
+.main-nav li.mn-nav-prdcts.selected a, .main-nav li.mn-nav-tools.selected a {background:url(../../img/navbg_selected.png) repeat-x 0 0; color:#614b00;}
+
+
+span.ic-contacts, span.ic-emails, span.ic-tracking {background:url(../../img/optmmk-main_nav_sprite.png) no-repeat 0 0}
+
+span.ic-contacts {background-position:0px -222px; float:left; width:27px; height:27px; display:block; margin:9px 7px 0 0}
+a:hover span.ic-contacts {background-position:0px -264px}
+li.selected span.ic-contacts {background-position:3px -172px}
+
+span.ic-emails {background-position:0px -83px; float:left; width:24px; height:17px; display:block; margin:9px 4px 0 0}  
+a:hover span.ic-emails {background-position:0px -128px}
+li.selected span.ic-emails {background-position:0px -172px}
+
+span.ic-tracking {background-position:0px -352px; float:left; width:29px; height:22px; display:block; margin:9px 6px 0 0}
+a:hover span.ic-tracking {background-position:0px -398px}
+li.selected span.ic-tracking {background-position:0px -445px}
+
+/* Header top links toolbar */
+.toolbar {font:11px Verdana; color:#256a8e; background:#003d6b; position:absolute; top:0; right:0; -moz-border-radius:0 0 6px 6px; border-bottom:1px solid #357aa6; margin:0; padding:0 12px}
+.toolbar li {float:left; display:block; padding:10px 2px}
+.toolbar li a { color:#6dc2ee; text-decoration:none}
+.toolbar li a:hover {color:#FFF}
+
+/*Two line button*/
+a.ccui-btn-feature { line-height:16px; font-family:arial, sans-serif; display:inline-block; background:#f2f6f7 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn_referfriend_bg.png) no-repeat top right; border:1px solid #bebebe; padding:7px 60px 5px 11px; color:#59595a; font-size:13px; font-style:italic; text-decoration:none; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; -moz-box-shadow:0 1px 1px rgba(0,0,0,.1); -webkit-box-shadow:0 1px 1px rgba(0,0,0,.1); box-shadow:0 1px 1px rgba(0,0,0,.1); text-shadow:0 1px 0 rgba(255,255,255, .5) }
+a.ccui-btn-feature:hover { background:#f2f6f7 url(https://imgssl.constantcontact.com/ui/images1/uxCommon/btn_referfriend_bg.png) no-repeat right -69px }
+.ccui-btn-feature span.icon + span {float:left}
+.ccui-btn-feature span span:first-child {font-size:16px; font-weight:bold; font-style:normal; display:block}
+.ccui-btn-feature span.icon { display:block;float:left;width:34px; height:36px; margin-right:12px }
+.ic-refer-a-friend {background: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ic_refer_friend_1.png) no-repeat scroll 0 0}
+
+/*Panel table style*/ 
+.ccui-panel-body .box-body {border:none; padding:0}
+.tbl-panel .ccui-panel-body {padding:25px}
+.tbl-panel-hdr { padding:5px 0 }
+.tbl-panel-hdr h2 { color:#0d5878; text-shadow:0 1px #fff; font-size:1.5em; letter-spacing:-0.5px; padding:0 20px 0 0 }
+
+/* base.jsp overrides required to use common-legacy.css */
+.cc-box-head .title { display:block; font-weight:bold !important; }
+.notify .title { display:block; }
+ul.cc-media { padding:0; list-style:none; }
+.cc-form legend { background:none; padding-left:0; }
+.cc-form ul.fieldset { padding-left:0; list-style:none; }
+.cc-form fieldset { padding:0 !important; }
+
+/* Call to Action messaging for EM Trialer user
+-----------------------------------------------------------*/
+
+/* Utility Classes */
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0; }
+
+/* Product Bar */
+.product-bar .icon, .product-bar li a { background-image:url(https://imgssl.constantcontact.com/ui/images1/ic_sprite_1.png); background-repeat:no-repeat; }
+.product-bar { width:629px; position:relative; clear:both; margin:15px 0; font-size:12px; background-position:0 0; background-repeat:repeat-y; }
+.product-bar .product-bar-fix { width:100%; background-position:bottom left; background-repeat:no-repeat; }
+.product-bar .cap { width:100%; height:5px; position:absolute; top:0; left:0; background-position:top left; background-repeat:no-repeat; }
+.product-bar .box { float:left; padding:15px 5px 46px 68px; }
+.product-bar h2 { color:#845A15; font-size:1.166em; display:block; margin:0 0 12px; }
+.product-bar .blurb { color:#845A15; font-style:italic; margin:0 0 1em; padding: 0; }
+.product-bar .icon { position:absolute; /*top:16px; left:10px;*/ display:block; width:50px; height:50px; }
+.product-bar .tooltips { list-style:none; padding:0; margin:0; position:absolute; bottom:20px; }
+.product-bar .tooltips li { float:left; width:25px; padding:0 12px; background-position:top right; background-repeat:repeat-y; }
+.product-bar .tooltips li.tooltip-1 { padding-left:0; }
+.product-bar .tooltips li.tooltip-3 { padding-right:0; }
+.product-bar .tooltip-trigger { display:block; width:24px; height:20px; cursor:pointer; }
+
+#product-bar-a  { background-image:url(https://imgssl.constantcontact.com/ui/images1/trialer-a-tile.jpg); }
+#product-bar-a .cap { background-image:url(https://imgssl.constantcontact.com/ui/images1/trialer-a-cap.jpg); }
+#product-bar-a .product-bar-fix { background-image:url(https://imgssl.constantcontact.com/ui/images1/trialer-a-btm.jpg); min-height:145px; }
+#product-bar-a h2 { font-size:1.667em; position:relative; }
+#product-bar-a .box-1 { width:192px; padding-left:170px; }
+#product-bar-a .box-2 { width:230px; padding-left:24px; }
+#product-bar-a .box-1 .icon { width:120px; height:120px; position:absolute; top:15px; left:20px; background-position:0 0; }
+#product-bar-a .box-2 h2 { color:#296e8d; padding-left:44px; }
+#product-bar-a .box-2 h2 .icon { position:absolute; top:0; left:0; width:30px; height:30px; background-position:0 -340px; }
+#product-bar-a .box-2 .blurb { color:#2d647c; }
+#product-bar-a li { background-image:url(https://imgssl.constantcontact.com/ui/images1/dotted-bar-brown.png); }
+#product-bar-a li.tooltip-1 .tooltip-trigger { background-position:0 -386px; }
+#product-bar-a li.tooltip-2 .tooltip-trigger { background-position:0 -424px; }
+#product-bar-a li.tooltip-3 .tooltip-trigger { background-position:0 -462px; }
+#product-bar-a li.tooltip-1 .tooltip-trigger:hover { background-position:-50px -386px; }
+#product-bar-a li.tooltip-2 .tooltip-trigger:hover { background-position:-50px -424px; }
+#product-bar-a li.tooltip-3 .tooltip-trigger:hover { background-position:-50px -462px; }
+#product-bar-a li.tooltip-3 { background-image:none; }
+
+#product-bar-b  { background-image:url(https://imgssl.constantcontact.com/ui/images1/trialer-b-tile.jpg); }
+#product-bar-b .cap { background-image:url(https://imgssl.constantcontact.com/ui/images1/trialer-b-cap.jpg); }
+#product-bar-b .product-bar-fix { background-image:url(https://imgssl.constantcontact.com/ui/images1/trialer-b-btm.jpg); min-height:140px; }
+#product-bar-b .box-1 { width:144px; }
+#product-bar-b .box-2 { width:130px; }
+#product-bar-b .box-3 { width:134px; }
+#product-bar-b .box-1 .icon { background-position:0 -138px; top:10px; left:10px; }
+#product-bar-b .box-2 .icon { background-position:0 -205px; top:10px; left:225px; }
+#product-bar-b .box-3 .icon { background-position:0 -273px; top:10px; left:428px; }
+#product-bar-b .tooltips li { background-image:url(https://imgssl.constantcontact.com/ui/images1/dotted-bar-brown.png); }
+#product-bar-b li.tooltip-1 .tooltip-trigger { background-position:0 -539px; }
+#product-bar-b li.tooltip-2 .tooltip-trigger { background-position:0 -501px; }
+#product-bar-b li.tooltip-3 .tooltip-trigger { background-position:0 -577px; }
+#product-bar-b li.tooltip-1 .tooltip-trigger:hover { background-position:-50px -539px; }
+#product-bar-b li.tooltip-2 .tooltip-trigger:hover { background-position:-50px -501px; }
+#product-bar-b li.tooltip-3 .tooltip-trigger:hover { background-position:-50px -577px; }
+#product-bar-b li.tooltip-3 { background-image:none; }
+
+/* Button Styles */
+.trialer-ui-button {
+  position:absolute;
+  bottom:15px;
+  cursor:pointer;
+  width:auto;
+  display:inline-block;
+  font-family:arial, sans-serif;
+  line-height:normal;
+  font-size:1.167em;
+  padding:6px 10px;
+  margin:0;
+  background:#c0cd27 url(https://imgssl.constantcontact.com/ui/images1/btn-primary-green.gif) bottom left repeat-x;
+  text-align:center;
+  font-weight:bold;
+  -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;
+  color:#fff !important;
+  text-decoration:none !important; 
+  text-shadow:0 -1px 0 #7b8217;
+  border-width:1px; border-style:solid; border-color:#A8B028 #859120 #6F760F;
+}
+
+/* Tooltips */
+/* tooltip styling. by default the element to be styled is .tooltip */
+.tooltip { display:none; }
+.trialer-tip { display:block; font-size:12px; padding:10px; color:#fff; background:#000; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
+.trialer-arrow { display:block; height:6px; background:url(https://imgssl.constantcontact.com/ui/images1/trialer-tooltip-arrow.png) center bottom no-repeat; }
+

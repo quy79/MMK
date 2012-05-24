@@ -1,0 +1,115 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* PAGE LAYOUT ( version 05/11/2012 )
+----------------------------------------------------------*/
+
+#main { min-height:760px; min-width:995px; }
+.page-bg { background: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ccui-content-shdw-2.png) no-repeat center 0; }
+.page-container { position:relative;width:995px;height:auto;margin:0 auto;padding:0; }
+.main-content { min-height:275px }
+.screen-width-indent { text-align:left; clear:left; padding:20px; background-color:#FFF; -moz-border-radius:0 0 8px 8px }
+.screen-width-indent:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* flexible width for popup windows */
+.full-width-indent { float:left; text-align:left; display:block; padding:12px; }
+.page-container-popup { background:transparent; width:100%; }
+
+/* GRID/LAYOUT 
+----------------------------------------------------------*/
+/* gridwn = wide col on left, narrow on right */
+table.grid-wn { width:100%; }
+table.grid-wn td.col1 { width:67%; padding-right:15px; vertical-align:top; }
+table.grid-wn td.col2 { width:30%; vertical-align:top; }
+.div-grid-wn { border:1px solid #000; float:left; margin:0; padding:0; }
+.col2line { background:url(https://imgssl.constantcontact.com/ui/images1/cccccc.gif) repeat-y 10px; padding-left:28px; }
+table.grid-nw { width:100%; }
+table.grid-nw td.col1 { width:31%; vertical-align:top; }
+table.grid-nw td.col2 { width:69%; padding-left:15px; vertical-align:top; }
+table.grid-5050 { width:100%; }
+table.grid-5050 td.col1 { width:45%; vertical-align:top; }
+table.grid-5050 td.col2 { width:48%; padding-left:20px; vertical-align:top; }
+
+/* HOME PAGE GRID/LAYOUT 
+----------------------------------------------------------*/
+table.ui-sitehome td.col1 { width:67%; vertical-align:top; }
+table.ui-sitehome td.col2 { width:30%; vertical-align:top; padding-left:5px; }
+
+/* Grids ( OOCSS )
+----------------------------------------------------------*/
+.line:after,.lastUnit:after{content: " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";visibility:hidden; clear:both;height:0 !important;display:block;line-height:0;font-size: xx-large;overflow: hidden;}
+.line{*zoom:1;}
+.unit{float:left;}
+.size1of1{float:none;}
+.size1of2{width:50%;}
+.size1of3{width:33.33333%;}
+.size2of3{width:66.66666%;}
+.size1of4{width:25%;}
+.size3of4{width:75%;}
+.size1of5{width:20%;}
+.size2of5{width:40%;}
+.size3of5{width:60%;}
+.size4of5{width:80%;}
+.lastUnit{display:table-cell;*display:block;*zoom:1;float:none;_position:relative;_left:-3px; _margin-right: -3px;width:auto;}
+
+/* Mod ( OOCSS )
+----------------------------------------------------------*/
+.mod{margin:10px;}
+.unit a img {border:none;}
+
+/* Spaces ( OOCSS )
+----------------------------------------------------------*/
+/* spacing helpers
+p,m = padding,margin
+a,t,r,b,l,h,v = all,top,right,bottom,left,horizontal,vertical
+s,m,l,x,n = small(5px),medium(10px),large(20px),x-large(30px),none(0px)
+*/
+
+.ptn,.pvn,.pan{padding-top:0px !important}
+.pts,.pvs,.pas{padding-top:5px !important}
+.ptm,.pvm,.pam{padding-top:10px !important}
+.ptl,.pvl,.pal{padding-top:20px !important}
+.ptx,.pvx,.pax{padding-top:30px !important}
+.prn,.phn,.pan{padding-right:0px !important}
+.prs,.phs,.pas{padding-right:5px !important}
+.prm,.phm,.pam{padding-right:10px !important}
+.prl,.phl,.pal{padding-right:20px !important}
+.prx,.phx,.pax{padding-right:30px !important}
+.pbn,.pvn,.pan{padding-bottom:0px !important}  
+.pbs,.pvs,.pas{padding-bottom:5px !important}
+.pbm,.pvm,.pam{padding-bottom:10px !important}
+.pbl,.pvl,.pal{padding-bottom:20px !important}
+.pbx,.pvx,.pax{padding-bottom:30px !important}
+.pln,.phn,.pan{padding-left:0px !important}
+.pls,.phs,.pas{padding-left:5px !important}
+.plm,.phm,.pam{padding-left:10px !important}
+.pll,.phl,.pal{padding-left:20px !important}
+.plx,.phx,.pax{padding-left:30px !important}
+.mtn,.mvn,.man{margin-top:0px !important}
+.mts,.mvs,.mas{margin-top:5px !important}
+.mtm,.mvm,.mam{margin-top:10px !important}
+.mtl,.mvl,.mal{margin-top:20px !important}
+.mtx,.mvx,.max{margin-top:30px !important}
+.mrn,.mhn,.man{margin-right:0px !important}
+.mrs,.mhs,.mas{margin-right:5px !important}
+.mrm,.mhm,.mam{margin-right:10px !important}
+.mrl,.mhl,.mal{margin-right:20px !important}
+.mrx,.mhx,.max{margin-right:30px !important}
+.mbn,.mvn,.man{margin-bottom:0px !important}  
+.mbs,.mvs,.mas{margin-bottom:5px !important}
+.mbm,.mvm,.mam{margin-bottom:10px !important}
+.mbl,.mvl,.mal{margin-bottom:20px !important}
+.mbx,.mvx,.max{margin-bottom:30px !important}
+.mln,.mhn,.man{margin-left:0px !important}
+.mls,.mhs,.mas{margin-left:5px !important}
+.mlm,.mhm,.mam{margin-left:10px !important}
+.mll,.mhl,.mal{margin-left:20px !important}
+.mlx,.mhx,.max{margin-left:30px !important}
+
