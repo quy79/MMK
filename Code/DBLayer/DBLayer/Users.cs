@@ -21,15 +21,11 @@ namespace DatabaseLayer
 	private string _LASTNAME;
 	private string _USERNAME;
 	private string _PASSWORD;
-	private string _TITLE;
 	private string _EMAIL;
 	private string _PHONE;
-	private string _CITY;
-	private string _PROVINCE;
-	private string _POSTCODE;
-	private string _COUNTRY;
+	private string _COMPANYNAME;
 	private System.DateTime _MODIFIEDDATE;
-	 Users  objclsUSERS;
+	Users  objclsUSERS;
 	#endregion
 
 	#region Public Properties
@@ -43,12 +39,14 @@ namespace DatabaseLayer
 		get { return _FIRSTNAME; }
 		set { _FIRSTNAME = value; }
 	}
-	public string LASTNAME
+	
+     public string LASTNAME
 	{ 
 		get { return _LASTNAME; }
 		set { _LASTNAME = value; }
 	}
-	public string USERNAME
+	
+    public string USERNAME
 	{ 
 		get { return _USERNAME; }
 		set { _USERNAME = value; }
@@ -58,11 +56,7 @@ namespace DatabaseLayer
 		get { return _PASSWORD; }
 		set { _PASSWORD = value; }
 	}
-	public string TITLE
-	{ 
-		get { return _TITLE; }
-		set { _TITLE = value; }
-	}
+	
 	public string EMAIL
 	{ 
 		get { return _EMAIL; }
@@ -73,25 +67,11 @@ namespace DatabaseLayer
 		get { return _PHONE; }
 		set { _PHONE = value; }
 	}
-	public string CITY
+
+    public string COMPANYNAME
 	{ 
-		get { return _CITY; }
-		set { _CITY = value; }
-	}
-	public string PROVINCE
-	{ 
-		get { return _PROVINCE; }
-		set { _PROVINCE = value; }
-	}
-	public string POSTCODE
-	{ 
-		get { return _POSTCODE; }
-		set { _POSTCODE = value; }
-	}
-	public string COUNTRY
-	{ 
-		get { return _COUNTRY; }
-		set { _COUNTRY = value; }
+		get { return _COMPANYNAME; }
+        set { _COMPANYNAME = value; }
 	}
 	public System.DateTime MODIFIEDDATE
 	{ 
@@ -113,18 +93,13 @@ namespace DatabaseLayer
 				new SqlParameter("@LASTNAME",SqlDbType.NVarChar),
 				new SqlParameter("@USERNAME",SqlDbType.NVarChar),
 				new SqlParameter("@PASSWORD",SqlDbType.NVarChar),
-				new SqlParameter("@TITLE",SqlDbType.NVarChar),
 				new SqlParameter("@EMAIL",SqlDbType.NVarChar),
 				new SqlParameter("@PHONE",SqlDbType.NVarChar),
-				new SqlParameter("@CITY",SqlDbType.NVarChar),
-				new SqlParameter("@PROVINCE",SqlDbType.NVarChar),
-				new SqlParameter("@POSTCODE",SqlDbType.NVarChar),
-				new SqlParameter("@COUNTRY",SqlDbType.NVarChar),
-				new SqlParameter("@MODIFIEDDATE",SqlDbType.DateTime) 
+                new SqlParameter("@COMPANYNAME",SqlDbType.NVarChar)
 			};
 			
 
-				if (ID != null)
+				if (ID != null && ID!= 0)
 				{
 					Params[0].Value = ID;
 				}
@@ -169,85 +144,43 @@ namespace DatabaseLayer
 					Params[4].Value = DBNull.Value;
 				}
 
-				if (TITLE != null)
+				if (EMAIL != null)
 				{
-					Params[5].Value = TITLE;
+					Params[5].Value = EMAIL;
 				}
 				else
 				{
 					Params[5].Value = DBNull.Value;
 				}
 
-				if (EMAIL != null)
+				if (PHONE != null)
 				{
-					Params[6].Value = EMAIL;
+					Params[6].Value = PHONE;
 				}
 				else
 				{
 					Params[6].Value = DBNull.Value;
 				}
 
-				if (PHONE != null)
+				
+
+				if (COMPANYNAME != null)
 				{
-					Params[7].Value = PHONE;
+                    Params[7].Value = COMPANYNAME;
 				}
 				else
 				{
 					Params[7].Value = DBNull.Value;
 				}
 
-				if (CITY != null)
-				{
-					Params[8].Value = CITY;
-				}
-				else
-				{
-					Params[8].Value = DBNull.Value;
-				}
-
-				if (PROVINCE != null)
-				{
-					Params[9].Value = PROVINCE;
-				}
-				else
-				{
-					Params[9].Value = DBNull.Value;
-				}
-
-				if (POSTCODE != null)
-				{
-					Params[10].Value = POSTCODE;
-				}
-				else
-				{
-					Params[10].Value = DBNull.Value;
-				}
-
-				if (COUNTRY != null)
-				{
-					Params[11].Value = COUNTRY;
-				}
-				else
-				{
-					Params[11].Value = DBNull.Value;
-				}
-
-				if (MODIFIEDDATE != null)
-				{
-					Params[12].Value = MODIFIEDDATE;
-				}
-				else
-				{
-					Params[12].Value = DBNull.Value;
-				}
-
-			
+		
 			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_USERS_Select",Params);
 			return ds.Tables[0];
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return null;
+			//throw new Exception(ex.Message);
 		}
 	}
 	public bool Insert()
@@ -256,19 +189,80 @@ namespace DatabaseLayer
 		{
 			SqlParameter[] Params = 
 			{ 
-				new SqlParameter("@FIRSTNAME",FIRSTNAME),
-				new SqlParameter("@LASTNAME",LASTNAME),
-				new SqlParameter("@USERNAME",USERNAME),
-				new SqlParameter("@PASSWORD",PASSWORD),
-				new SqlParameter("@TITLE",TITLE),
-				new SqlParameter("@EMAIL",EMAIL),
-				new SqlParameter("@PHONE",PHONE),
-				new SqlParameter("@CITY",CITY),
-				new SqlParameter("@PROVINCE",PROVINCE),
-				new SqlParameter("@POSTCODE",POSTCODE),
-				new SqlParameter("@COUNTRY",COUNTRY),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@FIRSTNAME",SqlDbType.NVarChar),
+				new SqlParameter("@LASTNAME",SqlDbType.NVarChar),
+				new SqlParameter("@USERNAME",SqlDbType.NVarChar),
+				new SqlParameter("@PASSWORD",SqlDbType.NVarChar),
+				new SqlParameter("@EMAIL",SqlDbType.NVarChar),
+				new SqlParameter("@PHONE",SqlDbType.NVarChar),
+                new SqlParameter("@COMPANYNAME",SqlDbType.NVarChar)
 			};
+
+            if (FIRSTNAME != null)
+            {
+                Params[0].Value = FIRSTNAME;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+            if (LASTNAME != null)
+            {
+                Params[1].Value = LASTNAME;
+            }
+            else
+            {
+                Params[1].Value = DBNull.Value;
+            }
+
+            if (USERNAME != null)
+            {
+                Params[2].Value = USERNAME;
+            }
+            else
+            {
+                Params[2].Value = DBNull.Value;
+            }
+
+            if (PASSWORD != null)
+            {
+                Params[3].Value = PASSWORD;
+            }
+            else
+            {
+                Params[3].Value = DBNull.Value;
+            }
+
+            if (EMAIL != null)
+            {
+                Params[4].Value = EMAIL;
+            }
+            else
+            {
+                Params[4].Value = DBNull.Value;
+            }
+
+            if (PHONE != null)
+            {
+                Params[5].Value = PHONE;
+            }
+            else
+            {
+                Params[5].Value = DBNull.Value;
+            }
+
+
+            if (COMPANYNAME != null)
+            {
+                Params[6].Value = COMPANYNAME;
+            }
+            else
+            {
+                Params[6].Value = DBNull.Value;
+            }
+           
+
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_USERS_Insert",Params);
 			if (result > 0)
 			{
@@ -278,7 +272,8 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return false;
+			//throw new Exception(ex.Message);
 		}
 	}
 	public bool Update()
@@ -288,18 +283,12 @@ namespace DatabaseLayer
 			SqlParameter[] Params = 
 			{ 
 				new SqlParameter("@ID",ID),
-				new SqlParameter("@FIRSTNAME",FIRSTNAME),
-				new SqlParameter("@LASTNAME",LASTNAME),
-				new SqlParameter("@USERNAME",USERNAME),
-				new SqlParameter("@PASSWORD",PASSWORD),
-				new SqlParameter("@TITLE",TITLE),
-				new SqlParameter("@EMAIL",EMAIL),
-				new SqlParameter("@PHONE",PHONE),
-				new SqlParameter("@CITY",CITY),
-				new SqlParameter("@PROVINCE",PROVINCE),
-				new SqlParameter("@POSTCODE",POSTCODE),
-				new SqlParameter("@COUNTRY",COUNTRY),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@FIRSTNAME",SqlDbType.NVarChar),
+				new SqlParameter("@LASTNAME",SqlDbType.NVarChar),
+				new SqlParameter("@USERNAME",SqlDbType.NVarChar),
+				new SqlParameter("@EMAIL",SqlDbType.NVarChar),
+				new SqlParameter("@PHONE",SqlDbType.NVarChar),
+                new SqlParameter("@COMPANYNAME",SqlDbType.NVarChar)
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_USERS_Update",Params);
 			if (result > 0)
@@ -310,7 +299,8 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+			//throw new Exception(ex.Message);
+            return false;
 		}
 	}
 	public bool Delete()
@@ -327,7 +317,8 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+			//throw new Exception(ex.Message);
+            return false;
 		}
 	}
 
@@ -349,7 +340,8 @@ namespace DatabaseLayer
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
+            //throw new Exception(ex.Message);
+            return false;
         }
     }
 
@@ -372,7 +364,8 @@ namespace DatabaseLayer
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
+           // throw new Exception(ex.Message);
+            return false;
         }
     }
 

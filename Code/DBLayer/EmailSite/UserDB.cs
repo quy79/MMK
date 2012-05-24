@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.SqlClient;
 using DatabaseLayer;
 namespace EmailSite
 {
@@ -26,20 +28,17 @@ namespace EmailSite
         /// 2 : this email is registered
         /// 3 : this user is registered
         /// </returns>
-        public static int AddUser(string firstname, string lastname, string username, string password, string title, 
-                                  string email, string phone, string city, string province, string country){
+        public static int AddUser(string firstname, string lastname, string username, string password,  
+                                  string email, string phone, string companyname){
 
             Users user = new Users();
             user.FIRSTNAME = firstname;
             user.LASTNAME = lastname;
             user.USERNAME = username;
             user.PASSWORD = password;
-            user.TITLE = title;
             user.EMAIL = email;
             user.PHONE = phone;
-            user.CITY = city;
-            user.PROVINCE = province;
-            user.COUNTRY = country;
+            user.COMPANYNAME = companyname;
             
             //check username is existed
             if (user.IsExistEmail()) return 2;
@@ -63,6 +62,17 @@ namespace EmailSite
             user.USERNAME = username;
             user.PASSWORD = password;
             return user.CheckUserPass();            
+        }
+
+        public static DataTable GetUserByUserName(string username)
+        {
+            DataTable dtReturn = null;
+
+            Users user = new Users();
+            user.USERNAME = username;
+
+            dtReturn = user.Select();
+            return dtReturn;
         }
     }
 }

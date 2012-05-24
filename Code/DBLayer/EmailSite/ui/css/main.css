@@ -28,9 +28,7 @@ html>body { font-size:76%; }
 
 /*  LINKS 
 -------------------------------------------------------------------- */
-a:link { color:#007BBF; text-decoration:underline; }
-a:visited { color:#007BBF; text-decoration:underline; }
-a:hover { text-decoration:none; } 
+
 /* use this class if a visited link color is needed */
 .traceable:link { color:#007BBF; text-decoration:underline; }
 .traceable:visited { color:#639; text-decoration:underline; }
@@ -1055,28 +1053,359 @@ b.br2px { bottom:-2px; right:-2px; background-position:bottom right; }
 
 #content-emails { background:url(../../img/design-email.jpg); float:left; height:466px; position:relative; width:993px; margin:0 auto; padding:0; z-index:100}
 
-#panel-left {float: left; position: relative; margin-top: 10px; margin-left: 10px; left: 0px; top: 10px; padding: 0; width: 590px; text-align: left;}
-#panel-right {float: right; position: relative; margin-top: 10px; margin-left: 0px; margin-right: 10px; top: 10px; : 0; width: 350px; text-align: left;}
-#last-message-container {position: absolute; width: 100%; margin: 0 0; padding: 0;}
-.title-box {position: relative; float: left; width: 120px; height: 33px; background:url(../../img/lastMsgTitle_bg.png) repeat-x bottom left;  padding: 0; margin: 0 0; clear: both;}
+#panel-left {float: left; position: relative; margin-top: 10px; margin-left: 10px; left: 0px; top: 10px; padding: 0; width: 640px; text-align: left;}
+#panel-right {float: right; position: relative; margin-top: 10px; margin-left: 0px; margin-right: 10px; top: 10px; : 0; width: 300px; text-align: left;}
+#emails-common-panel {position: relative; margin-top: 10px; margin: 15px auto;  padding: 0; width: 100%; clear: both}
+#emails-panel-left {float: left; position: relative; margin: 0 auto;  padding: 0; width: 480px; text-align: right; }
+#emails-panel-right {float: right; position: relative; margin: 0 auto;  padding: 0; width: 480px; text-align: left; }
+#emails-box-left {float: right; position: relative; width: 412px; height: auto; margin-top:0; margin-right: 0px ; padding: 0; clear: both;}
+#emails-box-right {float: left; position: relative; width: 412px; height: auto; margin-top:0; margin-left: 0px; padding: 0; clear: both;} 
+.emails-box-left-header {position: relative; width: 412px; height: 64px; background: url(../../img/emails-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both; text-align: left}
+.emails-box-left-body {position: relative; width: 412px; height: 201px; background: url(../../img/emails-box-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both;}
+.emails-box-right-header {position: relative; width: 412px; height: 64px; background: url(../../img/autoresponder-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both;}
+.emails-box-right-body {position: relative; width: 412px; height: 201px; background: url(../../img/autoresponder-box-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both;}
+.emails-box-left-title {float: right; position: absolute; width: 350px; text-align; left; padding-top: 20px; padding-left : 60px; font-size: 14px; font-weight:bold; color:#00000;}
+.emails-box-left-note {float: right; position: absolute; width: 350px; text-align; left; padding-top: 45px; padding-left : 60px; font-size: 11px; color:#00000;}
+
+
+
+
+#last-message-container {position: relative; width: 100%; margin: 0 0; padding: 0; clear: both;}
+#contact-list-container {position: relative; width: 100%; margin: 0 0; padding: 20px 0 0; clear: both;}
+#title-box {position: relative; float: left; width: 120px; height: 33px; background:url(../../img/lastMsgTitle_bg.png) repeat-x bottom left;  padding: 0; margin: 0 0; clear: both;}
+
+#title-box ul
+{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+display: inline-block
+}
+#title-box li
+{
+display: block;
+width: 120px;
+height: 33px;
+background-image: url(../../img/last-message.png);
+background-repeat: no-repeat;
+background-position: 0px 0px;
+padding-left: 30px;
+padding-top: 8px;
+font-size: 12px; font-weight: bold; color: #FFFFFF;
+}
+
+
+#contacts-title-box {position: relative; float: left; width: 120px; height: 29px; background:url(../../img/contacts-title-bg.png) repeat-x bottom left;  padding: 0; margin: 0 0; }
+
+#contacts-actions-menu {position: relative; float: right; width: 300px; height: 24px;  margin-top :6px; text-align: right;}
+
+a.contacts-actions-nav {font-size: 11px; font-weight: bold; text-decoration: none; color: #44037b}
+a.contacts-actions-nav:hover{color: red}
+
+
+#contacts-title-box ul
+{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+display: inline-block
+}
+#contacts-title-box li
+{
+display: block;
+width: 120px;
+height: 33px;
+background-image: url(../../img/contacts-icon.png);
+background-repeat: no-repeat;
+background-position: 0px 0px;
+padding-left: 30px;
+padding-top: 8px;
+font-size: 12px; font-weight: bold; color: #FFFFFF;
+}
+
+.contact-grid table{  border-collapse: collapse;}
+.contact-grid th {text-align: left; font-size: 12px; font-weight: bold; color: #000; background: #9b82d6; height: 22px;padding-left: 10px; padding-right: 10px}
+.contact-grid td.r1 {vertical-align: top; line-height: 150%; font-size: 12px; color: #000; height: 20px; padding-left: 10px; padding-right: 10px;}
+.contact-grid td.r2 {vertical-align: top; background: #d9e4e8; line-height: 150%; font-size: 12px; color: #000; height: 20px; padding-left: 10px; padding-right: 10px;}
+
+.contact-grid a {color: #000; text-decoration:none;}
+.contact-grid a:link {color: #000;}
+.contact-grid a:hover {color: #f80628;}
+
+.message-action {width: 100%; align: center; padding: 5px;}
+.message-action td {text-align: center; vertical-align: middle;}
+.message-action td a {color: #000; text-decoration: none;}
+.message-action td a:hover {color: red;}
+
+
+.status-success-text {color: #0636b1; font-weight: bold;}
+.status-pending-text {color: #f8032b; font-weight: normal;}
+.status-failed-text {color: #000; font-weight: bold;}
+
+
+
+
 .title-text {font-size: 12px; font-weight: bold; color: #FFFFFF; padding: 10px 12px;
     text-align: right;
     white-space: nowrap;
 	float:right;}
 	
-.message-title-text {font-size: 12px; color: #000; padding: 10px 5px;
+.message-title-text {font-size: 14px; color: #000; padding: 10px 5px;
     text-align: left;
     white-space: nowrap;
 	float:left;}
 
-.message-content-box {position: relative; width: 100%;  margin: 33px 0px; border: 1px solid #042b7a;}
+.message-content-box {position: relative; float: left; width: 100%; background: #c2c7ca; padding: 0; margin: 0 0; clear: both; border: 1px solid #000; height: auto}
 
-.message-title-box {position: absolute; float: left; width: 100%; background:url(../../img/message-title-bg.png) repeat-x top left;  height: 34px; padding: 0; margin: 0 0; clear: both;}
+.message-list {position: relative; float: none; width: 95%; background: #c2c7ca; padding: 0; margin: 0 auto; clear: both; border: 1px solid #000; height: auto}
 
-#message-content-container {position: relative; width: 100%; margin: 0 0; padding: 0; height: auto;}
+.message-list-bottom {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; }
+.list-display-setting {position: relative; float: left; width: 200px; margin: 10px 0; }
+.messages-filter {position: relative; float: left; width: 300px; margin: 10px 0; }
 
-#message-content-right {float: right; display: inline; position: relative; width: 200px; margin: 0px 0px; padding: 0; height: 100%; border: 1px solid #000;}
-#message-content-left {float: left; display: inline; position: relative; width: 360px; margin: 0px 0px; padding: 0; height: auto;  border: 1px solid #000;}
+.pagination {position: relative; float: right; width: 350px;}
+.messages-stat {position: relative; float: right; width: 500px; margin: 10px 0; text-align: right;}
+.PgCounter {text-align: right; padding:0px;}
+.PgCounter a {text-decoration:none;border:solid 1px #000;font-size:11pt;padding:0 3px 0 3px;font-weight:normal;color:#000000;}
+.PgCounter a:hover {text-decoration:none;border:solid 1px #000;background-color:brown;padding:0 3px 0 3px;font-weight:normal;color:#ffffff;}
+.PgCounter span.paging {text-decoration:none;border:solid 1px #000;font-size:11pt;background-color:#f7f7f7;padding:0 3px 0 3px;font-weight:normal;color:#996633;font-weight:bold;}
+.PgCounter div.stats {font-size:11pt;color:#ff0000;text-decoration:underline;padding:0px}
+
+.message-title-box {position: relative; float: left; width: 100%; background:url(../../img/message-title-bg.png) repeat-x top left;  height: 34px; padding: 0; margin: 0 0; clear: both;}
+
+#message-content-container {position: relative; width: 100%; margin: 0 0; padding: 0; height: auto; background: #c2c7ca;}
+
+#message-content-right {float: right; position: relative; width: 200px; margin: 0px 0px; padding: 10px 0px 0px; min-height: 290px; background: #9aaecf}
+#message-content-left {float: left; position: relative; width: 360px; margin: 0px 0px; padding: 0; min-height: 150px;}
+
+.message-content-right-header {position: relative; clear: both; width: 100%; border-bottom: 1px solid #000; line-height: 150%; color: #000; font-size :11px; height: 40px;}
+.message-content-right-header-body {margin: 5px auto; position: relative; width: 180px ; padding: 0}
+.message-info {margin: 5px auto; position: relative; width: 350px ; padding: 5px 5px; color: #000; font-size: 12px; line-height: 250%}
+.message-content-delivered-num {font-size : 16px; font-weight: bold; color: #FFF;}
+
+.message-content-right-wrap {margin: 5px auto; position: relative; width: 180px ; padding: 0; clear: both}
+#message-icons { margin: 0 auto; padding: 0; border: 0; width: 100%}
+
+#message-icons td.opens {
+background: #99aed0 url(../../img/open-icon.jpg) no-repeat center left;
+width: 29px;
+height: 31px;
+} 
+
+#message-icons td.clicks {
+background: #99aed0 url(../../img/click-icon.jpg) no-repeat center left;
+width: 33px;
+height: 42px;
+}
+
+#message-icons td.bounces {
+background: #99aed0 url(../../img/bounced-icon.jpg) no-repeat center left;
+width: 37px;
+height: 33px;
+} 
+
+#message-icons td.info {
+vertical-align: middle;
+align: center;
+font-size: 14px;
+font-weight: bold;
+color: #000;
+} 
+
+
+#emails-navcontainer { position: relative; margin: 0 auto; width: 290px; padding: 0}
+		
+		#emails-navcontainer ul
+		{
+			margin-left: 0px;
+			padding-left: 0;
+			list-style-type: none;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		
+		#emails-navcontainer a
+		{
+			display: block;
+			padding: 3px;
+			width: 285px;
+			background-color: #FFF;
+		}
+		
+		
+		
+		#emails-navlist li
+		{
+			display: block;
+			/* for IE5 and IE6 */
+		}
+		
+		#emails-navlist
+		{
+			width: 290px;
+			/* to display the list horizontaly */
+			font-family: sans-serif;
+			margin: 0 0 0 3em;
+			padding: 0;
+
+		}
+		
+
+
+div.create-message, div.reuse-message, div.draft-message, div.pending-message, div.create-autoresponders, div.my-autoresponders {background:url(../../img/optmmk_emails_nav_sprite.png) no-repeat 0 0}
+
+div.create-message {position: relative; background-position:0px 0px; float:left; width:100px; height:30px; margin:0px 7px 0 0; text-align: left; padding-left: 40px; padding-top: 15px;}
+a:hover div.create-message{background-position:0px -41px; text-decoration: underline; color: #133efb}
+
+div.reuse-message {position: relative;background-position:0px -82px; float:left; width:100px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 12px;}
+a:hover div.reuse-message {background-position:0px -123px;  text-decoration: underline; color: #133efb}
+
+div.draft-message {position: relative;background-position:0px -164px; float:left; width:40px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.draft-message {background-position:0px -205px;  text-decoration: underline; color: #133efb}
+
+div.pending-message {position: relative;background-position:0px -246px; float:left; width:40px; height:25px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.pending-message {background-position:0px -287px;  text-decoration: underline; color: #133efb}
+
+
+div.create-autoresponders {position: relative;background-position:0px -320px; float:left; width:40px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.create-autoresponders {background-position:0px -361px;  text-decoration: underline; color: #133efb}
+
+div.my-autoresponders {position: relative;background-position:0px -401px; float:left; width:40px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.my-autoresponders {background-position:0px -442px;  text-decoration: underline; color: #133efb}
+
+div.create-message-text {position: relative; width:120px; height:40px; display:block; margin:9px 7px 0 0; }
+
+
+
+#navcontainer { width: 200px; }
+		
+		#navcontainer ul
+		{
+			margin-left: 0px;
+			padding-left: 0;
+			list-style-type: none;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		
+		#navcontainer a
+		{
+			display: block;
+			padding: 3px;
+			width: 194px;
+			background-color: #036;
+		}
+		
+		
+		
+		#navlist li
+		{
+			display: inline;
+			/* for IE5 and IE6 */
+		}
+		
+		#navlist
+		{
+			width: 200px;
+			/* to display the list horizontaly */
+			font-family: sans-serif;
+			margin: 0 0 0 3em;
+			padding: 0;
+			border-top: 1px #000 solid;
+
+
+		}
+		
+		#navlist a
+		{
+			width: 188px;
+			/* extend the sensible area to the maximum with IE5 */
+			display: block;
+			background-color: #032a7a;
+			text-align: left;
+			text-decoration: none;
+			padding-left: 7px;
+			color: #fff;
+			border-bottom: 1px #000 solid;
+		}
+		
+		#navlist a:hover {  color: #fff; background-color:  #6e8fc4;}
+		#navlist a:visited { color: #fff; }
+		
+
+
+#stat-container { position: relative; width: 100%; margin: 0 0; padding: 0}
+
+.stat-title {position: relative; margin: 0 0; padding: 0; width: 291px; height: 25px; background: #b9e3f1 url(../../img/stat-header-bg.jpg) no-repeat top left; clear: both;}
+
+.stat-title-text {font-size: 12px; font-weight: bold; color: #FFFFFF; padding: 5px 20px;
+    text-align: left;
+    white-space: nowrap;
+	float:left; margin-left : 20px}
+	
+.stat-content {position: relative; margin: 0 0; padding: 0; width: 291px; min-height: 200px; background: #b9e3f1 url(../../img/stat-main-bg.jpg) no-repeat top left; clear: both;}	
+
+.stat-bottom {position: relative; margin: 0 0; padding: 0; width: 291px; height: 22px; background: #b9e3f1 url(../../img/stat-bottom-bg.jpg) no-repeat top left; clear: both;}	
+
+#stat-content-sub {position: absolute; width: 90%; margin-top: 10px !important; margin-left: 10px; margin-right: 10px;}
+
+.impression-txt {font-size: 16px; font-weight: bold; color : #000}
+
+#stat-content-sub ul.p1
+{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+display: inline-block
+}
+#stat-content-sub ul.p1 li
+{
+display: block;
+width: 95%;
+background-image: url(../../img/arrow.png);
+background-repeat: no-repeat;
+background-position: center left;
+padding-left: 15px;
+padding-top: 3px;
+font-size: 12px;
+}
+
+#stat-content-sub ul.p2
+{
+list-style-type: none;
+padding-top: 10px;
+margin-left: 30px;
+display: inline-block
+
+}
+#stat-content-sub ul.p2 li.node1
+{
+display: block;
+width: 95%;
+height: 25px;
+background-image: url(../../img/systat-list-icon.png);
+background-repeat: no-repeat;
+background-position: center left;
+padding-left: 25px;
+padding-top: 5px;
+font-size: 13px;
+}
+
+#stat-content-sub ul.p2 li.node2
+{
+display: block;
+width: 95%;
+height: 25px;
+background-image: url(../../img/systats-segments-icon.png);
+background-repeat: no-repeat;
+background-position: center left;
+padding-left: 25px;
+padding-top: 5px;
+font-size: 13px;
+}
+
+.moredetail {float: right; margin-top: 15px;}
+.moredetail a {text-decoration:none; color: #000;}
+.moredetail a:hover {color: #fb0326;}
+
 
 #logo { float:left; height:65px; position:relative; width:356px; margin:0; padding:0; }
 .header-right {
@@ -1102,6 +1431,7 @@ b.br2px { bottom:-2px; right:-2px; background-position:bottom right; }
     white-space: nowrap;
 	float:right;
 }
+
 .topbar a {
     color: #6DC2EE;
     margin: 0 7px 0 2px;

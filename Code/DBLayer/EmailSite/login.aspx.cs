@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,8 +19,11 @@ namespace EmailSite
         {
             if (UserDB.CheckUserPass(txtUsername.Text.Trim(), txtPassword.Text.Trim()))
             {
+                DataTable dtTable = UserDB.GetUserByUserName(txtUsername.Text.Trim());
                 Session["username"] = txtUsername.Text.Trim();
-                Response.Redirect("index.aspx");
+                Session["email"] = dtTable.Rows[0]["EMAIL"];
+                Session["userID"] = dtTable.Rows[0]["ID"];
+                Response.Redirect("home.aspx");
             }
             else lblErrMsg.Text = "Username and password are not correct !";
         }

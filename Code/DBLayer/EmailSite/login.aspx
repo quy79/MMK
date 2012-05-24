@@ -28,12 +28,14 @@
                     <div id="forms">
                             <div class="input-req-login"><label for="user">Username</label></div>
                             <div class="input-field-login icon username-container">
-                                <asp:TextBox ID="txtUsername" runat="server" CssClass="std_textbox" placeholder="Enter your account username." TabIndex="1" Width="249px"></asp:TextBox>
+                                <asp:TextBox ID="txtUsername" runat="server" CssClass="std_textbox" placeholder="Enter your username." TabIndex="1"></asp:TextBox>
                             </div>
                             <div class="input-req-login-error"><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"  ErrorMessage="Please input Password !"  ControlToValidate="txtUsername">Please input Username !</asp:RequiredFieldValidator></div>
                             <div style="margin-top:10px;" class="input-req-login"><label for="pass">Password</label></div>
                             <div class="input-field-login icon password-container">
-                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="std_textbox" placeholder="Enter your account password."   TabIndex="2" Width="249px"></asp:TextBox>                                
+                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="std_textbox" 
+                                     placeholder="Enter your password."   TabIndex="2" 
+                                     TextMode="Password"></asp:TextBox>                                
                             </div>
                             <div class="input-req-login-error">
                                 <asp:Label ID="lblErrMsg" runat=server />
@@ -71,7 +73,7 @@
                         <li><a href="/?locale=ar">Japanese</a></li>
                     
                         
-                        <li><a href="register.html">Signup</a></li>
+                        <li><a href="register.aspx">Signup</a></li>
                  </ul>       
               
             </div>
