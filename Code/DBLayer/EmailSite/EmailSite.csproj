@@ -50,11 +50,18 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="createMsg.aspx" />
+    <Content Include="createTextEmail.aspx" />
+    <Content Include="emails.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="headerHTML.ascx" />
     <Content Include="home.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="logo.ascx" />
     <Content Include="logout.aspx" />
+    <Content Include="navigation.ascx" />
     <Content Include="register.aspx" />
+    <Content Include="timeout.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -74,8 +81,36 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>label.ja-JP.resx</DependentUpon>
     </Compile>
+    <Compile Include="createMsg.aspx.cs">
+      <DependentUpon>createMsg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createMsg.aspx.designer.cs">
+      <DependentUpon>createMsg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createTextEmail.aspx.cs">
+      <DependentUpon>createTextEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createTextEmail.aspx.designer.cs">
+      <DependentUpon>createTextEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="emails.aspx.cs">
+      <DependentUpon>emails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="emails.aspx.designer.cs">
+      <DependentUpon>emails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="headerHTML.ascx.cs">
+      <DependentUpon>headerHTML.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="headerHTML.ascx.designer.cs">
+      <DependentUpon>headerHTML.ascx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -91,12 +126,26 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="logo.ascx.cs">
+      <DependentUpon>logo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logo.ascx.designer.cs">
+      <DependentUpon>logo.ascx</DependentUpon>
+    </Compile>
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="navigation.ascx.cs">
+      <DependentUpon>navigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="navigation.ascx.designer.cs">
+      <DependentUpon>navigation.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">
@@ -112,6 +161,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="timeout.aspx.cs">
+      <DependentUpon>timeout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="timeout.aspx.designer.cs">
+      <DependentUpon>timeout.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserDB.cs" />
   </ItemGroup>

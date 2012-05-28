@@ -57,21 +57,7 @@ a.btn-primary-txt:visited { color:#614b00; text-decoration:none }
 
 /* FORM ELEMENT STYLES
 ---------------------------------------------------------- */
-form { margin:0; padding:0; }
-fieldset { margin-bottom:30px }
-label.desc { display:block; margin-bottom:5px; font-weight:bold }
-input { padding:1px; }
-input[type="text"], input[type="password"], 
-textarea { border:1px solid #c9c9c9; padding:3px; margin-bottom:5px; background:#fff; font:1em arial, sans-serif; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px }
-select { font-size:1em; margin-bottom:5px; padding: 1px 0; }
-legend { font-size:1.16em; padding-bottom:15px; font-weight:bold }
-input.no-border { border-width:0; padding:1px; }
-input.dropdown { border-top:1px solid #CCC; border-bottom:1px solid #CCC; border-left:1px solid #CCC; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/textfield_dropdown.gif) no-repeat right top; font:0.9em Arial, Helvetica, sans-serif; cursor:pointer; border-right-width:0; border-right-style:none; margin:0; padding:3px 5px 3px 3px; }
-div.dropdown { border-top:1px solid #CCC; border-bottom:1px solid #CCC; border-left:1px solid #CCC; background:#FFF url(https://imgssl.constantcontact.com/ui/images1/textfield_dropdown.gif) no-repeat right top; font:0.9em Arial, Helvetica, sans-serif; cursor:pointer; border-right-width:0; border-right-style:none; margin:0; padding:3px 5px 3px 3px; }
-div.ve-left-button { border:1px solid #CCC; background:#FFF; font:0.9em Arial, Helvetica, sans-serif; cursor:pointer; float:left; margin:0 3px 0 0; padding:3px 22px 3px 3px; }
-.small-select { font:.8em Arial, Helvetica, sans-serif; padding:1px; }
-.small-input { font:.8em Arial, Helvetica, sans-serif; padding:1px; }
-.option-disabled { color:#BEBEBE; }
+
 
 /* Icons
 ---------------------------------------------------------*/
@@ -357,16 +343,6 @@ div.screen-width-indent .data-tbl th { vertical-align:middle; border:1px solid #
 .data-tbl table.data-tbl-inner td { border: 0; padding: 0 10px 3px 0;}
 
 
-/* DATA LABEL styles 
----------------------------------------------------------*/
-.data-lbl {border-right:1px solid #D6D6D6;border-top:1px solid #EFAF77; border-left:none; table-layout:fixed; }
-.data-lbl td {border-left:1px solid #e6e5e5; word-wrap: break-word;}
-.data-lbl th {border-left:1px solid #EFAF77;}
-.data-lbl.col-width th {width:250px;}
-.data-lbl tr.row-clr>td {background-color:#F8F8F8;}
-.data-lbl th form {display:inline;padding-left:5px;}
-.data-lbl.data-tbl th.warning-bg  {background:#FFEFEF; border-bottom:2px solid #FF0000; color:red;}
-
 /* used on datatb1 cells */
 .no-wrap{ white-space: nowrap; }
 
@@ -407,18 +383,6 @@ div.screen-width-indent .data-tbl th { vertical-align:middle; border:1px solid #
 /* NEW ( alternating row color and hover state color ) */
 .data-tbl-ar td.alt-row { background:#eff4f9; }
 .data-tbl-ar tr:hover { background:#e3ecf5; }
-
-/* FORM table 
---------------------------------------------------------- */
-.form-tbl select { font-size:1em; }
-.form-tbl th { text-align:left; font-weight:bold; white-space:nowrap; padding:6px 6px 3px 3px; }
-.form-tbl td { padding:6px 6px 3px 5px; }
-.form-tbl td.top-pad-0 { padding-top:0; }
-.form-tbl .subrow { vertical-align:top; margin-top:0; margin-bottom:3px; padding-top:0; padding-bottom:3px; color:#666; font-size:0.9em; }
-li .subrow { vertical-align:top; margin-top:0; margin-bottom:3px; padding-top:0; padding-bottom:3px; color:#666; font-size:0.9em; }
-div .subrow { vertical-align:top; margin-top:0; margin-bottom:3px; padding-top:0; padding-bottom:3px; color:#666; font-size:0.9em; }
-.form-tbl table.data-tbl th { padding:3px; }
-.form-tbl table.data-tbl td { padding:3px; }
 
 /* FILE table ( used on image library )
 --------------------------------------------------------- */
@@ -515,17 +479,7 @@ th.sorting_desc span {background: url(https://imgssl.constantcontact.com/ui/imag
 
 /* WIZARD
 -----------------------------------------------------------------*/
-fieldset { margin-bottom:25px; padding-top:8px; border-top:0; border-right-width:0; border-bottom-width:0; border-left-width:0; }
-fieldset legend { position:relative; display:block; color:#000; font:bold 1.2em Arial, Helvetica, sans-serif; margin-left:-7px; background:url(https://imgssl.constantcontact.com/ui/images1/icon_fieldset.gif) no-repeat; padding-left:20px; border-width:0; }
-fieldset legend span { display:block; }
-fieldset.txt-mid { padding-left:20px; }
-fieldset dl { margin-left:20px; margin-top:4px; margin-bottom:6px; }
-fieldset dt { font-size:1em; margin-top:8px; margin-bottom:2px; }
-fieldset dt.no-dd { margin-bottom:7px; }
-fieldset dt input { position:relative; top:2px; }
-fieldset dt.bttm-margin { font-size:1em; margin-bottom:6px; }
-fieldset dd { margin-bottom:7px; font-size:0.9em; color:#666; margin-left:25px; }
-fieldset dd.regular-text { font-size:1em; }
+
 
 /*  ROUNDED CORNERS */
 .rhead-container { margin-bottom:10px; }
@@ -1068,6 +1022,8 @@ b.br2px { bottom:-2px; right:-2px; background-position:bottom right; }
 .emails-box-left-note {float: right; position: absolute; width: 350px; text-align; left; padding-top: 45px; padding-left : 60px; font-size: 11px; color:#00000;}
 
 
+.create-message-step1-container {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; text-align: center}
+
 
 
 #last-message-container {position: relative; width: 100%; margin: 0 0; padding: 0; clear: both;}
@@ -1249,6 +1205,74 @@ color: #000;
 
 		}
 		
+
+
+#message-template-container { position: relative; margin: 0 auto; width: 650px; padding: 10px; height: auto; clear: both; text-align: left}
+		
+
+		
+		
+		#message-template-container a
+		{
+			
+			display: block;			
+			padding: 0px;
+			width: 650px;
+			background-color: #0864a5;
+			height: 235px;
+			
+			border:6px solid #000; border-radius: 8px; -moz-border-radius:8px; -webkit-border-radius:8px;
+			
+		}
+		
+		#message-template-container a:hover
+		{
+			
+			background-color: #7fc8fb;
+			
+		}
+		
+		
+#message-plaintext-container { position: relative;  margin: 0 auto; width: 650px; padding: 10px; height: auto; clear: both; text-align: center}
+		
+
+		
+		
+		#message-plaintext-container a
+		{
+			
+			display: block;			
+			padding: 0px;
+			width: 650px;
+			background-color: #0864a5;
+			height: auto;
+			
+			border:6px solid #000; border-radius: 8px; -moz-border-radius:8px; -webkit-border-radius:8px;
+			
+		}
+		
+		#message-plaintext-container a:hover
+		{
+			
+			background-color: #7fc8fb;
+			
+		}
+		
+
+		
+div.message-template-box {position: relative; margin: 0 0; padding: 10px; width: 650px; height: 235px;}
+
+div.message-plaintext-box {position: relative; margin: 0 auto; padding: 10px; width: 650px; height: auto;}
+#message-plaintext-container a {text-decoration:: none;
+			color: #FFF;
+			font-size: 14px;}
+
+
+.message-template-box-left {position: relative; float:left; padding: 0; width: 400px; min-height: 235px; background: url(../../img/template-message.jpg) no-repeat center left;}
+.message-template-box-right{position: relative; float:right; padding: 10px 10px; width: 220px; height: 235px; margin: 0 auto;}
+
+.message-template-box-right-title {position: relative; clear: both; width: 200px; border-bottom: 1px solid #FFF; line-height: 150%; color: #000; font-size :14px; height: 20px; color: #FFF}
+.message-template-box-right-note {position: relative; clear: both; width: 200px; line-height: 150%; color: #000; font-size :12px; height: auto; text-align: left; color: #FFF; margin-top: 20px}
 
 
 div.create-message, div.reuse-message, div.draft-message, div.pending-message, div.create-autoresponders, div.my-autoresponders {background:url(../../img/optmmk_emails_nav_sprite.png) no-repeat 0 0}
@@ -2061,4 +2085,110 @@ ul.cc-media { padding:0; list-style:none; }
 .tooltip { display:none; }
 .trialer-tip { display:block; font-size:12px; padding:10px; color:#fff; background:#000; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px; }
 .trialer-arrow { display:block; height:6px; background:url(https://imgssl.constantcontact.com/ui/images1/trialer-tooltip-arrow.png) center bottom no-repeat; }
+
+
+a.boldbuttons{
+background: transparent url('../../img/roundedge-gray-left.gif') no-repeat top left;
+display: block;
+float: left;
+font: bold 13px Arial; /* Change 13px as desired */
+line-height: 22px; /* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 30px) */
+height: 30px; /* Height of button background height */
+padding-left: 8px; /* Width of left menu image */
+text-decoration: none;
+
+}
+
+a:link.boldbuttons, a:visited.boldbuttons, a:hover.boldbuttons, a:active.boldbuttons{
+color: white; /*button text color*/
+}
+
+a.boldbuttons span{
+background: transparent url('../../img/roundedge-gray-right.gif') no-repeat top right;
+display: block;
+padding: 4px 10px 4px 2px; /*Set 10px to be equal or greater than'padding-left' value above*/
+}
+
+a:hover.boldbuttons{ /* Hover state CSS */
+text-decoration: underline;
+}
+
+
+.buttonwrapper{ /* Container you can use to surround a CSS button to clear float */
+overflow: hidden; /*See: http://www.quirksmode.org/css/clearing.html */
+width: 400px;
+margin-top : 20px;
+}
+
+
+
+
+
+a {
+	color: #C08;
+}
+
+a.button {
+    background: transparent url('../../img/bg_button_a.png') no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px;
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('../../img/bg_button_span.png') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none;
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px;
+}
+
+
+
+a.login-window {
+    background: transparent url('../../img/bg_button_a.png') no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px;
+    text-decoration: none;
+}
+
+a.login-window  span {
+    background: transparent url('../../img/bg_button_span.png') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.login-window :active {
+    background-position: bottom right;
+    color: #000;
+    outline: none;
+}
+
+a.login-window :active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px;
+}
+
+
 
