@@ -1,0 +1,5 @@
+C:\code\Code\DBLayer\DBLayer\bin\Debug\DBLayer.dll
+C:\code\Code\DBLayer\DBLayer\bin\Debug\DBLayer.pdb
+C:\code\Code\DBLayer\DBLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\code\Code\DBLayer\DBLayer\obj\Debug\DBLayer.dll
+C:\code\Code\DBLayer\DBLayer\obj\Debug\DBLayer.pdb

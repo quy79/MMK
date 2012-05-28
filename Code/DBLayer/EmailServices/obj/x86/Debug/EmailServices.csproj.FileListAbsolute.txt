@@ -1,0 +1,5 @@
+C:\code\Code\DBLayer\EmailServices\bin\Debug\EmailServices.exe
+C:\code\Code\DBLayer\EmailServices\bin\Debug\EmailServices.pdb
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\EmailServices.exe
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\EmailServices.pdb

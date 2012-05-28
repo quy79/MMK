@@ -1,0 +1,9 @@
+C:\code\Code\DBLayer\EmailSite\bin\EmailSite.dll
+C:\code\Code\DBLayer\EmailSite\bin\EmailSite.pdb
+C:\code\Code\DBLayer\EmailSite\bin\DBLayer.dll
+C:\code\Code\DBLayer\EmailSite\bin\DBLayer.pdb
+C:\code\Code\DBLayer\EmailSite\obj\Debug\ResolveAssemblyReference.cache
+C:\code\Code\DBLayer\EmailSite\obj\Debug\EmailSite.dll
+C:\code\Code\DBLayer\EmailSite\obj\Debug\EmailSite.pdb
+C:\code\Code\DBLayer\EmailSite\bin\SpamChecker.dll
+C:\code\Code\DBLayer\EmailSite\bin\SpamChecker.pdb
