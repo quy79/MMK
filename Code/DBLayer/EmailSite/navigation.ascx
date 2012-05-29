@@ -50,7 +50,7 @@
                 
     </ul>
                 
-                
+                	
 	
 <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" type="text/javascript"></script>
 

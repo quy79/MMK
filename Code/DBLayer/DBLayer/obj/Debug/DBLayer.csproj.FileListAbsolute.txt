@@ -1,0 +1,5 @@
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\bin\Debug\DBLayer.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\bin\Debug\DBLayer.pdb
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\obj\Debug\DBLayer.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\obj\Debug\DBLayer.pdb

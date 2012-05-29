@@ -1,0 +1,7 @@
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\EmailSite.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\EmailSite.pdb
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\DBLayer.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\DBLayer.pdb
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\obj\Debug\EmailSite.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\obj\Debug\EmailSite.pdb
