@@ -13,6 +13,7 @@ namespace EmailSite
         {
             //check security
             if(Session["username"]==null) Response.Redirect("login.aspx");
+           // navigation.MenuType = "home";
         }
     }
 }
