@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\code\Code\DBLayer\EmailSite\bin\EmailSite.dll
 C:\code\Code\DBLayer\EmailSite\bin\EmailSite.pdb
 C:\code\Code\DBLayer\EmailSite\bin\DBLayer.dll
@@ -7,3 +8,12 @@ C:\code\Code\DBLayer\EmailSite\obj\Debug\EmailSite.dll
 C:\code\Code\DBLayer\EmailSite\obj\Debug\EmailSite.pdb
 C:\code\Code\DBLayer\EmailSite\bin\SpamChecker.dll
 C:\code\Code\DBLayer\EmailSite\bin\SpamChecker.pdb
+=======
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\EmailSite.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\EmailSite.pdb
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\DBLayer.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\bin\DBLayer.pdb
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\obj\Debug\EmailSite.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\EmailSite\obj\Debug\EmailSite.pdb
+>>>>>>> c2df80cb9b9f864e61e9376f7488cdb88aa9ba0a

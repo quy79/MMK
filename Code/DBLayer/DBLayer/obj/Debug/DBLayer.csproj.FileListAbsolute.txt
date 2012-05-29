@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 C:\code\Code\DBLayer\DBLayer\bin\Debug\DBLayer.dll
 C:\code\Code\DBLayer\DBLayer\bin\Debug\DBLayer.pdb
 C:\code\Code\DBLayer\DBLayer\obj\Debug\ResolveAssemblyReference.cache
 C:\code\Code\DBLayer\DBLayer\obj\Debug\DBLayer.dll
 C:\code\Code\DBLayer\DBLayer\obj\Debug\DBLayer.pdb
+=======
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\bin\Debug\DBLayer.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\bin\Debug\DBLayer.pdb
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\obj\Debug\DBLayer.dll
+C:\Users\quy\new-mmk\MMK\Code\DBLayer\DBLayer\obj\Debug\DBLayer.pdb
+>>>>>>> c2df80cb9b9f864e61e9376f7488cdb88aa9ba0a

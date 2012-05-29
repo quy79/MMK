@@ -13,9 +13,10 @@
         <link href="./ui/css/layout.css" media="all" rel="stylesheet" type="text/css"/>
         <link href="./ui/css/jqueryui.css" media="all" rel="stylesheet" type="text/css"/>
         
+        <script src="./ui/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>            
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
-		<script src="./ui/js/WindowControl.js"></script>
+
         
         <!--navigation dropdown menu-->
 
@@ -65,9 +66,6 @@
 			float: none;
 			font-size: 11px;
 		}
-
-		
-
 
 	</style>	
     <title>OptMailMarketing : <%=Title %></title>	

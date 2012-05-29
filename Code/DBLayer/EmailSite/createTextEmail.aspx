@@ -54,6 +54,7 @@
 	</script>
     
     
+    
 <!--navigation dropdown menu-->
 
 <link rel="stylesheet" href="./ui/css/menu.css" type="text/css" />
@@ -196,7 +197,9 @@
 	
 
 
-            <script type="text/javascript" src="./ui/js/menu.js"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="./ui/js/menu.js"></script>
       		</div>
             
             <div id="content-main">
