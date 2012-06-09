@@ -16,9 +16,11 @@ namespace EmailServices
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 
-				new EmailService() 
+				new Service1() 
 			};
             ServiceBase.Run(ServicesToRun);
+
+            //Console.WriteLine("Usage: InstallUtil.exe [<service>.exe]");
         }
     }
 }

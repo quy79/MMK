@@ -1,5 +1,10 @@
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\EmailServices.ProjectInstaller.resources
+C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\EmailServices.Service1.resources
+C:\code\Code\DBLayer\EmailServices\bin\Debug\EmailServices.exe.config
 C:\code\Code\DBLayer\EmailServices\bin\Debug\EmailServices.exe
 C:\code\Code\DBLayer\EmailServices\bin\Debug\EmailServices.pdb
-C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\EmailServices.exe
 C:\code\Code\DBLayer\EmailServices\obj\x86\Debug\EmailServices.pdb

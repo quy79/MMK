@@ -403,8 +403,10 @@
     <Content Include="logout.aspx" />
     <Content Include="navigation.ascx" />
     <Content Include="register.aspx" />
+    <Content Include="Test\TestMail.aspx" />
+    <Content Include="Test\TestMailService.aspx" />
+    <Content Include="Test\TestSendMailPage.aspx" />
     <Content Include="Test\TestHTMLEditorPage.aspx" />
-    <Content Include="Test\TestSpamCheckerPage.aspx" />
     <Content Include="timeout.aspx" />
     <Content Include="ui\ckeditor\adapters\jquery.js" />
     <Content Include="ui\ckeditor\CHANGES.html" />
@@ -1333,18 +1335,21 @@
     </Compile>
     <Compile Include="createMsg.aspx.cs">
       <DependentUpon>createMsg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="createMsg.aspx.designer.cs">
       <DependentUpon>createMsg.aspx</DependentUpon>
     </Compile>
     <Compile Include="createTextEmail.aspx.cs">
       <DependentUpon>createTextEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="createTextEmail.aspx.designer.cs">
       <DependentUpon>createTextEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="emails.aspx.cs">
       <DependentUpon>emails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="emails.aspx.designer.cs">
       <DependentUpon>emails.aspx</DependentUpon>
@@ -1354,6 +1359,7 @@
     </Compile>
     <Compile Include="headerHTML.ascx.cs">
       <DependentUpon>headerHTML.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="headerHTML.ascx.designer.cs">
       <DependentUpon>headerHTML.ascx</DependentUpon>
@@ -1374,6 +1380,7 @@
     </Compile>
     <Compile Include="logo.ascx.cs">
       <DependentUpon>logo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="logo.ascx.designer.cs">
       <DependentUpon>logo.ascx</DependentUpon>
@@ -1387,6 +1394,7 @@
     </Compile>
     <Compile Include="navigation.ascx.cs">
       <DependentUpon>navigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="navigation.ascx.designer.cs">
       <DependentUpon>navigation.ascx</DependentUpon>
@@ -1406,6 +1414,27 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Test\TestMail.aspx.cs">
+      <DependentUpon>TestMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\TestMail.aspx.designer.cs">
+      <DependentUpon>TestMail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\TestMailService.aspx.cs">
+      <DependentUpon>TestMailService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\TestMailService.aspx.designer.cs">
+      <DependentUpon>TestMailService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\TestSendMailPage.aspx.cs">
+      <DependentUpon>TestSendMailPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\TestSendMailPage.aspx.designer.cs">
+      <DependentUpon>TestSendMailPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Test\TestHTMLEditorPage.aspx.cs">
       <DependentUpon>TestHTMLEditorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1413,15 +1442,9 @@
     <Compile Include="Test\TestHTMLEditorPage.aspx.designer.cs">
       <DependentUpon>TestHTMLEditorPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Test\TestSpamCheckerPage.aspx.cs">
-      <DependentUpon>TestSpamCheckerPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\TestSpamCheckerPage.aspx.designer.cs">
-      <DependentUpon>TestSpamCheckerPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="timeout.aspx.cs">
       <DependentUpon>timeout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="timeout.aspx.designer.cs">
       <DependentUpon>timeout.aspx</DependentUpon>
@@ -1435,13 +1458,17 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChilkatEmail\ChilkatEmail.csproj">
+      <Project>{24DACEAE-43A9-435E-8E0F-E1EA5D59F287}</Project>
+      <Name>ChilkatEmail</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBLayer\DBLayer.csproj">
       <Project>{36B5A67E-03F1-400D-B70A-53230B3E72CB}</Project>
       <Name>DBLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SpamChecker\SpamChecker.csproj">
-      <Project>{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}</Project>
-      <Name>SpamChecker</Name>
+    <ProjectReference Include="..\EmailServices\EmailServices.csproj">
+      <Project>{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}</Project>
+      <Name>EmailServices</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
