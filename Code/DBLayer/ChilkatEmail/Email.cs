@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Chilkat;
-
+using ChilkatEmail.Utils;
 namespace ChilkatEmail
 {
-    class Email
+   public class Email
     {
-        private const string ChilkatEmailUnlock = "30-day trial";
-        private string strSmtpHost;
-        private string strSmtpUser;
-        private string strSmtpPass;
+       
         private int iSmtpPort;
         private bool startTLS = true;
         private string strCharSet = "";
@@ -22,10 +19,10 @@ namespace ChilkatEmail
         #region contructor
         public  Email(string smtpHost, string smtpUser, string smtpPass, int smtpPort)
         {
-            strSmtpHost = smtpHost;
-            strSmtpUser = smtpUser;
-            strSmtpPass = smtpPass;
-            iSmtpPort = smtpPort;
+           // strSmtpHost = smtpHost;
+           // strSmtpUser = smtpUser;
+            //strSmtpPass = smtpPass;
+            //iSmtpPort = smtpPort;
         }
         #endregion
 
@@ -58,76 +55,7 @@ namespace ChilkatEmail
                 return (false);
         }
 
-        public bool SendEmail(string subject, string body, string emailFrom, string emailTo)
-        { 
-            //  The mailman object is used for receiving (POP3)
-            //  and sending (SMTP) email.
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-
-
-            //  Note: This example requires licenses to both "Chilkat Email" and "Chilkat MHT".
-            //  Any string argument automatically begins the 30-day trial.
-            bool success;
-            success = mailman.UnlockComponent(ChilkatEmailUnlock);
-            if (success != true) return false;
-
-            Chilkat.Email email = new Chilkat.Email();
-
-            email.Subject = subject;
-            email.Body = body;
-            email.AddTo(emailTo, emailTo);
-            email.From = emailFrom;
-
-            mailman.SmtpHost = strSmtpHost;
-            mailman.SmtpUsername = strSmtpUser;
-            mailman.SmtpPassword = strSmtpPass;
-            mailman.SmtpPort = iSmtpPort;
-            mailman.StartTLS = startTLS;
-            if (Charset.Length != 0) email.Charset = Charset;
-
-            success = mailman.SendEmail(email);
-            if (success != true) return false;
-
-            success = mailman.CloseSmtpConnection();
-
-            return true;
-        }
-
-        public bool SendHtmlEmail(string subject, string htmlBody, string emailFrom, string emailTo)
-        {
-            //  The mailman object is used for receiving (POP3)
-            //  and sending (SMTP) email.
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-
-
-            //  Note: This example requires licenses to both "Chilkat Email" and "Chilkat MHT".
-            //  Any string argument automatically begins the 30-day trial.
-            bool success;
-            success = mailman.UnlockComponent(ChilkatEmailUnlock);
-            if (success != true) return false;
-
-            Chilkat.Email email = new Chilkat.Email();
-
-            email.Subject = subject;
-            email.SetHtmlBody(htmlBody);
-            email.AddTo(emailTo, emailTo);
-            email.From = emailFrom;
-
-            mailman.SmtpHost = strSmtpHost;
-            mailman.SmtpUsername = strSmtpUser;
-            mailman.SmtpPassword = strSmtpPass;
-            mailman.SmtpPort = iSmtpPort;
-            mailman.StartTLS = startTLS;
-            if (Charset.Length != 0) email.Charset = Charset;
-
-            success = mailman.SendEmail(email);
-            if (success != true) return false;
-
-            success = mailman.CloseSmtpConnection();
-
-            return true;
-        }
-
+      
         public bool SendEmailFromWebsite(string url, string subject, string emailFrom, string emailTo)
         {
             //  The mailman object is used for receiving (POP3)
@@ -144,9 +72,9 @@ namespace ChilkatEmail
             //  Any string argument automatically begins the 30-day trial.
             bool success;
 
-            success = mht.UnlockComponent(ChilkatEmailUnlock);
+            success = mht.UnlockComponent(Constants. ChilkatEmailUnlock);
             if (success != true) return false;
-            success = mailman.UnlockComponent(ChilkatEmailUnlock);
+            success = mailman.UnlockComponent(Constants.ChilkatEmailUnlock);
             if (success != true) return false;
 
             Chilkat.Email email = null;
@@ -158,9 +86,9 @@ namespace ChilkatEmail
             email.AddTo(emailTo, emailTo);
             email.From = emailFrom;
 
-            mailman.SmtpHost = strSmtpHost;
-            mailman.SmtpUsername = strSmtpUser;
-            mailman.SmtpPassword = strSmtpPass;
+           // mailman.SmtpHost = strSmtpHost;
+            //mailman.SmtpUsername = strSmtpUser;
+            //mailman.SmtpPassword = strSmtpPass;
             mailman.SmtpPort = iSmtpPort;
             mailman.StartTLS = startTLS;
 
