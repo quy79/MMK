@@ -1,5 +1,0 @@
-C:\code\Code\DBLayer\ChilkatEmail\bin\Debug\ChilkatEmail.dll
-C:\code\Code\DBLayer\ChilkatEmail\bin\Debug\ChilkatEmail.pdb
-C:\code\Code\DBLayer\ChilkatEmail\obj\Debug\ResolveAssemblyReference.cache
-C:\code\Code\DBLayer\ChilkatEmail\obj\Debug\ChilkatEmail.dll
-C:\code\Code\DBLayer\ChilkatEmail\obj\Debug\ChilkatEmail.pdb
