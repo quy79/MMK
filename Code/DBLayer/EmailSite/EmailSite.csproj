@@ -51,14 +51,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adContact.aspx" />
-    <Content Include="addContacts.aspx" />
-    <Content Include="chooseEmailList.aspx" />
-    <Content Include="contacts.aspx" />
-    <Content Include="createHTMLEmail.aspx" />
-    <Content Include="createList.aspx" />
     <Content Include="createMsg.aspx" />
-    <Content Include="createMsgDone.aspx" />
     <Content Include="createTextEmail.aspx" />
     <Content Include="emails.aspx" />
     <Content Include="Global.asax" />
@@ -408,11 +401,9 @@
     <Content Include="login.aspx" />
     <Content Include="logo.ascx" />
     <Content Include="logout.aspx" />
-    <Content Include="messagePreview.aspx" />
-    <Content Include="mylists.aspx" />
     <Content Include="navigation.ascx" />
-    <Content Include="previewEmail.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="Test\TestGetContactList.aspx" />
     <Content Include="Test\TestMail.aspx" />
     <Content Include="Test\TestMailService.aspx" />
     <Content Include="Test\TestSendMailPage.aspx" />
@@ -1324,7 +1315,6 @@
     <Content Include="ui\menu\js\jquery.bgiframe.min.js" />
     <Content Include="ui\menu\js\superfish.js" />
     <Content Include="ui\menu\js\supersubs.js" />
-    <Content Include="uploadContacts.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1334,20 +1324,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adContact.aspx.cs">
-      <DependentUpon>adContact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="adContact.aspx.designer.cs">
-      <DependentUpon>adContact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="addContacts.aspx.cs">
-      <DependentUpon>addContacts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="addContacts.aspx.designer.cs">
-      <DependentUpon>addContacts.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\label.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1358,48 +1334,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>label.ja-JP.resx</DependentUpon>
     </Compile>
-    <Compile Include="chooseEmailList.aspx.cs">
-      <DependentUpon>chooseEmailList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="chooseEmailList.aspx.designer.cs">
-      <DependentUpon>chooseEmailList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Class\Utils.cs" />
-    <Compile Include="contacts.aspx.cs">
-      <DependentUpon>contacts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="contacts.aspx.designer.cs">
-      <DependentUpon>contacts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="createHTMLEmail.aspx.cs">
-      <DependentUpon>createHTMLEmail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="createHTMLEmail.aspx.designer.cs">
-      <DependentUpon>createHTMLEmail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="createList.aspx.cs">
-      <DependentUpon>createList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="createList.aspx.designer.cs">
-      <DependentUpon>createList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="createMsg.aspx.cs">
       <DependentUpon>createMsg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="createMsg.aspx.designer.cs">
       <DependentUpon>createMsg.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="createMsgDone.aspx.cs">
-      <DependentUpon>createMsgDone.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="createMsgDone.aspx.designer.cs">
-      <DependentUpon>createMsgDone.aspx</DependentUpon>
     </Compile>
     <Compile Include="createTextEmail.aspx.cs">
       <DependentUpon>createTextEmail.aspx</DependentUpon>
@@ -1453,33 +1393,12 @@
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="messagePreview.aspx.cs">
-      <DependentUpon>messagePreview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="messagePreview.aspx.designer.cs">
-      <DependentUpon>messagePreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="mylists.aspx.cs">
-      <DependentUpon>mylists.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="mylists.aspx.designer.cs">
-      <DependentUpon>mylists.aspx</DependentUpon>
-    </Compile>
     <Compile Include="navigation.ascx.cs">
       <DependentUpon>navigation.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="navigation.ascx.designer.cs">
       <DependentUpon>navigation.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="previewEmail.aspx.cs">
-      <DependentUpon>previewEmail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="previewEmail.aspx.designer.cs">
-      <DependentUpon>previewEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">
@@ -1495,6 +1414,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Test\TestGetContactList.aspx.cs">
+      <DependentUpon>TestGetContactList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\TestGetContactList.aspx.designer.cs">
+      <DependentUpon>TestGetContactList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Test\TestMail.aspx.cs">
       <DependentUpon>TestMail.aspx</DependentUpon>
@@ -1531,18 +1457,10 @@
     <Compile Include="timeout.aspx.designer.cs">
       <DependentUpon>timeout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="uploadContacts.aspx.cs">
-      <DependentUpon>uploadContacts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="uploadContacts.aspx.designer.cs">
-      <DependentUpon>uploadContacts.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UserDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
