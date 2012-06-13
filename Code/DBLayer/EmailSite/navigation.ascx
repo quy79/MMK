@@ -20,13 +20,13 @@
 				
 		</li>
         <li class="mn-nav-prdcts <%=strContactSelected%>">
-        	<a href="/rnavmap/evaluate.rnav/pidbbGa4P2Yc4B007A81QUR7?activepage=ecampaign.view" class="" id="mainNavEmailMarketing">
+        	<a href="contacts.aspx" class="" id="mainNavEmailMarketing">
 				<span class="ic-contacts"></span>Contacts
             </a>
                         
             <ul>
-                <li><a href="#">List</a></li>
-                <li><a href="#">Add contacts</a></li>
+                <li><a href="mylists.aspx">List</a></li>
+                <li><a href="addContacts.aspx">Add contacts</a></li>
                 <li><a href="#">Browse / Search contacts</a></li>
                 <li><a href="#">Segments</a></li>		
                            				

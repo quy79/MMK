@@ -91,8 +91,7 @@ namespace DatabaseLayer
 				new SqlParameter("@NOTIFICATION",SqlDbType.Bit),
 				new SqlParameter("@PUBLICLABEL",SqlDbType.NVarChar),
 				new SqlParameter("@WELLCOMEMSGID",SqlDbType.Int),
-				new SqlParameter("@TOTALSUBSCRIBES",SqlDbType.Int),
-				new SqlParameter("@MODIFIEDDATE",SqlDbType.DateTime) 
+				new SqlParameter("@TOTALSUBSCRIBES",SqlDbType.Int)
 			};
 			
 
@@ -168,14 +167,7 @@ namespace DatabaseLayer
 					Params[7].Value = DBNull.Value;
 				}
 
-				if (MODIFIEDDATE != null)
-				{
-					Params[8].Value = MODIFIEDDATE;
-				}
-				else
-				{
-					Params[8].Value = DBNull.Value;
-				}
+				
 
 			
 			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_LISTS_Select",Params);
@@ -183,9 +175,72 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return null;//throw new Exception(ex.Message);
 		}
 	}
+
+    public DataTable SelectByUserID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",SqlDbType.Int)
+			};
+
+
+
+            if (USERID != null)
+            {
+                Params[0].Value = USERID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_LISTS_SelectbyUserID]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;//throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable SelectByID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",SqlDbType.Int)
+			};
+
+
+
+            if (USERID != null)
+            {
+                Params[0].Value = ID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_LISTS_SelectbyID]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;//throw new Exception(ex.Message);
+        }
+    }
+
 	public bool Insert()
 	{
 		try
@@ -195,11 +250,11 @@ namespace DatabaseLayer
 				new SqlParameter("@USERID",USERID),
 				new SqlParameter("@LISTNAME",LISTNAME),
 				new SqlParameter("@DESCRIPTION",DESCRIPTION),
-				new SqlParameter("@NOTIFICATION",NOTIFICATION),
-				new SqlParameter("@PUBLICLABEL",PUBLICLABEL),
-				new SqlParameter("@WELLCOMEMSGID",WELLCOMEMSGID),
-				new SqlParameter("@TOTALSUBSCRIBES",TOTALSUBSCRIBES),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@NOTIFICATION",NOTIFICATION)
+				//new SqlParameter("@PUBLICLABEL",PUBLICLABEL),
+				//new SqlParameter("@WELLCOMEMSGID",WELLCOMEMSGID),
+				//new SqlParameter("@TOTALSUBSCRIBES",TOTALSUBSCRIBES),
+				//new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_LISTS_Insert",Params);
 			if (result > 0)
@@ -210,7 +265,7 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return false;//throw new Exception(ex.Message);
 		}
 	}
 	public bool Update()

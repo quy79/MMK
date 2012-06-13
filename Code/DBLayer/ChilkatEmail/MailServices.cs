@@ -34,7 +34,7 @@ namespace ChilkatEmail
 
 
        }
-        private const string ChilkatEmailUnlock = "Trial";
+       private const string ChilkatEmailUnlock = "ADROCKMAILQ_ZfyZ6ApxpU84";
        /// <summary>
        /// SendMail is to send emails to a list of recipients; 
        ///
@@ -82,8 +82,12 @@ namespace ChilkatEmail
             
            
             mailman.SmtpHost = Constants.strSmtpHost;
-           // mailman.SmtpUsername = strSmtpUser;
-            //mailman.SmtpPassword = strSmtpPass;
+            if (Constants.strSmtpUser != null && Constants.strSmtpUser.Length > 0)
+            {
+                mailman.SmtpUsername = Constants.strSmtpUser;
+                mailman.SmtpPassword = Constants.strSmtpPass;
+            }
+         
             //mailman.SmtpPort = iSmtpPort;
             //mailman.StartTLS = startTLS;
             //if (Charset.Length != 0) email.Charset = Charset;

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChilkatEmail", "ChilkatEmai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailServices", "EmailServices\EmailServices.csproj", "{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpamChecker", "SpamChecker\SpamChecker.csproj", "{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}.Release|x86.ActiveCfg = Release|x86
 		{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}.Release|x86.Build.0 = Release|x86
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4FD1772C-7A28-4667-B7E6-94022A5F7FCC}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

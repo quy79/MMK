@@ -2,33 +2,33 @@
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <uc3:headerHTML ID="headerHTML1" Title="Email" runat="server" />
-
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">    
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+    
     <div id="main">
 	    <div class="page-container">
-        	 <uc1:logo ID="logo" runat="server" />
+             <uc1:logo ID="logo" runat="server" />
 			 <uc2:navigation ID="navigation" MenuType="emails" runat="server" />
-            
-            
-          
             
             <div id="content-main">
             
-            	<div id="emails-common-panel">
+            	
+                <div id="emails-common-panel">
                 	<div id="emails-panel-left">
                     	<div id="emails-box-left">
                         	<div class="emails-box-left-header">
 		                        <div class="emails-box-left-title">
-                                My Message
+                                My Messages
                                 </div>
                                 <div class="emails-box-left-note">
-                                Create a new message or work from a saved draft.
+                                
                                 </div>
                             </div>
                             <div class="emails-box-left-body">
+                            	 <div id="box-explain">Create a new message or work from a saved draft.</div>
                             	 <div id="emails-navcontainer">
                                     <ul id="emails-navlist">
                                         <li>
@@ -41,26 +41,29 @@
                                         	<a href="" class=""><div class="draft-message">Draft messages</div></a>
                                         </li>
                                         <li>
-                                        	<a href="" class=""><div class="pending-message">Pending messages</div></a>
+                                        	<a href="emails-pending-messages.html" class=""><div class="pending-message">Pending messages</div></a>
                                         </li>
 
                                     </ul>
                                 </div>
+                            </div>
+                            <div class="emails-box-left-bottom">
                             </div>
                         </div>
                     </div>
                 	<div id="emails-panel-right">
                     	<div id="emails-box-right">
                         	<div class="emails-box-right-header">
-                            	<div class="emails-box-left-title">
-                                Autoresponders
+		                        <div class="emails-box-left-title">
+                                AutoResponders
                                 </div>
                                 <div class="emails-box-left-note">
-                                Automatically send a series of messages on scheduled days.
+                                
                                 </div>
                             </div>
-                            <div class="emails-box-right-body">
-                            	<div id="emails-navcontainer">
+                            <div class="emails-box-left-body">
+                            	 <div id="box-explain">Automatically send a series of messages on scheduled days.</div>
+                            	 <div id="emails-navcontainer">
                                     <ul id="emails-navlist">
                                         <li>
                                         	<a href="" class=""><div class="create-autoresponders">Create an Autoresponder</div></a>
@@ -73,9 +76,14 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="emails-box-left-bottom">
+                            </div>
                         </div>
                     </div>                    
                 </div>
+
+                
+                
                 <div id="emails-common-panel">
                 	<br/><br/>
                     <div class="message-list-bottom">
@@ -100,12 +108,12 @@
                               <td>
                                   <table class="contact-grid" bgcolor="#ffffff" width="100%" border="0" cellspacing="1" cellpadding="1">
                                     <tr>
-                                      <td bgcolor="#95949b" width="10%" align="center">Message ID</td>
-                                      <td bgcolor="#95949b" width="25%" align="center">Message Name</td>
-                                      <td bgcolor="#95949b" width="15%" align="center">Status</td>
-                                      <td bgcolor="#95949b" width="20%" align="center">Target List</td>
-                                      <td bgcolor="#95949b" width="10%" align="center">Created date</td>
-                                      <td bgcolor="#95949b" width="20%" align="center">Action</td>
+                                      <th bgcolor="#95949b" width="10%" align="center">Message ID</th>
+                                      <th bgcolor="#95949b" width="25%" align="center">Message Name</th>
+                                      <th bgcolor="#95949b" width="15%" align="center">Status</th>
+                                      <th bgcolor="#95949b" width="20%" align="center">Target List</th>
+                                      <th bgcolor="#95949b" width="10%" align="center">Created date</th>
+                                      <th bgcolor="#95949b" width="20%" align="center">Action</th>
 
                                     </tr>
                                     <tr>
@@ -412,11 +420,10 @@
             
             </div>
             
+            <div class="copyright">Copyright © 2012 Optlynx, Inc.</div>
+            
             
     	</div>
 	</div>
-	
-
-	   
 	</body>
 </html>

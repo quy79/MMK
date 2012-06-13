@@ -997,7 +997,7 @@ b.br2px { bottom:-2px; right:-2px; background-position:bottom right; }
 /* HOMEPAGE ( Header styles ) 
 -----------------------------------------------------------------*/
 #header { background:url(../../img/headerbg.png); float:left; height:65px; position:relative; width:100%; margin:0 auto; padding:0; }
-#content-main {background: #b9e3f1; float:left; min-height:829px;  position:relative; width:991px; margin:0 auto; padding:10px 0px; z-index:100;
+#content-main {background: #b9e3f1; float:left;  position:relative; width:991px; margin:0 auto; padding:10px 0px 40px; z-index:100;
     border-left:2px solid #fff; border-right:2px solid #fff;
 	-moz-border-radius:0 0 10px 10px;
     border-radius:0 0 10px 10px;
@@ -1009,22 +1009,143 @@ b.br2px { bottom:-2px; right:-2px; background-position:bottom right; }
 
 #panel-left {float: left; position: relative; margin-top: 10px; margin-left: 10px; left: 0px; top: 10px; padding: 0; width: 640px; text-align: left;}
 #panel-right {float: right; position: relative; margin-top: 10px; margin-left: 0px; margin-right: 10px; top: 10px; : 0; width: 300px; text-align: left;}
-#emails-common-panel {position: relative; margin-top: 10px; margin: 15px auto;  padding: 0; width: 100%; clear: both}
+#emails-common-panel {position: relative;  margin: 15px auto;  padding: 0; width: 100%; clear: both}
+#contacts-search-container {position: relative;  margin: 15px auto;  padding: 0; width: 95%; clear: both}
+#browse-search-container {border-top:1px solid gray; width:auto; height: auto; padding: 0px; margin-bottom:1em; background: transparent;}
+#total-contacts-info {
+    float: right;
+	width: 250px;
+    height: auto;
+    margin: 0 7px;
+	margin-bottom:1em;
+    padding: 20px;
+    position: relative;
+	color:#000;
+	background:#fff;
+	border:1px solid gray;
+	-moz-border-radius:8px 8px 8px 8px;
+    border-radius:8px 8px 8px 8px;
+    -webkit-border-radius:8px 8px 8px 8px;
+    border:1px solid #357aa6;
+}
 #emails-panel-left {float: left; position: relative; margin: 0 auto;  padding: 0; width: 480px; text-align: right; }
 #emails-panel-right {float: right; position: relative; margin: 0 auto;  padding: 0; width: 480px; text-align: left; }
 #emails-box-left {float: right; position: relative; width: 412px; height: auto; margin-top:0; margin-right: 0px ; padding: 0; clear: both;}
 #emails-box-right {float: left; position: relative; width: 412px; height: auto; margin-top:0; margin-left: 0px; padding: 0; clear: both;} 
 .emails-box-left-header {position: relative; width: 412px; height: 64px; background: url(../../img/emails-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both; text-align: left}
-.emails-box-left-body {position: relative; width: 412px; height: 201px; background: url(../../img/emails-box-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both;}
+.list-box-left-header {position: relative; width: 412px; height: 60px; background: url(../../img/list-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both; text-align: left}
+.list-box-right-header {position: relative; width: 412px; height: 60px; background: url(../../img/add-contacts-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both; text-align: left}
+.search-box-left-header {position: relative; width: 412px; height: 60px; background: url(../../img/search-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both; text-align: left}
+.segments-box-right-header {position: relative; width: 412px; height: 60px; background: url(../../img/segments-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both; text-align: left}
+.emails-box-left-body {position: relative; width: 412px; height: 200px; background: url(../../img/box-bg.png) repeat-y ; margin: 0 0; padding: 0; clear:both;}
+.my-lists-body {position: relative; width: 412px; height: 180px; background: url(../../img/box-bg.png) repeat-y ; margin: 0 0; padding: 0; clear:both;}
+.add-contacts-body {position: relative; width: 412px; height: 180px; background: url(../../img/box-bg.png) repeat-y ; margin: 0 0; padding: 0; clear:both;}
+.search-contacts-body {position: relative; width: 412px; height: 150px; background: url(../../img/box-bg.png) repeat-y ; margin: 0 0; padding: 0; clear:both;}
+.segments-body {position: relative; width: 412px; height: 150px; background: url(../../img/box-bg.png) repeat-y ; margin: 0 0; padding: 0; clear:both;}
+.emails-box-left-bottom {position: relative; width: 412px; height: 21px; background: url(../../img/box-btm.png) no-repeat top left; margin: 0 0; padding: 0; clear:both;}
 .emails-box-right-header {position: relative; width: 412px; height: 64px; background: url(../../img/autoresponder-header-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both;}
 .emails-box-right-body {position: relative; width: 412px; height: 201px; background: url(../../img/autoresponder-box-bg.jpg) no-repeat top left; margin: 0 0; padding: 0; clear:both;}
 .emails-box-left-title {float: right; position: absolute; width: 350px; text-align; left; padding-top: 20px; padding-left : 60px; font-size: 14px; font-weight:bold; color:#00000;}
 .emails-box-left-note {float: right; position: absolute; width: 350px; text-align; left; padding-top: 45px; padding-left : 60px; font-size: 11px; color:#00000;}
 
 
-.create-message-step1-container {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; text-align: center}
+.create-message-step1-container {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; text-align: left}
+.create-message-step1-container1 {position: relative; float: none; width: 620px; margin: 0 auto; clear: both; text-align: left}
+.create-message-step1-container2 {position: relative; float: none; width: 620px; margin: 0 auto; clear: both; text-align: left}
+.create-message-step1-container3 {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; text-align: left}
+.segment-criteria1 {position: relative; width: 100%; margin: 0 auto; padding : 0; clear: both;}
+.create-list-container {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; text-align: center}
+.my-lists-title {position: relative; float: none; width: 95%; margin-left: 30px; clear: both; text-align: left}
+.common-title {position: relative; float: none; width: 95%; margin-left: 30px; clear: both; text-align: left; border-bottom: 1px solid #000; line-height: 150%;}
+.common-form {position: relative; float: none; width: 95%; margin-left: 30px; clear: both; text-align: left;  line-height: 150%}
+.upload-history-title {position: relative; float: none; width: 95%; margin-left: 30px; margin-top: 20px; clear: both; text-align: left; line-height: 200%}
+.common-title {color: #434681; font-size: 15px; }
+.common-title span {color: #000; font-size: 11px;}
+
+.email_templates {border: 0; width: 100%; cellpadding: 0; cellspacing: 0; }
+.email_templates td {text-align: center; vertical-align: top;}
+
+.template-box {width: 200px; height: 192px; margin: 0 auto; padding: 0; position: relative; clear; both; float: none; border: 1px solid #505256; background: #FFF}
 
 
+#add-contacts-container {position: relative; float: none; margin: 30px auto; width: 95%; clear: both; text-align: left; padding-left : 10px}
+#add-contacts-container table {width: 100%; padding: 0px; text-align: center;}
+
+
+#add-contacts-box { position: relative;  margin: 0 auto; width: 90%; padding: 10px; min-height: 200px;}
+		
+
+		
+		
+		#add-contacts-box  a
+		{
+			
+			display: block;			
+			padding: 0px;
+			width: 100%;
+			background-color: #fff;
+			min-height: 100px;
+			text-decoration: none;
+			color: #000;
+			border:1px solid #000; border-radius: 8px; -moz-border-radius:8px; -webkit-border-radius:8px;
+			
+		}
+		
+
+		
+		#add-contacts-box  a:hover
+		{
+			
+			background-color: #c9ccfe;
+			
+		}
+
+#upload-form {position: relative; padding-top: 20px;}
+
+#fromfile {position: relative; margin: 0 auto; background: url(../../img/fromfile.png) no-repeat top center; width: 90%; height: 120px; padding-top: 90px; font-size: 13px; font-weight: bold; text-align: left}
+
+#addcontact {position: relative; margin: 0 auto; background: url(../../img/addcontact.png) no-repeat top center; width: 90%; height: 120px; padding-top: 90px; font-size: 13px; font-weight: bold; text-align: left}
+
+#copycontact {position: relative; margin: 0 auto; background: url(../../img/copycontact.png) no-repeat top center; width: 90%; height: 120px; padding-top: 90px; font-size: 13px; font-weight: bold; text-align: left}
+
+#fromfile div.title{position: relative; margin: 0 auto; width: 100%; font-size: 13px; font-weight: bold; text-align: center;}
+
+		#fromfile span
+		{
+			
+			line-height: 200%;
+			font-size: 11px;
+			font-weight: normal;
+			
+			
+			
+		}
+		
+#addcontact div.title{position: relative; margin: 0 auto; width: 100%; font-size: 13px; font-weight: bold; text-align: center;}
+
+		#addcontact span
+		{
+			
+			line-height: 200%;
+			font-size: 11px;
+			font-weight: normal;
+			
+			
+			
+		}		
+
+#copycontact div.title{position: relative; margin: 0 auto; width: 100%; font-size: 13px; font-weight: bold; text-align: center;}
+
+		#copycontact span
+		{
+			
+			line-height: 200%;
+			font-size: 11px;
+			font-weight: normal;
+			
+			
+			
+		}	
 
 #last-message-container {position: relative; width: 100%; margin: 0 0; padding: 0; clear: both;}
 #contact-list-container {position: relative; width: 100%; margin: 0 0; padding: 20px 0 0; clear: both;}
@@ -1080,18 +1201,23 @@ font-size: 12px; font-weight: bold; color: #FFFFFF;
 }
 
 .contact-grid table{  border-collapse: collapse;}
-.contact-grid th {text-align: left; font-size: 12px; font-weight: bold; color: #000; background: #9b82d6; height: 22px;padding-left: 10px; padding-right: 10px}
-.contact-grid td.r1 {vertical-align: top; line-height: 150%; font-size: 12px; color: #000; height: 20px; padding-left: 10px; padding-right: 10px;}
-.contact-grid td.r2 {vertical-align: top; background: #d9e4e8; line-height: 150%; font-size: 12px; color: #000; height: 20px; padding-left: 10px; padding-right: 10px;}
+.contact-grid th {text-align: center; font-size: 12px; font-weight: bold; color: #fff;  height: 22px;padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px}
+.contact-grid td.r1 {vertical-align: middle; line-height: 150%; font-size: 12px; color: #000; height: 20px; padding-left: 10px; padding-right: 10px;padding-top: 5px; padding-bottom: 5px}
+.contact-grid td.r2 {vertical-align: middle; background: #d9e4e8; line-height: 150%; font-size: 12px; color: #000; height: 20px; padding-left: 10px; padding-right: 10px;padding-top: 5px; padding-bottom: 5px}
 
 .contact-grid a {color: #000; text-decoration:none;}
 .contact-grid a:link {color: #000;}
-.contact-grid a:hover {color: #f80628;}
+.contact-grid a:hover {text-decoration: underline;}
 
-.message-action {width: 100%; align: center; padding: 5px;}
+
+
+.segment-icon { position: relative;  margin: 10px auto; width: 28px; padding: 0; height: 22px; background: url(../../img/segment-icon.png) no-repeat center}
+
+
+.message-action {width: 100%; align: center; padding: 5px;} 
 .message-action td {text-align: center; vertical-align: middle;}
-.message-action td a {color: #000; text-decoration: none;}
-.message-action td a:hover {color: red;}
+.message-action td a {color: #000; text-decoration: underline;}
+.message-action td a:hover {color: red;  text-decoration: none;}
 
 
 .status-success-text {color: #0636b1; font-weight: bold;}
@@ -1115,7 +1241,12 @@ font-size: 12px; font-weight: bold; color: #FFFFFF;
 
 .message-list {position: relative; float: none; width: 95%; background: #c2c7ca; padding: 0; margin: 0 auto; clear: both; border: 1px solid #000; height: auto}
 
+.segment-bottom {position: relative; float: none; width: 95%;  padding: 0; margin: 10px auto; clear: both;  height: auto}
+.segment-title {font-size: 13px; font-weight: bold;}
+.segment-content {font-size: 12px; font-weight: normal;}
+
 .message-list-bottom {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; }
+.page-nav-bottom {position: relative; float: right; width: 95%; margin: 0 0; clear: both; }
 .list-display-setting {position: relative; float: left; width: 200px; margin: 10px 0; }
 .messages-filter {position: relative; float: left; width: 300px; margin: 10px 0; }
 
@@ -1168,6 +1299,8 @@ font-weight: bold;
 color: #000;
 } 
 
+#box-explain {position: relative; margin: 0 0; margin-left: 60px; width: 320px; padding: 0; clear: both; font-size: 10px; text-align: left;}
+#common-explain {position: relative; margin: 0 0; margin-left: 0px; padding: 0; clear: both; font-size: 11px; text-align: left; color: #000}
 
 #emails-navcontainer { position: relative; margin: 0 auto; width: 290px; padding: 0}
 		
@@ -1275,26 +1408,53 @@ div.message-plaintext-box {position: relative; margin: 0 auto; padding: 10px; wi
 .message-template-box-right-note {position: relative; clear: both; width: 200px; line-height: 150%; color: #000; font-size :12px; height: auto; text-align: left; color: #FFF; margin-top: 20px}
 
 
-div.create-message, div.reuse-message, div.draft-message, div.pending-message, div.create-autoresponders, div.my-autoresponders {background:url(../../img/optmmk_emails_nav_sprite.png) no-repeat 0 0}
+div.create-message, div.reuse-message, div.draft-message, div.pending-message, div.create-autoresponders, div.my-autoresponders {background:url(../../img/optmmk_emails_nav_sprite1.png) no-repeat 0 0}
 
-div.create-message {position: relative; background-position:0px 0px; float:left; width:100px; height:30px; margin:0px 7px 0 0; text-align: left; padding-left: 40px; padding-top: 15px;}
-a:hover div.create-message{background-position:0px -41px; text-decoration: underline; color: #133efb}
+div.create-list, div.my-lists, div.upload-contacts, div.add-contact, div.copy-contact, div.search-contacts, div.create-segment, div.my-segments {background:url(../../img/optmmk_emails_nav_sprite2.png) no-repeat 0 0}
 
-div.reuse-message {position: relative;background-position:0px -82px; float:left; width:100px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 12px;}
-a:hover div.reuse-message {background-position:0px -123px;  text-decoration: underline; color: #133efb}
+div.create-message {position: relative; background-position:0px 0px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left; padding-left: 40px; padding-top: 15px;}
+a:hover div.create-message{background-position:0px -39px; text-decoration: underline; color: #133efb}
 
-div.draft-message {position: relative;background-position:0px -164px; float:left; width:40px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
-a:hover div.draft-message {background-position:0px -205px;  text-decoration: underline; color: #133efb}
+div.reuse-message {position: relative;background-position:0px -82px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 12px;}
+a:hover div.reuse-message {background-position:0px -121px;  text-decoration: underline; color: #133efb}
 
-div.pending-message {position: relative;background-position:0px -246px; float:left; width:40px; height:25px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
-a:hover div.pending-message {background-position:0px -287px;  text-decoration: underline; color: #133efb}
+div.draft-message {position: relative;background-position:0px -164px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.draft-message {background-position:0px -203px;  text-decoration: underline; color: #133efb}
+
+div.pending-message {position: relative;background-position:0px -246px; float:left; width:0px; height:25px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.pending-message {background-position:0px -285px;  text-decoration: underline; color: #133efb}
 
 
 div.create-autoresponders {position: relative;background-position:0px -320px; float:left; width:40px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
-a:hover div.create-autoresponders {background-position:0px -361px;  text-decoration: underline; color: #133efb}
+a:hover div.create-autoresponders {background-position:0px -359px;  text-decoration: underline; color: #133efb}
 
 div.my-autoresponders {position: relative;background-position:0px -401px; float:left; width:40px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
-a:hover div.my-autoresponders {background-position:0px -442px;  text-decoration: underline; color: #133efb}
+a:hover div.my-autoresponders {background-position:0px -440px;  text-decoration: underline; color: #133efb}
+
+
+div.create-list {position: relative; background-position:0px 0px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left; padding-left: 40px; padding-top: 15px;}
+a:hover div.create-list{background-position:0px -39px; text-decoration: underline; color: #133efb}
+
+div.my-lists {position: relative;background-position:0px -82px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 12px;}
+a:hover div.my-lists {background-position:0px -120px;  text-decoration: underline; color: #133efb}
+
+div.upload-contacts {position: relative;background-position:0px -164px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.upload-contacts {background-position:0px -203px;  text-decoration: underline; color: #133efb}
+
+div.add-contact {position: relative;background-position:0px -246px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.add-contact {background-position:0px -285px;  text-decoration: underline; color: #133efb}
+
+div.copy-contact {position: relative;background-position:0px -328px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.copy-contact {background-position:0px -367px;  text-decoration: underline; color: #133efb}
+
+div.search-contacts {position: relative;background-position:0px -410px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.search-contacts {background-position:0px -451px;  text-decoration: underline; color: #133efb}
+
+div.create-segment {position: relative;background-position:0px -494px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.create-segment {background-position:0px -533px;  text-decoration: underline; color: #133efb}
+
+div.my-segments {position: relative;background-position:0px -576px; float:left; width:0px; height:30px; margin:0px 7px 0 0; text-align: left;padding-left: 40px; padding-top: 9px;}
+a:hover div.my-segments {background-position:0px -613px;  text-decoration: underline; color: #133efb}
 
 div.create-message-text {position: relative; width:120px; height:40px; display:block; margin:9px 7px 0 0; }
 
@@ -1444,6 +1604,47 @@ font-size: 13px;
     border-radius:0 0 6px 6px;
     -webkit-border-radius:0 0 6px 6px;
     border-bottom:1px solid #357aa6;
+}
+.infobox1 {
+    float: none;
+	position: relative;
+	margin: 30px auto;
+	padding : 20px;
+	width: 600px;
+    height: auto;
+	color:#000;
+	background:#fff;
+	-moz-border-radius:6px 6px 6px 6px;
+    border-radius:6px 6px 6px 6px;
+    -webkit-border-radius:0 0 6px 6px;
+    border:1px solid #357aa6;
+	line-height: 150%; 
+	font-size: 13px;
+	text-align: justify;
+	clear: both;
+
+
+}
+
+.infobox2 {
+    float: none;
+	position: relative;
+	margin: 30px auto;
+	padding : 20px 20px 20px 120px;
+	width: 600px;
+    height: auto;
+	color:#000;
+	background:#fae8cd;
+	-moz-border-radius:6px 6px 6px 6px;
+    border-radius:6px 6px 6px 6px;
+    -webkit-border-radius:0 0 6px 6px;
+    border:1px solid #357aa6;
+	line-height: 150%; 
+	font-size: 13px;
+	text-align: justify;
+	clear: both;
+	background: #fff url(../../img/email_sent.jpg) left center no-repeat;
+
 }
 .welcome { height:19px; position:absolute; top:38px; right:0; margin:0 7px; padding:9px 0 0; color:#95DAFE; font-style:italic }
 .topbar {
@@ -1962,7 +2163,7 @@ span.ic-contacts, span.ic-emails, span.ic-tracking {background:url(../../img/opt
 
 span.ic-contacts {background-position:0px -222px; float:left; width:27px; height:27px; display:block; margin:9px 7px 0 0}
 a:hover span.ic-contacts {background-position:0px -264px}
-li.selected span.ic-contacts {background-position:3px -172px}
+li.selected span.ic-contacts {background-position:0px -308px}
 
 span.ic-emails {background-position:0px -83px; float:left; width:24px; height:17px; display:block; margin:9px 4px 0 0}  
 a:hover span.ic-emails {background-position:0px -128px}
@@ -2133,7 +2334,7 @@ a.button {
     color: #444;
     display: block;
     float: left;
-    font: normal 12px arial, sans-serif;
+    font: normal 13px tahoma, verdana, sans-serif;
     height: 24px;
     margin-right: 6px;
     padding-right: 18px;
@@ -2160,35 +2361,76 @@ a.button:active span {
 
 
 
-a.login-window {
+a.test-message {
     background: transparent url('../../img/bg_button_a.png') no-repeat scroll top right;
     color: #444;
     display: block;
     float: left;
-    font: normal 12px arial, sans-serif;
+    font: normal 13px tahoma, verdana, sans-serif;
     height: 24px;
     margin-right: 6px;
     padding-right: 18px;
     text-decoration: none;
 }
 
-a.login-window  span {
+a.test-message  span {
     background: transparent url('../../img/bg_button_span.png') no-repeat;
     display: block;
     line-height: 14px;
     padding: 5px 0 5px 18px;
 }
 
-a.login-window :active {
+a.test-message :active {
     background-position: bottom right;
     color: #000;
     outline: none;
 }
 
-a.login-window :active span {
+a.test-message :active span {
     background-position: bottom left;
     padding: 6px 0 4px 18px;
 }
 
+.common-button {
+    background: #b294ff;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(70%,#a4d6fa));
+    background: -moz-linear-gradient(center top, #ffffff 0%, #a4d6fa 70%);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 3px 10px;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    font-weight: bold;
+	width: auto;
+	display: block;
+	font-size: 12px;
+	text-decoration : none;
+	color: #000000;
+}
+.common-button:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(70%,#5796c2));
+    background: -moz-linear-gradient(center top, #ffffff 0%, #5796c2 70%);
+	color: #ffffff;
 
 
+    
+
+}
+
+div.scroll {
+position: relative;
+float: right;
+height: 200px;
+width: 220px;
+overflow: auto;
+border: 1px solid #666;
+background-color: #ccc;
+padding: 8px;
+
+}
+.search-form-text {font-size: 14px; line-height: 200%;}
+
+.copyright{color:#10A5CA;font-family:verdana;font-size:7pt;margin:0px 0 0;padding-top:0px;text-align:center;}

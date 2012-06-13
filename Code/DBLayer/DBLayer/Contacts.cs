@@ -27,9 +27,12 @@ namespace DatabaseLayer
 	private string _CITY;
 	private string _PROVINCE;
 	private string _ZIP;
+    private string _BUSINESSNAME;
 	private string _PHONE;
 	private string _FAX;
 	private bool _REQUIRECONFIRM;
+    private bool _SENDEMAIL;
+    private string _CONFIRMCODE;
 	private System.DateTime _MODIFIEDDATE;
 	 Contacts  objclsCONTACTS;
 	#endregion
@@ -90,6 +93,13 @@ namespace DatabaseLayer
 		get { return _ZIP; }
 		set { _ZIP = value; }
 	}
+
+    public string BUSINESSNAME
+	{
+        get { return _BUSINESSNAME; }
+        set { _BUSINESSNAME = value; }
+	}
+
 	public string PHONE
 	{ 
 		get { return _PHONE; }
@@ -100,16 +110,31 @@ namespace DatabaseLayer
 		get { return _FAX; }
 		set { _FAX = value; }
 	}
-	public bool REQUIRECONFIRM
+	public bool CONFIRMED
 	{ 
 		get { return _REQUIRECONFIRM; }
 		set { _REQUIRECONFIRM = value; }
 	}
-	public System.DateTime MODIFIEDDATE
-	{ 
-		get { return _MODIFIEDDATE; }
-		set { _MODIFIEDDATE = value; }
-	}
+
+	
+
+    public bool SENDEMAIL
+    {
+        get { return _SENDEMAIL; }
+        set { _SENDEMAIL = value; }
+    }
+
+    public string CONFIRMCODE
+    {
+        get { return _CONFIRMCODE; }
+        set { _CONFIRMCODE = value; }
+    }
+
+    public System.DateTime MODIFIEDDATE
+    {
+        get { return _MODIFIEDDATE; }
+        set { _MODIFIEDDATE = value; }
+    }
 	#endregion
 
 	#region Public Methods
@@ -255,9 +280,9 @@ namespace DatabaseLayer
 					Params[12].Value = DBNull.Value;
 				}
 
-				if (REQUIRECONFIRM != null)
+				if (CONFIRMED != null)
 				{
-					Params[13].Value = REQUIRECONFIRM;
+                    Params[13].Value = CONFIRMED;
 				}
 				else
 				{
@@ -282,7 +307,7 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
-	public bool Insert()
+	public int Insert()
 	{
 		try
 		{
@@ -292,27 +317,37 @@ namespace DatabaseLayer
 				new SqlParameter("@LASTNAME",LASTNAME),
 				new SqlParameter("@PREFIX",PREFIX),
 				new SqlParameter("@SUFFIX",SUFFIX),
+
 				new SqlParameter("@EMAIL",EMAIL),
+
 				new SqlParameter("@ADDRESS1",ADDRESS1),
 				new SqlParameter("@ADDRESS2",ADDRESS2),
+
 				new SqlParameter("@CITY",CITY),
 				new SqlParameter("@PROVINCE",PROVINCE),
 				new SqlParameter("@ZIP",ZIP),
+
+                new SqlParameter("@BUSINESSNAME",BUSINESSNAME),
 				new SqlParameter("@PHONE",PHONE),
 				new SqlParameter("@FAX",FAX),
-				new SqlParameter("@REQUIRECONFIRM",REQUIRECONFIRM),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+
+				new SqlParameter("@REQUIRECONFIRM",CONFIRMED),
+                new SqlParameter("@SENDEMAIL",SENDEMAIL),
+                new SqlParameter("@CONFIRMCODE",CONFIRMCODE) 
 			};
-			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACTS_Insert",Params);
-			if (result > 0)
-			{
-				return true;
-			}
-			return false;
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACTS_Insert", Params);
+			//if (result > 0)
+			//{
+				//return true;
+			//}
+			//return false;
+            if (ds.Tables.Count > 0) return Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+            return -1;
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return -1;
+			//throw new Exception(ex.Message);
 		}
 	}
 	public bool Update()
@@ -334,7 +369,7 @@ namespace DatabaseLayer
 				new SqlParameter("@ZIP",ZIP),
 				new SqlParameter("@PHONE",PHONE),
 				new SqlParameter("@FAX",FAX),
-				new SqlParameter("@REQUIRECONFIRM",REQUIRECONFIRM),
+				new SqlParameter("@REQUIRECONFIRM",CONFIRMED),
 				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACTS_Update",Params);
@@ -349,6 +384,30 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+
+    public bool IsExistContactEmail()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@EMAIL",EMAIL)
+			};
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CHECK_ExistContactEmail]", Params);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            // throw new Exception(ex.Message);
+            return false;
+        }
+    }
+
 	public bool Delete()
 	{
 		try

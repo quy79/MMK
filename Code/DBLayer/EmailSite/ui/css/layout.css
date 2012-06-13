@@ -5,7 +5,7 @@
 /* PAGE LAYOUT ( version 05/11/2012 )
 ----------------------------------------------------------*/
 
-#main { min-height:760px; min-width:995px; }
+#main { min-height: 300px; min-width:995px; }
 .page-bg { background: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ccui-content-shdw-2.png) no-repeat center 0; }
 .page-container { position:relative;width:995px;height:auto;margin:0 auto;padding:0; }
 .main-content { min-height:275px }

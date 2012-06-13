@@ -5,16 +5,13 @@
 form.formular {
 	font-family: tahoma, verdana, "sans-serif";
 	font-size: 12px;
-	padding: 20px;
-	border: 1px solid #A5A8B8;
-	background : #CFC;
-	width: 650px;
-	margin: 0 auto;
+
 }
+
 .formular fieldset {
-	margin-top: 20px;
-	padding: 15px;
-	border: 1px solid #B5B8C8;
+	margin-top: 5px;
+	padding-left: 10px;
+	border: 1px solid gray;
 }
 
 .formular legend {
@@ -35,12 +32,162 @@ form.formular {
 }
 
 .formular input,.formular select,.formular textarea {
-	display: block;  /* this breaks relative positioning */
+	display: inline-block;  /* this breaks relative positioning */
 	margin-bottom: 5px;
 }
 
+.formular .item-select {
+	width: auto;
+	height: 150px;
+	border : 1px solid #000;
+	
+}
+
 .formular .text-input {
-	width: 635px;
+	width: 560px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-input1 {
+	width: 200px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+
+.formular .text-search {
+	width: 200px;
+	color: #555;
+	padding: 0px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-prefix {
+	width: 80px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-lastname {
+	width: 150px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-firstname {
+	width: 150px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-suffix {
+	width: 80px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-city {
+	width: 120px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-state {
+	width: 120px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-zip {
+	width: 50px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-businessname {
+	width: 180px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-phone {
+	width: 150px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-fax {
+	width: 150px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular .text-segment-name {
+	width: 180px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+
+
+.formular .file-input {
+	width: 400px;
 	color: #555;
 	padding: 4px;
 	border: 1px solid #B5B8C8;
@@ -52,6 +199,17 @@ form.formular {
 .formular textarea {
 	width: 635px;
 	height: 350px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
+
+.formular #txt1 textarea {
+	width: 560px;
+	height: 120px;
 	color: #555;
 	padding: 4px;
 	border: 1px solid #B5B8C8;
@@ -75,12 +233,95 @@ form.formular {
 .formular .submit {
 	
 	border: 1px solid #AAA;
-	padding: 4px;
+	padding: 5px 10px;
 	margin-top: 20px;
-	margin-right: 6px;
+	margin-right: 0px;
 	float: right;
 	text-decoration: none;
 	cursor: pointer;
+	
+	
+	
+}
+
+.formular .submit1 {
+	
+	border: 1px solid #AAA;
+	padding: 5px 10px;
+	margin-top: 20px;
+	margin-right: 50px;
+	float: right;
+	display: inline-block;	
+	text-decoration: none;
+	cursor: pointer;
+	
+	
+	
+}
+
+.formular .submit2 {
+	
+	border: 1px solid #AAA;
+	padding: 5px 10px;
+	margin-top: 0px;
+	float: none;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	
+	
+	
+}
+.formular .submit3 {
+	
+	border: 1px solid #AAA;
+	padding: 5px 20px;
+	margin-top: 0px;
+	margin-right: 10px;
+	float: left;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	
+}
+
+.formular .submit4 {
+	
+	border: 1px solid #AAA;
+	padding: 5px 10px;
+	margin-top: 20px;
+	margin-right: 0px;
+	float: right;
+	display: inline-block;	
+	text-decoration: none;
+	cursor: pointer;
+	
+}
+
+.formular .submit5 {
+	
+	border: 1px solid #AAA;
+	padding: 5px 10px;
+	margin-top: 20px;
+	margin-right: 5px;
+	float: right;
+	display: inline-block;	
+	text-decoration: none;
+	cursor: pointer;
+	
+}
+
+.formular .submit6 {
+	
+	border: 1px solid #AAA;
+	padding: 5px 20px;
+	margin-top: 0px;
+	margin-right: 0px;
+	float: right;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	
 }
 
 .formular hr {

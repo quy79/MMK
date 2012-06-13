@@ -30,6 +30,8 @@ namespace DatabaseLayer
 	private string _PHONE;
 	private string _FAX;
 	private bool _REQUIRECONFIRM;
+    private bool _SENDEMAIL;
+    private string _CONFIRMCODE;
 	private System.DateTime _MODIFIEDDATE;
 	 Contacts  objclsCONTACTS;
 	#endregion
@@ -105,6 +107,19 @@ namespace DatabaseLayer
 		get { return _REQUIRECONFIRM; }
 		set { _REQUIRECONFIRM = value; }
 	}
+
+    public bool SENDEMAIL
+	{ 
+		get { return _SENDEMAIL; }
+        set { _SENDEMAIL = value; }
+	}
+
+    public string CONFIRMCODE
+    {
+        get { return _CONFIRMCODE; }
+        set { _CONFIRMCODE = value; }
+    }
+        
 	public System.DateTime MODIFIEDDATE
 	{ 
 		get { return _MODIFIEDDATE; }
@@ -148,10 +163,10 @@ namespace DatabaseLayer
 			objclsCONTACTS.ZIP = ZIP;
 			objclsCONTACTS.PHONE = PHONE;
 			objclsCONTACTS.FAX = FAX;
-			objclsCONTACTS.REQUIRECONFIRM = REQUIRECONFIRM;
+            objclsCONTACTS.CONFIRMED = REQUIRECONFIRM;
 			objclsCONTACTS.MODIFIEDDATE = MODIFIEDDATE;
 		
-			if(objclsCONTACTS.Insert())
+			if(objclsCONTACTS.Insert()>0)
 			{
 				return true;
 			}
@@ -181,7 +196,7 @@ namespace DatabaseLayer
 			objclsCONTACTS.ZIP = ZIP;
 			objclsCONTACTS.PHONE = PHONE;
 			objclsCONTACTS.FAX = FAX;
-			objclsCONTACTS.REQUIRECONFIRM = REQUIRECONFIRM;
+            objclsCONTACTS.CONFIRMED = REQUIRECONFIRM;
 			objclsCONTACTS.MODIFIEDDATE = MODIFIEDDATE;
 		
 			if(objclsCONTACTS.Update())

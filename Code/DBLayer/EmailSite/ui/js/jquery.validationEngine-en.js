@@ -9,7 +9,7 @@
                 "required": { // Add your regex rules here, you can take telephone as an example
                     "regex": "none",
                     "alertText": "* This field is required",
-                    "alertTextCheckboxMultiple": "* Please select an option",
+                    "alertTextCheckboxMultiple": "* Please select at least 1 list",
                     "alertTextCheckboxe": "* This checkbox is required",
                     "alertTextDateRange": "* Both date range fields are required"
                 },
@@ -60,8 +60,8 @@
                 },
                 "minCheckbox": {
                     "regex": "none",
-                    "alertText": "* Please select ",
-                    "alertText2": " options"
+                    "alertText": "* Please select at least",
+                    "alertText2": " list"
                 },
                 "equals": {
                     "regex": "none",

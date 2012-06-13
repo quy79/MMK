@@ -11,9 +11,7 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //check security
-            if(Session["username"]==null) Response.Redirect("login.aspx");
-           // navigation.MenuType = "home";
+            Utils.CheckSecurity(Session, Response);
         }
     }
 }

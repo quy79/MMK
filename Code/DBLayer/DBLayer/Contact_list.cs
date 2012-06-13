@@ -41,6 +41,41 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
+    public DataTable SelectByListID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				
+				new SqlParameter("@LISTID",SqlDbType.Int)
+				
+			};
+
+
+       
+            if (LISTID != null)
+            {
+                Params[0].Value = LISTID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+            
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_LIST_SelectByListID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
 	public DataTable Select()
 	{
 		DataSet ds;
@@ -97,6 +132,7 @@ namespace DatabaseLayer
 			SqlParameter[] Params = 
 			{ 
 				new SqlParameter("@LISTID",LISTID),
+                new SqlParameter("@CONTACTID",CONTACTID),
 				new SqlParameter("@SUBSCRIBES",SUBSCRIBES) 
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACT_LIST_Insert",Params);
@@ -108,7 +144,7 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return false;//throw new Exception(ex.Message);
 		}
 	}
 	public bool Update()
@@ -137,7 +173,7 @@ namespace DatabaseLayer
 	{
 		try
 		{
-			SqlParameter[] Params = { new SqlParameter("@CONTACTID",CONTACTID) };
+			SqlParameter[] Params = { new SqlParameter("@LISTID",LISTID) };
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACT_LIST_Delete",Params);
 			if (result > 0)
 			{

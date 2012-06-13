@@ -2,7 +2,7 @@
 
 
 $(document).ready(function() {
-	$('a.login-window').click(function() {
+	$('a.test-message').click(function() {
 		
 		// Getting the variable's value from a link 
 		var loginBox = $(this).attr('href');
@@ -27,9 +27,11 @@ $(document).ready(function() {
 	});
 	
 	// When clicking on the button close or the mask layer the popup closed
-	$('a.close').live('click', function() { 
-	  $('#mask , #test-message').fadeOut(300 , function() {
-		$('#mask').remove();  
+	$('a.closebtn').live('click', function() { 
+	    $('#mask , #test-message').fadeOut(300 , function() {
+		
+			$('#mask').remove();  
+		
 	}); 
 	return false;
 	});
