@@ -103,7 +103,7 @@ namespace DatabaseLayer
 			};
 			
 
-				if (ID != null)
+				if (ID != 0)
 				{
 					Params[0].Value = ID;
 				}
@@ -112,7 +112,7 @@ namespace DatabaseLayer
 					Params[0].Value = DBNull.Value;
 				}
 
-				if (USERID != null)
+				if (USERID != 0)
 				{
 					Params[1].Value = USERID;
 				}
@@ -168,14 +168,14 @@ namespace DatabaseLayer
 
 				if (TYPE != null)
 				{
-					Params[7].Value = TYPE;
+                    Params[7].Value = DBNull.Value; ;
 				}
 				else
 				{
 					Params[7].Value = DBNull.Value;
 				}
 
-				if (STATUS != null)
+				if (STATUS != 0)
 				{
 					Params[8].Value = STATUS;
 				}
@@ -186,7 +186,7 @@ namespace DatabaseLayer
 
 				if (MODIFIEDDATE != null)
 				{
-					Params[9].Value = MODIFIEDDATE;
+                    Params[9].Value = DBNull.Value;
 				}
 				else
 				{

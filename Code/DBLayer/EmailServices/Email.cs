@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
-
+using DatabaseLayer;
 namespace EmailServices
 {
     class Email

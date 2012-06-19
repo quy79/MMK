@@ -149,16 +149,18 @@ namespace DatabaseLayer
 				new SqlParameter("@FIRSTNAME",SqlDbType.NVarChar),
 				new SqlParameter("@LASTNAME",SqlDbType.NVarChar),
 				new SqlParameter("@PREFIX",SqlDbType.NVarChar),
-				new SqlParameter("@SUFFIX",SqlDbType.NVarChar),
+				new SqlParameter("@SUFFIX",SqlDbType.NVarChar), 
+
 				new SqlParameter("@EMAIL",SqlDbType.NVarChar),
 				new SqlParameter("@ADDRESS1",SqlDbType.NVarChar),
 				new SqlParameter("@ADDRESS2",SqlDbType.NVarChar),
 				new SqlParameter("@CITY",SqlDbType.NVarChar),
 				new SqlParameter("@PROVINCE",SqlDbType.NVarChar),
-				new SqlParameter("@ZIP",SqlDbType.NVarChar),
+				
+                new SqlParameter("@ZIP",SqlDbType.NVarChar),
 				new SqlParameter("@PHONE",SqlDbType.NVarChar),
 				new SqlParameter("@FAX",SqlDbType.NVarChar),
-				new SqlParameter("@REQUIRECONFIRM",SqlDbType.Bit),
+				new SqlParameter("@CONFIRMED",SqlDbType.Bit),
 				new SqlParameter("@MODIFIEDDATE",SqlDbType.DateTime) 
 			};
 			
@@ -291,7 +293,7 @@ namespace DatabaseLayer
 
 				if (MODIFIEDDATE != null)
 				{
-					Params[14].Value = MODIFIEDDATE;
+                    Params[14].Value = DBNull.Value;// DateTime.Now;
 				}
 				else
 				{

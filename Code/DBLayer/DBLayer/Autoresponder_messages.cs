@@ -54,7 +54,7 @@ namespace DatabaseLayer
 			};
 			
 
-				if (ID != null)
+				if (ID != 0)
 				{
 					Params[0].Value = ID;
 				}
@@ -63,7 +63,7 @@ namespace DatabaseLayer
 					Params[0].Value = DBNull.Value;
 				}
 
-				if (AUTORESPONDERID != null)
+				if (AUTORESPONDERID != 0)
 				{
 					Params[1].Value = AUTORESPONDERID;
 				}
@@ -72,7 +72,7 @@ namespace DatabaseLayer
 					Params[1].Value = DBNull.Value;
 				}
 
-				if (MESSAGEID != null)
+				if (MESSAGEID != 0)
 				{
 					Params[2].Value = MESSAGEID;
 				}
