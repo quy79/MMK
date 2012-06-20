@@ -23,9 +23,7 @@ namespace DatabaseLayer
 	private int _LISTID;
 	private string _FROMNAME;
 	private string _FROMEMAIL;
-    private DateTime _ENDDATE;
-    private int _DURATION;
-	private int _STATUS;
+   
 	private System.DateTime _MODIFIEDDATE;
 	 Autoresponder  objclsAUTORESPONDER;
 	#endregion
@@ -66,26 +64,7 @@ namespace DatabaseLayer
 		get { return _FROMEMAIL; }
 		set { _FROMEMAIL = value; }
 	}
-	public int STATUS
-	{ 
-		get { return _STATUS; }
-		set { _STATUS = value; }
-	}
-	public System.DateTime MODIFIEDDATE
-	{ 
-		get { return _MODIFIEDDATE; }
-		set { _MODIFIEDDATE = value; }
-	}
-    public System.DateTime ENDDATE
-    {
-        get { return _ENDDATE; }
-        set { _ENDDATE = value; }
-    }
-    public int DURATION
-    {
-        get { return _DURATION; }
-        set { _DURATION = value; }
-    }
+	
 	#endregion
 
 	#region Public Methods
@@ -102,10 +81,8 @@ namespace DatabaseLayer
 				new SqlParameter("@DESCRIPTION",SqlDbType.NVarChar),
 				new SqlParameter("@LISTID",SqlDbType.Int),
 				new SqlParameter("@FROMNAME",SqlDbType.NVarChar),
-				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar),
-				new SqlParameter("@STATUS",SqlDbType.Int),
-				new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
-                new SqlParameter("@DURATION",SqlDbType.Int)
+				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar)
+				
 			};
 			
 
@@ -172,32 +149,7 @@ namespace DatabaseLayer
 					Params[6].Value = DBNull.Value;
 				}
 
-				if (STATUS != 0)
-				{
-					Params[7].Value = STATUS;
-				}
-				else
-				{
-					Params[7].Value = DBNull.Value;
-				}
-
-                if (ENDDATE != null)
-                {
-                    Params[8].Value = ENDDATE;
-                }
-                else
-                {
-                    Params[8].Value = DBNull.Value;
-                }
-
-                if (DURATION != 0)
-                {
-                    Params[9].Value = DURATION;
-                }
-                else
-                {
-                    Params[9].Value = DBNull.Value;
-                }
+				
 
 
 				
@@ -222,9 +174,8 @@ namespace DatabaseLayer
 				new SqlParameter("@DESCRIPTION",DESCRIPTION),
 				new SqlParameter("@LISTID",LISTID),
 				new SqlParameter("@FROMNAME",FROMNAME),
-				new SqlParameter("@FROMEMAIL",FROMEMAIL),
-				new SqlParameter("@STATUS",STATUS),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@FROMEMAIL",FROMEMAIL)
+				
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_Insert",Params);
 			if (result > 0)
@@ -250,10 +201,9 @@ namespace DatabaseLayer
 				new SqlParameter("@DESCRIPTION",SqlDbType.NVarChar),
 				new SqlParameter("@LISTID",SqlDbType.Int),
 				new SqlParameter("@FROMNAME",SqlDbType.NVarChar),
-				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar),
-				new SqlParameter("@STATUS",SqlDbType.Int),
-				new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
-                new SqlParameter("@DURATION",SqlDbType.Int),
+				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar)
+				
+				
 			};
 
 
@@ -320,32 +270,7 @@ namespace DatabaseLayer
                 Params[6].Value = DBNull.Value;
             }
 
-            if (STATUS != 0)
-            {
-                Params[7].Value = STATUS;
-            }
-            else
-            {
-                Params[7].Value = DBNull.Value;
-            }
-
-            if (ENDDATE != null)
-            {
-                Params[8].Value = ENDDATE;
-            }
-            else
-            {
-                Params[8].Value = DBNull.Value;
-            }
-
-            if (DURATION != 0)
-            {
-                Params[9].Value = DURATION;
-            }
-            else
-            {
-                Params[9].Value = DBNull.Value;
-            }
+           
 
             
 

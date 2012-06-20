@@ -7,11 +7,11 @@ using Microsoft.ApplicationBlocks.Data;
 
 namespace DatabaseLayer
 {
-	public class Autoresponder_messages
+	public class Autoresponder_messages_detail
 	{
 
 	#region Constructor
-	public Autoresponder_messages()
+        public Autoresponder_messages_detail()
 	{}
 	#endregion
 
@@ -22,6 +22,9 @@ namespace DatabaseLayer
     private int _STATUS;
     private DateTime _ENDDATE;
     private int _DURATION;
+    private string _MESSAGENAME;
+    private string _SUBJECT;
+    private string _BODY;
 
 	 Autoresponder_messages  objclsAUTORESPONDER_MESSAGES;
 	#endregion
@@ -59,6 +62,21 @@ namespace DatabaseLayer
         get { return _DURATION; }
         set { _DURATION = value; }
     }
+    public string MESSAGENAME
+    {
+        get { return _MESSAGENAME; }
+        set { _MESSAGENAME = value; }
+    }
+    public string SUBJECT
+    {
+        get { return _SUBJECT; }
+        set { _SUBJECT = value; }
+    }
+    public string BODY
+    {
+        get { return _BODY; }
+        set { _BODY = value; }
+    }
 	#endregion
 
 	#region Public Methods
@@ -74,7 +92,11 @@ namespace DatabaseLayer
 				new SqlParameter("@MESSAGEID",SqlDbType.Int),
                 new SqlParameter("@STATUS",SqlDbType.Int) ,
 				new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
-                new SqlParameter("@DURATION",SqlDbType.Int)
+                new SqlParameter("@DURATION",SqlDbType.Int),
+                new SqlParameter("@MESSAGENAME",SqlDbType.NVarChar),
+                new SqlParameter("@SUBJECT",SqlDbType.NVarChar),
+                new SqlParameter("@BODY",SqlDbType.NVarChar),
+
 			};
 			
 
@@ -131,9 +153,33 @@ namespace DatabaseLayer
                 {
                     Params[5].Value = DBNull.Value;
                 }
+                if (MESSAGENAME != null)
+                {
+                    Params[6].Value = MESSAGENAME;
+                }
+                else
+                {
+                    Params[6].Value = DBNull.Value;
+                }
+                if (SUBJECT != null)
+                {
+                    Params[7].Value = SUBJECT;
+                }
+                else
+                {
+                    Params[7].Value = DBNull.Value;
+                }
+                if (BODY != null)
+                {
+                    Params[8].Value = BODY;
+                }
+                else
+                {
+                    Params[8].Value = DBNull.Value;
+                }
 
 			
-			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_MESSAGES_Select",Params);
+			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_MESSAGES_DETAIL_Select",Params);
 			return ds.Tables[0];
 		}
 		catch(Exception ex)
