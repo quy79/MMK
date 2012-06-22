@@ -93,7 +93,7 @@
                             	 <div id="emails-navcontainer">
                                     <ul id="emails-navlist">
                                         <li>
-                                        	<a href="search-contacts.html" class=""><div class="search-contacts">Search / Browse Contacts</div></a>
+                                        	<a href="searchContacts.aspx" class=""><div class="search-contacts">Search / Browse Contacts</div></a>
                                         </li>
 
                                     </ul>

@@ -125,22 +125,27 @@
                     </div>                  
                     <div class="message-list" id="message-list">
                     		
-                            <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" 
-                                Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" BorderStyle="NotSet"
-                                               HeaderStyle-BackColor="#95949B" 
-                                AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"  
-                                            runat="server"  AutoGenerateColumns ="False"  
+                            <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" BorderStyle="NotSet" GridLines="None"
+                                   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
+                                runat="server"  AutoGenerateColumns ="False"  
                                 AllowPaging="True" onpageindexchanged="grvList_PageIndexChanged" 
                                 onpageindexchanging="grvList_PageIndexChanging" PageSize="20">
                                 
-                                            <Columns>
-                                                <asp:BoundField HeaderText="List Name" DataField="LISTNAME"  >
-                                                     <HeaderStyle Width="70%" />
-                                                </asp:BoundField>
-                                               <asp:BoundField HeaderText="Subscribers" DataField="TOTALSUBSCRIBES"  >
-                                                     <HeaderStyle Width="10%" />
-                                                </asp:BoundField>
-                                               
+<AlternatingRowStyle BackColor="#D5D6D9"></AlternatingRowStyle>
+                                
+                                            <Columns>                                                
+                                                 <asp:TemplateField HeaderText="List Name">
+                                                    <ItemTemplate>
+                                                         &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Width="70%"  />                                            
+                                                </asp:TemplateField>                                               
+                                               <asp:TemplateField HeaderText="Subscribers">
+                                                    <ItemTemplate>
+                                                         &nbsp;<%#DataBinder.Eval(Container.DataItem, "NUMSUBSCRIBES")%>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Width="10%"  />                                            
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Select this list to send">
                                                     <ItemTemplate>
                                                          <input type="radio" name="target_list" value="<%#DataBinder.Eval(Container.DataItem, "ID")%>" />
@@ -150,6 +155,8 @@
                                             </Columns>
                                 
                                                 <HeaderStyle BackColor="#95949B"></HeaderStyle>
+
+                                                <PagerSettings Visible="False" />
 
                                                 <RowStyle CssClass="r1"></RowStyle>
                                 
@@ -170,7 +177,23 @@
                                 
                         	</div>
                             <div class="pagination">
-                                      
+                                 <div class="PgCounter">
+                                   Page <asp:Label ID="lblCurrentPage" runat="server" Text="Label"></asp:Label>/<asp:Label ID="lblTotalPages" runat="server" Text="Label"></asp:Label> 
+                                   <asp:LinkButton ID="first" runat="server" Text="<<"  CausesValidation="false" 
+                                        onclick="first_Click"></asp:LinkButton>
+                                   <asp:LinkButton ID="prev" runat="server" Text="<"  CausesValidation="false" 
+                                        onclick="prev_Click"></asp:LinkButton>
+                                   <asp:Label ID="lblPaging" runat="server"></asp:Label>
+
+                                   <asp:LinkButton ID="next" runat="server" Text=">" CausesValidation="false" 
+                                        onclick="next_Click" ></asp:LinkButton>  
+                                   <asp:LinkButton ID="last" runat="server" Text=">>"  CausesValidation="false" 
+                                        onclick="last_Click"></asp:LinkButton>
+
+                                    <input type="hidden" value="1" id="CurrentPage" runat="server"/>
+                                    <input type="hidden" id="TotalSize" runat="server"/>
+                                    <input type="hidden" id="TotalPages" runat="server"/>
+                                </div>   
                             </div>
                         </div>
                         

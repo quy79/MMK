@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="adContact.aspx" />
     <Content Include="addContacts.aspx" />
+    <Content Include="ajaxFuncs.aspx" />
     <Content Include="chooseEmailList.aspx" />
     <Content Include="contacts.aspx" />
     <Content Include="createHTMLEmail.aspx" />
@@ -413,6 +414,9 @@
     <Content Include="navigation.ascx" />
     <Content Include="previewEmail.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="searchContacts.aspx" />
+    <Content Include="templates\tpl_thumbnail_001.jpg" />
+    <Content Include="templates\tpl_thumbnail_002.jpg" />
     <Content Include="Test\TestMail.aspx" />
     <Content Include="Test\TestMailService.aspx" />
     <Content Include="Test\TestSendMailPage.aspx" />
@@ -1325,7 +1329,9 @@
     <Content Include="ui\menu\js\superfish.js" />
     <Content Include="ui\menu\js\supersubs.js" />
     <Content Include="uploadContacts.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1347,6 +1353,13 @@
     </Compile>
     <Compile Include="addContacts.aspx.designer.cs">
       <DependentUpon>addContacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ajaxFuncs.aspx.cs">
+      <DependentUpon>ajaxFuncs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ajaxFuncs.aspx.designer.cs">
+      <DependentUpon>ajaxFuncs.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\label.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1488,6 +1501,13 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="searchContacts.aspx.cs">
+      <DependentUpon>searchContacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="searchContacts.aspx.designer.cs">
+      <DependentUpon>searchContacts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

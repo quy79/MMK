@@ -120,15 +120,24 @@
                     </div>
            	 		
                         <div class="message-list" id="message-list">
-                            <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" BorderStyle="NotSet"
-                                   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"  
-                                runat="server"  AutoGenerateColumns ="False" onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" AllowPaging="True" 
-                                onpageindexchanging="grvList_PageIndexChanging" PageSize="20">
+                            <asp:GridView ID="grvList" 
+                                CssClass="contact-grid" BackColor="White" Width="100%" CellPadding="1" 
+                                CellSpacing="1" BorderWidth="0px" GridLines="None"
+                                   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
+                                runat="server"  AutoGenerateColumns ="False" 
+                                onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" AllowPaging="True" 
+                                onpageindexchanging="grvList_PageIndexChanging" PageSize="20" 
+                               >
                                 
-                                <Columns>
-                                    <asp:BoundField HeaderText="List Name" DataField="LISTNAME"  >
-                                         <HeaderStyle Width="15%" />
-                                    </asp:BoundField>
+                                <AlternatingRowStyle BackColor="#D5D6D9" />
+                                
+                                <Columns>                               
+                                     <asp:TemplateField HeaderText="List Name">
+                                        <ItemTemplate>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="15%"  />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Welcome Message">
                                         <ItemTemplate>
                                             <asp:LinkButton  ID="lnkWelcome" runat="server">&nbsp;<%#DataBinder.Eval(Container.DataItem, "DESCRIPTION")%></asp:LinkButton >
@@ -137,7 +146,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Subscribers">
                                         <ItemTemplate>
-                                            <asp:LinkButton  ID="lnkSubcrbes" runat="server">&nbsp;<%#DataBinder.Eval(Container.DataItem, "TOTALSUBSCRIBES")%> Subscribers</asp:LinkButton ><br/>
+                                            <asp:LinkButton  ID="lnkSubcrbes" runat="server">&nbsp;<%#DataBinder.Eval(Container.DataItem, "NUMSUBSCRIBES")%> Subscribers</asp:LinkButton ><br/>
                                             &nbsp;<asp:LinkButton  ID="lnkAdd" runat="server">Add</asp:LinkButton >
                                         </ItemTemplate>
                                         <HeaderStyle Width="15%"  />
@@ -156,6 +165,8 @@
                                 </Columns>
                                 
 <HeaderStyle BackColor="#95949B"></HeaderStyle>
+
+                                <PagerSettings Visible="False" />
 
 <RowStyle CssClass="r1"></RowStyle>
                                 
@@ -176,7 +187,23 @@
                                 
                         	</div>
                             <div class="pagination">
-                            	<div class="PgCounter"><!--Page 1/12  <span class="paging">1</span> <a title="201 - 400" href="javascript:{}" onclick="load_pg(24780,200,2)">2</a>  <a title="401 - 600" href="javascript:{}" onclick="load_pg(24780,200,3)">3</a>  <a title="601 - 800" href="javascript:{}" onclick="load_pg(24780,200,4)">4</a>  <a title="601 - 800" href="javascript:{}" onclick="load_pg(24780,200,11)">11</a>  <a title="201 - 400" href="javascript:{}" onclick="load_pg(24780,200,2)">»</a> <a title="24600 - 24780" href="javascript:{}" onclick="load_pg(24780,200,124)">».</a> --></div>
+                            	<div class="PgCounter">
+                                   Page <asp:Label ID="lblCurrentPage" runat="server" Text="Label"></asp:Label>/<asp:Label ID="lblTotalPages" runat="server" Text="Label"></asp:Label> 
+                                   <asp:LinkButton ID="first" runat="server" Text="<<"  CausesValidation="false" 
+                                        onclick="first_Click"></asp:LinkButton>
+                                   <asp:LinkButton ID="prev" runat="server" Text="<"  CausesValidation="false" 
+                                        onclick="prev_Click"></asp:LinkButton>
+                                   <asp:Label ID="lblPaging" runat="server"></asp:Label>
+
+                                   <asp:LinkButton ID="next" runat="server" Text=">" CausesValidation="false" 
+                                        onclick="next_Click" ></asp:LinkButton>  
+                                   <asp:LinkButton ID="last" runat="server" Text=">>"  CausesValidation="false" 
+                                        onclick="last_Click"></asp:LinkButton>
+
+                                    <input type="hidden" value="1" id="CurrentPage" runat="server"/>
+                                    <input type="hidden" id="TotalSize" runat="server"/>
+                                    <input type="hidden" id="TotalPages" runat="server"/>
+                                </div>    
                             </div>
                         </div>
                        

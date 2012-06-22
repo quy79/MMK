@@ -47,7 +47,8 @@ namespace ChilkatEmail.Utils
             wc.UploadDataCompleted += new UploadDataCompletedEventHandler(wc_UploadDataCompleted);
             wc.UploadDataAsync(new Uri(url), "POST", byteArray);
         }
-        public void SpamHTMLBeginChecking(String HTMLmessage)
+
+        public void SpamHTMLChecking(String HTMLmessage)
         {
             WebClient wc = new WebClient();
 
@@ -74,6 +75,37 @@ namespace ChilkatEmail.Utils
                 );
 
 
+            //wc.UploadDataCompleted += new UploadDataCompletedEventHandler(wc_UploadDataCompleted);
+            wc.UploadData(new Uri(url), "POST", byteArray);
+        }
+
+        public void SpamHTMLBeginChecking(String HTMLmessage)
+        {
+            WebClient wc = new WebClient();
+
+            String url = "https://app.sandbox.icontact.com/icp/a/413391/c/124736/messages";
+
+            wc.Headers["Accept"] = "text/xml";
+            wc.Headers["Content-Type"] = "text/xml";
+            wc.Headers["Api-Version"] = "2.2";
+
+            wc.Headers["Api-AppId"] = "ltg5HJlubhBMf8iuzs08giCary5ZtnYF";
+            wc.Headers["Api-Password"] = "zxcvbnm,./";
+            wc.Headers["Api-Username"] = "hieu";
+
+            byte[] byteArray = System.Text.Encoding.ASCII.GetBytes(
+                "<messages>" +
+                    "<message>" +
+                        "<campaignId>136678</campaignId>" +
+                        "<subject>Check Spam</subject>" +
+                        "<messageType>normal</messageType>" +
+                        "<messageName>Conference Invite</messageName>" +
+                        "<htmlBody><![CDATA[<p>" + HTMLmessage + "</p>]]></htmlBody>" +
+                    "</message>" +
+                "</messages>"
+                );
+
+            
             wc.UploadDataCompleted += new UploadDataCompletedEventHandler(wc_UploadDataCompleted);
             wc.UploadDataAsync(new Uri(url), "POST", byteArray);
         }

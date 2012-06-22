@@ -77,7 +77,7 @@ namespace EmailSite
                         DatabaseLayer.Contact_list objContactList = new DatabaseLayer.Contact_list();
                         objContactList.CONTACTID = iContactID;
                         objContactList.LISTID = Int32.Parse(strID);
-                        objContactList.SUBSCRIBES = false;
+                        objContactList.SUBSCRIBES = true;
 
                         objContactList.Insert();
 

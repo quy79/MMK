@@ -189,33 +189,28 @@
 
     
     </div>
-</div>
-            
-          
-            
-    	</div>
-	</div>
-	
+
 
 	
     
     <div id="test-message" class="test-message-popup" >
         <h2><font color="#FFFFFF">Send test message</font></h2>
         <a href="#" class="closebtn"><img src="img/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <p name="testform" class="test_message" >
+          <span name="testform" class="test_message" >
                 <fieldset class="textbox">
             	
                 <label>
                     <asp:TextBox ID="txtToEmail" autocomplete="on" placeholder="Email address" runat="server"></asp:TextBox>
                 </label>
                 
-                <asp:Button ID="btnPopupSend" CssClass="submit button" runat="server" Text="Send" 
-                        onclick="btnPopupSend_Click" />
+<!--                <button class="submit button" type="button" id="btnPopupTxtSend">Send</button> -->
+                <asp:Button ID="btnPopupTxtSend" CssClass="submit button" runat="server" Text="Send"  onclick="btnPopupSend_Click"
+                        />
                 
-                
+                <!--  onclick="btnPopupSend_Click" -->
                
                 </fieldset>
-          </p>
+          </span>
 		</div>
 </form>
 	</body>
