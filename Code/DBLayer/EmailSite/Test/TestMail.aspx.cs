@@ -25,16 +25,16 @@ namespace EmailSite.Test
             List<String> listMailCC = new List<string>();
             List<String> listMailBCC = new List<string>();
             String mailFrom = "";
-            mailFrom = "ndhieuvn212@yahoo.com";
+            mailFrom = "'Hehe Ong noi day ne'<ndhieuvn212@yahoo.com>";
             listMailTo.Add("ndhieuvn212@yahoo.com");
-            listMailCC.Add("ndhieuvn212@yahoo.com");
-            listMailCC.Add("quy@optlynx.com");
-            listMailCC.Add("quy79vn@gmail.com");
-            listMailCC.Add("lequangquy@yahoo.com");
-            listMailCC.Add("quy792006@yahoo.co.jp");
-            listMailCC.Add("lequangquy@ezweb.ne.jp");
-            listMailCC.Add("quy792006@yahoo.co.jp");
-            listMailCC.Add("hoangphucnguyen@yahoo.com");
+           // listMailCC.Add("ndhieuvn212@yahoo.com");
+            //listMailCC.Add("quy@optlynx.com");
+            //listMailCC.Add("quy79vn@gmail.com");
+            //listMailCC.Add("lequangquy@yahoo.com");
+            //listMailCC.Add("quy792006@yahoo.co.jp");
+           // listMailCC.Add("lequangquy@ezweb.ne.jp");
+            //listMailCC.Add("quy792006@yahoo.co.jp");
+            //listMailCC.Add("hoangphucnguyen@yahoo.com");
 
 
             bool result = mailServices.SendEmail(mailFrom, listMailTo, listMailCC, listMailBCC, "subject", TextBox1.Text);

@@ -81,12 +81,12 @@ namespace ChilkatEmail
             email.From = mailFrom;
             
            
-            mailman.SmtpHost = Constants.strSmtpHost;
-            if (Constants.strSmtpUser != null && Constants.strSmtpUser.Length > 0)
-            {
-                mailman.SmtpUsername = Constants.strSmtpUser;
-                mailman.SmtpPassword = Constants.strSmtpPass;
-            }
+            mailman.SmtpHost = "localhost";//Constants.strSmtpHost;
+           // if (Constants.strSmtpUser != null && Constants.strSmtpUser.Length > 0)
+           // {
+              //  mailman.SmtpUsername = Constants.strSmtpUser;
+              //  mailman.SmtpPassword = Constants.strSmtpPass;
+           // }
          
             //mailman.SmtpPort = iSmtpPort;
             //mailman.StartTLS = startTLS;
@@ -147,11 +147,11 @@ namespace ChilkatEmail
             email.From = mailFrom;
 
 
-            mailman.SmtpHost = Constants.strSmtpHost;
-            // mailman.SmtpUsername = strSmtpUser;
-            //mailman.SmtpPassword = strSmtpPass;
-            //mailman.SmtpPort = iSmtpPort;
-            //mailman.StartTLS = startTLS;
+            mailman.SmtpHost = "localhost";// Constants.strSmtpHost;
+           // mailman.SmtpUsername = Constants.strSmtpUser;
+            //mailman.SmtpPassword = Constants.strSmtpPass;
+            //mailman.SmtpPort = Constants.iSmtpPort;
+           // mailman.StartTLS = startTLS;
             //if (Charset.Length != 0) email.Charset = Charset;
 
             success = mailman.SendEmail(email);
