@@ -25,6 +25,7 @@ namespace EmailSite
                 next.Visible = false;
                 prev.Visible = false;
             }
+            lblMsg.Text = "";
             BindPaging();
         }
 
@@ -75,79 +76,102 @@ namespace EmailSite
 
         private void LoadData()
         {
-            if (hdModeSearch.Value == "1")
+            try
             {
-                string strSelectedIDs = "";
-                foreach (ListItem item in lstContactLists.Items)
+            
+                if (hdModeSearch.Value == "1")
                 {
-                    if (item.Selected)
-                        if (strSelectedIDs == "") strSelectedIDs = item.Value;
-                        else strSelectedIDs += "," + item.Value;
+                    string strSelectedIDs = "";
+                    foreach (ListItem item in lstContactLists.Items)
+                    {
+                        if (item.Selected)
+                            if (strSelectedIDs == "") strSelectedIDs = item.Value;
+                            else strSelectedIDs += "," + item.Value;
+                    }
+
+                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    dtContactLists = objContacts.SelectContactListsbyListIDs(strSelectedIDs);
+                
+                }
+                else if (hdModeSearch.Value == "2")
+                {
+                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    dtContactLists = objContacts.SelectAll();
+                
+                }
+                else if (hdModeSearch.Value == "3")
+                {
+                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    dtContactLists = objContacts.QuickSearch(txtQSearch.Text.Trim());
+                
+                }
+                else if (hdModeSearch.Value == "4")
+                {
+                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    objContacts.PREFIX = txtPrefix.Text.Trim();
+                    objContacts.SUFFIX = txtSuffix.Text.Trim();
+                    objContacts.FIRSTNAME = txtFName.Text.Trim();
+                    objContacts.LASTNAME = txtLName.Text.Trim();
+
+                    objContacts.ADDRESS1 = txtAddress1.Text.Trim();
+                    objContacts.ADDRESS2 = txtAddress2.Text.Trim();
+
+                    objContacts.CITY = txtCity.Text.Trim();
+                    objContacts.PROVINCE = txtProvince.Text.Trim();
+                    objContacts.ZIP = txtZip.Text.Trim();
+
+                    objContacts.BUSINESSNAME = txtBusiness.Text.Trim();
+                    objContacts.PHONE = txtPhone.Text.Trim();
+                    objContacts.FAX = txtFax.Text.Trim();
+
+                    DateTime dt1 = DateTime.Parse("01/01/2000");
+                    try { 
+                        dt1 = DateTime.Parse(date1.Text.Trim()); 
+                    }
+                    catch { }
+
+                    DateTime dt2 = DateTime.MaxValue;
+                    try { dt2 = DateTime.Parse(date2.Text.Trim()); }
+                    catch { }
+
+                    dtContactLists = objContacts.Select(dt1, dt2);
+                
+                }
+                LoadGridContacts(dtContactLists);
+
+                TotalSize.Value = dtContactLists.Rows.Count.ToString();
+
+            
+                iTotalRecord = dtContactLists.Rows.Count;
+                iTotalPage = (iTotalRecord / Int32.Parse(ddlRowPage.SelectedValue)) + (((iTotalRecord % Int32.Parse(ddlRowPage.SelectedValue)) > 0) ? 1 : 0);
+
+                if (iTotalRecord > 0)
+                {
+                    pnlAction.Visible = true;
+                    pnlSearchResutls.Visible = true;
+                }
+                else
+                {
+                    pnlAction.Visible = false;
+                    pnlSearchResutls.Visible = false;
                 }
 
-                DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
-                dtContactLists = objContacts.SelectContactListsbyListIDs(strSelectedIDs);
-                
+                TotalPages.Value = iTotalPage.ToString();
+                TotalSize.Value = iTotalRecord.ToString();
+                lblCurrentPage.Text = CurrentPage.Value;
+                lblTotalPages.Text = iTotalPage.ToString();
+
+                first.Visible = (iTotalPage>1);
+                last.Visible = (iTotalPage > 1);
+                next.Visible = (iTotalPage > 1);
+                prev.Visible = (iTotalPage > 1);
+
+                BindPaging();
             }
-            else if (hdModeSearch.Value == "2")
-            {
-                DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
-                dtContactLists = objContacts.SelectAll();
-                
+            catch {
+                pnlAction.Visible = false;
+                pnlSearchResutls.Visible = false;
             }
-            else if (hdModeSearch.Value == "3")
-            {
-                DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
-                dtContactLists = objContacts.QuickSearch(txtQSearch.Text.Trim());
-                
-            }
-            else if (hdModeSearch.Value == "4")
-            {
-                DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
-                objContacts.PREFIX = txtPrefix.Text.Trim();
-                objContacts.SUFFIX = txtSuffix.Text.Trim();
-                objContacts.FIRSTNAME = txtFName.Text.Trim();
-                objContacts.LASTNAME = txtLName.Text.Trim();
-
-                objContacts.ADDRESS1 = txtAddress1.Text.Trim();
-                objContacts.ADDRESS2 = txtAddress2.Text.Trim();
-
-                objContacts.CITY = txtCity.Text.Trim();
-                objContacts.PROVINCE = txtProvince.Text.Trim();
-                objContacts.ZIP = txtZip.Text.Trim();
-
-                objContacts.BUSINESSNAME = txtBusiness.Text.Trim();
-                objContacts.PHONE = txtPhone.Text.Trim();
-                objContacts.FAX = txtFax.Text.Trim();
-
-                DateTime dt1 = DateTime.Parse("01/01/2000");
-                try { dt1 = DateTime.Parse(date1.Text.Trim()); }
-                catch { }
-
-                DateTime dt2 = DateTime.MaxValue;
-                try { dt2 = DateTime.Parse(date2.Text.Trim()); }
-                catch { }
-
-                dtContactLists = objContacts.Select(dt1, dt2);
-                
-            }
-            LoadGridContacts(dtContactLists);
-
-            TotalSize.Value = dtContactLists.Rows.Count.ToString();
-            iTotalRecord = dtContactLists.Rows.Count;
-            iTotalPage = (iTotalRecord / Int32.Parse(ddlRowPage.SelectedValue)) + (((iTotalRecord % Int32.Parse(ddlRowPage.SelectedValue)) > 0) ? 1 : 0);
-
-            TotalPages.Value = iTotalPage.ToString();
-            TotalSize.Value = iTotalRecord.ToString();
-            lblCurrentPage.Text = CurrentPage.Value;
-            lblTotalPages.Text = iTotalPage.ToString();
-
-            first.Visible = (iTotalPage>1);
-            last.Visible = (iTotalPage > 1);
-            next.Visible = (iTotalPage > 1);
-            prev.Visible = (iTotalPage > 1);
-
-            BindPaging();
         }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
@@ -267,7 +291,7 @@ namespace EmailSite
             lblPaging.Controls.Clear();
             int startI = (Int32.Parse(CurrentPage.Value) / Int32.Parse(ddlRowPage.SelectedValue)) * Int32.Parse(ddlRowPage.SelectedValue) + 1;
             //int startI = Int32.Parse(CurrentPage.Value) % Int32.Parse
-            int endI = startI + 8;
+            int endI = startI + 9;
             if (endI > Int32.Parse(TotalPages.Value)) endI = Int32.Parse(TotalPages.Value);
 
             for (int i = startI; i <= endI; ++i)
@@ -327,6 +351,21 @@ namespace EmailSite
         }
         protected void btnCopyContacts_Click(object sender, EventArgs e)
         {
+            ArrayList arrListID = GetSelectedContactID();
+
+            if (arrListID.Count == 0)
+            {
+                lblMsg.Text = "Please select aleast a contact !";
+                return;
+            }
+
+            if (ddlCopyContacts.Items.Count == 0 && txtCopyList.Text.Trim().Length == 0)
+            {
+                lblMsg.Text = "Please select aleast a list !";
+                return;
+            }
+            
+
             int iListID = 0;
             if (txtCopyList.Text.Trim().Length > 0)
             {
@@ -340,11 +379,14 @@ namespace EmailSite
                     objList.NOTIFICATION = false;
                     objList.Insert();
                     iListID = objList.getIDFromListName();
+                    //reload lists
+                    LoadContactLists();
                 }
             }
 
             if (iListID == 0) iListID = Int32.Parse(ddlCopyContacts.SelectedValue);
-            ArrayList arrListID = GetSelectedContactID();
+
+            bool isUpdated = false;
             
             for (int i = 0; i < arrListID.Count; i++)
             {
@@ -354,16 +396,24 @@ namespace EmailSite
                 objContactList.LISTID = iListID;
                 objContactList.SUBSCRIBES = true;
 
-                objContactList.Insert();
+                if (objContactList.Insert()) isUpdated = true;
             }
 
-            lblMsg.Text = "Selected contacts is copied sucessfully !";
+            if(isUpdated) lblMsg.Text = "Selected contacts is copied sucessfully !";
 
         }
 
         protected void btnDeleteContacts_Click(object sender, EventArgs e)
         {
             ArrayList arrListID = GetSelectedContactID();
+
+            if (arrListID.Count == 0)
+            {
+                lblMsg.Text = "Please select aleast a contact !";
+                return;
+            }
+
+            bool isUpdated = false;
 
             for (int i = 0; i < arrListID.Count; i++)
             {
@@ -372,17 +422,25 @@ namespace EmailSite
                 objContacts.ID = iContactID;
 
 
-                objContacts.Delete();
+                if (objContacts.Delete()) isUpdated = true;
                 LoadData();
             }
 
-            lblMsg.Text = "Selected contacts is deleted sucessfully !";
+            if(isUpdated)lblMsg.Text = "Selected contacts is deleted sucessfully !";
         }
 
         protected void btnExportContacts_Click(object sender, EventArgs e)
         {
             System.Text.StringBuilder strBuild = new System.Text.StringBuilder();
             ArrayList arrListID = GetSelectedContactID();
+
+            if (arrListID.Count == 0)
+            {
+                lblMsg.Text = "Please select aleast a contact !";
+                return;
+            }
+
+
             strBuild.AppendLine("Email,FirstName,LastName");
             for (int i = 0; i < arrListID.Count; i++)
             {
@@ -409,8 +467,24 @@ namespace EmailSite
 
         protected void btnUnsubContacts_Click(object sender, EventArgs e)
         {
-            int iListID = Int32.Parse(ddlCopyContacts.SelectedValue);
+
             ArrayList arrListID = GetSelectedContactID();
+
+            if (arrListID.Count == 0)
+            {
+                lblMsg.Text = "Please select aleast a contact !";
+                return;
+            }
+
+            if (ddlUnsubContacts.Items.Count == 0)
+            {
+                lblMsg.Text = "Please select aleast a list !";
+                return;
+            }
+
+            int iListID = Int32.Parse(ddlUnsubContacts.SelectedValue);
+
+            bool isUpdated = false;
 
             for (int i = 0; i < arrListID.Count; i++)
             {
@@ -420,10 +494,10 @@ namespace EmailSite
                 objContactList.LISTID = iListID;
                 objContactList.SUBSCRIBES = false;
 
-                objContactList.Update();
+                if (objContactList.Update()) isUpdated = true;
             }
 
-            lblMsg.Text = "Selected contacts is Unsubscribed sucessfully !";
+            if (isUpdated) lblMsg.Text = "Selected contacts is Unsubscribed sucessfully !";
         }
 
 

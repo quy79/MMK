@@ -28,7 +28,7 @@
                 <li><a href="mylists.aspx">List</a></li>
                 <li><a href="addContacts.aspx">Add contacts</a></li>
                 <li><a href="searchContacts.aspx">Browse / Search contacts</a></li>
-                <li><a href="#">Segments</a></li>		
+                <li><a href="mySegments.aspx">Segments</a></li>		
                            				
 			</ul>
           

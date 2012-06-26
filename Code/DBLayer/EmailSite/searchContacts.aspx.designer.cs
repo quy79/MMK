@@ -238,6 +238,15 @@ namespace EmailSite {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
+        /// pnlSearchResutls control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSearchResutls;
+        
+        /// <summary>
         /// grvContacts control.
         /// </summary>
         /// <remarks>
@@ -344,6 +353,15 @@ namespace EmailSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden TotalPages;
+        
+        /// <summary>
+        /// pnlAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAction;
         
         /// <summary>
         /// ddlCopyContacts control.

@@ -194,7 +194,7 @@ namespace EmailSite
             lblPaging.Controls.Clear();
             int startI = (Int32.Parse(CurrentPage.Value) / Int32.Parse(ddlRowPage.SelectedValue)) * Int32.Parse(ddlRowPage.SelectedValue) + 1;
             //int startI = Int32.Parse(CurrentPage.Value) % Int32.Parse
-            int endI = startI + 8;
+            int endI = startI + 9;
             if (endI > Int32.Parse(TotalPages.Value)) endI = Int32.Parse(TotalPages.Value);
 
             for (int i = startI; i <= endI; ++i)

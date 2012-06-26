@@ -445,7 +445,8 @@
 
                                                
                     </div>
-                     <div id="contacts-search-container">
+                    <asp:Panel ID="pnlSearchResutls" runat="server" Visible="false">
+                    <div id="contacts-search-container">
                     	
                          <asp:GridView ID="grvContacts"  CssClass="contact-grid" BackColor="White" Width="100%" CellPadding="2" 
                                 CellSpacing="1" BorderWidth="0px" GridLines="None"
@@ -532,8 +533,8 @@
                                 </div>   
                         </div>
                     </div>
-                    
-
+                    </asp:Panel>
+                    <asp:Panel ID="pnlAction"  runat="server" Visible="false" >
                     <div class="message-list-bottom">
                     	<div id="myRadioGroup" style="position: relative; float: left; width: 150px; margin: 0 0; line-height: 200%">
         					
@@ -609,8 +610,7 @@
                         </div>
                     
                     </div>
-
-
+                   </asp:Panel>
 
 
 

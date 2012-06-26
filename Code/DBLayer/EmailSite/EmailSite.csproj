@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="adContact.aspx" />
     <Content Include="addContacts.aspx" />
+    <Content Include="addSegementCriterias.aspx" />
     <Content Include="ajaxFuncs.aspx" />
     <Content Include="chooseEmailList.aspx" />
     <Content Include="contacts.aspx" />
@@ -60,7 +61,9 @@
     <Content Include="createList.aspx" />
     <Content Include="createMsg.aspx" />
     <Content Include="createMsgDone.aspx" />
+    <Content Include="createSegment.aspx" />
     <Content Include="createTextEmail.aspx" />
+    <Content Include="editSegment.aspx" />
     <Content Include="emails.aspx" />
     <Content Include="Global.asax" />
     <Content Include="headerHTML.ascx" />
@@ -411,16 +414,13 @@
     <Content Include="logout.aspx" />
     <Content Include="messagePreview.aspx" />
     <Content Include="mylists.aspx" />
+    <Content Include="mySegments.aspx" />
     <Content Include="navigation.ascx" />
     <Content Include="previewEmail.aspx" />
     <Content Include="register.aspx" />
     <Content Include="searchContacts.aspx" />
     <Content Include="templates\tpl_thumbnail_001.jpg" />
     <Content Include="templates\tpl_thumbnail_002.jpg" />
-    <Content Include="Test\TestMail.aspx" />
-    <Content Include="Test\TestMailService.aspx" />
-    <Content Include="Test\TestSendMailPage.aspx" />
-    <Content Include="Test\TestHTMLEditorPage.aspx" />
     <Content Include="timeout.aspx" />
     <Content Include="ui\ckeditor\adapters\jquery.js" />
     <Content Include="ui\ckeditor\CHANGES.html" />
@@ -1354,6 +1354,13 @@
     <Compile Include="addContacts.aspx.designer.cs">
       <DependentUpon>addContacts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="addSegementCriterias.aspx.cs">
+      <DependentUpon>addSegementCriterias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addSegementCriterias.aspx.designer.cs">
+      <DependentUpon>addSegementCriterias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ajaxFuncs.aspx.cs">
       <DependentUpon>ajaxFuncs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1414,12 +1421,26 @@
     <Compile Include="createMsgDone.aspx.designer.cs">
       <DependentUpon>createMsgDone.aspx</DependentUpon>
     </Compile>
+    <Compile Include="createSegment.aspx.cs">
+      <DependentUpon>createSegment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createSegment.aspx.designer.cs">
+      <DependentUpon>createSegment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="createTextEmail.aspx.cs">
       <DependentUpon>createTextEmail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="createTextEmail.aspx.designer.cs">
       <DependentUpon>createTextEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editSegment.aspx.cs">
+      <DependentUpon>editSegment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editSegment.aspx.designer.cs">
+      <DependentUpon>editSegment.aspx</DependentUpon>
     </Compile>
     <Compile Include="emails.aspx.cs">
       <DependentUpon>emails.aspx</DependentUpon>
@@ -1480,6 +1501,13 @@
     <Compile Include="mylists.aspx.designer.cs">
       <DependentUpon>mylists.aspx</DependentUpon>
     </Compile>
+    <Compile Include="mySegments.aspx.cs">
+      <DependentUpon>mySegments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mySegments.aspx.designer.cs">
+      <DependentUpon>mySegments.aspx</DependentUpon>
+    </Compile>
     <Compile Include="navigation.ascx.cs">
       <DependentUpon>navigation.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1515,34 +1543,6 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Test\TestMail.aspx.cs">
-      <DependentUpon>TestMail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\TestMail.aspx.designer.cs">
-      <DependentUpon>TestMail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\TestMailService.aspx.cs">
-      <DependentUpon>TestMailService.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\TestMailService.aspx.designer.cs">
-      <DependentUpon>TestMailService.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\TestSendMailPage.aspx.cs">
-      <DependentUpon>TestSendMailPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\TestSendMailPage.aspx.designer.cs">
-      <DependentUpon>TestSendMailPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Test\TestHTMLEditorPage.aspx.cs">
-      <DependentUpon>TestHTMLEditorPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\TestHTMLEditorPage.aspx.designer.cs">
-      <DependentUpon>TestHTMLEditorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="timeout.aspx.cs">
       <DependentUpon>timeout.aspx</DependentUpon>
