@@ -261,7 +261,7 @@ namespace DatabaseLayer
                 Params[3].Value = DBNull.Value;
             }
 
-            if (ENDDATE != null)
+            if (ENDDATE != null && ENDDATE.Year>1)
             {
                 Params[4].Value = ENDDATE;
             }

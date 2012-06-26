@@ -64,89 +64,63 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
-	public DataTable Select()
-	{
-		DataSet ds;
-		try
-		{
-			SqlParameter[] Params = 
+    public DataTable Select()
+    {
+        DataSet ds;
+        try
+        {
+            lock (this)
+            {
+                SqlParameter[] Params = 
 			{ 
-				new SqlParameter("@ID",SqlDbType.Int),
+				//new SqlParameter("@ID",SqlDbType.Int),
 				new SqlParameter("@AUTOID",SqlDbType.Int),
-                new SqlParameter("@TOTALCONTACT",SqlDbType.Int),
-				new SqlParameter("@SUMCONTACTSENT",SqlDbType.Int),
-				new SqlParameter("@STATUS",SqlDbType.Int),
                 new SqlParameter("@MESSAGEID",SqlDbType.Int)
+				//new SqlParameter("@SUMCONTACTSENT",SqlDbType.Int),
+				//new SqlParameter("@STATUS",SqlDbType.Int),
+                //new SqlParameter("@MESSAGEID",SqlDbType.Int)
 				 
 			};
-			
 
-				if (ID != 0)
-				{
-					Params[0].Value = ID;
-				}
-				else
-				{
-					Params[0].Value = DBNull.Value;
-				}
 
-				if (AUTOID != 0)
-				{
-					Params[1].Value = AUTOID;
-				}
-				else
-				{
-					Params[1].Value = DBNull.Value;
-				}
-
-                if (TOTALCONTACT != null)
-				{
-                    Params[2].Value = TOTALCONTACT;
-				}
-				else
-				{
-					Params[2].Value = DBNull.Value;
-				}
-
-                if (SUMCONTACTSENT != null)
-				{
-                    Params[3].Value = SUMCONTACTSENT;
-				}
-				else
-				{
-					Params[3].Value = DBNull.Value;
-				}
-            				
-
-				
-
-				if (STATUS != 0)
-				{
-					Params[4].Value = STATUS;
-				}
-				else
-				{
-					Params[4].Value = DBNull.Value;
-				}
-                if (MESSAGEID != 0)
+                if (AUTOID != 0)
                 {
-                    Params[5].Value = MESSAGEID;
+                    Params[0].Value = AUTOID;
                 }
                 else
                 {
-                    Params[5].Value = DBNull.Value;
+                    Params[0].Value = DBNull.Value;
+                }
+
+
+
+
+
+
+
+
+
+                if (MESSAGEID != 0)
+                {
+                    Params[1].Value = MESSAGEID;
+                }
+                else
+                {
+                    Params[1].Value = DBNull.Value;
                 }
 
 
 
                 ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_STATUS_Select", Params);
-			return ds.Tables[0];
-		}
-		catch(Exception ex)
-		{
-			throw new Exception(ex.Message);
-		}
-	}
+
+                return ds.Tables[0];
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 	public bool Insert()
 	{
 		try
@@ -164,7 +138,7 @@ namespace DatabaseLayer
 
 
 
-            if (AUTOID != null)
+            if (AUTOID != 0)
             {
                 Params[0].Value = AUTOID;
             }
@@ -173,28 +147,19 @@ namespace DatabaseLayer
                 Params[0].Value = DBNull.Value;
             }
 
-            if (TOTALCONTACT != null)
-            {
+            
                 Params[1].Value = TOTALCONTACT;
-            }
-            else
-            {
-                Params[1].Value = DBNull.Value;
-            }
+            
 
-            if (SUMCONTACTSENT != null)
-            {
+            
                 Params[2].Value = SUMCONTACTSENT;
-            }
-            else
-            {
-                Params[2].Value = DBNull.Value;
-            }
+            
+            
 
 
 
 
-            if (STATUS != null)
+            if (STATUS != 0)
             {
                 Params[3].Value = STATUS;
             }
@@ -202,7 +167,7 @@ namespace DatabaseLayer
             {
                 Params[3].Value = DBNull.Value;
             }
-            if (MESSAGEID != null)
+            if (MESSAGEID != 0)
             {
                 Params[4].Value = MESSAGEID;
             }

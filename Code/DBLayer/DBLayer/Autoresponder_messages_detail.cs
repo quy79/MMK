@@ -20,13 +20,13 @@ namespace DatabaseLayer
 	private int _AUTORESPONDERID;
 	private int _MESSAGEID;
     private int _STATUS;
-    private DateTime _ENDDATE;
+    private DateTime _ENDDATE ;
     private int _DURATION;
     private string _MESSAGENAME;
     private string _SUBJECT;
     private string _BODY;
 
-	 Autoresponder_messages  objclsAUTORESPONDER_MESSAGES;
+	// Autoresponder_messages_detail  objclsAUTORESPONDER_MESSAGES;
 	#endregion
 
 	#region Public Properties
@@ -85,17 +85,18 @@ namespace DatabaseLayer
 		DataSet ds;
 		try
 		{
+            lock(this){
 			SqlParameter[] Params = 
 			{ 
 				new SqlParameter("@ID",SqlDbType.Int),
 				new SqlParameter("@AUTORESPONDERID",SqlDbType.Int),
-				new SqlParameter("@MESSAGEID",SqlDbType.Int),
-                new SqlParameter("@STATUS",SqlDbType.Int) ,
-				new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
-                new SqlParameter("@DURATION",SqlDbType.Int),
-                new SqlParameter("@MESSAGENAME",SqlDbType.NVarChar),
-                new SqlParameter("@SUBJECT",SqlDbType.NVarChar),
-                new SqlParameter("@BODY",SqlDbType.NVarChar),
+				new SqlParameter("@MESSAGEID",SqlDbType.Int)
+                //new SqlParameter("@STATUS",SqlDbType.Int) ,
+				//new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
+               // new SqlParameter("@DURATION",SqlDbType.Int),
+               // new SqlParameter("@MESSAGENAME",SqlDbType.NVarChar),
+               // new SqlParameter("@SUBJECT",SqlDbType.NVarChar),
+               // new SqlParameter("@BODY",SqlDbType.NVarChar),
 
 			};
 			
@@ -127,7 +128,7 @@ namespace DatabaseLayer
 					Params[2].Value = DBNull.Value;
 				}
                
-                if (STATUS != 0)
+             /*   if (STATUS != 0)
                 {
                     Params[3].Value = STATUS;
                 }
@@ -136,7 +137,7 @@ namespace DatabaseLayer
                     Params[3].Value = DBNull.Value;
                 }
 
-                if (ENDDATE != null)
+                if (ENDDATE != null &&ENDDATE.Year>1)
                 {
                     Params[4].Value = ENDDATE;
                 }
@@ -177,10 +178,11 @@ namespace DatabaseLayer
                 {
                     Params[8].Value = DBNull.Value;
                 }
-
+            */
 			
 			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_MESSAGES_DETAIL_Select",Params);
 			return ds.Tables[0];
+            }
 		}
 		catch(Exception ex)
 		{
