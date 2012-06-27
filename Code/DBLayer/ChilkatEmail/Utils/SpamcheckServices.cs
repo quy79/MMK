@@ -48,7 +48,9 @@ namespace ChilkatEmail.Utils
             wc.UploadDataAsync(new Uri(url), "POST", byteArray);
         }
 
-        public void SpamHTMLChecking(String HTMLmessage)
+    
+
+        public bool SpamHTMLChecking(String HTMLmessage)
         {
             WebClient wc = new WebClient();
 
@@ -74,9 +76,69 @@ namespace ChilkatEmail.Utils
                 "</messages>"
                 );
 
+            byte[] bytes = wc.UploadData(new Uri(url), "POST", byteArray);
 
+            float core = 0;
+            float coreDetail = 0;
+            string spamDes = "";
+            string spamDetailDes = "";
+            Encoding enc8 = Encoding.UTF8;
+            String xmlContent = enc8.GetString(bytes);
+            XDocument document = XDocument.Parse(xmlContent);
+
+            XElement xChile = document.Root;
+            XElement messages = xChile.Element("messages");
+            foreach (XElement child in messages.Elements())
+            {
+                foreach (XElement childMessage in child.Elements())
+                {
+                    if (childMessage.Name == "spamCheck")
+                    {
+                        foreach (XElement childSpame in childMessage.Elements())
+                        {
+                            if (childSpame.Name == "rawScore")
+                            {
+                                core = float.Parse(childSpame.Value.ToString());
+                            }
+                            if (childSpame.Name == "spamDetails")
+                            {
+                                XElement childSpamDetails = childSpame.Element("spamDetail");
+                                if (childSpamDetails != null)
+                                {
+                                    foreach (XElement childSpamDetail in childSpamDetails.Elements())
+                                    {
+                                        if (childSpamDetail.Name == "spamDetailScore")
+                                        {
+                                            coreDetail = float.Parse(childSpamDetail.Value.ToString());
+                                        }
+                                        if (childSpamDetail.Name == "spamDetailName")
+                                        {
+                                            spamDes = childSpamDetail.Value.ToString();
+                                        }
+                                        if (childSpamDetail.Name == "spamDetailDescription")
+                                        {
+                                            spamDetailDes = childSpamDetail.Value.ToString();
+                                        }
+
+                                    }
+                                }
+
+                            }
+
+
+
+                        }
+
+                    }
+
+
+                }
+            }
+
+            if (core > 4) return true;
+            return false;
             //wc.UploadDataCompleted += new UploadDataCompletedEventHandler(wc_UploadDataCompleted);
-            wc.UploadData(new Uri(url), "POST", byteArray);
+            //wc.UploadDataAsync(new Uri(url), "POST", byteArray);
         }
 
         public void SpamHTMLBeginChecking(String HTMLmessage)

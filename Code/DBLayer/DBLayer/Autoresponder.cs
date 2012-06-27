@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
@@ -23,6 +24,7 @@ namespace DatabaseLayer
 	private int _LISTID;
 	private string _FROMNAME;
 	private string _FROMEMAIL;
+    private int _DURATION;
    
 	private System.DateTime _MODIFIEDDATE;
 	 Autoresponder  objclsAUTORESPONDER;
@@ -64,10 +66,41 @@ namespace DatabaseLayer
 		get { return _FROMEMAIL; }
 		set { _FROMEMAIL = value; }
 	}
+    public int DURATION
+    {
+        get { return _DURATION; }
+        set { _DURATION = value; }
+    }
 	
 	#endregion
 
 	#region Public Methods
+    public DataTable SelectByUserID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",SqlDbType.Int)
+			};
+
+
+            Params[0].Value = USERID;
+            
+
+
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_SelectByUserID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+	
 	public DataTable Select()
 	{
 		DataSet ds;
@@ -163,7 +196,7 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
-	public bool Insert()
+	public int Insert()
 	{
 		try
 		{
@@ -174,19 +207,19 @@ namespace DatabaseLayer
 				new SqlParameter("@DESCRIPTION",DESCRIPTION),
 				new SqlParameter("@LISTID",LISTID),
 				new SqlParameter("@FROMNAME",FROMNAME),
-				new SqlParameter("@FROMEMAIL",FROMEMAIL)
+				new SqlParameter("@FROMEMAIL",FROMEMAIL),
+                new SqlParameter("@DURATION",SqlDbType.Int)
 				
 			};
-			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_Insert",Params);
-			if (result > 0)
-			{
-				return true;
-			}
-			return false;
+
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_Insert", Params);
+            
+            if (ds.Tables.Count > 0) return Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+            return -1;
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return -1;
 		}
 	}
 	public bool Update()
