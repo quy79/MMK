@@ -128,23 +128,7 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
-	public DataTable Select()
-	{
-		DataTable dt;
-		try
-		{
-			objclsCONTACTS = new Contacts();
-			
-			objclsCONTACTS.ID = ID;
-		
-			dt = objclsCONTACTS.Select();
-			return dt;
-		}
-		catch(Exception ex)
-		{
-			throw new Exception(ex.Message);
-		}
-	}
+	
 	public bool Insert()
 	{
 		try

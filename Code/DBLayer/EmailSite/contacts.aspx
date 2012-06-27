@@ -7,7 +7,7 @@
 <uc3:headerHTML ID="headerHTML1" Title="Email" runat="server" />
 
 	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-    
+  <form runat="server">
     
     <div id="main">
 	    <div class="page-container">
@@ -93,7 +93,7 @@
                             	 <div id="emails-navcontainer">
                                     <ul id="emails-navlist">
                                         <li>
-                                        	<a href="search-contacts.html" class=""><div class="search-contacts">Search / Browse Contacts</div></a>
+                                        	<a href="searchContacts.aspx" class=""><div class="search-contacts">Search / Browse Contacts</div></a>
                                         </li>
 
                                     </ul>
@@ -118,10 +118,10 @@
                             	 <div id="emails-navcontainer">
                                     <ul id="emails-navlist">
                                         <li>
-                                        	<a href="create-segment.html" class=""><div class="create-segment">Create a Segment</div></a>
+                                        	<a href="createSegment.aspx" class=""><div class="create-segment">Create a Segment</div></a>
                                         </li>
                                         <li>
-                                        	<a href="mysegments.html" class=""><div class="my-segments">My Segments</div></a>
+                                        	<a href="mysegments.aspx" class=""><div class="my-segments">My Segments</div></a>
                                         </li>
 
                                     </ul>
@@ -147,6 +147,6 @@
 	
 
 	        
-	
+</form>  	
 	</body>
 </html>

@@ -74,9 +74,19 @@ namespace EmailSite
                            objContact.CONFIRMCODE = Guid.NewGuid().ToString().Replace("-", "");
                        }
 
-                       if (objContact.IsExistContactEmail()) continue;
+                       int iContactID = 0;
+                       if (objContact.IsExistContactEmail())
+                       {
 
-                       int iContactID = objContact.Insert();
+                           try
+                           {
+                               DataTable objDB = objContact.SelectContactFromEmail();
+                               if (objDB != null && objDB.Rows.Count > 0) iContactID = Int32.Parse(objDB.Rows[0]["ID"].ToString());
+                           }
+                           catch { }
+                           //get contact from db.
+
+                       } else  iContactID = objContact.Insert();
                        if (iContactID > 0)
                        {
                            //insert contact_list
@@ -96,6 +106,8 @@ namespace EmailSite
                       
 
                    }
+
+                   lblMsg.Text = "Your upload contact file is sucessfull.<br/>";
                }
            }
            else

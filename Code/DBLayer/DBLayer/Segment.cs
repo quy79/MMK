@@ -65,6 +65,50 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
+    public DataTable SelectByUserID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@UserID",SqlDbType.Int)
+			};
+
+            Params[0].Value = USERID;
+
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_SEGMENT_SelectByUserID]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;//throw new Exception(ex.Message);
+        }
+    }
+    public DataTable SelectBySegmentID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",SqlDbType.Int)
+			};
+
+            Params[0].Value = ID;
+            
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_SEGMENT_SelectBySegmentID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 	public DataTable Select()
 	{
 		DataSet ds;
@@ -154,7 +198,7 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
-	public bool Insert()
+	public int Insert()
 	{
 		try
 		{
@@ -163,20 +207,17 @@ namespace DatabaseLayer
 				new SqlParameter("@USERID",USERID),
 				new SqlParameter("@LISTID",LISTID),
 				new SqlParameter("@NAME",NAME),
-				new SqlParameter("@DESCRIPTION",DESCRIPTION),
-				new SqlParameter("@TOTALSUBSCRIBES",TOTALSUBSCRIBES),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@DESCRIPTION",DESCRIPTION)
+
 			};
-			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_SEGMENT_Insert",Params);
-			if (result > 0)
-			{
-				return true;
-			}
-			return false;
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_SEGMENT_Insert]", Params);
+
+            if (ds.Tables.Count > 0) return Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+            return -1;
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return -1;
 		}
 	}
 	public bool Update()
@@ -186,12 +227,9 @@ namespace DatabaseLayer
 			SqlParameter[] Params = 
 			{ 
 				new SqlParameter("@ID",ID),
-				new SqlParameter("@USERID",USERID),
 				new SqlParameter("@LISTID",LISTID),
 				new SqlParameter("@NAME",NAME),
-				new SqlParameter("@DESCRIPTION",DESCRIPTION),
-				new SqlParameter("@TOTALSUBSCRIBES",TOTALSUBSCRIBES),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@DESCRIPTION",DESCRIPTION) 
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_SEGMENT_Update",Params);
 			if (result > 0)

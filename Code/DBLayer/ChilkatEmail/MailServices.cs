@@ -147,7 +147,7 @@ namespace ChilkatEmail
             email.From = mailFrom;
 
 
-            mailman.SmtpHost = "localhost";// Constants.strSmtpHost;
+            mailman.SmtpHost =  Constants.strSmtpHost;
            // mailman.SmtpUsername = Constants.strSmtpUser;
             //mailman.SmtpPassword = Constants.strSmtpPass;
             //mailman.SmtpPort = Constants.iSmtpPort;

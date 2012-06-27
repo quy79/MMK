@@ -138,133 +138,246 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
-	public DataTable Select()
+    public DataTable QuickSearch(string text)
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@Text",SqlDbType.NVarChar)				
+			};
+
+            Params[0].Value = text;
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_QSearch]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable SelectContactListsbyListIDs(string listIDs)
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@ListIDs",SqlDbType.NVarChar)				
+			};
+
+            Params[0].Value = listIDs;
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_SelectContactListsbyListIDs]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+    public DataTable SelectAll()
+    {
+        DataSet ds;
+        try
+        {
+            
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACTS_SelectAll");
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+    public DataTable SelectContactsFromContactID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@ID",ID )				
+			};
+
+
+
+
+
+
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_SelectByContactID]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+    public DataTable SelectContactFromEmail()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@EMAIL",SqlDbType.NVarChar)				
+			};
+
+
+           
+
+            if (EMAIL != null)
+            {
+                Params[0].Value = EMAIL;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+            
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACTS_SelectByEmail", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+	public DataTable Select(DateTime date1, DateTime date2)
 	{
 		DataSet ds;
 		try
 		{
 			SqlParameter[] Params = 
 			{ 
-				new SqlParameter("@ID",SqlDbType.Int),
 				new SqlParameter("@FIRSTNAME",SqlDbType.NVarChar),
 				new SqlParameter("@LASTNAME",SqlDbType.NVarChar),
 				new SqlParameter("@PREFIX",SqlDbType.NVarChar),
-				new SqlParameter("@SUFFIX",SqlDbType.NVarChar), 
-
+				new SqlParameter("@SUFFIX",SqlDbType.NVarChar),
 				new SqlParameter("@EMAIL",SqlDbType.NVarChar),
 				new SqlParameter("@ADDRESS1",SqlDbType.NVarChar),
 				new SqlParameter("@ADDRESS2",SqlDbType.NVarChar),
 				new SqlParameter("@CITY",SqlDbType.NVarChar),
 				new SqlParameter("@PROVINCE",SqlDbType.NVarChar),
-				
-                new SqlParameter("@ZIP",SqlDbType.NVarChar),
+				new SqlParameter("@ZIP",SqlDbType.NVarChar),
+                new SqlParameter("@BUSINESSNAME",SqlDbType.NVarChar),
 				new SqlParameter("@PHONE",SqlDbType.NVarChar),
-				new SqlParameter("@FAX",SqlDbType.NVarChar),
-				new SqlParameter("@CONFIRMED",SqlDbType.Bit),
-				new SqlParameter("@MODIFIEDDATE",SqlDbType.DateTime) 
+				new SqlParameter("@FAX",SqlDbType.NVarChar),				
+				new SqlParameter("@DATE1",SqlDbType.DateTime) ,
+                new SqlParameter("@DATE2",SqlDbType.DateTime) 
 			};
 			
 
-				if (ID != null)
+				if (FIRSTNAME != null )
 				{
-					Params[0].Value = ID;
+					Params[0].Value = FIRSTNAME;
 				}
 				else
 				{
 					Params[0].Value = DBNull.Value;
 				}
 
-				if (FIRSTNAME != null)
+                if (LASTNAME != null )
 				{
-					Params[1].Value = FIRSTNAME;
+					Params[1].Value = LASTNAME;
 				}
 				else
 				{
 					Params[1].Value = DBNull.Value;
 				}
 
-				if (LASTNAME != null)
+                if (PREFIX != null )
 				{
-					Params[2].Value = LASTNAME;
+					Params[2].Value = PREFIX;
 				}
 				else
 				{
 					Params[2].Value = DBNull.Value;
 				}
 
-				if (PREFIX != null)
+                if (SUFFIX != null)
 				{
-					Params[3].Value = PREFIX;
+					Params[3].Value = SUFFIX;
 				}
 				else
 				{
 					Params[3].Value = DBNull.Value;
 				}
 
-				if (SUFFIX != null)
+                if (EMAIL != null )
 				{
-					Params[4].Value = SUFFIX;
+					Params[4].Value = EMAIL;
 				}
 				else
 				{
 					Params[4].Value = DBNull.Value;
 				}
 
-				if (EMAIL != null)
+                if (ADDRESS1 != null)
 				{
-					Params[5].Value = EMAIL;
+					Params[5].Value = ADDRESS1;
 				}
 				else
 				{
 					Params[5].Value = DBNull.Value;
 				}
 
-				if (ADDRESS1 != null)
+                if (ADDRESS2 != null )
 				{
-					Params[6].Value = ADDRESS1;
+					Params[6].Value = ADDRESS2;
 				}
 				else
 				{
 					Params[6].Value = DBNull.Value;
 				}
 
-				if (ADDRESS2 != null)
+                if (CITY != null )
 				{
-					Params[7].Value = ADDRESS2;
+					Params[7].Value = CITY;
 				}
 				else
 				{
 					Params[7].Value = DBNull.Value;
 				}
 
-				if (CITY != null)
+                if (PROVINCE != null)
 				{
-					Params[8].Value = CITY;
+					Params[8].Value = PROVINCE;
 				}
 				else
 				{
 					Params[8].Value = DBNull.Value;
 				}
 
-				if (PROVINCE != null)
+                if (ZIP != null )
 				{
-					Params[9].Value = PROVINCE;
+					Params[9].Value = ZIP;
 				}
 				else
 				{
 					Params[9].Value = DBNull.Value;
 				}
 
-				if (ZIP != null)
-				{
-					Params[10].Value = ZIP;
-				}
-				else
-				{
-					Params[10].Value = DBNull.Value;
-				}
+                if (BUSINESSNAME != null )
+                {
+                    Params[10].Value = BUSINESSNAME;
+                }
+                else
+                {
+                    Params[10].Value = DBNull.Value;
+                }
 
-				if (PHONE != null)
+                if (PHONE != null )
 				{
 					Params[11].Value = PHONE;
 				}
@@ -273,7 +386,7 @@ namespace DatabaseLayer
 					Params[11].Value = DBNull.Value;
 				}
 
-				if (FAX != null)
+                if (FAX != null)
 				{
 					Params[12].Value = FAX;
 				}
@@ -282,23 +395,9 @@ namespace DatabaseLayer
 					Params[12].Value = DBNull.Value;
 				}
 
-				if (CONFIRMED != null)
-				{
-                    Params[13].Value = CONFIRMED;
-				}
-				else
-				{
-					Params[13].Value = DBNull.Value;
-				}
 
-				if (MODIFIEDDATE != null)
-				{
-                    Params[14].Value = DBNull.Value;// DateTime.Now;
-				}
-				else
-				{
-					Params[14].Value = DBNull.Value;
-				}
+                Params[13].Value = date1;
+                Params[14].Value = date2;
 
 			
 			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACTS_Select",Params);
@@ -306,7 +405,7 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return null;// throw new Exception(ex.Message);
 		}
 	}
 	public int Insert()

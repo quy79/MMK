@@ -310,9 +310,27 @@ namespace DatabaseLayer
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return false;//throw new Exception(ex.Message);
 		}
 	}
+
+    public int getIDFromListName()
+    {
+        try
+        {
+            SqlParameter[] Params = { new SqlParameter("@LISTNAME", LISTNAME) };
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_LISTS_GetIDFromListName", Params);
+            
+             return Int32.Parse(ds.Tables[0].Rows[0]["ID"].ToString());
+            
+            
+        }
+        catch (Exception ex)
+        {
+            //throw new Exception(ex.Message);
+        }
+        return 0;
+    }
 	#endregion
 
 	}

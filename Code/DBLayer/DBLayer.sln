@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChilkatEmail", "ChilkatEmai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailServices", "EmailServices\EmailServices.csproj", "{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAutoResponder", "TestAutoResponder\TestAutoResponder.csproj", "{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,16 +59,6 @@ Global
 		{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}.Release|x86.ActiveCfg = Release|x86
 		{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}.Release|x86.Build.0 = Release|x86
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{2C209606-8C02-4D1C-BDA3-D4E1CD76C375}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
