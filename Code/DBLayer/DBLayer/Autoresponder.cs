@@ -23,7 +23,7 @@ namespace DatabaseLayer
 	private int _LISTID;
 	private string _FROMNAME;
 	private string _FROMEMAIL;
-   
+    private int _DURATION;
 	private System.DateTime _MODIFIEDDATE;
 	 Autoresponder  objclsAUTORESPONDER;
 	#endregion
@@ -64,6 +64,11 @@ namespace DatabaseLayer
 		get { return _FROMEMAIL; }
 		set { _FROMEMAIL = value; }
 	}
+    public int DURATION
+    {
+        get { return _DURATION; }
+        set { _DURATION = value; }
+    }
 	
 	#endregion
 
@@ -201,7 +206,8 @@ namespace DatabaseLayer
 				new SqlParameter("@DESCRIPTION",SqlDbType.NVarChar),
 				new SqlParameter("@LISTID",SqlDbType.Int),
 				new SqlParameter("@FROMNAME",SqlDbType.NVarChar),
-				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar)
+				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar),
+              new SqlParameter("@DURATION",SqlDbType.Int)
 				
 				
 			};
@@ -268,6 +274,14 @@ namespace DatabaseLayer
             else
             {
                 Params[6].Value = DBNull.Value;
+            }
+            if (DURATION != null)
+            {
+                Params[7].Value = DURATION;
+            }
+            else
+            {
+                Params[7].Value = DBNull.Value;
             }
 
            
