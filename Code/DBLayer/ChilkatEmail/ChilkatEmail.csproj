@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ChilkatDotNet4">
-      <HintPath>C:\Program Files (x86)\Chilkat Software Inc\Chilkat.NET-v4.0\ChilkatDotNet4.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files\Chilkat Software Inc\Chilkat.NET-v4.0\ChilkatDotNet4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BounceServices.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="MailServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

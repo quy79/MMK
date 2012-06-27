@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChilkatDotNet4, Version=9.3.0.0, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Chilkat Software Inc\Chilkat.NET-v4.0\ChilkatDotNet4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -47,8 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBManager.cs" />
-    <Compile Include="Email.cs" />
-    <Compile Include="EmailSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -78,6 +80,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChilkatEmail\ChilkatEmail.csproj">
+      <Project>{24DACEAE-43A9-435E-8E0F-E1EA5D59F287}</Project>
+      <Name>ChilkatEmail</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBLayer\DBLayer.csproj">
       <Project>{36B5A67E-03F1-400D-B70A-53230B3E72CB}</Project>
       <Name>DBLayer</Name>

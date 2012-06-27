@@ -256,7 +256,8 @@ namespace DatabaseLayer
 		try
 		{
 			SqlParameter[] Params = { new SqlParameter("@ID",ID) };
-			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_Delete",Params);
+            Params[0].Value = ID;
+			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_PENDING_Delete",Params);
 			if (result > 0)
 			{
 				return true;

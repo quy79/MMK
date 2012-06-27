@@ -21,7 +21,7 @@ namespace DatabaseLayer
 	private int _MESSAGEID;
     private int _STATUS;
     private DateTime _ENDDATE;
-    private int _DURATION;
+    
 
 	 Autoresponder_messages  objclsAUTORESPONDER_MESSAGES;
 	#endregion
@@ -54,11 +54,7 @@ namespace DatabaseLayer
         get { return _ENDDATE; }
         set { _ENDDATE = value; }
     }
-    public int DURATION
-    {
-        get { return _DURATION; }
-        set { _DURATION = value; }
-    }
+   
 	#endregion
 
 	#region Public Methods
@@ -72,9 +68,9 @@ namespace DatabaseLayer
 				new SqlParameter("@ID",SqlDbType.Int),
 				new SqlParameter("@AUTORESPONDERID",SqlDbType.Int),
 				new SqlParameter("@MESSAGEID",SqlDbType.Int),
-                new SqlParameter("@STATUS",SqlDbType.Int) ,
-				new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
-                new SqlParameter("@DURATION",SqlDbType.Int)
+                //new SqlParameter("@STATUS",SqlDbType.Int) ,
+				//new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
+                //new SqlParameter("@DURATION",SqlDbType.Int)
 			};
 			
 
@@ -105,7 +101,7 @@ namespace DatabaseLayer
 					Params[2].Value = DBNull.Value;
 				}
                
-                if (STATUS != 0)
+                /*if (STATUS != 0)
                 {
                     Params[3].Value = STATUS;
                 }
@@ -114,7 +110,7 @@ namespace DatabaseLayer
                     Params[3].Value = DBNull.Value;
                 }
 
-                if (ENDDATE != null)
+                if (ENDDATE != null && ENDDATE.Year>1)
                 {
                     Params[4].Value = ENDDATE;
                 }
@@ -132,7 +128,7 @@ namespace DatabaseLayer
                     Params[5].Value = DBNull.Value;
                 }
 
-			
+			*/
 			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_MESSAGES_Select",Params);
 			return ds.Tables[0];
 		}
@@ -150,8 +146,8 @@ namespace DatabaseLayer
 				new SqlParameter("@AUTORESPONDERID",AUTORESPONDERID),
 				new SqlParameter("@MESSAGEID",MESSAGEID) ,
                 new SqlParameter("@STATUS",STATUS) ,
-                new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
-                new SqlParameter("@DURATION",SqlDbType.Int)
+                new SqlParameter("@ENDDATE",SqlDbType.DateTime) 
+                
 			};
            
            
@@ -192,14 +188,7 @@ namespace DatabaseLayer
                 Params[3].Value = DBNull.Value;
             }
 
-            if (DURATION != 0)
-            {
-                Params[4].Value = DURATION;
-            }
-            else
-            {
-                Params[4].Value = DBNull.Value;
-            }
+          
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_MESSAGES_Insert",Params);
 			if (result > 0)
 			{
@@ -222,8 +211,8 @@ namespace DatabaseLayer
 				new SqlParameter("@AUTORESPONDERID",AUTORESPONDERID),
 				new SqlParameter("@MESSAGEID",MESSAGEID) ,
                 new SqlParameter("@STATUS",STATUS) ,
-                new SqlParameter("@ENDDATE",SqlDbType.DateTime) ,
-                new SqlParameter("@DURATION",SqlDbType.Int)
+                new SqlParameter("@ENDDATE",SqlDbType.DateTime) 
+                
 			};
             if (ID != 0)
             {
@@ -261,7 +250,7 @@ namespace DatabaseLayer
                 Params[3].Value = DBNull.Value;
             }
 
-            if (ENDDATE != null)
+            if (ENDDATE != null && ENDDATE.Year>1)
             {
                 Params[4].Value = ENDDATE;
             }
@@ -270,14 +259,7 @@ namespace DatabaseLayer
                 Params[4].Value = DBNull.Value;
             }
 
-            if (DURATION != 0)
-            {
-                Params[5].Value = DURATION;
-            }
-            else
-            {
-                Params[5].Value = DBNull.Value;
-            }
+           
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_MESSAGES_Update",Params);
 			if (result > 0)
 			{

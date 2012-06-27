@@ -7,7 +7,16 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading;
+using System.Web;
 
+using DatabaseLayer;
+using System.Data;
+using System.Data.SqlClient;
+using System.Threading;
+using ChilkatEmail.Utils;
+using ChilkatEmail;
+using System.Collections;
+using System.Diagnostics;
 namespace EmailServices
 {
     public partial class Service1 : ServiceBase
@@ -21,19 +30,497 @@ namespace EmailServices
         {
             //base.OnStart(args);
 
-            do
+            ArrayList list = new ArrayList();
+            while (SERVICE_TOP)
             {
-                EmailSystem.SendEmails();
+                Debug.WriteLine("Enter Do loop all auto responder and check each auto responder");
+                Debug.WriteLine("Check and generate table auto-pending");
 
-                Thread.Sleep(30000);
-            } while (true);
+                generate_auto_table_pending();
+
+                Debug.WriteLine("Check and generate table auto-pending: DONE");
+                Autoresponder autoresponder = new Autoresponder();
+                DataTable dtAutoResponder = autoresponder.Select();
+                foreach (DataRow row in dtAutoResponder.Rows)
+                {
+                    int auID = int.Parse(row["ID"].ToString());
+                    //[STATUS] = 0:Stop; 1:just created not init; 2: stated; 4: finished
+                    //
+                    int duration = int.Parse(row[8].ToString());
+                    Autoresponder_messages_detail auto_detail = new Autoresponder_messages_detail();
+                    auto_detail.AUTORESPONDERID = auID;
+                    DataTable auto_detail_table = auto_detail.Select();
+                    bool passedEndDate = false;
+                    foreach (DataRow aU_DE_row in auto_detail_table.Rows)
+                    {
+                        String temp_enddate = aU_DE_row[4].ToString();
+                        int status = int.Parse(aU_DE_row[3].ToString());
+                        if (!string.IsNullOrEmpty(temp_enddate))
+                        {
+                            DateTime endDate = DateTime.Parse(aU_DE_row[4].ToString());
+                            passedEndDate = checkENDDATEPassedCurrentDate(endDate, duration);
+                        }
+                        // Check each message in each autoresponder
+                        // if it does not init or finished and passed the time line
+
+                        if (status == 2 || (passedEndDate && status == 4))
+                        {
+                            //Create thead
+                            Thread t = new Thread(newAutoResponderSendMessageToContactListThread);
+                            t.Start(aU_DE_row);
+                            list.Add(t);
+                        }
+                        // check available thread
+                        for (int i = list.Count; i > 0; i--)
+                        {
+                            Thread item = (Thread)list[i - 1];
+                            if (item == null || !item.IsAlive)
+                            {
+                                Thread t = new Thread(newAutoResponderSendMessageToContactListThread);
+                                t.Start(aU_DE_row);
+                                list.Add(t);
+                                list.RemoveAt(i - 1);
+                            }
+                            else
+                            {
+                                Debug.WriteLine("new thread is running");
+                            }
+                        }
+
+
+                    }
+                }
+
+
+
+                Debug.WriteLine("new thread return");
+                Debug.WriteLine("Beggin Sleep");
+                Thread.Sleep(600000);// 10 minutes
+                Debug.WriteLine("End Sleep");
+
+
+
+
+
+
+            }
         }
 
         protected override void OnStop()
         {
-            DBManager.CloseConnection();
+           // DBManager.CloseConnection();
 
             //base.Stop();
         }
+        void newAutoResponderSendMessageToContactListThread(object data)
+        {
+            DataRow rowMessageDetail = (DataRow)data;
+
+            Debug.WriteLine("newAutoResponderSendMessageToContactListThread autoID=" + rowMessageDetail[1].ToString() + " messageID = " + rowMessageDetail[2].ToString());
+            MailServices mailSV = new MailServices();
+            //Thread t = new Thread(GoSendMessagetoAutoResponder);
+            //return;
+            do
+            {
+
+                AutoresponderStatus autoStatus = new AutoresponderStatus();
+                autoStatus.MESSAGEID = int.Parse(rowMessageDetail[2].ToString());
+                autoStatus.AUTOID = int.Parse(rowMessageDetail[1].ToString());
+
+                DataTable autoStatusTable = autoStatus.Select();
+
+                if (autoStatusTable == null || autoStatusTable.Rows.Count == 0)
+                {
+                    //This auto was deleted
+                    // remove this auto out auto-spending table
+                    // remove this auto out the auto-status
+                    return;
+                }
+                else
+                {
+                    int count = 0;
+                    foreach (DataRow row in autoStatusTable.Rows)
+                    {
+                        int autoID = int.Parse(row[1].ToString());
+                        int status = int.Parse(rowMessageDetail[3].ToString());
+                        int emailID = int.Parse(row[2].ToString());
+                        int totalContact = int.Parse(row[4].ToString());
+                        int sumContact = 0;
+                        if (row[5] == DBNull.Value)
+                        {
+                        }
+                        else
+                        {
+                            sumContact = int.Parse(row[5].ToString());
+                        }
+
+                        int autoStatusID = int.Parse(row[0].ToString());
+
+                        // inform auto table started with status =2
+
+                        // Autoresponder_messages autoresponder_message = new Autoresponder_messages();
+                        // autoresponder_message.ID = int.Parse(aU_DE_row[0].ToString());
+                        //autoresponder_message.AUTORESPONDERID = auID;
+                        // autoresponder_message.MESSAGEID = int.Parse(aU_DE_row[2].ToString());
+                        // autoresponder_message.STATUS = 2;
+                        // autoresponder_message.Update();
+
+                        Autoresponder autoresponder = new Autoresponder();
+                        autoresponder.ID = autoID;
+                        DataTable autoTable = autoresponder.Select();
+                        //foreach (DataRow autoRow in autoTable.Rows)
+                        //{
+                        // autoresponder.USERID = int.Parse(autoRow[1].ToString());
+                        // autoresponder.NAME = autoRow[2].ToString();
+                        // autoresponder.DESCRIPTION = autoRow[3].ToString();
+                        // autoresponder.LISTID = int.Parse(autoRow[4].ToString()); ;
+                        // autoresponder.FROMNAME = autoRow[5].ToString();
+                        //autoresponder.FROMEMAIL = autoRow[6].ToString();
+                        // autoresponder.STATUS = 2;// change to started
+                        // autoresponder.MODIFIEDDATE = DateTime.Parse(autoRow[8].ToString());
+                        // autoresponder.Update();
+                        // }
+
+
+                        if (status != 0) // not stop
+                        {
+                            // get message
+                            Messages message = new Messages();
+                            message.ID = emailID;
+                            DataTable dtMessages = message.Select();
+                            String from = "'" + ((DataRow)autoTable.Rows[0])[5].ToString() + "'" + "<" + ((DataRow)autoTable.Rows[0])[6].ToString() + ">";
+                            string subject = "";
+                            string body = "";
+                            foreach (DataRow M_row in dtMessages.Rows)
+                            {
+                                //from = M_row[3].ToString();
+                                subject = M_row[4].ToString();
+                                body = M_row[5].ToString();
+                            }
+                            // Select and send 50 items
+                            AutoresponderPending pending = new AutoresponderPending();
+                            pending.MESSAGEID = emailID;
+                            pending.AUTOID = autoID;
+                            DataTable pendingTable = pending.Select();
+                            List<String> listTo = new List<string>();
+                            foreach (DataRow rowPending in pendingTable.Rows)
+                            {
+                                String email = rowPending[4].ToString();
+                                pending.ID = int.Parse(rowPending[0].ToString());
+                                pending.Delete();
+                                listTo.Add(email);
+                                count++;
+                                if (count > ChilkatEmail.Utils.Constants.emailSentPerTime) break;
+                            }
+                            if (listTo.Count > 0)
+                            {
+                                mailSV.SendHTMLEmail(from, null, null, listTo, subject, body);
+                            }
+                            // remove from pending time;
+
+                            // Update Status table
+                            autoStatus.AUTOID = autoID;
+                            autoStatus.MESSAGEID = emailID;
+
+                            // Check if run out of item
+                            pendingTable = pending.Select();
+                            if (pendingTable.Rows.Count == 0) //last item
+                            {
+                                autoStatus.STATUS = 4;// finish
+                                // inform auto table status = 4
+                                //autoresponder.STATUS = 4;
+
+                                // set status4, enddate= currentDate in auto_message
+
+                                // autoresponder.Update();
+
+                                //Update auto-message table
+
+
+                                Autoresponder_messages au_message = new Autoresponder_messages();
+                                au_message.AUTORESPONDERID = int.Parse(rowMessageDetail[1].ToString());
+                                au_message.MESSAGEID = int.Parse(rowMessageDetail[2].ToString());
+                                DataTable au_message_table = au_message.Select();
+                                foreach (DataRow row1 in au_message_table.Rows)
+                                {
+                                    // Autoresponder_messages autoresponder_message = new Autoresponder_messages();
+                                    au_message.ID = int.Parse(row1[0].ToString());
+                                    au_message.AUTORESPONDERID = int.Parse(row1[1].ToString()); ;
+                                    au_message.MESSAGEID = int.Parse(row1[2].ToString());
+                                    au_message.STATUS = 4;
+
+                                    au_message.ENDDATE = DateTime.Now;
+
+
+                                    // au_message.DURATION = int.Parse(row1[5].ToString());
+                                    au_message.Update();
+                                }
+
+
+                            }
+                            else
+                            {
+                                //autoStatus.STATUS = 1;
+                                //Update countsendContact inauto_status with number send.
+                            }
+                            autoStatus.ID = autoStatusID;
+                            autoStatus.TOTALCONTACT = totalContact;
+                            autoStatus.SUMCONTACTSENT = sumContact + count;
+                            autoStatus.Update();
+
+
+
+                        }
+                    }
+                }
+
+                Thread.Sleep(300000); // 5 minutes
+                bounceMail();
+                Debug.WriteLine("End new thread ");
+            } while (true);
+
+
+        }
+
+        /// <summary>
+        /// Check Endate with current date to see if it passed the milestone.
+        /// </summary>
+        /// <param name="endate"></param>
+        /// <returns></returns>
+        bool checkENDDATEPassedCurrentDate(DateTime endate, int intervaldays)
+        {
+
+            DateTime currentdate = DateTime.Now;
+            endate = endate.AddDays(intervaldays);
+            int result = DateTime.Compare(endate, currentdate);
+
+            if (result > 0)
+                return false;
+            else
+                return true;
+        }
+        public bool SERVICE_TOP = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        private void generate_auto_table_pending()
+        {
+            lock (this)
+            {
+
+                //  int messageID = 0;
+                //1.
+                Autoresponder autoresponder = new Autoresponder();
+                DataTable dtAutoResponder = autoresponder.Select();
+                foreach (DataRow row in dtAutoResponder.Rows)
+                {
+                    int auID = int.Parse(row["ID"].ToString());
+                    //[STATUS] = 0:Stop; 1:just created not init; 2: stated; 3: processing 4: finished
+                    //
+                    int duration = int.Parse(row[8].ToString());
+                    Autoresponder_messages_detail auto_detail = new Autoresponder_messages_detail();
+                    auto_detail.AUTORESPONDERID = auID;
+                    DataTable auto_detail_table = auto_detail.Select();
+                    bool passedEndDate = false;
+                    foreach (DataRow aU_DE_row in auto_detail_table.Rows)
+                    {
+                        String temp_enddate = aU_DE_row[4].ToString();
+                        int status = int.Parse(aU_DE_row[3].ToString());
+                        if (!string.IsNullOrEmpty(temp_enddate))
+                        {
+                            DateTime endDate = DateTime.Parse(aU_DE_row[4].ToString());
+                            passedEndDate = checkENDDATEPassedCurrentDate(endDate, duration);
+                        }
+                        // Check each message in each autoresponder
+                        // if it does not init or finished and passed the time line
+
+                        if (status == 1 || (passedEndDate && status == 4))
+                        {
+                            //Autoresponder_messages autoresponder_message = new Autoresponder_messages();
+                            // autoresponder_message.AUTORESPONDERID = auID;
+
+                            // DataTable dtAutoresponder_message = autoresponder_message.Select();
+                            //foreach (DataRow AM_row in dtAutoresponder_message.Rows)
+                            // {
+                            // int amID = int.Parse(AM_row[2].ToString());
+                            // messageID = amID;
+                            //Messages message = new Messages();
+                            // message.ID = amID;
+                            //DataTable dtMessages = message.Select();
+                            // foreach (DataRow M_row in dtMessages.Rows)
+                            //{
+                            int mID = int.Parse(aU_DE_row[2].ToString());
+                            //3.
+                            Contact_list contactList = new Contact_list();
+                            contactList.LISTID = int.Parse(row[4].ToString());
+                            DataTable dtContactList = contactList.SelectByListID();
+                            int totalContacts = 0;
+                            foreach (DataRow rowContacts in dtContactList.Rows)
+                            {
+                                int contactID = int.Parse(rowContacts[0].ToString());
+                                String email = rowContacts[5].ToString();
+                                // Save to auto-pending table
+                                AutoresponderPending pendingTable = new AutoresponderPending();
+                                pendingTable.AUTOID = auID;
+                                pendingTable.MESSAGEID = mID;
+                                pendingTable.CONTACTID = contactID;
+                                pendingTable.EMAIL = email;
+                                pendingTable.STATUS = 1; //init
+                                pendingTable.Insert();
+                                totalContacts++;
+
+
+                            }
+
+                            //}
+                            //}
+
+                            //autoresponder.ID = int.Parse(row["ID"].ToString());
+                            //autoresponder.USERID = int.Parse(row["USERID"].ToString());
+                            //autoresponder.LISTID = int.Parse(row["LISTID"].ToString());
+                            //autoresponder.NAME = row["NAME"].ToString();
+                            //autoresponder.DESCRIPTION = row["DESCRIPTION"].ToString();
+                            //autoresponder.FROMNAME = row["FROMNAME"].ToString();
+                            //autoresponder.FROMEMAIL = row["FROMEMAIL"].ToString();
+                            // autoresponder.STATUS =   int.Parse(row["STATUS"].ToString());
+                            //autoresponder.MODIFIEDDATE = DateTime.Parse(row["MODIFIEDDATE"].ToString());
+                            // autoresponder.STATUS = 2;
+                            //autoresponder.Update();
+                            // Change status so that we know the message of the auto is processing.
+                            Autoresponder_messages autoresponder_message = new Autoresponder_messages();
+                            autoresponder_message.ID = int.Parse(aU_DE_row[0].ToString());
+                            autoresponder_message.AUTORESPONDERID = auID;
+                            autoresponder_message.MESSAGEID = int.Parse(aU_DE_row[2].ToString());
+                            autoresponder_message.STATUS = 2;
+                            if (aU_DE_row[4] == DBNull.Value)
+                            {
+                                // autoresponder_message.ENDDATE = null;
+                            }
+                            else
+                            {
+                                autoresponder_message.ENDDATE = DateTime.Parse(aU_DE_row[4].ToString());
+                            }
+
+                            //autoresponder_message.DURATION = int.Parse(aU_DE_row[5].ToString());
+                            autoresponder_message.Update();
+
+
+                            // Insert into Autoresponder_Status
+                            AutoresponderStatus autoStatus = new AutoresponderStatus();
+                            autoStatus.AUTOID = autoresponder_message.AUTORESPONDERID;
+                            autoStatus.STATUS = 2;
+                            autoStatus.MESSAGEID = autoresponder_message.MESSAGEID;
+                            autoStatus.TOTALCONTACT = totalContacts;
+                            autoStatus.SUMCONTACTSENT = 0;
+                            autoStatus.Insert();
+
+
+                        }
+
+
+
+                    }
+
+                }
+            }
+
+
+
+
+
+        }
+        void bounceMail()
+        {
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success = mailman.UnlockComponent(ChilkatEmail.Utils.Constants.ChilkatEmailUnlock);
+            mailman.MailHost = ChilkatEmail.Utils.Constants.strSmtpHost;
+            mailman.PopUsername = ChilkatEmail.Utils.Constants.bounceEmailAddress;
+            mailman.MailPort = 110;
+            mailman.PopPassword = ChilkatEmail.Utils.Constants.bounceEmailPassword;
+
+            Chilkat.Bounce bounce = new Chilkat.Bounce();
+            success = bounce.UnlockComponent(ChilkatEmail.Utils.Constants.ChilkatBounceUnlock);
+            if (!success)
+            {
+                Debug.WriteLine(bounce.LastErrorText);
+                return;
+            }
+
+            // Read email from the POP3 server.
+            Chilkat.EmailBundle bundle;
+            bundle = mailman.CopyMail();
+            if (bundle != null)
+            {
+                // Loop over each email...
+                Chilkat.Email email;
+                int i;
+                // bool success;
+                for (i = 0; i < bundle.MessageCount; i++)
+                {
+                    email = bundle.GetEmail(i);
+
+                    String error = "";
+                    // See if this is a bounced email.
+                    // This sets the properties of the Bounce object
+                    success = bounce.ExamineEmail(email);
+                    if (!success)
+                        error="Failed to classify email";
+                    else if (bounce.BounceType == 1)
+                        // Hard bounce, log the email address
+                        error="Hard Bounce: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 2)
+                        // Soft bounce, log the email address
+                        error="Soft Bounce: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 3)
+                        // General bounce, no email address available.
+                        error="General Bounce: No email address";
+                    else if (bounce.BounceType == 4)
+                        // General bounce, log the email address
+                       error="General Bounce: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 5)
+                        // Mail blocked, log the email address
+                       error="Mail Blocked: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 6)
+                        // Auto-reply, log the email address
+                       error="Auto-Reply: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 7)
+                        // Transient (recoverable) Failure, log the email address
+                       error="Transient Failure: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 8)
+                        // Subscribe request, log the email address
+                       error="Subscribe Request: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 9)
+                        // Unsubscribe Request, log the email address
+                       error="Unsubscribe Request: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 10)
+                        // Virus Notification, log the email address
+                       error="Virus Notification: " + bounce.BounceAddress;
+                    else if (bounce.BounceType == 11)
+                        // Suspected bounce.
+                        // This should be rare.  It indicates that the Bounce
+                        // component found strong evidence that this is a bounced
+                        // email, but couldn//t quite recognize everything it
+                        // needed to be 100% sure.  Feel free to notify
+                        // support@chilkatsoft.com regarding emails having this
+                        // bounce type.
+                       error="Suspected Bounce!";
+                    Bounce b = new Bounce();
+                    b.AUTORESPONDERID = 0;
+                    b.MESSAGEID = 0;
+                    b.LISTID = 0;
+                    b.BOUNCEMESSAGE = error;
+                    b.EMAIL = bounce.BounceAddress;
+                    b.DATEBOUNCE = DateTime.Now;
+                    b.Insert();
+                    bundle.RemoveEmail(email);
+                    email = null;
+                }
+                bundle = null;
+            }
+            mailman = null;
+        }
+
+
+        
     }
 }

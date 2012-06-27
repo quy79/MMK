@@ -36,7 +36,7 @@
             this.CanHandleSessionChangeEvent = true;
             this.CanPauseAndContinue = true;
             this.CanShutdown = true;
-            this.ServiceName = "SendingEmails";
+            this.ServiceName = "AutoResponder Service";
 
         }
 
