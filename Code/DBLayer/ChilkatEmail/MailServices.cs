@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ChilkatEmail.Utils;
+
 namespace ChilkatEmail
 {
    public class MailServices
@@ -62,7 +63,7 @@ namespace ChilkatEmail
             if (success != true) return false;
 
             Chilkat.Email email = new Chilkat.Email();
-
+            email.BounceAddress = Constants.bounceEmailAddress;
             email.Subject = subject;
             email.Body = body;
             if (listMailTo!=null && listMailTo.Count > 0)
@@ -81,14 +82,14 @@ namespace ChilkatEmail
             email.From = mailFrom;
             
            
-            mailman.SmtpHost = "localhost";//Constants.strSmtpHost;
-           // if (Constants.strSmtpUser != null && Constants.strSmtpUser.Length > 0)
-           // {
-              //  mailman.SmtpUsername = Constants.strSmtpUser;
-              //  mailman.SmtpPassword = Constants.strSmtpPass;
-           // }
-         
-            //mailman.SmtpPort = iSmtpPort;
+            mailman.SmtpHost = Constants.strSmtpHost;
+            if (Constants.strSmtpUser != null && Constants.strSmtpUser.Length > 0)
+            {
+                mailman.SmtpUsername = Constants.strSmtpUser;
+                mailman.SmtpPassword = Constants.strSmtpPass;
+            }
+
+            mailman.SmtpPort = Constants.iSmtpPort;
             //mailman.StartTLS = startTLS;
             //if (Charset.Length != 0) email.Charset = Charset;
 
@@ -128,7 +129,7 @@ namespace ChilkatEmail
             if (success != true) return false;
 
             Chilkat.Email email = new Chilkat.Email();
-
+            email.BounceAddress = Constants.bounceEmailAddress;
             email.Subject = subject;
             email.SetHtmlBody(htmlBody);
             if (listMailTo != null && listMailTo.Count > 0)
@@ -148,11 +149,11 @@ namespace ChilkatEmail
 
 
             mailman.SmtpHost =  Constants.strSmtpHost;
-           // mailman.SmtpUsername = Constants.strSmtpUser;
-            //mailman.SmtpPassword = Constants.strSmtpPass;
-            //mailman.SmtpPort = Constants.iSmtpPort;
-           // mailman.StartTLS = startTLS;
-            //if (Charset.Length != 0) email.Charset = Charset;
+            mailman.SmtpUsername = Constants.strSmtpUser;
+            mailman.SmtpPassword = Constants.strSmtpPass;
+            mailman.SmtpPort = Constants.iSmtpPort;
+           /*mailman.StartTLS = startTLS;
+            if (Charset.Length != 0) email.Charset = Charset;*/
 
             success = mailman.SendEmail(email);
             if (success != true) return false;
