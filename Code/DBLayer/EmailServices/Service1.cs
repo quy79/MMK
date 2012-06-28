@@ -28,82 +28,92 @@ namespace EmailServices
 
         protected override void OnStart(string[] args)
         {
-            //base.OnStart(args);
+            base.OnStart(args);
 
-            ArrayList list = new ArrayList();
-            while (SERVICE_TOP)
+            
+           // while (/*SERVICE_TO*/ true)
             {
-                Debug.WriteLine("Enter Do loop all auto responder and check each auto responder");
-                Debug.WriteLine("Check and generate table auto-pending");
-
-                generate_auto_table_pending();
-
-                Debug.WriteLine("Check and generate table auto-pending: DONE");
-                Autoresponder autoresponder = new Autoresponder();
-                DataTable dtAutoResponder = autoresponder.Select();
-                foreach (DataRow row in dtAutoResponder.Rows)
-                {
-                    int auID = int.Parse(row["ID"].ToString());
-                    //[STATUS] = 0:Stop; 1:just created not init; 2: stated; 4: finished
-                    //
-                    int duration = int.Parse(row[8].ToString());
-                    Autoresponder_messages_detail auto_detail = new Autoresponder_messages_detail();
-                    auto_detail.AUTORESPONDERID = auID;
-                    DataTable auto_detail_table = auto_detail.Select();
-                    bool passedEndDate = false;
-                    foreach (DataRow aU_DE_row in auto_detail_table.Rows)
-                    {
-                        String temp_enddate = aU_DE_row[4].ToString();
-                        int status = int.Parse(aU_DE_row[3].ToString());
-                        if (!string.IsNullOrEmpty(temp_enddate))
-                        {
-                            DateTime endDate = DateTime.Parse(aU_DE_row[4].ToString());
-                            passedEndDate = checkENDDATEPassedCurrentDate(endDate, duration);
-                        }
-                        // Check each message in each autoresponder
-                        // if it does not init or finished and passed the time line
-
-                        if (status == 2 || (passedEndDate && status == 4))
-                        {
-                            //Create thead
-                            Thread t = new Thread(newAutoResponderSendMessageToContactListThread);
-                            t.Start(aU_DE_row);
-                            list.Add(t);
-                        }
-                        // check available thread
-                        for (int i = list.Count; i > 0; i--)
-                        {
-                            Thread item = (Thread)list[i - 1];
-                            if (item == null || !item.IsAlive)
-                            {
-                                Thread t = new Thread(newAutoResponderSendMessageToContactListThread);
-                                t.Start(aU_DE_row);
-                                list.Add(t);
-                                list.RemoveAt(i - 1);
-                            }
-                            else
-                            {
-                                Debug.WriteLine("new thread is running");
-                            }
-                        }
-
-
-                    }
-                }
-
-
-
-                Debug.WriteLine("new thread return");
-                Debug.WriteLine("Beggin Sleep");
-                Thread.Sleep(600000);// 10 minutes
-                Debug.WriteLine("End Sleep");
-
-
-
-
-
-
+                Debug.WriteLine("start auto responder");
+                Thread.Sleep(30000);
+                DBManager.initConnection();
+                Thread t = new Thread(OnStartMain);
+                t.Start();
+                Debug.WriteLine("end onstart");
             }
+        }
+        protected  void OnStartMain()
+        {
+          
+             ArrayList list = new ArrayList();
+             while (SERVICE_TOP)
+             {
+                 Debug.WriteLine("Enter Do loop all auto responder and check each auto responder");
+                 Debug.WriteLine("Check and generate table auto-pending");
+
+                 generate_auto_table_pending();
+
+                 Debug.WriteLine("Check and generate table auto-pending: DONE");
+                 Autoresponder autoresponder = new Autoresponder();
+                 DataTable dtAutoResponder = autoresponder.Select();
+                 foreach (DataRow row in dtAutoResponder.Rows)
+                 {
+                     int auID = int.Parse(row["ID"].ToString());
+                     //[STATUS] = 0:Stop; 1:just created not init; 2: stated; 4: finished
+                     //
+                     int duration = int.Parse(row[8].ToString());
+                     Autoresponder_messages_detail auto_detail = new Autoresponder_messages_detail();
+                     auto_detail.AUTORESPONDERID = auID;
+                     DataTable auto_detail_table = auto_detail.Select();
+                     bool passedEndDate = false;
+                     foreach (DataRow aU_DE_row in auto_detail_table.Rows)
+                     {
+                         String temp_enddate = aU_DE_row[4].ToString();
+                         int status = int.Parse(aU_DE_row[3].ToString());
+                         if (!string.IsNullOrEmpty(temp_enddate))
+                         {
+                             DateTime endDate = DateTime.Parse(aU_DE_row[4].ToString());
+                             passedEndDate = checkENDDATEPassedCurrentDate(endDate, duration);
+                         }
+                         // Check each message in each autoresponder
+                         // if it does not init or finished and passed the time line
+
+                         if (status == 2 || (passedEndDate && status == 4))
+                         {
+                             //Create thead
+                             Thread t = new Thread(newAutoResponderSendMessageToContactListThread);
+                             t.Start(aU_DE_row);
+                             list.Add(t);
+                         }
+                         // check available thread
+                         for (int i = list.Count; i > 0; i--)
+                         {
+                             Thread item = (Thread)list[i - 1];
+                             if (item == null || !item.IsAlive)
+                             {
+                                 Thread t = new Thread(newAutoResponderSendMessageToContactListThread);
+                                 t.Start(aU_DE_row);
+                                 list.Add(t);
+                                 list.RemoveAt(i - 1);
+                             }
+                             else
+                             {
+                                 Debug.WriteLine("new thread is running");
+                             }
+                         }
+
+
+                     }
+                 }
+
+
+
+                 Debug.WriteLine("new thread return");
+                 Debug.WriteLine("Beggin Sleep");
+                 Thread.Sleep(600000);
+                 Debug.WriteLine("End Sleep");
+
+             }
+            
         }
 
         protected override void OnStop()
@@ -412,6 +422,7 @@ namespace EmailServices
                             autoStatus.MESSAGEID = autoresponder_message.MESSAGEID;
                             autoStatus.TOTALCONTACT = totalContacts;
                             autoStatus.SUMCONTACTSENT = 0;
+                            autoStatus.Delete();
                             autoStatus.Insert();
 
 

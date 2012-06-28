@@ -276,13 +276,45 @@ namespace DatabaseLayer
 	{
 		try
 		{
-			SqlParameter[] Params = { new SqlParameter("@ID",ID) };
-			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_STATUS_Delete",Params);
-			if (result > 0)
-			{
-				return true;
-			}
-			return false;
+            lock (this)
+            {
+                SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@AUTOID",SqlDbType.Int),
+                new SqlParameter("@MESSAGEID",SqlDbType.Int)
+				 
+			};
+
+                if (AUTOID != null)
+                {
+                    Params[0].Value = AUTOID;
+                }
+                else
+                {
+                    Params[0].Value = DBNull.Value;
+                }
+
+
+
+
+                if (MESSAGEID != null)
+                {
+                    Params[1].Value = MESSAGEID;
+                }
+                else
+                {
+                    Params[1].Value = DBNull.Value;
+                }
+
+
+
+                int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_STATUS_Delete", Params);
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
 		}
 		catch(Exception ex)
 		{

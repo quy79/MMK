@@ -39,9 +39,9 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "Sending Emails service.";
-            this.serviceInstaller1.DisplayName = "Sending Emails";
-            this.serviceInstaller1.ServiceName = "SendingEmails";
+            this.serviceInstaller1.Description = "AutoResponder Engine";
+            this.serviceInstaller1.DisplayName = "AutoResponder Engine";
+            this.serviceInstaller1.ServiceName = "AutoResponder Services";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             this.serviceInstaller1.Committed += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_Committed);
             // 
