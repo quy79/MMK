@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createTextEmail.aspx.cs" Inherits="EmailSite.createTextEmail" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="previewAutoHTMLEmail.aspx.cs" Inherits="EmailSite.previewAutoHTMLEmail" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
@@ -108,56 +108,64 @@
     <title>OptMailMarketing : Home</title>	
 	</head>
 	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-    <form id="formID" class="formular" runat="server">
+    
     <div id="main">
 	    <div class="page-container">
-        	  <uc1:logo ID="logo" runat="server" />
-			 <uc2:navigation ID="navigation" MenuType="emails" runat="server" />
+             <uc1:logo ID="logo" runat="server" />
+			 <uc2:navigation ID="navigation" MenuType="contacts" runat="server" />
             
             <div id="content-main">
             
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
-                    <h2>Create an Email Message</h2>
-                    </div>  
-                    <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
-                                     
-                    <div class="create-message-step1-container1">
-                    <br/>
-           	 		<!--<form id="formID" class="formular" method="post" action="">-->
-                        <span>From Email Address : </span><br/>
-                        <asp:TextBox ID="txtFromEmail" CssClass="validate[required,custom[email]] text-input" runat="server"></asp:TextBox>
+                    <h2>Create an Autoresonder Message for "<%=strListName%>" </h2>| Preview Message
+                    </div>                    
+                    <div class="create-message-step1-container3">
+                    	<div class="infobox1">
                         <br/>
-                        <span>Email Subject : </span><br/>
-                        <asp:TextBox ID="txtSubject" CssClass="validate[required] text-input" runat="server"></asp:TextBox>
-                        <br/>
-						<span>Message Name : <br/>
-                        (not displayed to yours contacts)                 
-                        </span><br/>
-                        <asp:TextBox ID="txtMsgName" CssClass="validate[required] text-input" runat="server"></asp:TextBox><br/>
-		                <asp:TextBox ID="txtMsgBody" CssClass="validate[required] text-input" 
-                            runat="server" TextMode="MultiLine"></asp:TextBox>
-						
+                        <!--<form id="formID" class="formular" method="post" action="">-->
+                        <span class="segment-title">From Email Address : </span><br/>                       
+                        <span class="segment-content">
+                            <asp:Label ID="lblFrom" runat="server" Text="Label"></asp:Label></span><br/><br/>
+                        <span class="segment-title">Email Subject : </span><br/>
+                        <span class="segment-content"><asp:Label ID="lblSubject" runat="server" Text="Label"></asp:Label> </span><br/><br/>
+                        <span class="segment-title">Message Name : </span><br/>
+                        <span class="segment-content"><asp:Label ID="lblMsgName" runat="server" Text="Label"></asp:Label></span><br/><br/>                                        
+                        <span class="segment-title">This message will be sent to the following contacts list: </span><br/>
+                        <span class="segment-content">
+                        <a href=""><asp:Label ID="lblListName" runat="server" Text="Label"></asp:Label></a>
+                        </span><br/><br/>
 
-						<div style="position: relative; float: left; margin-top: 20px; width: 400px;">                        	
-                            <asp:Button ID="btnSpam" CssClass="button" runat="server" Text="Spam Check" 
-                                onclick="btnSpam_Click" />                            
-                            <a class="test-message" href="#test-message"><span>Test message</span></a>
-
-                        </div>                       
+                         
+                        </div>
                         
-                        <asp:Button ID="btnSubmit" CssClass="submit1" runat="server" 
-                            Text="Proceed Send" onclick="btnSubmit_Click" />
-                        <!--
-                        <div class="buttonwrapper">
-<a class="boldbuttons" href="http://www.dynamicdrive.com/style/"><span>Spam Check</span></a>
-<span>&nbsp;&nbsp;&nbsp;</span><a class="boldbuttons" href="http://www.dynamicdrive.com/style/"><span>Send Test Message</span></a>
-</div>-->
+		                <p>
+                        <span class="segment-title">Message content : </span><br/>
+                            
+                            <br/>
+                            <asp:Label ID="lblMsgContent" runat="server" Text=""></asp:Label>
+                        </p>
+						
+						
+                        
+                        <div class="autoresponder-bottom">
+                        <form id="formID" class="formular" runat="server">
+                            <asp:Button ID="btnSave" runat="server" Text="Save Message" CssClass="submit3" 
+                                onclick="btnSave_Click"  />
+                      
+                           <div style="display: inline-block; margin: 0 0; padding: 2px 20px;  float: right; width: 200px;">
+                                  <asp:Button ID="btnBack" runat="server" Text="Back to edit Message" 
+                                      CssClass="common-button" onclick="btnBack_Click" /></div>
+
+                                      <asp:HiddenField ID="hdAutoID" runat="server" />
+                            <asp:HiddenField ID="hdMsgID" runat="server" />
+                          </form>     
+                          
+                    </div> 
+                    <div class="segment-bottom">
+						<p align="right">(※)cancel will delete the message's saved draft.</p>
                     </div>
-					<!--</form>-->
-                    
-                    
 
 
                         
@@ -191,29 +199,11 @@
 
     
     </div>
-
-
-	
+</div>
+            
+          
+ 
     
-    <div id="test-message" class="test-message-popup" >
-        <h2><font color="#FFFFFF">Send test message</font></h2>
-        <a href="#" class="closebtn"><img src="img/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <span name="testform" class="test_message" >
-                <fieldset class="textbox">
-            	
-                <label>
-                    <asp:TextBox ID="txtToEmail" autocomplete="on" placeholder="Email address" runat="server"></asp:TextBox>
-                </label>
-                
-<!--                <button class="submit button" type="button" id="btnPopupTxtSend">Send</button> -->
-                <asp:Button ID="btnPopupTxtSend" CssClass="submit button" runat="server" Text="Send"  onclick="btnPopupSend_Click"
-                        />
-                
-                <!--  onclick="btnPopupSend_Click" -->
-               
-                </fieldset>
-          </span>
-		</div>
-</form>
+
 	</body>
 </html>

@@ -17,9 +17,13 @@ namespace EmailSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Utils.CheckSecurity(Session, Response);
-            if (!IsPostBack) LoadData();
-            BindPaging();
+            try
+            {
+                Utils.CheckSecurity(Session, Response);
+                if (!IsPostBack) LoadData();
+                BindPaging();
+            }
+            catch { }
         }
 
         private void LoadData()

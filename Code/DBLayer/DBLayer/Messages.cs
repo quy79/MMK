@@ -23,7 +23,7 @@ namespace DatabaseLayer
 	private string _SUBJECT;
 	private string _BODY;
 	private string _WEBPAGE;
-	private bool _TYPE;
+	private int _TYPE;
 	private int _STATUS;
 	private System.DateTime _MODIFIEDDATE;
 	 Messages  objclsMESSAGES;
@@ -65,7 +65,7 @@ namespace DatabaseLayer
 		get { return _WEBPAGE; }
 		set { _WEBPAGE = value; }
 	}
-	public bool TYPE
+	public int TYPE
 	{ 
 		get { return _TYPE; }
 		set { _TYPE = value; }
@@ -83,6 +83,71 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
+
+    public DataTable SelectAutoMsgByID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",SqlDbType.Int)
+			};
+
+
+            Params[0].Value = ID;
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_MESSAGES_INAUTO_SelectByID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null; //throw new Exception(ex.Message);
+        }
+    }
+    public DataTable SelectByID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",SqlDbType.Int)
+			};
+
+
+            Params[0].Value = ID;
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_MESSAGES_SelectByID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null; //throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable SelectByUserID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",SqlDbType.Int)
+			};
+
+
+            Params[0].Value = USERID;
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_MESSAGES_SelectByUserID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null; //throw new Exception(ex.Message);
+        }
+    }
 	public DataTable Select()
 	{
 		DataSet ds;
@@ -97,7 +162,7 @@ namespace DatabaseLayer
 				new SqlParameter("@SUBJECT",SqlDbType.NVarChar),
 				new SqlParameter("@BODY",SqlDbType.Text),
 				new SqlParameter("@WEBPAGE",SqlDbType.NVarChar),
-				new SqlParameter("@TYPE",SqlDbType.Bit),
+				new SqlParameter("@TYPE",SqlDbType.Int),
 				new SqlParameter("@STATUS",SqlDbType.Int),
 				new SqlParameter("@MODIFIEDDATE",SqlDbType.DateTime) 
 			};
@@ -202,7 +267,7 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
-	public bool Insert()
+	public int Insert()
 	{
 		try
 		{
@@ -213,21 +278,19 @@ namespace DatabaseLayer
 				new SqlParameter("@FROM",FROM),
 				new SqlParameter("@SUBJECT",SUBJECT),
 				new SqlParameter("@BODY",BODY),
-				new SqlParameter("@WEBPAGE",WEBPAGE),
 				new SqlParameter("@TYPE",TYPE),
-				new SqlParameter("@STATUS",STATUS),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@STATUS",STATUS)
 			};
-			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_MESSAGES_Insert",Params);
-			if (result > 0)
-			{
-				return true;
-			}
-			return false;
+			
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_MESSAGES_Insert", Params);
+            
+            if (ds.Tables.Count > 0) return Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+            return -1;
+			
 		}
 		catch(Exception ex)
 		{
-			throw new Exception(ex.Message);
+            return -1;
 		}
 	}
 	public bool Update()
@@ -259,6 +322,34 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+
+    public bool Update2()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",ID),
+				new SqlParameter("@USERID",USERID),
+				new SqlParameter("@MESSAGENAME",MESSAGENAME),
+				new SqlParameter("@FROM",FROM),
+				new SqlParameter("@SUBJECT",SUBJECT),
+				new SqlParameter("@BODY",BODY),
+				new SqlParameter("@TYPE",TYPE)
+			};
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_MESSAGES_Update2", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
 	public bool Delete()
 	{
 		try

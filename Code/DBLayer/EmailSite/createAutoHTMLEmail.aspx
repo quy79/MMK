@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createTextEmail.aspx.cs" Inherits="EmailSite.createTextEmail" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAutoHTMLEmail.aspx.cs" Inherits="EmailSite.createAutoHTMLEmail" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
@@ -21,17 +21,24 @@
 <link rel="stylesheet" href="./ui/css/globalFormStyle.css" type="text/css"/>
 <link rel="stylesheet" href="./ui/css/template.css" type="text/css"/>
 <link rel="stylesheet" href="./ui/css/dlg.css" type="text/css"/>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="./ui/css/ui.all.css" type="text/css" media="screen" />
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="./ui/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 <script src="./ui/js/jquery.ValidationEngine-en.js" type="text/javascript" charset="utf-8"></script>
 <script src="./ui/js/jquery.ValidationEngine.js" type="text/javascript" charset="utf-8"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script src="./ui/js/dlg.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script src="./ui/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="./ui/js/sample.js" type="text/javascript"></script>
+<link href="./ui/css/sample.css" rel="stylesheet" type="text/css" />
+
+
+<script src="./ui/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="./ui/js/sample.js" type="text/javascript"></script>
+<link href="./ui/css/sample.css" rel="stylesheet" type="text/css" />
     
     
         
@@ -42,6 +49,7 @@
 	        jQuery("#formID").validationEngine();
 
 	    });
+
 
 	</script>
     
@@ -111,44 +119,65 @@
     <form id="formID" class="formular" runat="server">
     <div id="main">
 	    <div class="page-container">
-        	  <uc1:logo ID="logo" runat="server" />
-			 <uc2:navigation ID="navigation" MenuType="emails" runat="server" />
+        	 <uc1:logo ID="logo" runat="server" />
+			 <uc2:navigation ID="navigation" MenuType="contacts" runat="server" />
             
             <div id="content-main">
             
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
-                    <h2>Create an Email Message</h2>
-                    </div>  
-                    <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
-                                     
-                    <div class="create-message-step1-container1">
+                    <h2>Create an Autoresonder Message for "<%=strListName%>"</h2>
+                    </div>               
+                    <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>     
+                    <div class="create-message-step1-container3">
                     <br/>
            	 		<!--<form id="formID" class="formular" method="post" action="">-->
                         <span>From Email Address : </span><br/>
-                        <asp:TextBox ID="txtFromEmail" CssClass="validate[required,custom[email]] text-input" runat="server"></asp:TextBox>
-                        <br/>
+                        <asp:TextBox ID="txtFromEmail" CssClass="validate[required,custom[email]] text-input" runat="server"></asp:TextBox><br/>
                         <span>Email Subject : </span><br/>
-                        <asp:TextBox ID="txtSubject" CssClass="validate[required] text-input" runat="server"></asp:TextBox>
-                        <br/>
+                        <asp:TextBox ID="txtSubject" CssClass="validate[required] text-input" runat="server"></asp:TextBox><br/>
 						<span>Message Name : <br/>
                         (not displayed to yours contacts)                 
                         </span><br/>
                         <asp:TextBox ID="txtMsgName" CssClass="validate[required] text-input" runat="server"></asp:TextBox><br/>
-		                <asp:TextBox ID="txtMsgBody" CssClass="validate[required] text-input" 
+						<!--
+						<textarea class="validate[required] text-input" rows="30" cols="50" name="message_body" id="message_body" ></textarea>
+						-->
+                        <asp:TextBox ID="txtMsgBody" CssClass="validate[required] text-input" 
                             runat="server" TextMode="MultiLine"></asp:TextBox>
-						
-
-						<div style="position: relative; float: left; margin-top: 20px; width: 400px;">                        	
-                            <asp:Button ID="btnSpam" CssClass="button" runat="server" Text="Spam Check" 
-                                onclick="btnSpam_Click" />                            
-                            <a class="test-message" href="#test-message"><span>Test message</span></a>
-
-                        </div>                       
                         
-                        <asp:Button ID="btnSubmit" CssClass="submit1" runat="server" 
-                            Text="Proceed Send" onclick="btnSubmit_Click" />
+						<script type="text/javascript">
+                        //<![CDATA[
+
+						    CKEDITOR.replace('txtMsgBody',
+                                {
+                                    fullPage: true,
+                                    extraPlugins: 'docprops',
+                                    height: "400", width: "100%"
+                                });
+            
+                        //]]>
+                        </script>
+						<div style="position: relative; float: left; margin-top: 20px; width: 400px;">
+                        	 <asp:Button ID="btnSpam" CssClass="button" runat="server" Text="Spam Check" 
+                                 onclick="btnSpam_Click" />
+                            
+                            
+							
+
+                            <asp:HiddenField ID="hdAutoID" runat="server" />
+
+                            <asp:HiddenField ID="hdMsgID" runat="server" />
+
+                            
+							
+
+                        </div>
+                        
+                        <asp:Button ID="btnSubmit" CssClass="submit1" runat="server"  Text="Save and Preview" onclick="btnSubmit_Click" />
+                      
+                        
                         <!--
                         <div class="buttonwrapper">
 <a class="boldbuttons" href="http://www.dynamicdrive.com/style/"><span>Spam Check</span></a>
@@ -173,13 +202,13 @@
                 
 
             
-            </div>     
+            </div>
             <!-- BEGIN: Footer -->
 			<div id="footer">
             
             </div>
             
-            <div class="copyright">Copyright © 2012 Optlynx, Inc.</div>
+            <div class="copyright">Copyright © 2012 Optlynx, Inc. Inc.</div>
             
 
 
@@ -191,29 +220,45 @@
 
     
     </div>
-
-
+</div>
+            
+          
+            
+    	</div>
+	</div>
 	
-    
-    <div id="test-message" class="test-message-popup" >
-        <h2><font color="#FFFFFF">Send test message</font></h2>
-        <a href="#" class="closebtn"><img src="img/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <span name="testform" class="test_message" >
-                <fieldset class="textbox">
-            	
-                <label>
-                    <asp:TextBox ID="txtToEmail" autocomplete="on" placeholder="Email address" runat="server"></asp:TextBox>
-                </label>
-                
-<!--                <button class="submit button" type="button" id="btnPopupTxtSend">Send</button> -->
-                <asp:Button ID="btnPopupTxtSend" CssClass="submit button" runat="server" Text="Send"  onclick="btnPopupSend_Click"
-                        />
-                
-                <!--  onclick="btnPopupSend_Click" -->
-               
-                </fieldset>
-          </span>
-		</div>
+
+	        
+		<!--
+		<ul id="menu">
+			<li>
+		    <a href="">Home</a></li> 
+		    <li><a href=""><img src="img/emails.gif"/>&nbsp;&nbsp;Emails</a> 
+		      <ul>
+
+		      	<li><a href="">Create new message</a></li>
+		        <li><a href="">Sent mssages</a></li> 
+		        <li><a href="">Pending messages</a></li> 
+		      </ul> 
+		    </li> 
+		    <li><a href=""><img src="img/contacts.gif"/>&nbsp;&nbsp;Contacts List</a> 
+		      <ul> 
+		        <li><a href="">Create new list</a></li> 
+		        <li><a href="">Browse contacts</a></li> 
+		      </ul> 
+		    </li>
+
+		    <li><a href="">Tracking & Report</a> 
+		      <ul> 
+		        <li><a href="">Tracking last message</a></li> 
+		        <li><a href="">Autoresponders</a></li> 
+		      </ul> 
+		    </li> 
+		</ul>	
+		-->
+	
+
+
 </form>
 	</body>
 </html>

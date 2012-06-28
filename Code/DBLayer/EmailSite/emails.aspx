@@ -7,7 +7,7 @@
 <html>
 <uc3:headerHTML ID="headerHTML1" Title="Email" runat="server" />
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-    
+    <form  runat="server">
     <div id="main">
 	    <div class="page-container">
              <uc1:logo ID="logo" runat="server" />
@@ -66,10 +66,10 @@
                             	 <div id="emails-navcontainer">
                                     <ul id="emails-navlist">
                                         <li>
-                                        	<a href="" class=""><div class="create-autoresponders">Create an Autoresponder</div></a>
+                                        	<a href="createAutoresponder.aspx" class=""><div class="create-autoresponders">Create an Autoresponder</div></a>
                                         </li>
                                         <li>
-                                        	<a href="" class=""><div class="my-autoresponders">My Autoresponders</div></a>
+                                        	<a href="myAutoresponders.aspx" class=""><div class="my-autoresponders">My Autoresponders</div></a>
                                         </li>
 
 
@@ -88,328 +88,114 @@
                 	<br/><br/>
                     <div class="message-list-bottom">
                         	<div class="messages-filter">
-                            	<form name="messages_filter_frm" id="messages_filter_frm">
-                                Show : &nbsp;
-                                <select name="rowspage">
-                                	<option value="0" selected>All</option>
-                                    <option value="1">Successful sent</option>
-                                    <option value="2">Failed</option>
-                                    <option value="3">Pending</option>                                    
-                                </select> Messages
-                                </form>
+                            	
+                                
                         	</div>
                             <div class="messages-stat">
-                            	Total 150 messages :&nbsp;&nbsp;200 successful sent&nbsp;&nbsp;|&nbsp;&nbsp;50 failed&nbsp;&nbsp;|&nbsp;&nbsp;150 pending
+                            	Total <asp:Label ID="lblTotalMsgs" runat="server" Text="0"></asp:Label> messages
                             </div>
                         </div>
-                	<div class="message-list" id="message-list">
-                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                              <td>
-                                  <table class="contact-grid" bgcolor="#ffffff" width="100%" border="0" cellspacing="1" cellpadding="1">
-                                    <tr>
-                                      <th bgcolor="#95949b" width="10%" align="center">Message ID</th>
-                                      <th bgcolor="#95949b" width="25%" align="center">Message Name</th>
-                                      <th bgcolor="#95949b" width="15%" align="center">Status</th>
-                                      <th bgcolor="#95949b" width="20%" align="center">Target List</th>
-                                      <th bgcolor="#95949b" width="10%" align="center">Created date</th>
-                                      <th bgcolor="#95949b" width="20%" align="center">Action</th>
+                	 <asp:Panel ID="pnlGrid" runat="server">
+                        <div class="message-list" id="message-list">
+                            <asp:GridView ID="grvList" 
+                                CssClass="contact-grid" BackColor="White" Width="100%" CellPadding="1" 
+                                CellSpacing="1" BorderWidth="0px" GridLines="None"
+                                   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
+                                runat="server"  AutoGenerateColumns ="False" 
+                                onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" AllowPaging="True" 
+                                 PageSize="20" 
+                               >
+                                
+                                <AlternatingRowStyle BackColor="#D5D6D9" />
+                                
+                                <Columns>                               
+                                   <asp:TemplateField HeaderText="Message ID">
+                                        <ItemTemplate>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "ID")%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="10%"  />
+                                    </asp:TemplateField>
 
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0001</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-failed-text">failed</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-pending-text">pending...</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1" bgcolor="#d5d6d9">msg0002</td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1" bgcolor="#d5d6d9"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" bgcolor="#d5d6d9" align="center">2012-05-22</td>
-                                      <td class="r1" bgcolor="#d5d6d9">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1">msg0003</td>
-                                      <td class="r1"><a href="" >text text text text text text</a></td>
-                                      <td class="r1" align="center"><span class="status-success-text">successful sent</span></td>
-                                      <td class="r1"><a href="" >Contacts list #1</a></td>
-                                      <td class="r1" align="center">2012-05-22</td>
-                                      <td class="r1">
-											<table class="message-action">
-                                            	<tr>
-                                                	<td width="33%"><a href="">Edit</a></td>
-                                                    <td width="34%"><a href="">Re-use</a></td>
-                                                    <td width="33%"><a href="">Delete</a></td>
-                                                </tr>
-                                            </table>
-                                      </td>
-                                    </tr>
+                                    <asp:TemplateField HeaderText="Message Name">
+                                        <ItemTemplate>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "MESSAGENAME")%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="30%"  />
+                                    </asp:TemplateField>
 
-                                  </table>
-                              </td>
-                            </tr>
-                          </table>
-                          
+
+
+                                     <asp:TemplateField HeaderText="Target List">
+                                        <ItemTemplate>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="25%"  />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Create Date">
+                                        <ItemTemplate>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "MODIFIEDDATE")%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="10%"  />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Action">
+                                        <ItemTemplate>
+                                           <table class="message-action">
+                                            	<tr>
+                                                	<td width="50%"><a href=editMessage.aspx?id='<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Edit</a></td>
+                                                    <td width="50%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >Delete</asp:LinkButton ></td>
+                                                </tr>
+                                            </table>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="20%"  />
+                                    </asp:TemplateField>
+
+                                </Columns>
+                                
+<HeaderStyle BackColor="#95949B"></HeaderStyle>
+
+                                <PagerSettings Visible="False" />
+
+<RowStyle CssClass="r1"></RowStyle>
+                                
+                            </asp:GridView>                          
                         </div>
                         <div class="message-list-bottom">
                         	<div class="list-display-setting">
-                            	<form name="list_setting_frm" id="list_setting_frm">
+                            	
                                 Display&nbsp;
-                                <select name="rowspage">
-                                	<option value="20" selected>20</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>                                    
-                                </select> messages / page
-                                </form>
+                                 <asp:DropDownList ID="ddlRowPage" runat="server" AutoPostBack=true 
+                                    onselectedindexchanged="ddlRowPage_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem Selected="True">20</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                </asp:DropDownList>
+                                 lists / page
+                                
                         	</div>
                             <div class="pagination">
-                            	<div class="PgCounter">Page 1/12  <span class="paging">1</span> <a title="201 - 400" href="javascript:{}" onclick="load_pg(24780,200,2)">2</a>  <a title="401 - 600" href="javascript:{}" onclick="load_pg(24780,200,3)">3</a>  <a title="601 - 800" href="javascript:{}" onclick="load_pg(24780,200,4)">4</a>  <a title="601 - 800" href="javascript:{}" onclick="load_pg(24780,200,11)">11</a>  <a title="201 - 400" href="javascript:{}" onclick="load_pg(24780,200,2)">»</a> <a title="24600 - 24780" href="javascript:{}" onclick="load_pg(24780,200,124)">».</a></div>
+                            	<div class="PgCounter">
+                                   Page <asp:Label ID="lblCurrentPage" runat="server" Text="Label"></asp:Label>/<asp:Label ID="lblTotalPages" runat="server" Text="Label"></asp:Label> 
+                                   <asp:LinkButton ID="first" runat="server" Text="<<"  CausesValidation="false" 
+                                        onclick="first_Click"></asp:LinkButton>
+                                   <asp:LinkButton ID="prev" runat="server" Text="<"  CausesValidation="false" 
+                                        onclick="prev_Click"></asp:LinkButton>
+                                   <asp:Label ID="lblPaging" runat="server"></asp:Label>
+
+                                   <asp:LinkButton ID="next" runat="server" Text=">" CausesValidation="false" 
+                                        onclick="next_Click" ></asp:LinkButton>  
+                                   <asp:LinkButton ID="last" runat="server" Text=">>"  CausesValidation="false" 
+                                        onclick="last_Click"></asp:LinkButton>
+
+                                    <input type="hidden" value="1" id="CurrentPage" runat="server"/>
+                                    <input type="hidden" id="TotalSize" runat="server"/>
+                                    <input type="hidden" id="TotalPages" runat="server"/>
+                                </div>    
                             </div>
                         </div>
+                       </asp:Panel>
                         
                 </div>
 
@@ -425,5 +211,6 @@
             
     	</div>
 	</div>
+    </form>
 	</body>
 </html>

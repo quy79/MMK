@@ -29,7 +29,7 @@ namespace EmailSite
                 System.Data.DataTable dbTable =  objList.SelectByID();
                 if (dbTable.Rows.Count > 0) lblListName.Text = dbTable.Rows[0]["LISTNAME"].ToString();
 
-                //lblMsgBody.Text = objMsg.MsgBody;
+                
             }
         }
 

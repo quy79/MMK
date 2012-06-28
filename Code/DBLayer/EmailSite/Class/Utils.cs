@@ -13,6 +13,13 @@ namespace EmailSite
         {
             if (Session["username"] == null) Response.Redirect("login.aspx");
         }
+
+        public static string ShowMessage(string msg, bool isError)
+        {
+            string strMsg = "<div class=\"create-message-step1-container3\"><div class=\"infobox3\">"+msg+"</div></div>";
+            if (isError) strMsg = "<div class=\"create-message-step1-container3\"><div class=\"infobox4\">Error :<br/><div style=\"clear: both; height: auto; position: relative; color: red; font-size: 13px;\">" + msg + "</div></div></div>";
+            return strMsg;
+        }
     }
 
     public class TextMessage

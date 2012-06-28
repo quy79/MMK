@@ -12,7 +12,7 @@ namespace EmailSite
 {
     public partial class createTextEmail : System.Web.UI.Page
     {
-        private delegate void CheckMail();
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             Utils.CheckSecurity(Session, Response);
@@ -58,48 +58,22 @@ namespace EmailSite
 
             bool result = mailServices.SendEmail(mailFrom, listMailTo, listMailCC, listMailBCC, txtSubject.Text, txtMsgBody.Text);
 
-            if (result)
-            {
-                string alertmessage = "This mail can send.";
-                createTextEmail.CreateMessageAlert(this, alertmessage, "alertKey");
-            }
+            if (result) lblMsg.Text = Utils.ShowMessage("This mail can send.", false);
+            else lblMsg.Text = Utils.ShowMessage("This mail cannot send.", true);
+                
         }
 
-        public static void CreateMessageAlert(System.Web.UI.Page senderPage,
-                      string alertMsg, string alertKey)
-        {
-            string strScript = "<script language=JavaScript>alert('" +
-                               alertMsg + "')</script>";
-
-            if (!(senderPage.IsStartupScriptRegistered(alertKey)))
-                senderPage.RegisterStartupScript(alertKey, strScript);
-        }
+        
 
         protected void btnSpam_Click(object sender, EventArgs e)
         {
-            CheckMail myAction = new CheckMail(CheckAction);
-            //invoke it asynchrnously, control passes to next statement
-            myAction.BeginInvoke(null, null);
-        }
-
-        void CheckAction()
-        {
             SpamcheckServices spamcheck = new SpamcheckServices();
             bool isSpam = spamcheck.SpamHTMLChecking(txtFromEmail.Text);
-            //spamcheck.SpamTextBeginChecking(txtFromEmail.Text);
-            //spamcheck.CheckSpamCompleted += new SpamcheckServices.XMLSpamPareCompletedEventHandler(spamcheck_CheckSpamCompleted);
-        }
-        void spamcheck_CheckSpamCompleted(float spamRawCore, float spamCoreDetail, String spamDescription, string spamDetailDescription)
-        {
-            if (spamRawCore > 4)
-            {
-                createTextEmail.CreateMessageAlert(this, "This is a spam", "alertKey");
-            }
-            else
-            {
-                createTextEmail.CreateMessageAlert(this, "this message is not spam", "alertKey");
-            }
+            if (isSpam) lblMsg.Text = Utils.ShowMessage("This email is a spam email.", true);
+            else lblMsg.Text = Utils.ShowMessage("This email is not a spam email.", false);
         }
 
+        
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createMsg.aspx.cs" Inherits="EmailSite.createMsg" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAutoMsg.aspx.cs" Inherits="EmailSite.createAutoMsg" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
@@ -87,7 +87,7 @@
             	<div id="emails-common-panel">
 
                 	<div class="create-message-step1-container">
-                    <h2>CREATE AN EMAIL MESSAGE</h2>
+                    <h2>Create an Autoresonder Message for "<%=strListName%>"</h2>
                     </div>
            	  	<div class="create-message-step1-container">
                     <div id="message-template-container">
@@ -130,117 +130,73 @@
                 
                 
                 <div id="emails-common-panel">
-                	<br/><br/>
-                    <div class="message-list-bottom">
-                        	<div class="messages-filter">
-                            	
-                            
-                        	</div>
-                            <div class="messages-stat">
-                            	Total <asp:Label ID="lblTotalMsgs" runat="server" Text="0"></asp:Label> messages
-                            </div>
+                	
+                         <asp:Panel ID="pnlGrid" runat="server" Visible="false">
+                        <br/><br/>
+                        <div class="message-list-title">
+                        My Autoresponder Messages
                         </div>
-                       <asp:Panel ID="pnlGrid" runat="server">
                         <div class="message-list" id="message-list">
-                            <asp:GridView ID="grvList" 
-                                CssClass="contact-grid" BackColor="White" Width="100%" CellPadding="1" 
-                                CellSpacing="1" BorderWidth="0px" GridLines="None"
-                                   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
-                                runat="server"  AutoGenerateColumns ="False" 
-                                onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" AllowPaging="True" 
-                                 PageSize="20" 
-                               >
+                              
+                              <asp:GridView ID="grvList" CssClass="contact-grid" BackColor="White" 
+                                  Width="100%" CellPadding="1"  onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" 
+                                CellSpacing="1" BorderWidth="0px" GridLines="None"  
+                                  HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
+                                runat="server"  AutoGenerateColumns ="False"  
+                                    >
                                 
                                 <AlternatingRowStyle BackColor="#D5D6D9" />
                                 
                                 <Columns>                               
-                                   <asp:TemplateField HeaderText="Message ID">
+                                     <asp:TemplateField HeaderText="Message Name">
                                         <ItemTemplate>
-                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "ID")%>
-                                        </ItemTemplate>
-                                        <HeaderStyle Width="10%"  />
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Message Name">
-                                        <ItemTemplate>
-                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "MESSAGENAME")%>
-                                        </ItemTemplate>
-                                        <HeaderStyle Width="30%"  />
-                                    </asp:TemplateField>
-
-
-
-                                     <asp:TemplateField HeaderText="Target List">
-                                        <ItemTemplate>
-                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
+                                            &nbsp;<a href='editMessage.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>' ><%#DataBinder.Eval(Container.DataItem, "MESSAGENAME")%></a>
                                         </ItemTemplate>
                                         <HeaderStyle Width="25%"  />
                                     </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Create Date">
+                                    
+                                    <asp:TemplateField HeaderText="Created date">
                                         <ItemTemplate>
                                             &nbsp;<%#DataBinder.Eval(Container.DataItem, "MODIFIEDDATE")%>
                                         </ItemTemplate>
-                                        <HeaderStyle Width="10%"  />
+                                        <HeaderStyle Width="15%"  />
                                     </asp:TemplateField>
-
+                                    
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                           <table class="message-action">
-                                            	<tr>
-                                                	<td width="50%"><a href='editMessage.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Edit</a></td>
-                                                    <td width="50%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >Delete</asp:LinkButton ></td>
-                                                </tr>
-                                            </table>
+                                             <table class="message-action">
+                                                    <tr>
+                                                        <td width="50%"><a href='editMessage.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Edit</a></td>                                                        
+                                                        <td width="50%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >Delete</asp:LinkButton ></td>
+                                                    </tr>
+                                                </table>
                                         </ItemTemplate>
                                         <HeaderStyle Width="20%"  />
                                     </asp:TemplateField>
-
+                                    
+                                    
+                                    
+                                    <asp:TemplateField HeaderText="Status">
+                                        <ItemTemplate>
+                                            &nbsp;<asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="15%"  />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField> 
+                                    
                                 </Columns>
                                 
-<HeaderStyle BackColor="#95949B"></HeaderStyle>
+                                <HeaderStyle BackColor="#95949B"></HeaderStyle>
 
                                 <PagerSettings Visible="False" />
 
-<RowStyle CssClass="r1"></RowStyle>
+                                <RowStyle CssClass="r1"></RowStyle>
                                 
-                            </asp:GridView>                          
-                        </div>
-                        <div class="message-list-bottom">
-                        	<div class="list-display-setting">
-                            	
-                                Display&nbsp;
-                                 <asp:DropDownList ID="ddlRowPage" runat="server" AutoPostBack=true 
-                                    onselectedindexchanged="ddlRowPage_SelectedIndexChanged">
-                                    <asp:ListItem>10</asp:ListItem>
-                                    <asp:ListItem Selected="True">20</asp:ListItem>
-                                    <asp:ListItem>50</asp:ListItem>
-                                    <asp:ListItem>100</asp:ListItem>
-                                </asp:DropDownList>
-                                 lists / page
-                                
-                        	</div>
-                            <div class="pagination">
-                            	<div class="PgCounter">
-                                   Page <asp:Label ID="lblCurrentPage" runat="server" Text="Label"></asp:Label>/<asp:Label ID="lblTotalPages" runat="server" Text="Label"></asp:Label> 
-                                   <asp:LinkButton ID="first" runat="server" Text="<<"  CausesValidation="false" 
-                                        onclick="first_Click"></asp:LinkButton>
-                                   <asp:LinkButton ID="prev" runat="server" Text="<"  CausesValidation="false" 
-                                        onclick="prev_Click"></asp:LinkButton>
-                                   <asp:Label ID="lblPaging" runat="server"></asp:Label>
+                            </asp:GridView>
+                              
+						</div>
 
-                                   <asp:LinkButton ID="next" runat="server" Text=">" CausesValidation="false" 
-                                        onclick="next_Click" ></asp:LinkButton>  
-                                   <asp:LinkButton ID="last" runat="server" Text=">>"  CausesValidation="false" 
-                                        onclick="last_Click"></asp:LinkButton>
-
-                                    <input type="hidden" value="1" id="CurrentPage" runat="server"/>
-                                    <input type="hidden" id="TotalSize" runat="server"/>
-                                    <input type="hidden" id="TotalPages" runat="server"/>
-                                </div>    
-                            </div>
-                        </div>
-                       </asp:Panel>
+                    </asp:Panel>	
                         
                 </div>
                 
@@ -260,34 +216,8 @@
 	
 
 	        
-		<!--
-		<ul id="menu">
-			<li>
-		    <a href="">Home</a></li> 
-		    <li><a href=""><img src="img/emails.gif"/>&nbsp;&nbsp;Emails</a> 
-		      <ul>
-
-		      	<li><a href="">Create new message</a></li>
-		        <li><a href="">Sent mssages</a></li> 
-		        <li><a href="">Pending messages</a></li> 
-		      </ul> 
-		    </li> 
-		    <li><a href=""><img src="img/contacts.gif"/>&nbsp;&nbsp;Contacts List</a> 
-		      <ul> 
-		        <li><a href="">Create new list</a></li> 
-		        <li><a href="">Browse contacts</a></li> 
-		      </ul> 
-		    </li>
-
-		    <li><a href="">Tracking & Report</a> 
-		      <ul> 
-		        <li><a href="">Tracking last message</a></li> 
-		        <li><a href="">Autoresponders</a></li> 
-		      </ul> 
-		    </li> 
-		</ul>	
-		-->
-    <asp:HiddenField ID="hdAutoResponderId" runat="server" />
+		
+    <asp:HiddenField ID="hdAutoID" runat="server" />
         </form>
 	</body>
 </html>

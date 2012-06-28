@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAutoresponder.aspx.cs" Inherits="EmailSite.createAutoresponder" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="editAutoresponder.aspx.cs" Inherits="EmailSite.editAutoresponder" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
@@ -153,25 +153,87 @@
                     </div>
                     <div class="autoresponder-bottom">
                         <asp:Button ID="btnSave" runat="server" Text="Save Autoresponder" 
-                            CssClass="submit3" onclick="btnSave_Click"/>
+                            CssClass="submit3" onclick="btnSave_Click" />
                         <div style="display: inline-block; margin: 0 0; padding: 2px 50px;  float: right; width: 130px;">
                             <a href="myAutoresponders.aspx" class="common-button">Cancel</a>
                         </div>
                     </div> 
 					<!--</form>-->
-                    
-                    
+                    <asp:Panel ID="pnlGrid" runat="server" Visible="false">
+                        <br/><br/><br/><br/>
+                        <div class="message-list-title">
+                        My Autoresponder Messages
+                        </div>
+                        <div class="message-list" id="message-list">
+                              
+                              <asp:GridView ID="grvList" CssClass="contact-grid" BackColor="White" 
+                                  Width="100%" CellPadding="1"  onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" 
+                                CellSpacing="1" BorderWidth="0px" GridLines="None"  
+                                  HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
+                                runat="server"  AutoGenerateColumns ="False" ondatabound="grvList_DataBound" 
+                                    >
+                                
+                                <AlternatingRowStyle BackColor="#D5D6D9" />
+                                
+                                <Columns>                               
+                                     <asp:TemplateField HeaderText="Message Name">
+                                        <ItemTemplate>
+                                            &nbsp;<a href='editMessage.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>' ><%#DataBinder.Eval(Container.DataItem, "MESSAGENAME")%></a>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="25%"  />
+                                    </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Created date">
+                                        <ItemTemplate>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "MODIFIEDDATE")%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="15%"  />
+                                    </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Action">
+                                        <ItemTemplate>
+                                             <table class="message-action">
+                                                    <tr>
+                                                        <td width="50%"><a href='editMessage.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Edit</a></td>                                                        
+                                                        <td width="50%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >Delete</asp:LinkButton ></td>
+                                                    </tr>
+                                                </table>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="20%"  />
+                                    </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Start / Stop sending">
+                                        <ItemTemplate>
+                                            &nbsp;<asp:Button ID="btnStartStop" runat="server" Text="Start" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='StartStop'  />
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="25%"  />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Status">
+                                        <ItemTemplate>
+                                            &nbsp;<asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="15%"  />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField> 
+                                    
+                                </Columns>
+                                
+                                <HeaderStyle BackColor="#95949B"></HeaderStyle>
 
+                                <PagerSettings Visible="False" />
 
-                        
+                                <RowStyle CssClass="r1"></RowStyle>
+                                
+                            </asp:GridView>
+                              
+						</div>
 
-						                        
+                    </asp:Panel>						                        
                   </div>
 
                 	              
-                </div>
-                
-                
                 
                 
 
@@ -229,8 +291,9 @@
 		      </ul> 
 		    </li> 
 		</ul>	
-		-->
+		--><asp:HiddenField ID="hdAutoID" runat="server" />
 	</form>
+        
     
    
 	</body>

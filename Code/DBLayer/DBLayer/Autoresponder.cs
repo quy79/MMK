@@ -100,7 +100,31 @@ namespace DatabaseLayer
             return null;// throw new Exception(ex.Message);
         }
     }
-	
+    public DataTable SelectByID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",SqlDbType.Int)
+			};
+
+
+            Params[0].Value = ID;
+
+
+
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_SelectByID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
 	public DataTable Select()
 	{
 		DataSet ds;
@@ -208,7 +232,7 @@ namespace DatabaseLayer
 				new SqlParameter("@LISTID",LISTID),
 				new SqlParameter("@FROMNAME",FROMNAME),
 				new SqlParameter("@FROMEMAIL",FROMEMAIL),
-                new SqlParameter("@DURATION",SqlDbType.Int)
+                new SqlParameter("@DURATION",DURATION)
 				
 			};
 
@@ -234,7 +258,8 @@ namespace DatabaseLayer
 				new SqlParameter("@DESCRIPTION",SqlDbType.NVarChar),
 				new SqlParameter("@LISTID",SqlDbType.Int),
 				new SqlParameter("@FROMNAME",SqlDbType.NVarChar),
-				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar)
+				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar),
+                new SqlParameter("@DURATION",SqlDbType.NVarChar)
 				
 				
 			};
@@ -302,7 +327,14 @@ namespace DatabaseLayer
             {
                 Params[6].Value = DBNull.Value;
             }
-
+            if (DURATION != null)
+            {
+                Params[7].Value = DURATION;
+            }
+            else
+            {
+                Params[7].Value = DBNull.Value;
+            }
            
 
             

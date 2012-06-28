@@ -143,19 +143,19 @@
                                 <Columns>                               
                                      <asp:TemplateField HeaderText="Autoresponder Title">
                                         <ItemTemplate>
-                                            &nbsp; <asp:LinkButton  ID="lnkWelcome" runat="server"><%#DataBinder.Eval(Container.DataItem, "DESCRIPTION")%></asp:LinkButton >
+                                            &nbsp; <a href='editAutoresponder.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>' ><%#DataBinder.Eval(Container.DataItem, "NAME")%></a>
                                         </ItemTemplate>
                                         <HeaderStyle Width="40%"  />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="List Name">
                                         <ItemTemplate>
-                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "NAME")%>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
                                         </ItemTemplate>
                                         <HeaderStyle Width="20%"  />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Messages">
                                         <ItemTemplate>
-                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "TOTALMESSAGES")%><br/><a href='createMsg.aspx?Aid=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Add Message</a>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "TOTALMESSAGES")%><br/><a href='createAutoMsg.aspx?Aid=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Add Message</a>
                                         </ItemTemplate>
                                         <HeaderStyle Width="15%"  />
                                         <ItemStyle HorizontalAlign="Center" />
@@ -170,7 +170,8 @@
                                         <ItemTemplate>
                                             <table class="message-action">
                                             	<tr>
-                                                    <td width="100%"><a href='deleteAutoresponder.aspx?Aid=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Delete</a>
+                                                <td width="100%"><a href='#'>Delete</a> 
+                                                  <!--  <td width="100%"><a href='deleteAutoresponder.aspx?Aid=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Delete</a> -->
                                                 </tr>
                                             </table>
                                         </ItemTemplate>

@@ -128,7 +128,8 @@
 
                 	<div class="common-title">
                     <h2>Create an Email Message</h2>
-                    </div>                    
+                    </div>               
+                    <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>     
                     <div class="create-message-step1-container3">
                     <br/>
            	 		<!--<form id="formID" class="formular" method="post" action="">-->
@@ -168,8 +169,7 @@
                         </div>
                         
                         <asp:Button ID="btnSubmit" CssClass="submit1" runat="server"  Text="Proceed Send" onclick="btnSubmit_Click" />
-                        <input class="submit5" type="submit" value="Save Draft & Preview"/>
-                        
+                       
                         <!--
                         <div class="buttonwrapper">
 <a class="boldbuttons" href="http://www.dynamicdrive.com/style/"><span>Spam Check</span></a>

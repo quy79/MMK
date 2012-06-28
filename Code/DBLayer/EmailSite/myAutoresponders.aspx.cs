@@ -44,9 +44,9 @@ namespace EmailSite
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton l = (LinkButton)e.Row.FindControl("LinkDelete");
-                l.Attributes.Add("onclick", "javascript:return " +
-                "confirm('Are you sure you want to delete this autoresponder ? ')");
+                //LinkButton l = (LinkButton)e.Row.FindControl("LinkDelete");
+               // l.Attributes.Add("onclick", "javascript:return " +
+               // "confirm('Are you sure you want to delete this autoresponder ? ')");
             }
         }
 

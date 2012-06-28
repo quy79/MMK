@@ -10,16 +10,7 @@
 namespace EmailSite {
     
     
-    public partial class emails {
-        
-        /// <summary>
-        /// headerHTML1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::EmailSite.headerHTML headerHTML1;
+    public partial class previewAutoTextEmail {
         
         /// <summary>
         /// logo control.
@@ -40,129 +31,93 @@ namespace EmailSite {
         protected global::EmailSite.navigation navigation;
         
         /// <summary>
-        /// lblTotalMsgs control.
+        /// lblFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalMsgs;
+        protected global::System.Web.UI.WebControls.Label lblFrom;
         
         /// <summary>
-        /// pnlGrid control.
+        /// lblSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGrid;
+        protected global::System.Web.UI.WebControls.Label lblSubject;
         
         /// <summary>
-        /// grvList control.
+        /// lblMsgName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvList;
+        protected global::System.Web.UI.WebControls.Label lblMsgName;
         
         /// <summary>
-        /// ddlRowPage control.
+        /// lblListName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRowPage;
+        protected global::System.Web.UI.WebControls.Label lblListName;
         
         /// <summary>
-        /// lblCurrentPage control.
+        /// lblMsgContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurrentPage;
+        protected global::System.Web.UI.WebControls.Label lblMsgContent;
         
         /// <summary>
-        /// lblTotalPages control.
+        /// formID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalPages;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formID;
         
         /// <summary>
-        /// first control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton first;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// prev control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton prev;
+        protected global::System.Web.UI.WebControls.Button btnBack;
         
         /// <summary>
-        /// lblPaging control.
+        /// hdAutoID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPaging;
+        protected global::System.Web.UI.WebControls.HiddenField hdAutoID;
         
         /// <summary>
-        /// next control.
+        /// hdMsgID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton next;
-        
-        /// <summary>
-        /// last control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton last;
-        
-        /// <summary>
-        /// CurrentPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden CurrentPage;
-        
-        /// <summary>
-        /// TotalSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden TotalSize;
-        
-        /// <summary>
-        /// TotalPages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden TotalPages;
+        protected global::System.Web.UI.WebControls.HiddenField hdMsgID;
     }
 }

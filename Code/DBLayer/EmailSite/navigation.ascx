@@ -14,7 +14,7 @@
             <ul>
                 <li><a href="createMsg.aspx">Messages</a></li>
                 <li><a href="#">Pending messages</a></li>
-                <li><a href="#">Autoresponder</a></li>						
+                <li><a href="myAutoresponders.aspx">Autoresponder</a></li>						
 			</ul>
           
 				

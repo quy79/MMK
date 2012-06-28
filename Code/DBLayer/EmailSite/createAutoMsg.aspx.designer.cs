@@ -10,16 +10,16 @@
 namespace EmailSite {
     
     
-    public partial class createTextEmail {
+    public partial class createAutoMsg {
         
         /// <summary>
-        /// formID control.
+        /// messages_filter_frm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formID;
+        protected global::System.Web.UI.HtmlControls.HtmlForm messages_filter_frm;
         
         /// <summary>
         /// logo control.
@@ -40,84 +40,48 @@ namespace EmailSite {
         protected global::EmailSite.navigation navigation;
         
         /// <summary>
-        /// lblMsg control.
+        /// lnkTextMail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
+        protected global::System.Web.UI.WebControls.LinkButton lnkTextMail;
         
         /// <summary>
-        /// txtFromEmail control.
+        /// lnkHTMLMail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFromEmail;
+        protected global::System.Web.UI.WebControls.LinkButton lnkHTMLMail;
         
         /// <summary>
-        /// txtSubject control.
+        /// pnlGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubject;
+        protected global::System.Web.UI.WebControls.Panel pnlGrid;
         
         /// <summary>
-        /// txtMsgName control.
+        /// grvList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMsgName;
+        protected global::System.Web.UI.WebControls.GridView grvList;
         
         /// <summary>
-        /// txtMsgBody control.
+        /// hdAutoID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMsgBody;
-        
-        /// <summary>
-        /// btnSpam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSpam;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
-        /// txtToEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtToEmail;
-        
-        /// <summary>
-        /// btnPopupTxtSend control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPopupTxtSend;
+        protected global::System.Web.UI.WebControls.HiddenField hdAutoID;
     }
 }

@@ -58,6 +58,27 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
+    public DataTable SelectByAutoID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				
+				new SqlParameter("@AUTORESPONDERID",SqlDbType.Int)
+			};
+
+            Params[0].Value = AUTORESPONDERID;
+            
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_MESSAGES_SelectByAutoID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
 	public DataTable Select()
 	{
 		DataSet ds;
@@ -179,7 +200,7 @@ namespace DatabaseLayer
                 Params[2].Value = DBNull.Value;
             }
 
-            if (ENDDATE != null)
+            if (ENDDATE != null && ENDDATE != DateTime.MinValue)
             {
                 Params[3].Value = ENDDATE;
             }
@@ -201,6 +222,34 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+    public bool UpdateStatusForMsg()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@MESSAGEID",MESSAGEID) ,
+                new SqlParameter("@STATUS",STATUS) 
+                
+			};
+
+            Params[0].Value = MESSAGEID;
+            Params[1].Value = STATUS;
+
+
+
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_AUTORESPONDER_MESSAGES_UpdateStatus]", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 	public bool Update()
 	{
 		try

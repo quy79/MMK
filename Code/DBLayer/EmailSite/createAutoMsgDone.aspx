@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createTextEmail.aspx.cs" Inherits="EmailSite.createTextEmail" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAutoMsgDone.aspx.cs" Inherits="EmailSite.createAutoMsgDone" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
@@ -108,59 +108,40 @@
     <title>OptMailMarketing : Home</title>	
 	</head>
 	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-    <form id="formID" class="formular" runat="server">
+    
     <div id="main">
 	    <div class="page-container">
-        	  <uc1:logo ID="logo" runat="server" />
-			 <uc2:navigation ID="navigation" MenuType="emails" runat="server" />
-            
+        	 <uc1:logo ID="logo" runat="server" />
+			 <uc2:navigation ID="navigation" MenuType="contacts" runat="server" />
             <div id="content-main">
             
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
-                    <h2>Create an Email Message</h2>
-                    </div>  
-                    <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
-                                     
-                    <div class="create-message-step1-container1">
-                    <br/>
-           	 		<!--<form id="formID" class="formular" method="post" action="">-->
-                        <span>From Email Address : </span><br/>
-                        <asp:TextBox ID="txtFromEmail" CssClass="validate[required,custom[email]] text-input" runat="server"></asp:TextBox>
-                        <br/>
-                        <span>Email Subject : </span><br/>
-                        <asp:TextBox ID="txtSubject" CssClass="validate[required] text-input" runat="server"></asp:TextBox>
-                        <br/>
-						<span>Message Name : <br/>
-                        (not displayed to yours contacts)                 
-                        </span><br/>
-                        <asp:TextBox ID="txtMsgName" CssClass="validate[required] text-input" runat="server"></asp:TextBox><br/>
-		                <asp:TextBox ID="txtMsgBody" CssClass="validate[required] text-input" 
-                            runat="server" TextMode="MultiLine"></asp:TextBox>
-						
-
-						<div style="position: relative; float: left; margin-top: 20px; width: 400px;">                        	
-                            <asp:Button ID="btnSpam" CssClass="button" runat="server" Text="Spam Check" 
-                                onclick="btnSpam_Click" />                            
-                            <a class="test-message" href="#test-message"><span>Test message</span></a>
-
-                        </div>                       
-                        
-                        <asp:Button ID="btnSubmit" CssClass="submit1" runat="server" 
-                            Text="Proceed Send" onclick="btnSubmit_Click" />
-                        <!--
-                        <div class="buttonwrapper">
-<a class="boldbuttons" href="http://www.dynamicdrive.com/style/"><span>Spam Check</span></a>
-<span>&nbsp;&nbsp;&nbsp;</span><a class="boldbuttons" href="http://www.dynamicdrive.com/style/"><span>Send Test Message</span></a>
-</div>-->
+                    <h2>Create an Email Message for Autoresponder "<%=strListName %>"</h2>
+                	</div>                    
+                    <div class="create-message-step1-container3">
+						<div class="infobox3">Message was saved for Autoresponder.</div>
                     </div>
 					<!--</form>-->
                     
-                    
+                    <div class="segment-bottom">
+                    	<form id="formID" class="formular" runat="server">
+                        <div style="position: relative;  margin: 0 auto; padding: 10px; width: auto; display: inline-block;">
+                            <asp:LinkButton ID="lnkCreatOther" runat="server"  CssClass="common-button" 
+                                onclick="lnkCreatOther_Click">Create another message</asp:LinkButton>
+	                        
+                        </div>
+                        <div style="position: relative; margin: 0 auto; padding: 10px; width: auto; display: inline-block;">
+                            <asp:LinkButton ID="lnkMyAutoresponder" runat="server" CssClass="common-button" 
+                                onclick="lnkMyAutoresponder_Click">Go to My Autoresponders page</asp:LinkButton>
+                        </div>
 
-
-                        
+                                      <asp:HiddenField ID="hdAutoID" runat="server" />
+                            <asp:HiddenField ID="hdMsgID" runat="server" />
+                        </form>
+                            
+                    </div> 
 
 						                        
                   </div>
@@ -192,28 +173,8 @@
     
     </div>
 
-
 	
     
-    <div id="test-message" class="test-message-popup" >
-        <h2><font color="#FFFFFF">Send test message</font></h2>
-        <a href="#" class="closebtn"><img src="img/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <span name="testform" class="test_message" >
-                <fieldset class="textbox">
-            	
-                <label>
-                    <asp:TextBox ID="txtToEmail" autocomplete="on" placeholder="Email address" runat="server"></asp:TextBox>
-                </label>
-                
-<!--                <button class="submit button" type="button" id="btnPopupTxtSend">Send</button> -->
-                <asp:Button ID="btnPopupTxtSend" CssClass="submit button" runat="server" Text="Send"  onclick="btnPopupSend_Click"
-                        />
-                
-                <!--  onclick="btnPopupSend_Click" -->
-               
-                </fieldset>
-          </span>
-		</div>
-</form>
+
 	</body>
 </html>

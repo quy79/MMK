@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createTextEmail.aspx.cs" Inherits="EmailSite.createTextEmail" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAutoTextEmail.aspx.cs" Inherits="EmailSite.createAutoTextEmail" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
@@ -119,7 +119,7 @@
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
-                    <h2>Create an Email Message</h2>
+                    <h2>Create an Autoresonder Message for "<%=strListName%>"</h2>
                     </div>  
                     <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
                                      
@@ -142,13 +142,16 @@
 
 						<div style="position: relative; float: left; margin-top: 20px; width: 400px;">                        	
                             <asp:Button ID="btnSpam" CssClass="button" runat="server" Text="Spam Check" 
-                                onclick="btnSpam_Click" />                            
-                            <a class="test-message" href="#test-message"><span>Test message</span></a>
+                                onclick="btnSpam_Click" />                                                        
 
-                        </div>                       
+                            <asp:HiddenField ID="hdAutoID" runat="server" />
+
+                            <asp:HiddenField ID="hdMsgID" runat="server" />
+
+                            </div>                       
                         
                         <asp:Button ID="btnSubmit" CssClass="submit1" runat="server" 
-                            Text="Proceed Send" onclick="btnSubmit_Click" />
+                            Text="Save and Preview" onclick="btnSubmit_Click" />
                         <!--
                         <div class="buttonwrapper">
 <a class="boldbuttons" href="http://www.dynamicdrive.com/style/"><span>Spam Check</span></a>
@@ -192,28 +195,7 @@
     
     </div>
 
-
-	
     
-    <div id="test-message" class="test-message-popup" >
-        <h2><font color="#FFFFFF">Send test message</font></h2>
-        <a href="#" class="closebtn"><img src="img/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <span name="testform" class="test_message" >
-                <fieldset class="textbox">
-            	
-                <label>
-                    <asp:TextBox ID="txtToEmail" autocomplete="on" placeholder="Email address" runat="server"></asp:TextBox>
-                </label>
-                
-<!--                <button class="submit button" type="button" id="btnPopupTxtSend">Send</button> -->
-                <asp:Button ID="btnPopupTxtSend" CssClass="submit button" runat="server" Text="Send"  onclick="btnPopupSend_Click"
-                        />
-                
-                <!--  onclick="btnPopupSend_Click" -->
-               
-                </fieldset>
-          </span>
-		</div>
 </form>
 	</body>
 </html>

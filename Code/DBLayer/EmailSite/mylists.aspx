@@ -136,20 +136,15 @@
                                         <ItemTemplate>
                                             &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
                                         </ItemTemplate>
-                                        <HeaderStyle Width="15%"  />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Welcome Message">
-                                        <ItemTemplate>
-                                            <asp:LinkButton  ID="lnkWelcome" runat="server">&nbsp;<%#DataBinder.Eval(Container.DataItem, "DESCRIPTION")%></asp:LinkButton >
-                                        </ItemTemplate>
                                         <HeaderStyle Width="50%"  />
                                     </asp:TemplateField>
+                           
                                     <asp:TemplateField HeaderText="Subscribers">
                                         <ItemTemplate>
                                             <asp:LinkButton  ID="lnkSubcrbes" runat="server">&nbsp;<%#DataBinder.Eval(Container.DataItem, "NUMSUBSCRIBES")%> Subscribers</asp:LinkButton ><br/>
                                             &nbsp;<asp:LinkButton  ID="lnkAdd" runat="server">Add</asp:LinkButton >
                                         </ItemTemplate>
-                                        <HeaderStyle Width="15%"  />
+                                        <HeaderStyle Width="20%"  />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
@@ -160,7 +155,7 @@
                                                 </tr>
                                             </table>
                                         </ItemTemplate>
-                                        <HeaderStyle Width="20%"  />                                            
+                                        <HeaderStyle Width="30%"  />                                            
                                     </asp:TemplateField>
                                 </Columns>
                                 
