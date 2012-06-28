@@ -413,6 +413,7 @@
     <Content Include="logo.ascx" />
     <Content Include="logout.aspx" />
     <Content Include="messagePreview.aspx" />
+    <Content Include="myAutoresponders.aspx" />
     <Content Include="mylists.aspx" />
     <Content Include="mySegments.aspx" />
     <Content Include="navigation.ascx" />
@@ -1493,6 +1494,13 @@
     </Compile>
     <Compile Include="messagePreview.aspx.designer.cs">
       <DependentUpon>messagePreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myAutoresponders.aspx.cs">
+      <DependentUpon>myAutoresponders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myAutoresponders.aspx.designer.cs">
+      <DependentUpon>myAutoresponders.aspx</DependentUpon>
     </Compile>
     <Compile Include="mylists.aspx.cs">
       <DependentUpon>mylists.aspx</DependentUpon>

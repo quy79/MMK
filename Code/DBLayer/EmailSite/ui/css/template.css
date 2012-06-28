@@ -12,12 +12,15 @@ form.formular {
 	margin-top: 5px;
 	padding-left: 10px;
 	border: 1px solid gray;
+	background: #fff;
 }
 
 .formular legend {
 	font-size: 12px;
 	color: #15428B;
 	font-weight: 900;
+	background: #ffcc00;
+	padding :5px;
 }
 
 .formular fieldset label {
@@ -184,7 +187,15 @@ form.formular {
 	background: #FFF repeat-x;
 }
 
-
+.formular .text-autoresponder-name {
+	width: 180px;
+	color: #555;
+	padding: 4px;
+	border: 1px solid #B5B8C8;
+	font-size: 14px;
+	margin-top: 4px;
+	background: #FFF repeat-x;
+}
 
 .formular .file-input {
 	width: 400px;

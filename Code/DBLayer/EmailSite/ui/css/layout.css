@@ -7,10 +7,7 @@
 
 #main { min-height: 300px; min-width:995px; }
 .page-bg { background: url(https://imgssl.constantcontact.com/ui/images1/uxCommon/ccui-content-shdw-2.png) no-repeat center 0; }
-.page-container { position:relative;width:995px;height:auto;margin:0 auto;padding:0;
-    top: 0px;
-    left: 0px;
-}
+.page-container { position:relative;width:995px;height:auto;margin:0 auto;padding:0; }
 .main-content { min-height:275px }
 .screen-width-indent { text-align:left; clear:left; padding:20px; background-color:#FFF; -moz-border-radius:0 0 8px 8px }
 .screen-width-indent:after {

@@ -27,7 +27,6 @@ namespace EmailSite.Test
             String mailFrom = "";
             mailFrom = "'Hehe Ong noi day ne'<ndhieuvn212@yahoo.com>";
             listMailTo.Add("ndhieuvn212@yahoo.com");
-            listMailTo.Add("ndhieuvn21211@yahoo.com");
            // listMailCC.Add("ndhieuvn212@yahoo.com");
             //listMailCC.Add("quy@optlynx.com");
             //listMailCC.Add("quy79vn@gmail.com");

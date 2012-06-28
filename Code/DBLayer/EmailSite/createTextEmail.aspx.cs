@@ -85,8 +85,9 @@ namespace EmailSite
         void CheckAction()
         {
             SpamcheckServices spamcheck = new SpamcheckServices();
-            spamcheck.SpamTextBeginChecking(txtFromEmail.Text);
-            spamcheck.CheckSpamCompleted += new SpamcheckServices.XMLSpamPareCompletedEventHandler(spamcheck_CheckSpamCompleted);
+            bool isSpam = spamcheck.SpamHTMLChecking(txtFromEmail.Text);
+            //spamcheck.SpamTextBeginChecking(txtFromEmail.Text);
+            //spamcheck.CheckSpamCompleted += new SpamcheckServices.XMLSpamPareCompletedEventHandler(spamcheck_CheckSpamCompleted);
         }
         void spamcheck_CheckSpamCompleted(float spamRawCore, float spamCoreDetail, String spamDescription, string spamDetailDescription)
         {
