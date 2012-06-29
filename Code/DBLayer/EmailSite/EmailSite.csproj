@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageHandler">
+      <HintPath>..\TestResponder\ImageHandler.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -57,6 +60,7 @@
     <Content Include="ajaxFuncs.aspx" />
     <Content Include="chooseEmailList.aspx" />
     <Content Include="contacts.aspx" />
+    <Content Include="createAutoresponder.aspx" />
     <Content Include="createHTMLEmail.aspx" />
     <Content Include="createList.aspx" />
     <Content Include="createMsg.aspx" />
@@ -65,6 +69,7 @@
     <Content Include="createTextEmail.aspx" />
     <Content Include="editSegment.aspx" />
     <Content Include="emails.aspx" />
+    <Content Include="empty.jpg" />
     <Content Include="Global.asax" />
     <Content Include="headerHTML.ascx" />
     <Content Include="home.aspx" />
@@ -1394,6 +1399,12 @@
     <Compile Include="contacts.aspx.designer.cs">
       <DependentUpon>contacts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="createAutoresponder.aspx.cs">
+      <DependentUpon>createAutoresponder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createAutoresponder.aspx.designer.cs">
+      <DependentUpon>createAutoresponder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="createHTMLEmail.aspx.cs">
       <DependentUpon>createHTMLEmail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1570,6 +1581,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImageHandler\" />
     <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>

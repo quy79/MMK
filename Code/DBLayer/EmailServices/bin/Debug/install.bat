@@ -9,3 +9,4 @@ echo ---------------------------------------------------
 InstallUtil /i C:\code\Code\DBLayer\EmailServices\bin\Debug\EmailServices.exe
 echo ---------------------------------------------------
 echo Done.
+pause

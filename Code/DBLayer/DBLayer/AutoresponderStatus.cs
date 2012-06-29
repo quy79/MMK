@@ -231,7 +231,7 @@ namespace DatabaseLayer
                 Params[2].Value = DBNull.Value;
             }
 
-            if (SUMCONTACTSENT != 0)
+            if (SUMCONTACTSENT !=null)
             {
                 Params[3].Value = SUMCONTACTSENT;
             }

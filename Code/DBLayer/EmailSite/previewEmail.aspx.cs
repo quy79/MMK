@@ -73,6 +73,8 @@ namespace EmailSite
                 else
                  mailServices.SendHTMLEmail(mailFrom, listMailTo, listMailCC, listMailBCC, objMsg.Subject, objMsg.MsgBody);
 
+                Session["currentTextEmail"] = null;
+                Response.Redirect("createMsgDone.aspx");
                 //lblMsgBody.Text = objMsg.MsgBody;
             }
         }
