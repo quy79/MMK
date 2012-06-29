@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ImageHandler">
-      <HintPath>..\TestResponder\ImageHandler.dll</HintPath>
+    <Reference Include="ImageHandler, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ImageHandler\ImageHandler.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -423,6 +424,7 @@
     <Content Include="mySegments.aspx" />
     <Content Include="navigation.ascx" />
     <Content Include="previewEmail.aspx" />
+    <Content Include="Redirect.aspx" />
     <Content Include="register.aspx" />
     <Content Include="searchContacts.aspx" />
     <Content Include="templates\tpl_thumbnail_001.jpg" />
@@ -1401,6 +1403,7 @@
     </Compile>
     <Compile Include="createAutoresponder.aspx.cs">
       <DependentUpon>createAutoresponder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="createAutoresponder.aspx.designer.cs">
       <DependentUpon>createAutoresponder.aspx</DependentUpon>
@@ -1542,6 +1545,13 @@
       <DependentUpon>previewEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redirect.aspx.cs">
+      <DependentUpon>Redirect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Redirect.aspx.designer.cs">
+      <DependentUpon>Redirect.aspx</DependentUpon>
+    </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
