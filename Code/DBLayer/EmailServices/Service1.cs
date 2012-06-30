@@ -201,6 +201,7 @@ namespace EmailServices
                             String from = "'" + ((DataRow)autoTable.Rows[0])[5].ToString() + "'" + "<" + ((DataRow)autoTable.Rows[0])[6].ToString() + ">";
                             string subject = "";
                             string body = "";
+                           String listID=((DataRow)autoTable.Rows[0])[4].ToString() ;
                             foreach (DataRow M_row in dtMessages.Rows)
                             {
                                 //from = M_row[3].ToString();
@@ -224,7 +225,8 @@ namespace EmailServices
                             }
                             if (listTo.Count > 0)
                             {
-                                mailSV.SendHTMLEmail(from, null, null, listTo, subject, body);
+                                mailSV.AutoresponderSendEmail(from, null, null, listTo, subject, body,""+autoID,""+emailID
+                                    , listID);
                             }
                             // remove from pending time;
 
