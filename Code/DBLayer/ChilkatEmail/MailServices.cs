@@ -163,6 +163,55 @@ namespace ChilkatEmail
             return true;
         }
 
+        public bool AutoresponderSendEmail(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string subject, string htmlBody, String autoresponderID, String messageID,String listID)
+        {
+            this.mailFrom = emailFrom;
+            this.listMailTo = emailsTo;
+            this.listMailCC = emailsCC;
+            this.listMailBCC = emailsBCC;
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+
+
+            bool success;
+            success = mailman.UnlockComponent(ChilkatEmailUnlock);
+            if (success != true) return false;
+
+            Chilkat.Email email = new Chilkat.Email();
+            email.BounceAddress = Constants.bounceEmailAddress;
+            email.Subject = subject;
+            MailUtils utilEmail = new MailUtils();
+            String body = utilEmail.ProcessHTMLBody(htmlBody, true, Constants.SERVER, autoresponderID, messageID, listID);
+            email.SetHtmlBody(body);
+            if (listMailTo != null && listMailTo.Count > 0)
+            {
+                email.AddMultipleTo(eUtils.mailParse(listMailTo));
+            }
+            if (listMailCC != null && listMailCC.Count > 0)
+            {
+                email.AddMultipleCC(eUtils.mailParse(listMailCC));
+            }
+            if (listMailBCC != null && listMailBCC.Count > 0)
+            {
+                email.AddMultipleBcc(eUtils.mailParse(listMailBCC));
+            }
+
+            email.From = mailFrom;
+
+
+            mailman.SmtpHost = Constants.strSmtpHost;
+            mailman.SmtpUsername = Constants.strSmtpUser;
+            mailman.SmtpPassword = Constants.strSmtpPass;
+            mailman.SmtpPort = Constants.iSmtpPort;
+            /*mailman.StartTLS = startTLS;
+             if (Charset.Length != 0) email.Charset = Charset;*/
+
+            success = mailman.SendEmail(email);
+            if (success != true) return false;
+
+            success = mailman.CloseSmtpConnection();
+
+            return true;
+        }
 
         //public bool SendHtmlEmail(string subject, string htmlBody)
         //{
