@@ -230,21 +230,24 @@ namespace EmailServices
                             pending.MESSAGEID = emailID;
                             pending.AUTOID = autoID;
                             DataTable pendingTable = pending.Select();
-                            List<String> listTo = new List<string>();
+                           // List<String> listTo = new List<string>();
                             foreach (DataRow rowPending in pendingTable.Rows)
                             {
+                                List<String> listTo = new List<string>();
                                 String email = rowPending[4].ToString();
                                 pending.ID = int.Parse(rowPending[0].ToString());
                                 pending.Delete();
                                 listTo.Add(email);
                                 count++;
                                 if (count > ChilkatEmail.Utils.Constants.emailSentPerTime) break;
+                                mailSV.AutoresponderSendEmail(from, listTo, null, null, subject, body, "" + autoID, "" + emailID
+                                   , listID, rowPending[3].ToString());
                             }
-                            if (listTo.Count > 0)
-                            {
-                                mailSV.AutoresponderSendEmail(from, null, null, listTo, subject, body,""+autoID,""+emailID
-                                    , listID,"50");
-                            }
+                            //if (listTo.Count > 0)
+                           /// {
+                               // mailSV.AutoresponderSendEmail(from, null, null, listTo, subject, body,""+autoID,""+emailID
+                                //    , listID,"50");
+                           /// }
                             // remove from pending time;
 
                             // Update Status table5
