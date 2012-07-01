@@ -1336,6 +1336,7 @@
     <Content Include="ui\menu\js\jquery.bgiframe.min.js" />
     <Content Include="ui\menu\js\superfish.js" />
     <Content Include="ui\menu\js\supersubs.js" />
+    <Content Include="unsubscribe.aspx" />
     <Content Include="uploadContacts.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1579,6 +1580,13 @@
     </Compile>
     <Compile Include="timeout.aspx.designer.cs">
       <DependentUpon>timeout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="unsubscribe.aspx.cs">
+      <DependentUpon>unsubscribe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="unsubscribe.aspx.designer.cs">
+      <DependentUpon>unsubscribe.aspx</DependentUpon>
     </Compile>
     <Compile Include="uploadContacts.aspx.cs">
       <DependentUpon>uploadContacts.aspx</DependentUpon>

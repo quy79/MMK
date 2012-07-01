@@ -89,7 +89,7 @@ namespace DatabaseLayer
 			};
 			
 
-				if (CONTACTID != null)
+				if (CONTACTID != -1)
 				{
 					Params[0].Value = CONTACTID;
 				}
@@ -98,7 +98,7 @@ namespace DatabaseLayer
 					Params[0].Value = DBNull.Value;
 				}
 
-				if (LISTID != null)
+				if (LISTID != -1)
 				{
 					Params[1].Value = LISTID;
 				}
@@ -157,6 +157,32 @@ namespace DatabaseLayer
 				new SqlParameter("@LISTID",LISTID),
 				new SqlParameter("@SUBSCRIBES",SUBSCRIBES) 
 			};
+            if (CONTACTID != null)
+            {
+                Params[0].Value = CONTACTID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+            if (LISTID != null)
+            {
+                Params[1].Value = LISTID;
+            }
+            else
+            {
+                Params[1].Value = DBNull.Value;
+            }
+
+            if (SUBSCRIBES != null)
+            {
+                Params[2].Value = SUBSCRIBES;
+            }
+            else
+            {
+                Params[2].Value = DBNull.Value;
+            }
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACT_LIST_Update",Params);
 			if (result > 0)
 			{

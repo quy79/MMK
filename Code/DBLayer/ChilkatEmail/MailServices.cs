@@ -163,7 +163,7 @@ namespace ChilkatEmail
             return true;
         }
 
-        public bool AutoresponderSendEmail(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string subject, string htmlBody, String autoresponderID, String messageID,String listID)
+        public bool AutoresponderSendEmail(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string subject, string htmlBody, String autoresponderID, String messageID,String listID, String contactID)
         {
             this.mailFrom = emailFrom;
             this.listMailTo = emailsTo;
@@ -180,7 +180,7 @@ namespace ChilkatEmail
             email.BounceAddress = Constants.bounceEmailAddress;
             email.Subject = subject;
             MailUtils utilEmail = new MailUtils();
-            String body = utilEmail.ProcessHTMLBody(htmlBody, true, Constants.SERVER, autoresponderID, messageID, listID);
+            String body = utilEmail.ProcessHTMLBody(htmlBody, true, Constants.SERVER, autoresponderID, messageID, listID,contactID);
             email.SetHtmlBody(body);
             if (listMailTo != null && listMailTo.Count > 0)
             {

@@ -16,7 +16,7 @@ namespace ChilkatEmail.Utils
             }
             return result;
         }
-        public String ProcessHTMLBody(String body, bool isHTML, String serverName, String autoresponderID, String messageID,String listID)
+        public String ProcessHTMLBody(String body, bool isHTML, String serverName, String autoresponderID, String messageID,String listID, String contactID)
         {
             String result = "";
             if (isHTML)
@@ -25,11 +25,20 @@ namespace ChilkatEmail.Utils
                 for (int i = 0; i < templinks.Count; i++)
                 {
                     String link = templinks[i];
-                    String replaceString = serverName + "/redirect.aspx?AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link;
-                    body = body.Replace(link, replaceString);
+                    if (link=="Unsubscribe")
+                    {
+                         String replaceString = "'"+serverName + "/redirect.aspx?AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"","")+"'";
+                        body = body.Replace(link, replaceString);
+                    } else {
+                        String replaceString = "'" + serverName + "/redirect.aspx?CONTACTID=" + contactID +  "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";
+                        body = body.Replace(link, replaceString);
+                    }
+                   
+
+                    //unsubscribe.aspx
                 }
                // Literal1.Text = a;
-                result = body.Replace("</html>", "<img alt='' src='" + serverName + "/empty.jpg' />");
+                result = body.Replace("</html>", "<img alt='' src='" + serverName + "/empty.jpg?AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID +"'/>");
                 result += "</html>";
             }
             else
