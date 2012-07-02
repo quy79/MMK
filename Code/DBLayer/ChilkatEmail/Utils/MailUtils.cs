@@ -81,7 +81,7 @@ namespace ChilkatEmail.Utils
         {
             String param = "CONTACTID=" + contactID + "&LISTID=" + listID + "&REDIRECTURL=Unsubscribe";
             String scr = "<script>" +
-                        "function crossDomainPost() {" +
+                        "function unsubscribePost() {" +
 
                               "var iframe = document.createElement('iframe');" +
                               "var uniqueString = 'CHANGE_THIS_TO_SOME_UNIQUE_STRING';" +
