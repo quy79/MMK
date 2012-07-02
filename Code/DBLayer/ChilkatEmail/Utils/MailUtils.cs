@@ -98,7 +98,7 @@ namespace ChilkatEmail.Utils
 
                               "document.body.appendChild(form);" +
                               "form.submit();" +
-                              "alert('sucess');" +
+                              "alert('Unsubscribe successful.');" +
                               "}" +
                              "</script>";
             return scr;
