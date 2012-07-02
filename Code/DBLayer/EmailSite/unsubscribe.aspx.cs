@@ -13,51 +13,66 @@ namespace EmailSite
         protected void Page_Load(object sender, EventArgs e)
         {
             HttpContext context = HttpContext.Current;
-            int contact = 0;
+            int contactID = 0;
             int listID = 0;
-            String url = "";
-            if (context.Request.Params["CONTACTID"] != null)
+            String param = "";
+            if (context.Request.Params["paramcode"] != null)
             {
                 try
                 {
-                    contact = int.Parse(context.Request.Params["CONTACTID"]);
+                    param = (String)context.Request.Params["paramcode"];
                 }
                 catch
                 {
-                    contact = 0;
+                    param = "";
                 }
             }
-
-            if (context.Request.Params["LISTID"] != null)
+            if (String.IsNullOrEmpty(param))
             {
+                //"CONTACTID=" + contactID + "&LISTID=" + listID + "&REDIRECTURL=Unsubscribe";
+                String paremdecode = Decode(param);
+                String[] temp = paremdecode.Split('&');
+                String _contactID = temp[0].Split('=')[1];
+             
+                String _listID = temp[1].Split('=')[1];
                 try
                 {
-                    listID = int.Parse(context.Request.Params["LISTID"]);
+                    contactID = int.Parse(_contactID);
+                }
+                catch
+                {
+                    contactID = 0;
+                }
+
+                try
+                {
+                    listID = int.Parse(_listID);
                 }
                 catch
                 {
                     listID = 0;
                 }
-            }
-           // if (context.Request.Params["REDIRECTURL"] != null)
-
-                if (contact > 0)
+                if (contactID > 0 && listID>0)
                 {
-
                     Contact_list ct = new Contact_list();
                     ct.LISTID = listID;
-                    ct.CONTACTID = contact;
+                    ct.CONTACTID = contactID;
                     DataTable dt = ct.Select();
                     ct.SUBSCRIBES = false;
-
-
                     ct.Update();
                 }
-            //context.Response.Redirect(url);
+            }
 
-            // context.Response.End();
-            //return;
-
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public string Decode(string str)
+        {
+            byte[] decbuff = Convert.FromBase64String(str);
+            return System.Text.Encoding.UTF8.GetString(decbuff);
         }
     }
 }

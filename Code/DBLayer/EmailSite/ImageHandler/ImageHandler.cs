@@ -20,74 +20,96 @@ namespace ImageHandler
             int autoID = 0;
             int messageID = 0;
             int listID = 0;
-            if (context.Request.Params["AUTORESPONDERID"] != null)
+
+            // Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID)
+
+
+             String param = "";
+            if (context.Request.Params["paramcode"] != null)
             {
                 try
                 {
-                    autoID = int.Parse(context.Request.Params["AUTORESPONDERID"]);
+                    param = (String)context.Request.Params["paramcode"];
+                }
+                catch
+                {
+                    param = "";
+                }
+            }
+            if (String.IsNullOrEmpty(param))
+            {
+                // Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
+                String paremdecode = Decode(param);
+                String[] temp = paremdecode.Split('&');
+                String _autoD = temp[0].Split('=')[1];
+
+                String _mesageID = temp[1].Split('=')[1];
+                String _listID = temp[2].Split('=')[1];
+               // String url = temp[3].Split('=')[1];
+                try
+                {
+                    autoID = int.Parse(_autoD);
                 }
                 catch
                 {
                     autoID = 0;
                 }
-            }
-            if (context.Request.Params["MESSAGEID"] != null)
-            {
                 try
                 {
-                    messageID = int.Parse(context.Request.Params["MESSAGEID"]);
+                    messageID = int.Parse(_mesageID);
                 }
                 catch
                 {
                     messageID = 0;
                 }
-            }
-            if (context.Request.Params["LISTID"] != null)
-            {
+
                 try
                 {
-                    listID = int.Parse(context.Request.Params["LISTID"]);
+                    listID = int.Parse(_listID);
                 }
                 catch
                 {
                     listID = 0;
                 }
+
+
+
+                if (autoID > 0)
+                {
+
+                    ClickOpenStatus obj = new ClickOpenStatus();
+                    obj.AUTORESPONDERID = autoID;
+                    obj.MESSAGEID = messageID;
+                    obj.LISTID = listID;
+                    int countclick = 0;
+                    int countopen = 0;
+                    DataTable dt = obj.Select();
+                    bool newItem = true;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        DataRow row = dt.Rows[0];
+                        countclick = int.Parse(row[4].ToString());
+                        countopen = int.Parse(row[5].ToString());
+                        newItem = false;
+                    }
+                    if (newItem)
+                    {
+                        obj.COUNTCLICK = 0;
+                        obj.COUNTOPEN = 1;
+                        obj.Insert();
+                    }
+                    else
+                    {
+                        obj.COUNTCLICK = countclick;
+                        obj.COUNTOPEN = countopen + 1;
+                        obj.Update();
+                    }
+                }
             }
-            if (autoID > 0)
-            {
 
 
 
-                ClickOpenStatus obj = new ClickOpenStatus();
-                obj.AUTORESPONDERID = autoID;
-                obj.MESSAGEID = messageID;
-                obj.LISTID = listID;
-                int countclick = 0;
-                int countopen = 0;
-                DataTable dt = obj.Select();
-                bool newItem = true;
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    DataRow row = dt.Rows[0];
-                    countclick = int.Parse(row[4].ToString());
-                    countopen = int.Parse(row[5].ToString());
-                    newItem = false;
-                }
-                if (newItem)
-                {
-                    obj.COUNTCLICK = 0;
-                    obj.COUNTOPEN = 1;
-                    obj.Insert();
-                }
-                else
-                {
-                    obj.COUNTCLICK = countclick;
-                    obj.COUNTOPEN = countopen + 1;
-                    obj.Update();
-                }
-
-               
-            }
+           
             context.Response.Clear();
             context.Response.ContentType = getContentType(context.Request.PhysicalPath);
             context.Response.WriteFile(context.Request.PhysicalPath);
@@ -199,6 +221,11 @@ namespace ImageHandler
                 default: break;
             }
             return ImageFormat.Jpeg;
+        }
+        public string Decode(string str)
+        {
+            byte[] decbuff = Convert.FromBase64String(str);
+            return System.Text.Encoding.UTF8.GetString(decbuff);
         }
     }
 }

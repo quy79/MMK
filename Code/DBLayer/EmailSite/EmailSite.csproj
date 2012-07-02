@@ -331,9 +331,15 @@
     <Content Include="HTMLEditor\jscripts\tiny_mce\utils\form_utils.js" />
     <Content Include="HTMLEditor\jscripts\tiny_mce\utils\mctabs.js" />
     <Content Include="HTMLEditor\jscripts\tiny_mce\utils\validate.js" />
+    <Content Include="img\333333_40x100_textures_02_glass_25.png" />
+    <Content Include="img\444444_40x100_textures_02_glass_25.png" />
+    <Content Include="img\999999_40x100_textures_02_glass_25.png" />
+    <Content Include="img\a21111_40x100_textures_02_glass_35.png" />
     <Content Include="img\accbox_left.jpg" />
     <Content Include="img\accbox_right.jpg" />
     <Content Include="img\accbox_ver.gif" />
+    <Content Include="img\add-contacts-header-bg.jpg" />
+    <Content Include="img\addcontact.png" />
     <Content Include="img\arrow.png" />
     <Content Include="img\autoresponder-box-bg.jpg" />
     <Content Include="img\autoresponder-header-bg.jpg" />
@@ -345,25 +351,69 @@
     <Content Include="img\bg_button_span.png" />
     <Content Include="img\bl.gif" />
     <Content Include="img\bounced-icon.jpg" />
+    <Content Include="img\box-bg.png" />
+    <Content Include="img\box-btm.png" />
     <Content Include="img\br.gif" />
+    <Content Include="img\check.png" />
     <Content Include="img\click-icon.jpg" />
     <Content Include="img\close.gif" />
     <Content Include="img\close_pop.png" />
     <Content Include="img\contacts-icon.png" />
     <Content Include="img\contacts-title-bg.png" />
     <Content Include="img\contacts.gif" />
+    <Content Include="img\copycontact.png" />
     <Content Include="img\design-email.jpg" />
     <Content Include="img\design-login.jpg" />
     <Content Include="img\design-register.jpg" />
+    <Content Include="img\eeeeee_11x11_icon_arrows_leftright.gif" />
+    <Content Include="img\eeeeee_11x11_icon_arrows_updown.gif" />
+    <Content Include="img\eeeeee_11x11_icon_close.gif" />
+    <Content Include="img\eeeeee_11x11_icon_doc.gif" />
+    <Content Include="img\eeeeee_11x11_icon_folder_closed.gif" />
+    <Content Include="img\eeeeee_11x11_icon_folder_open.gif" />
+    <Content Include="img\eeeeee_11x11_icon_minus.gif" />
+    <Content Include="img\eeeeee_11x11_icon_plus.gif" />
+    <Content Include="img\eeeeee_7x7_arrow_down.gif" />
+    <Content Include="img\eeeeee_7x7_arrow_left.gif" />
+    <Content Include="img\eeeeee_7x7_arrow_right.gif" />
+    <Content Include="img\eeeeee_7x7_arrow_up.gif" />
     <Content Include="img\emails-box-bg.jpg" />
     <Content Include="img\emails-header-bg.jpg" />
     <Content Include="img\emails.gif" />
+    <Content Include="img\email_sent.jpg" />
+    <Content Include="img\error.png" />
+    <Content Include="img\ffd40f_11x11_icon_arrows_leftright.gif" />
+    <Content Include="img\ffd40f_11x11_icon_arrows_updown.gif" />
+    <Content Include="img\ffd40f_11x11_icon_close.gif" />
+    <Content Include="img\ffd40f_11x11_icon_doc.gif" />
+    <Content Include="img\ffd40f_11x11_icon_folder_closed.gif" />
+    <Content Include="img\ffd40f_11x11_icon_folder_open.gif" />
+    <Content Include="img\ffd40f_11x11_icon_minus.gif" />
+    <Content Include="img\ffd40f_11x11_icon_plus.gif" />
+    <Content Include="img\ffd40f_7x7_arrow_down.gif" />
+    <Content Include="img\ffd40f_7x7_arrow_left.gif" />
+    <Content Include="img\ffd40f_7x7_arrow_right.gif" />
+    <Content Include="img\ffd40f_7x7_arrow_up.gif" />
+    <Content Include="img\ffffff_11x11_icon_arrows_leftright.gif" />
+    <Content Include="img\ffffff_11x11_icon_arrows_updown.gif" />
+    <Content Include="img\ffffff_11x11_icon_close.gif" />
+    <Content Include="img\ffffff_11x11_icon_doc.gif" />
+    <Content Include="img\ffffff_11x11_icon_folder_closed.gif" />
+    <Content Include="img\ffffff_11x11_icon_folder_open.gif" />
+    <Content Include="img\ffffff_11x11_icon_minus.gif" />
+    <Content Include="img\ffffff_11x11_icon_plus.gif" />
+    <Content Include="img\ffffff_7x7_arrow_down.gif" />
+    <Content Include="img\ffffff_7x7_arrow_left.gif" />
+    <Content Include="img\ffffff_7x7_arrow_right.gif" />
+    <Content Include="img\ffffff_7x7_arrow_up.gif" />
     <Content Include="img\footer-bg.png" />
+    <Content Include="img\fromfile.png" />
     <Content Include="img\headerbg.png" />
     <Content Include="img\header_bg.gif" />
     <Content Include="img\horbg.png" />
     <Content Include="img\icon-password.png" />
     <Content Include="img\icon-username.png" />
+    <Content Include="img\icon_cal.png" />
     <Content Include="img\img\button_large.jpg" />
     <Content Include="img\img\flickr.jpg" />
     <Content Include="img\img\footer_dottedGrayDivider.gif" />
@@ -387,6 +437,9 @@
     <Content Include="img\jqmBG.gif" />
     <Content Include="img\last-message.png" />
     <Content Include="img\lastMsgTitle_bg.png" />
+    <Content Include="img\list-header-bg.jpg" />
+    <Content Include="img\loadera64.gif" />
+    <Content Include="img\loading-icon.gif" />
     <Content Include="img\login_whisp.png" />
     <Content Include="img\logo.jpg" />
     <Content Include="img\logo_login.png" />
@@ -401,12 +454,17 @@
     <Content Include="img\open-icon.jpg" />
     <Content Include="img\optmmk-main_nav_sprite.png" />
     <Content Include="img\optmmk_emails_nav_sprite.png" />
+    <Content Include="img\optmmk_emails_nav_sprite1.png" />
+    <Content Include="img\optmmk_emails_nav_sprite2.png" />
     <Content Include="img\roundedge-blue-left.gif" />
     <Content Include="img\roundedge-blue-right.gif" />
     <Content Include="img\roundedge-gray-left.gif" />
     <Content Include="img\roundedge-gray-right.gif" />
     <Content Include="img\roundedge-green-left.gif" />
     <Content Include="img\roundedge-green-right.gif" />
+    <Content Include="img\search-header-bg.jpg" />
+    <Content Include="img\segment-icon.png" />
+    <Content Include="img\segments-header-bg.jpg" />
     <Content Include="img\sprite.gif" />
     <Content Include="img\stat-bottom-bg.jpg" />
     <Content Include="img\stat-header-bg.jpg" />
@@ -427,6 +485,64 @@
     <Content Include="Redirect.aspx" />
     <Content Include="register.aspx" />
     <Content Include="searchContacts.aspx" />
+    <Content Include="templates\template1\images\button_large.jpg" />
+    <Content Include="templates\template1\images\flickr.jpg" />
+    <Content Include="templates\template1\images\footer_dottedGrayDivider.gif" />
+    <Content Include="templates\template1\images\footer_top.jpg" />
+    <Content Include="templates\template1\images\header.jpg" />
+    <Content Include="templates\template1\images\large_hr.jpg" />
+    <Content Include="templates\template1\images\learn_more1.jpg" />
+    <Content Include="templates\template1\images\learn_more2.jpg" />
+    <Content Include="templates\template1\images\learn_more3.jpg" />
+    <Content Include="templates\template1\images\linkedin.jpg" />
+    <Content Include="templates\template1\images\monitor.jpg" />
+    <Content Include="templates\template1\images\myspace.jpg" />
+    <Content Include="templates\template1\images\product1_heading.jpg" />
+    <Content Include="templates\template1\images\product1_image.jpg" />
+    <Content Include="templates\template1\images\product2_heading.jpg" />
+    <Content Include="templates\template1\images\product2_image.jpg" />
+    <Content Include="templates\template1\images\product3_heading.jpg" />
+    <Content Include="templates\template1\images\product3_image.jpg" />
+    <Content Include="templates\template1\images\small_hr.jpg" />
+    <Content Include="templates\template1\images\tpl_thumbnail.jpg" />
+    <Content Include="templates\template1\images\twitter.jpg" />
+    <Content Include="templates\template1\index.html" />
+    <Content Include="templates\template2\images\0353b5e5d3fd545ba8183a55c644d43c.gif" />
+    <Content Include="templates\template2\images\28a0bce97ef1c124f39726e10bfe7ed1.gif" />
+    <Content Include="templates\template2\images\38a15d44231e7a103dc552fc07c90ce7.gif" />
+    <Content Include="templates\template2\images\4279d16766f0d14db6eab447ae406bb5.gif" />
+    <Content Include="templates\template2\images\5cd05421834e28e8a61ec825aba2bb74.gif" />
+    <Content Include="templates\template2\images\6636cf4b340246bbea8be99966e7d9e2.gif" />
+    <Content Include="templates\template2\images\7d55017405869653a05164fb87fc7f4b.gif" />
+    <Content Include="templates\template2\images\7d6571e818b5e8f96bf0bf137f2d1e28.gif" />
+    <Content Include="templates\template2\images\8ab5e59cdb069af05ba1a5ad4880a4c4.gif" />
+    <Content Include="templates\template2\images\8b169c22a842b39cbcaa144ce399f78b.gif" />
+    <Content Include="templates\template2\images\a7241f83c42ac47ec3b0dba9a9935b5d.gif" />
+    <Content Include="templates\template2\images\c35a089fdc7abd99466728942a4a31dd.gif" />
+    <Content Include="templates\template2\images\c547cbf3048dd600978539da71e75d73.gif" />
+    <Content Include="templates\template2\images\ce287beaee3e4c5993edc6b754ae8ca5 %281%29.gif" />
+    <Content Include="templates\template2\images\ce287beaee3e4c5993edc6b754ae8ca5.gif" />
+    <Content Include="templates\template2\images\d0c173d1d904c074b92af9e9b0cbfd77.gif" />
+    <Content Include="templates\template2\images\f0b2a43208f37b6c9bb69ac1df0d435a.gif" />
+    <Content Include="templates\template2\images\f79ffb368ec388584f1eb7360df35a5b.gif" />
+    <Content Include="templates\template2\images\tmpl_thumbnail.jpg" />
+    <Content Include="templates\template2\index.html" />
+    <Content Include="templates\template3\images\1_01.gif" />
+    <Content Include="templates\template3\images\1_02.gif" />
+    <Content Include="templates\template3\images\1_03.gif" />
+    <Content Include="templates\template3\images\1_04.gif" />
+    <Content Include="templates\template3\images\1_05.gif" />
+    <Content Include="templates\template3\images\cglogo.gif" />
+    <Content Include="templates\template3\images\cg_blog.gif" />
+    <Content Include="templates\template3\images\cg_site.gif" />
+    <Content Include="templates\template3\images\fwd_now.gif" />
+    <Content Include="templates\template3\images\left.gif" />
+    <Content Include="templates\template3\images\left2.gif" />
+    <Content Include="templates\template3\images\right.gif" />
+    <Content Include="templates\template3\images\right2.gif" />
+    <Content Include="templates\template3\images\sub_now.gif" />
+    <Content Include="templates\template3\images\tmpl_thumbnail.jpg" />
+    <Content Include="templates\template3\index.html" />
     <Content Include="templates\tpl_thumbnail_001.jpg" />
     <Content Include="templates\tpl_thumbnail_002.jpg" />
     <Content Include="timeout.aspx" />
@@ -1341,12 +1457,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adContact.aspx.cs">
@@ -1482,6 +1592,7 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ImageHandler\ImageHandler.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1599,7 +1710,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ImageHandler\" />
     <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>

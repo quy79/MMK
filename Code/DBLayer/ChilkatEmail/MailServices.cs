@@ -213,41 +213,7 @@ namespace ChilkatEmail
             return true;
         }
 
-        //public bool SendHtmlEmail(string subject, string htmlBody)
-        //{
-        //    //  The mailman object is used for receiving (POP3)
-        //    //  and sending (SMTP) email.
-        //    Chilkat.MailMan mailman = new Chilkat.MailMan();
-
-
-        //    //  Note: This example requires licenses to both "Chilkat Email" and "Chilkat MHT".
-        //    //  Any string argument automatically begins the 30-day trial.
-        //    bool success;
-        //    success = mailman.UnlockComponent(ChilkatEmailUnlock);
-        //    if (success != true) return false;
-
-        //    Chilkat.Email email = new Chilkat.Email();
-
-        //    email.Subject = subject;
-        //    email.SetHtmlBody(htmlBody);
-        //    email.AddMultipleTo(eUtils.mailParse(listMailTo));
-        //    email.From = mailFrom;
-        //    email.AddMultipleCC(eUtils.mailParse(listMailCC));
-
-        //    mailman.SmtpHost = Constants.strSmtpHost;
-        //    //mailman.SmtpUsername = strSmtpUser;
-        //   // mailman.SmtpPassword = strSmtpPass;
-        //   // mailman.SmtpPort = iSmtpPort;
-        //    //mailman.StartTLS = startTLS;
-        //    //if (Charset.Length != 0) email.Charset = Charset;
-
-        //    success = mailman.SendEmail(email);
-        //    if (success != true) return false;
-
-        //    success = mailman.CloseSmtpConnection();
-
-        //    return true;
-        //}
+        
 
     }
 }
