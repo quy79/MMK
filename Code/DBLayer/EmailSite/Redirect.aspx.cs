@@ -29,9 +29,10 @@ namespace EmailSite
                     param = "";
                 }
             }
-            if (String.IsNullOrEmpty(param))
+            if (!String.IsNullOrEmpty(param))
             {
                 // Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
+                param = param.Substring(0, param.Length - 1);
                 String paremdecode = Decode(param);
                 String[] temp = paremdecode.Split('&');
                 String _autoD = temp[0].Split('=')[1];

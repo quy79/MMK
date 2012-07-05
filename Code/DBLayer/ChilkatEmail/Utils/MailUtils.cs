@@ -30,7 +30,7 @@ namespace ChilkatEmail.Utils
                     {
                         //String replaceString = "'" + serverName + "/redirect.aspx?AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";
                         String patamcode = Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
-                        String replaceString = "'" + serverName + "/redirect.aspx?paramcode=" + patamcode;
+                        String replaceString = "'" + serverName + "/redirect.aspx?paramcode=" + patamcode+"' ";
                         body = body.Replace(link, replaceString);
                     }
                     else if (link.IndexOf("mailto") >= 0)

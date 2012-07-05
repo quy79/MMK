@@ -49,7 +49,7 @@ namespace DatabaseLayer
 				
 			};
 
-            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "CONTACT_MESSAGESENT_Select", Params);
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_MESSAGESENT_Select", Params);
             return ds.Tables[0];
         }
         catch (Exception ex)

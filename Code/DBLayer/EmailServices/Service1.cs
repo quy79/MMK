@@ -35,7 +35,7 @@ namespace EmailServices
            // while (/*SERVICE_TO*/ true)
             {
                 Debug.WriteLine("start auto responder");
-                Thread.Sleep(3000);
+                Thread.Sleep(30000);
                 DBManager.initConnection();
                 Thread t = new Thread(MainTHreadLoop);
                 t.Start();
@@ -54,9 +54,9 @@ namespace EmailServices
                 if (!autoEnginThread.IsAlive)
                 {
                     autoEnginThread = new Thread(OnStartMain);
-                autoEnginThread.Start();
+                    autoEnginThread.Start();
                 }
-                if (!sendMailThread.IsAlive)
+               if (!sendMailThread.IsAlive)
                 {
                     sendMailThread = new Thread(OnSendMail);
                     sendMailThread.Start();
@@ -589,28 +589,32 @@ namespace EmailServices
             MailServices mailSV = new MailServices();
             while (true)
             {
-                Contact_message ct = new Contact_message();
-                DataTable tb = ct.Select();
-              
-
-                foreach (DataRow row in tb.Rows)
+                try
                 {
-                    int ctID = int.Parse(row[0].ToString());
-                    int messageID = int.Parse(row[1].ToString());
-                    String email = row[2].ToString();
-                    String messageName=row[3].ToString(); 
-                    String emailfrom = row[4].ToString(); 
-                    String subject = row[5].ToString(); 
-                    String body = row[6].ToString();
-                    ct.CONTACTID = ctID;
-                    ct.MESSAGEID = messageID;
-                    ct.Delete();
-                    List<String> emailList = new List<string>();
-                    emailList.Add(email);
-                    mailSV.SendHTMLEmail(emailfrom, emailList, null, null, subject, body);
+                    Contact_message ct = new Contact_message();
+                    DataTable tb = ct.Select();
 
+
+                    foreach (DataRow row in tb.Rows)
+                    {
+                        int ctID = int.Parse(row[0].ToString());
+                        int messageID = int.Parse(row[1].ToString());
+                        String email = row[2].ToString();
+                        String messageName = row[3].ToString();
+                        String emailfrom = row[4].ToString();
+                        String subject = row[5].ToString();
+                        String body = row[6].ToString();
+                        ct.CONTACTID = ctID;
+                        ct.MESSAGEID = messageID;
+                        ct.Delete();
+                        List<String> emailList = new List<string>();
+                        emailList.Add(email);
+                        mailSV.SendHTMLEmail(emailfrom, emailList, null, null, subject, body);
+
+                    }
+                    Thread.Sleep(10 * 60 * 1000);
+                }catch (Exception ee){
                 }
-                Thread.Sleep(10 * 60 * 1000);
             }
         }
         
