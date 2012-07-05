@@ -12,6 +12,7 @@ namespace EmailSite
         protected void Page_Load(object sender, EventArgs e)
         {
             Utils.CheckSecurity(Session, Response);
+            lblMsg.Text = "";
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -20,14 +21,16 @@ namespace EmailSite
             objList.USERID = Int32.Parse(Session["userID"].ToString());
             objList.LISTNAME = txtName.Text.Trim();
             objList.DESCRIPTION = txtDesc.Text.Trim();
-            objList.NOTIFICATION = chkAgree.Checked;
+            objList.NOTIFICATION = false;
+            //objList.NOTIFICATION = chkAgree.Checked;
             bool isOK = objList.Insert();
             if (isOK)
             {
                 ClearForm();
-                lblMsg.Text  = "          " + "The new list is added sucessfull." + "<br/>";
+                lblMsg.Text = Utils.ShowMessage("The new list was successful saved.", false);
+                //lblMsg.Text  = "          " + "The new list is added sucessfull." + "<br/>";
             }
-            else lblMsg.Text = "          " + "The new list is added unsucessfull. Please try again!" + "<br/>";
+            else lblMsg.Text = Utils.ShowMessage("The new list was added unsucessfull. Please try again!", true);
         }
 
         private void ClearForm()

@@ -111,6 +111,12 @@ namespace EmailSite
             else Response.Redirect("createAutoHTMLEmail.aspx");
         }
 
+        protected void lnkTemplate_Click(object sender, EventArgs e)
+        {
+            if (hdAutoID.Value != "0") Response.Redirect("createAutoTemplateEmail.aspx?Aid=" + hdAutoID.Value);
+            else Response.Redirect("createAutoTemplateEmail.aspx");
+        }
+
       
 
        

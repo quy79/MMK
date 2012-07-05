@@ -61,12 +61,16 @@
     <Content Include="createAutoMsg.aspx" />
     <Content Include="createAutoMsgDone.aspx" />
     <Content Include="createAutoresponder.aspx" />
+    <Content Include="createAutoTemplateEmail.aspx" />
+    <Content Include="createAutoTemplateEmail2.aspx" />
     <Content Include="createAutoTextEmail.aspx" />
     <Content Include="createHTMLEmail.aspx" />
     <Content Include="createList.aspx" />
     <Content Include="createMsg.aspx" />
     <Content Include="createMsgDone.aspx" />
     <Content Include="createSegment.aspx" />
+    <Content Include="createTemplateEmail.aspx" />
+    <Content Include="createTemplateEmail2.aspx" />
     <Content Include="createTextEmail.aspx" />
     <Content Include="editAutoresponder.aspx" />
     <Content Include="editMessage.aspx" />
@@ -1431,6 +1435,20 @@
     <Compile Include="createAutoresponder.aspx.designer.cs">
       <DependentUpon>createAutoresponder.aspx</DependentUpon>
     </Compile>
+    <Compile Include="createAutoTemplateEmail.aspx.cs">
+      <DependentUpon>createAutoTemplateEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createAutoTemplateEmail.aspx.designer.cs">
+      <DependentUpon>createAutoTemplateEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createAutoTemplateEmail2.aspx.cs">
+      <DependentUpon>createAutoTemplateEmail2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createAutoTemplateEmail2.aspx.designer.cs">
+      <DependentUpon>createAutoTemplateEmail2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="createAutoTextEmail.aspx.cs">
       <DependentUpon>createAutoTextEmail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1472,6 +1490,20 @@
     </Compile>
     <Compile Include="createSegment.aspx.designer.cs">
       <DependentUpon>createSegment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createTemplateEmail.aspx.cs">
+      <DependentUpon>createTemplateEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createTemplateEmail.aspx.designer.cs">
+      <DependentUpon>createTemplateEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createTemplateEmail2.aspx.cs">
+      <DependentUpon>createTemplateEmail2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="createTemplateEmail2.aspx.designer.cs">
+      <DependentUpon>createTemplateEmail2.aspx</DependentUpon>
     </Compile>
     <Compile Include="createTextEmail.aspx.cs">
       <DependentUpon>createTextEmail.aspx</DependentUpon>

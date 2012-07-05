@@ -11,21 +11,28 @@ namespace EmailSite
 {
     public partial class createHTMLEmail : System.Web.UI.Page
     {
-        private delegate void CheckMail();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            Utils.CheckSecurity(Session, Response);
-            if (!IsPostBack)
+            try
             {
-                if (Session["currentTextEmail"] != null)
+                Utils.CheckSecurity(Session, Response);
+                if (!IsPostBack)
                 {
-                    TextMessage objMsg = (TextMessage)Session["currentTextEmail"];
-                    txtFromEmail.Text = objMsg.FromEmail;
-                    txtSubject.Text = objMsg.Subject;
-                    txtMsgName.Text = objMsg.MsgName;
-                    txtMsgBody.Text = objMsg.MsgBody;
+                    if (Session["currentTextEmail"] != null)
+                    {
+                        TextMessage objMsg = (TextMessage)Session["currentTextEmail"];
+                        if (objMsg.TypeMsg == 2)
+                        {
+                            txtFromEmail.Text = objMsg.FromEmail;
+                            txtSubject.Text = objMsg.Subject;
+                            txtMsgName.Text = objMsg.MsgName;
+                            txtMsgBody.Text = objMsg.MsgBody;
+                        }
+                    }
                 }
             }
+            catch { }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

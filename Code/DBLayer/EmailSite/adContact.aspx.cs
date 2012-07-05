@@ -13,6 +13,9 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["listid"]!=null && !Request.QueryString["listid"].Equals(""))
+                listsDiv.Visible = false;
+            lblMsg.Text = "";
             if(!Page.IsPostBack) LoadData();
         }
 
@@ -27,10 +30,39 @@ namespace EmailSite
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            string strListSelected = Request["listContact"];
-            if (!strListSelected.Equals(""))
+
+            string strListSelected;
+            if (Request.QueryString["listid"] == null || Request.QueryString["listid"].Equals(""))
+                strListSelected = Request["listContact"];
+            else
+                strListSelected = Request.QueryString["listid"];
+
+
+            System.Web.UI.HtmlControls.HtmlGenericControl noticeContentDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+            noticeContentDiv.ID = "infoDivCode";
+            noticeContentDiv.Style.Add("position", "relative");
+            noticeContentDiv.Style.Add("margin", "20px auto");
+            noticeContentDiv.Style.Add("padding", "20px 0px 0px 80px");
+            noticeContentDiv.Style.Add("width", "520px");
+            noticeContentDiv.Style.Add("height", "40px");
+            noticeContentDiv.Style.Add("color", "#000000");
+            noticeContentDiv.Style.Add("background-color", "#fbf6d7");
+            noticeContentDiv.Style.Add("border", "1px solid #0b5d91");
+            noticeContentDiv.Style.Add("-moz-border-radius", "6px 6px 6px 6px");
+            noticeContentDiv.Style.Add("border-radius", "6px 6px 6px 6px");
+            noticeContentDiv.Style.Add("-webkit-border-radius", "6px 6px 6px 6px");
+            noticeContentDiv.Style.Add("background-repeat", "no-repeat");
+            noticeContentDiv.Style.Add("background-position", "10px center");
+            noticeContentDiv.Style.Add("font-size", "13px");
+            noticeContentDiv.Style.Add("font-weight", "500");
+            noticeContentDiv.Style.Add("text-align", "left");
+            noticeContentDiv.Style.Add("clear", "both");
+
+
+            if (strListSelected != null)
             {
                 DatabaseLayer.Contacts objContact = new DatabaseLayer.Contacts();
+                objContact.USERID = Int32.Parse(Session["userID"].ToString());
                 objContact.EMAIL = txtEmail.Text.Trim();
 
                 objContact.PREFIX = txtPrefix.Text.Trim();
@@ -49,49 +81,109 @@ namespace EmailSite
                 objContact.PHONE = txtPhone.Text.Trim();
                 objContact.FAX = txtFax.Text.Trim();
 
-                if (chkAgree.Checked)
-                {
-                    objContact.CONFIRMED = false;
-                    objContact.SENDEMAIL = false;
-                    objContact.CONFIRMCODE = Guid.NewGuid().ToString().Replace("-", "");
-                }
-                else
-                {
-                    objContact.CONFIRMED = true;
-                    objContact.SENDEMAIL = true;
-                    objContact.CONFIRMCODE = Guid.NewGuid().ToString().Replace("-", "");
-                }
-                if (objContact.IsExistContactEmail())
-                {
-                    lblMsg.Text = "This email has been registered. <br/>";
-                    return;
-                }
 
-                int iContactID = objContact.Insert();
+                objContact.CONFIRMED = true;
+                objContact.SENDEMAIL = true;
+                objContact.CONFIRMCODE = Guid.NewGuid().ToString().Replace("-", "");
+        
+
+                int iContactID = objContact.IsExistContactEmail();
                 if (iContactID > 0)
                 {
-                    //insert contact_list
-                    string[] listIDs = strListSelected.Split(',');
-                    foreach (string strID in listIDs)
-                    {
-                        DatabaseLayer.Contact_list objContactList = new DatabaseLayer.Contact_list();
-                        objContactList.CONTACTID = iContactID;
-                        objContactList.LISTID = Int32.Parse(strID);
-                        objContactList.SUBSCRIBES = true;
-
-                        objContactList.Insert();
-
-                    }
-                    ClearForm();
-                    lblMsg.Text = "The new contact is added sucessfull. <br/>";
+                    
+                    noticeContentDiv.Style.Add("background-image", "url(../../img/error.png)");
+                    noticeContentDiv.InnerHtml = "Error : This Email Address already existed in the Contact List !";
+                    infoDiv.Controls.Add(noticeContentDiv);
+                    pnlAddMore.Visible = true;
+                    return;
                 }
                 else {
-                    lblMsg.Text = "The new contact is added unsucessfull. Please try again ! <br/>";
+
+                    iContactID = objContact.Insert();
+
+                    if (iContactID > 0)
+                    {
+                        //insert contact_list
+                        string[] listIDs;
+                        if (Request.QueryString["listid"]==null || Request.QueryString["listid"].Equals(""))
+                        {
+                            listIDs = strListSelected.Split(',');
+                        }
+                        else
+                        {
+                            listIDs = new string[1];
+                            listIDs[0] = Request.QueryString["listid"];
+                        }
+
+
+                        foreach (string strID in listIDs)
+                        {
+                            DatabaseLayer.Contact_list objContactList = new DatabaseLayer.Contact_list();
+                            objContactList.CONTACTID = iContactID;
+                            objContactList.LISTID = Int32.Parse(strID);
+                            objContactList.SUBSCRIBES = true;
+
+                            objContactList.Insert();
+
+                        }
+
+
+                        //update total subscribes in contact list table
+                        string[] listIDs1;
+                        if (Request.QueryString["listid"]==null || Request.QueryString["listid"].Equals(""))
+                        {
+                            listIDs1 = strListSelected.Split(',');
+                        }
+                        else
+                        {
+                            listIDs1 = new string[1];
+                            listIDs1[0] = Request.QueryString["listid"];
+                        }
+
+                        foreach (string strID in listIDs1)
+                        {
+                            DatabaseLayer.Contact_list objContactList = new DatabaseLayer.Contact_list();
+                            objContactList.LISTID = Int32.Parse(strID);
+                            DataTable dt = objContactList.SelectByListID();
+                            int totalSubscribes = dt.Rows.Count;
+
+                            DatabaseLayer.Lists objList1 = new DatabaseLayer.Lists();
+                            objList1.USERID = Int32.Parse(Session["userID"].ToString());
+                            objList1.ID = Int32.Parse(strID);
+                            objList1.TOTALSUBSCRIBES = totalSubscribes;
+                            objList1.UpdateTotalSubscribers();
+
+
+                        }
+
+
+
+                        ClearForm();
+
+
+                        noticeContentDiv.Style.Add("background-image", "url(../../img/check.png)");
+                        noticeContentDiv.InnerHtml = "Contact is successful saved.";
+                        infoDiv.Controls.Add(noticeContentDiv);
+                        pnlAddMore.Visible = true;
+
+                    }
+                    else
+                    {
+                        noticeContentDiv.Style.Add("background-image", "url(../../img/error.png)");
+                        noticeContentDiv.InnerHtml = "Error : Failed to add Contact !";
+                        infoDiv.Controls.Add(noticeContentDiv);
+                    }
+                    
+                
                 }
+
+                
             }
             else
             {
-                lblMsg.Text = "Please select aleast 1 list <br/>";
+                noticeContentDiv.Style.Add("background-image", "url(../../img/error.png)");
+                noticeContentDiv.InnerHtml = "Please select at least 1 list.";
+                infoDiv.Controls.Add(noticeContentDiv);
             }
         }
 

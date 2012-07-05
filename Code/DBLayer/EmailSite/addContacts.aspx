@@ -119,22 +119,23 @@
 
                 	<div class="common-title">
                     <h2>Add Contacts to My Lists</h2><br/>
-                    <span>3 methods for adding Contacts to your Lists.</span>
+                    <span>3 methods for adding Contacts to your Lists.</span><br/>
+                    <span><asp:Label ID="lblMsg" runat="server" Font-Bold="True" ForeColor="#FF3300"></asp:Label></span>
                     </div>                        	 		
                     
                		<div id="add-contacts-container">
                     	<table>
                         	<tr>
                             	<td width="33%">
-                                <div id="add-contacts-box"><a href="uploadContacts.aspx"><div id="fromfile"><div class="title">Upload Contacts from a file</div><br/>
+                                <div id="add-contacts-box"><a href="uploadContacts.aspx<%=listid%>"><div id="fromfile"><div class="title">Upload Contacts from a file</div><br/>
                                 <span>Use this form to upload a batch of contacts from an .xls (Microsoft Excel spreadsheet) or .csv (Comma Separated Values) file.</span>
                                 </div></a></div></td>
 								<td width="34%">
-                                <div id="add-contacts-box"><a href="adContact.aspx"><div id="addcontact"><div class="title">Add Contact one-by-one</div><br/>
+                                <div id="add-contacts-box"><a href="adContact.aspx<%=listid%>"><div id="addcontact"><div class="title">Add Contact one-by-one</div><br/>
                                 <span>Add as many contacts as you need, one at a time.</span>
                                 </div></a></div></td>
                                 <td width="33%">
-                                <div id="add-contacts-box"><a href="copyContact.aspx"><div id="copycontact"><div class="title">Copy & paste Contacts</div><br/>
+                                <div id="add-contacts-box"><a href="copyContact.aspx<%=listid%>"><div id="copycontact"><div class="title">Copy & paste Contacts</div><br/>
                                 <span>Copy and paste text containing email addresses using this form. This method will ignore any text surrounding the email addresses.</span>
                                 </div></a></div></td>
                             </tr>

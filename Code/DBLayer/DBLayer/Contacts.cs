@@ -17,6 +17,7 @@ namespace DatabaseLayer
 
 	#region Private Variables
 	private int _ID;
+    private int _USERID;
 	private string _FIRSTNAME;
 	private string _LASTNAME;
 	private string _PREFIX;
@@ -43,6 +44,11 @@ namespace DatabaseLayer
 		get { return _ID; }
 		set { _ID = value; }
 	}
+    public int USERID
+    {
+        get { return _USERID; }
+        set { _USERID = value; }
+    }
 	public string FIRSTNAME
 	{ 
 		get { return _FIRSTNAME; }
@@ -145,10 +151,12 @@ namespace DatabaseLayer
         {
             SqlParameter[] Params = 
 			{ 				
-				new SqlParameter("@Text",SqlDbType.NVarChar)				
+				new SqlParameter("@Text",SqlDbType.NVarChar),
+                new SqlParameter("@USERID",SqlDbType.Int),
 			};
 
             Params[0].Value = text;
+            Params[1].Value = USERID;
 
 
             ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_QSearch]", Params);
@@ -186,8 +194,13 @@ namespace DatabaseLayer
         DataSet ds;
         try
         {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",USERID)
+            };
+
             
-            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACTS_SelectAll");
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACTS_SelectAll", Params);
             return ds.Tables[0];
         }
         catch (Exception ex)
@@ -227,7 +240,8 @@ namespace DatabaseLayer
         {
             SqlParameter[] Params = 
 			{ 				
-				new SqlParameter("@EMAIL",SqlDbType.NVarChar)				
+				new SqlParameter("@EMAIL",SqlDbType.NVarChar),
+				new SqlParameter("@USERID",SqlDbType.Int)
 			};
 
 
@@ -242,6 +256,14 @@ namespace DatabaseLayer
                 Params[0].Value = DBNull.Value;
             }
 
+            if (USERID != null)
+            {
+                Params[1].Value = USERID;
+            }
+            else
+            {
+                Params[1].Value = DBNull.Value;
+            }
             
 
 
@@ -274,7 +296,8 @@ namespace DatabaseLayer
 				new SqlParameter("@PHONE",SqlDbType.NVarChar),
 				new SqlParameter("@FAX",SqlDbType.NVarChar),				
 				new SqlParameter("@DATE1",SqlDbType.DateTime) ,
-                new SqlParameter("@DATE2",SqlDbType.DateTime) 
+                new SqlParameter("@DATE2",SqlDbType.DateTime) ,
+                new SqlParameter("@USERID",SqlDbType.Int) 
 			};
 			
 
@@ -395,9 +418,20 @@ namespace DatabaseLayer
 					Params[12].Value = DBNull.Value;
 				}
 
+        
+
 
                 Params[13].Value = date1;
                 Params[14].Value = date2;
+
+                if (USERID != null)
+                {
+                    Params[15].Value = USERID;
+                }
+                else
+                {
+                    Params[15].Value = DBNull.Value;
+                }
 
 			
 			ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACTS_Select",Params);
@@ -414,6 +448,7 @@ namespace DatabaseLayer
 		{
 			SqlParameter[] Params = 
 			{ 
+                new SqlParameter("@USERID",USERID),
 				new SqlParameter("@FIRSTNAME",FIRSTNAME),
 				new SqlParameter("@LASTNAME",LASTNAME),
 				new SqlParameter("@PREFIX",PREFIX),
@@ -486,28 +521,31 @@ namespace DatabaseLayer
 		}
 	}
 
-    public bool IsExistContactEmail()
+       public int IsExistContactEmail()
     {
         try
         {
             SqlParameter[] Params = 
 			{ 				
-				new SqlParameter("@EMAIL",EMAIL)
+				new SqlParameter("@EMAIL",EMAIL),
+                new SqlParameter("@USERID",USERID)
 			};
             DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CHECK_ExistContactEmail]", Params);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
-                return true;
+                return Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+                
             }
-            return false;
+            return 0;
         }
         catch (Exception ex)
         {
             // throw new Exception(ex.Message);
-            return false;
+            return -1;
         }
     }
+
 
 	public bool Delete()
 	{

@@ -10,7 +10,7 @@
 namespace EmailSite {
     
     
-    public partial class createMsgDone {
+    public partial class createTemplateEmail {
         
         /// <summary>
         /// logo control.
@@ -29,14 +29,5 @@ namespace EmailSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::EmailSite.navigation navigation;
-        
-        /// <summary>
-        /// lblListName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblListName;
     }
 }

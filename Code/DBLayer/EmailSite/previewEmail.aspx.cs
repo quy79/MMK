@@ -11,8 +11,12 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Utils.CheckSecurity(Session, Response);
-            if (!IsPostBack) LoadData();
+            try
+            {
+                Utils.CheckSecurity(Session, Response);
+                if (!IsPostBack) LoadData();
+            }
+            catch { }
         }
 
         private void LoadData()
@@ -37,41 +41,53 @@ namespace EmailSite
         {
             //clear session
             Session["currentTextEmail"] = null;
-            Response.Redirect("createMsgDone.aspx");
+            Response.Redirect("createMsg.aspx");
         }
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
             if (Session["currentTextEmail"] != null)
             {
-                TextMessage objMsg = (TextMessage)Session["currentTextEmail"];
+                TextMessage dtMsg = (TextMessage)Session["currentTextEmail"];
+
+                DatabaseLayer.Messages objMsg = new DatabaseLayer.Messages();
+                objMsg.USERID = Int32.Parse(Session["userID"].ToString());
+                objMsg.FROM = dtMsg.FromEmail;
+                objMsg.SUBJECT = dtMsg.Subject;
+                objMsg.MESSAGENAME = dtMsg.MsgName;
+                objMsg.BODY = dtMsg.MsgBody;
+                objMsg.STATUS = 1;
+                objMsg.TYPE = dtMsg.TypeMsg;
+                int idMsg = objMsg.Insert();
+                DatabaseLayer.Messages oMsgs = new DatabaseLayer.Messages();
+                oMsgs.InsertContact_MessageSent(dtMsg.ListID, idMsg);
+
+                Response.Redirect("createMsgDone.aspx?listid=" + dtMsg.ListID.ToString());
+                //DatabaseLayer.Contact_list objCList = new DatabaseLayer.Contact_list();
+                //objCList.LISTID = objMsg.ListID;
+                //System.Data.DataTable dbTable = objCList.SelectByListID();
+                ////if (dbTable.Rows.Count > 0) lblListName.Text = dbTable.Rows[0]["LISTNAME"].ToString();
+
+                //ChilkatEmail.MailServices mailServices = new ChilkatEmail.MailServices();
+                //List<String> listMailTo = new List<string>();
+                //List<String> listMailCC = new List<string>();
+                //List<String> listMailBCC = new List<string>();
+                //String mailFrom = "";
+                //mailFrom = objMsg.FromEmail;
+                //if (dbTable.Rows.Count > 0)
+                //{
+                //    foreach (System.Data.DataRow row in dbTable.Rows)
+                //    {
+                //        string emailContact = row["EMAIL"].ToString();
+                //        listMailTo.Add(emailContact);
+                //    }
+                //}
+                ////listMailTo.Add(txtToEmail.Text);
 
 
-                DatabaseLayer.Contact_list objCList = new DatabaseLayer.Contact_list();
-                objCList.LISTID = objMsg.ListID;
-                System.Data.DataTable dbTable = objCList.SelectByListID();
-                //if (dbTable.Rows.Count > 0) lblListName.Text = dbTable.Rows[0]["LISTNAME"].ToString();
-
-                ChilkatEmail.MailServices mailServices = new ChilkatEmail.MailServices();
-                List<String> listMailTo = new List<string>();
-                List<String> listMailCC = new List<string>();
-                List<String> listMailBCC = new List<string>();
-                String mailFrom = "";
-                mailFrom = objMsg.FromEmail;
-                if (dbTable.Rows.Count > 0)
-                {
-                    foreach (System.Data.DataRow row in dbTable.Rows)
-                    {
-                        string emailContact = row["EMAIL"].ToString();
-                        listMailTo.Add(emailContact);
-                    }
-                }
-                //listMailTo.Add(txtToEmail.Text);
-
-
-                if (objMsg.TypeMsg == 1) mailServices.SendEmail(mailFrom, listMailTo, listMailCC, listMailBCC, objMsg.Subject, objMsg.MsgBody);
-                else
-                 mailServices.SendHTMLEmail(mailFrom, listMailTo, listMailCC, listMailBCC, objMsg.Subject, objMsg.MsgBody);
+                //if (objMsg.TypeMsg == 1) mailServices.SendEmail(mailFrom, listMailTo, listMailCC, listMailBCC, objMsg.Subject, objMsg.MsgBody);
+                //else
+                // mailServices.SendHTMLEmail(mailFrom, listMailTo, listMailCC, listMailBCC, objMsg.Subject, objMsg.MsgBody);
 
                 //lblMsgBody.Text = objMsg.MsgBody;
             }

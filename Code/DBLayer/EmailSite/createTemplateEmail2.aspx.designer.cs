@@ -10,16 +10,16 @@
 namespace EmailSite {
     
     
-    public partial class createAutoMsg {
+    public partial class createTemplateEmail2 {
         
         /// <summary>
-        /// messages_filter_frm control.
+        /// formID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm messages_filter_frm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formID;
         
         /// <summary>
         /// logo control.
@@ -40,57 +40,84 @@ namespace EmailSite {
         protected global::EmailSite.navigation navigation;
         
         /// <summary>
-        /// lnkTemplate control.
+        /// lblMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTemplate;
+        protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
-        /// lnkTextMail control.
+        /// txtFromEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkTextMail;
+        protected global::System.Web.UI.WebControls.TextBox txtFromEmail;
         
         /// <summary>
-        /// lnkHTMLMail control.
+        /// txtSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHTMLMail;
+        protected global::System.Web.UI.WebControls.TextBox txtSubject;
         
         /// <summary>
-        /// pnlGrid control.
+        /// txtMsgName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGrid;
+        protected global::System.Web.UI.WebControls.TextBox txtMsgName;
         
         /// <summary>
-        /// grvList control.
+        /// txtMsgBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvList;
+        protected global::System.Web.UI.WebControls.TextBox txtMsgBody;
         
         /// <summary>
-        /// hdAutoID control.
+        /// btnSpam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdAutoID;
+        protected global::System.Web.UI.WebControls.Button btnSpam;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// txtToEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtToEmail;
+        
+        /// <summary>
+        /// btnPopupSend control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPopupSend;
     }
 }

@@ -12,8 +12,12 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) LoadContactLists();
-            lblMsg.Text = "";
+            try
+            {
+                if (!IsPostBack) LoadContactLists();
+                lblMsg.Text = "";
+            }
+            catch { }
         }
 
         private void LoadContactLists()
@@ -21,7 +25,7 @@ namespace EmailSite
             //DatabaseLayer 
             DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
             objList.USERID = Int32.Parse(Session["userID"].ToString());
-            DataTable dtList = objList.SelectByUserID();
+            DataTable dtList = objList.SelectListNonEmptyByUserID();
             ddlList.DataSource = dtList;
             ddlList.DataBind();
 

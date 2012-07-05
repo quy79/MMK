@@ -105,7 +105,7 @@
     <title>OptMailMarketing : Home</title>	
 	</head>
 	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-    <form name="form" runat="server">
+    <form id="Form1" name="form" runat="server">
     <div id="main">
 	    <div class="page-container">
         	
@@ -117,12 +117,14 @@
             	<div id="emails-common-panel">
                    
                 	<div class="common-title">
+                    <div id="infoDiv" runat="server" class="create-message-step1-container3"></div>
                     <span><asp:Label ID="lblMsg" runat="server" Font-Bold="True" ForeColor="#FF3300"></asp:Label></span>
                     <h2>Upload Contacts from file</h2><br/>
                     <span>Easily upload and import contacts from CSV file into your Lists</span>
                     </div>
                     <div class="common-form">
                     <!--<form id="formID" name="form" class="formular" method="post" action="CreateList.aspx">-->
+                        <div id="listsDiv" runat="server">
                     	Chooses a list to add or invite your contacts to :<br/>    
                        <asp:Repeater ID="rptList" runat="server">                                    
                             <ItemTemplate>
@@ -130,17 +132,17 @@
                                 <span class="checkbox"><%#Eval("LISTNAME")%></span><br/>                                        
                             </ItemTemplate>
                         </asp:Repeater>
-                        
+                        </div>
                         <div class="upload-form">
 
                             <span>Please select a file:</span><br/>
                             <span>Currently supported formats: Excel, CSV</span><br/>
                             &nbsp;<asp:FileUpload  ID="file" runat="server" class="validate[required] file-input" size="50" />
                         </div>
-                        
+                        <!--
                         <asp:CheckBox ID="chkAgree" Checked=true runat="server" />
                         <span class="checkbox">Require confirmation<br/>If checked, contacts are not added until you compose and send the confirmation-request email (steps follow). To confirm their subscription, contacts must click the link the confirmation-request email contains.</span>
-
+                        -->
                         <!--
                         <a class="button" id="sm" href="#"><span>Save</span></a>
                         <a class="button" href="#"><span>Cancel</span></a>

@@ -16,15 +16,19 @@ namespace EmailSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Utils.CheckSecurity(Session, Response);
-            if (!IsPostBack)
+            try
             {
-                if (Request["Aid"] != null) hdAutoResponderId.Value = Request["Aid"];
-                else hdAutoResponderId.Value = "0";
-                
-                LoadData();
+                Utils.CheckSecurity(Session, Response);
+                if (!IsPostBack)
+                {
+                    if (Request["Aid"] != null) hdAutoResponderId.Value = Request["Aid"];
+                    else hdAutoResponderId.Value = "0";
+
+                    LoadData();
+                }
+                BindPaging();
             }
-            BindPaging();
+            catch { }
         }
 
         private void LoadData()

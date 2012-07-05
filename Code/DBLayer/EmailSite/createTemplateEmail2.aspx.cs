@@ -1,39 +1,62 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using ChilkatEmail;
 
 using ChilkatEmail.Utils;
 namespace EmailSite
 {
-    public partial class createTextEmail : System.Web.UI.Page
+    public partial class createTemplateEmail2 : System.Web.UI.Page
     {
-       
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+               
                 Utils.CheckSecurity(Session, Response);
                 if (!IsPostBack)
                 {
+                    
+                    GetContentOfTemplate();
+
                     if (Session["currentTextEmail"] != null)
                     {
                         TextMessage objMsg = (TextMessage)Session["currentTextEmail"];
-                        if (objMsg.TypeMsg == 1)
+                        if (objMsg.TypeMsg == 3)
                         {
                             txtFromEmail.Text = objMsg.FromEmail;
                             txtSubject.Text = objMsg.Subject;
                             txtMsgName.Text = objMsg.MsgName;
                             txtMsgBody.Text = objMsg.MsgBody;
                         }
-                    }
+                    } 
                 }
             }
             catch { }
+        }
+
+        private void GetContentOfTemplate()
+        {
+            try
+            {
+                int type = Int32.Parse(Request["tempID"]);
+                string filename = Server.MapPath("templates/template" + type.ToString() + "/index.html");
+                System.IO.StreamReader reader = System.IO.File.OpenText(filename);
+                string strContentTemplate = reader.ReadToEnd();
+
+                string realImagePath = Request.Url.ToString().Substring(0, Request.Url.ToString().LastIndexOf("/"));
+                realImagePath = realImagePath + "/templates/template" + type.ToString() + "/images/";
+                strContentTemplate = strContentTemplate.Replace("src=\"images/", "src=\"" + realImagePath);
+
+                txtMsgBody.Text = strContentTemplate;
+            }
+            catch { }
+
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -43,12 +66,9 @@ namespace EmailSite
             objMsg.Subject = txtSubject.Text.Trim();
             objMsg.MsgName = txtMsgName.Text.Trim();
             objMsg.MsgBody = txtMsgBody.Text.Trim();
-            objMsg.TypeMsg = 1;
-
+            objMsg.TypeMsg = 2;
             Session["currentTextEmail"] = objMsg;
             Response.Redirect("chooseEmailList.aspx");
-
-
         }
 
         protected void btnPopupSend_Click(object sender, EventArgs e)
@@ -60,17 +80,16 @@ namespace EmailSite
             String mailFrom = "";
             mailFrom = txtFromEmail.Text;
             listMailTo.Add(txtToEmail.Text);
-          
 
 
-            bool result = mailServices.SendEmail(mailFrom, listMailTo, listMailCC, listMailBCC, txtSubject.Text, txtMsgBody.Text);
+
+            bool result = mailServices.SendHTMLEmail(mailFrom, listMailTo, listMailCC, listMailBCC, txtSubject.Text, txtMsgBody.Text);
 
             if (result) lblMsg.Text = Utils.ShowMessage("This mail can send.", false);
             else lblMsg.Text = Utils.ShowMessage("This mail cannot send.", true);
-                
         }
 
-        
+
 
         protected void btnSpam_Click(object sender, EventArgs e)
         {
@@ -79,8 +98,5 @@ namespace EmailSite
             if (isSpam) lblMsg.Text = Utils.ShowMessage("This email is a spam email.", true);
             else lblMsg.Text = Utils.ShowMessage("This email is not a spam email.", false);
         }
-
-        
-        
     }
 }

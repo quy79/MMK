@@ -68,16 +68,53 @@ namespace EmailSite
         {
             if (e.CommandName == "DelItem")
             {
+                System.Web.UI.HtmlControls.HtmlGenericControl noticeContentDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                noticeContentDiv.ID = "infoDivCode";
+                noticeContentDiv.Style.Add("position", "relative");
+                noticeContentDiv.Style.Add("margin", "20px auto");
+                noticeContentDiv.Style.Add("padding", "20px 0px 0px 80px");
+                noticeContentDiv.Style.Add("width", "520px");
+                noticeContentDiv.Style.Add("height", "40px");
                 
+                noticeContentDiv.Style.Add("background-color", "#fbf6d7");
+                noticeContentDiv.Style.Add("border", "1px solid #0b5d91");
+                noticeContentDiv.Style.Add("-moz-border-radius", "6px 6px 6px 6px");
+                noticeContentDiv.Style.Add("border-radius", "6px 6px 6px 6px");
+                noticeContentDiv.Style.Add("-webkit-border-radius", "6px 6px 6px 6px");
+               
+                noticeContentDiv.Style.Add("background-repeat", "no-repeat");
+                noticeContentDiv.Style.Add("background-position", "10px center");
+                noticeContentDiv.Style.Add("font-size", "13px");
+                noticeContentDiv.Style.Add("font-weight", "500");
+                noticeContentDiv.Style.Add("text-align", "left");
+                noticeContentDiv.Style.Add("clear", "both");
+
                 int listID = Convert.ToInt32(e.CommandArgument);
-                //delete all records in contact_list
-                DatabaseLayer.Contact_list contlist = new DatabaseLayer.Contact_list();
-                contlist.LISTID = listID;
-                contlist.Delete();
-                //delete in List;
-                DatabaseLayer.Lists list = new DatabaseLayer.Lists();
-                list.ID = listID;
-                list.Delete();
+                DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
+                objList.ID = listID;
+                if (!objList.CheckListIsUsed())
+                {
+                    //delete all records in contact_list
+                    DatabaseLayer.Contact_list contlist = new DatabaseLayer.Contact_list();
+                    contlist.LISTID = listID;
+                    contlist.Delete();
+                    //delete in List;
+                    DatabaseLayer.Lists list = new DatabaseLayer.Lists();
+                    list.ID = listID;
+                    list.Delete();
+
+                    noticeContentDiv.Style.Add("color", "#000000");
+                    noticeContentDiv.Style.Add("background-image", "url(../../img/check.png)");
+                    noticeContentDiv.InnerHtml = "List was successful deleted.";
+
+                }
+                else
+                {
+                    noticeContentDiv.Style.Add("color", "red");
+                    noticeContentDiv.Style.Add("background-image", "url(../../img/error.png)");
+                    noticeContentDiv.InnerHtml = "Error: There are messages are sending or segments are using this list, can not delete now !";
+                }
+                infoDiv.Controls.Add(noticeContentDiv);
                 LoadData();
             }
 

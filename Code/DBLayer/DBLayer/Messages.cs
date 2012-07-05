@@ -293,6 +293,30 @@ namespace DatabaseLayer
             return -1;
 		}
 	}
+
+    public bool InsertContact_MessageSent(int listID, int messageID)
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@LISTID",listID),
+				new SqlParameter("@MESSAGEID",messageID)
+			};
+
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_MESSAGESENT_Insert", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
 	public bool Update()
 	{
 		try

@@ -7,13 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace EmailSite
 {
-    public partial class addContacts : System.Web.UI.Page
+    public partial class createTemplateEmail : System.Web.UI.Page
     {
-        protected string listid;
         protected void Page_Load(object sender, EventArgs e)
         {
-            listid = (Request.QueryString["listid"] == null) ? "" : "?listid=" + Request.QueryString["listid"];
-            
+
         }
     }
 }

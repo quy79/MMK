@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,15 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                int listID = Int32.Parse(Request["listid"]);
+                DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
+                objList.ID = listID;
+                DataTable dt = objList.SelectByID();
+                lblListName.Text = dt.Rows[0]["LISTNAME"].ToString();
+            }
+            catch { }
         }
     }
 }

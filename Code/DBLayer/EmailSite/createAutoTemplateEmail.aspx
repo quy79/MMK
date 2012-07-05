@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createMsgDone.aspx.cs" Inherits="EmailSite.createMsgDone" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createAutoTemplateEmail.aspx.cs" Inherits="EmailSite.createAutoTemplateEmail" %>
 <%@ Register src="headerHTML.ascx" tagname="headerHTML" tagprefix="uc3" %>
 <%@ Register src="logo.ascx" tagname="logo" tagprefix="uc1" %>
 <%@ Register src="navigation.ascx" tagname="navigation" tagprefix="uc2" %>
@@ -32,6 +32,9 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script src="./ui/js/dlg.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script src="./ui/js/thumbnailPreview.js" type="text/javascript"></script>
     
     
         
@@ -97,6 +100,14 @@
 			font-size: 11px;
 		}
 		
+		
+		.tip {font:10px/12px
+                    Arial,Helvetica,sans-serif; border:solid 1px
+                    #666666; width:50px; padding:1px;
+                    position:absolute; z-index:100;
+                    visibility:hidden; color:#333333; top:20px;
+                    left:90px; background-color:#ffffcc;
+                    layer-background-color:#ffffcc;}
 
 
 	</style>	
@@ -108,38 +119,57 @@
     <title>OptMailMarketing : Home</title>	
 	</head>
 	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-    <form id="formID" class="formular" method="post" action="emails.html">
+    <form id="formID" class="formular" runat="server">
     <div id="main">
 	    <div class="page-container">
-        	  <uc1:logo ID="logo" runat="server" />
-			 <uc2:navigation ID="navigation" MenuType="contacts" runat="server" />
+             <uc1:logo ID="logo" runat="server" />
+			 <uc2:navigation ID="navigation" MenuType="emails" runat="server" />
+            
             <div id="content-main">
             
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
-                    <h2>Create an Email Message</h2>
+                      <h2>Create an Autoresonder Message for "<%=strListName%>"</h2>
                     </div>                    
                     <div class="create-message-step1-container3">
-						<div class="infobox2">
-                       	Your message is now being delivered to the indicated contacts list 
-                            "<asp:Label ID="lblListName" runat="server" Text="Label"></asp:Label>", depends on the size of the contacts list, in some case it can take 1-2 days to complete sending process.<br/>
-                        You can monitor the sending process at the My Messages page.
-                        </div>
+                    	<span><br/>Please select the template you would like to use :</span><br/><br/>
+                    	<table class="email_templates">
+                        	<tr>
+                            	<td width="33%">
+                                	<div class="template-box">
+                                    <a href="createAutoTemplateEmail2.aspx?tempID=1&Aid=<%=strAutoresponderID %>" onMouseOver="doTooltip(event, 'template1/images/tpl_thumbnail')" onMouseOut="hideTip()">
+                                    	<img src="./templates/template1/images/tpl_thumbnail.jpg"  alt="Template #001" border="0" width="200" height="192" />
+                                        </a>
+                                    </div>
+                                </td>
+                                <td width="34%">
+                                	<div class="template-box">
+                                    <a href="createAutoTemplateEmail2.aspx?tempID=2&Aid=<%=strAutoresponderID %>" onMouseOver="doTooltip(event, 'template2/images/tmpl_thumbnail')" onMouseOut="hideTip()">
+                                    	<img src="./templates/template2/images/tmpl_thumbnail.jpg"  alt="Template #002" border="0" width="200" height="192" />
+                                        </a>
+                                    	
+                                    </div>
+                                </td>
+                                <td width="33%">
+                                	<div class="template-box">
+                                    <a href="createAutoTemplateEmail2.aspx?tempID=3&Aid=<%=strAutoresponderID %>" onMouseOver="doTooltip(event, 'template3/images/tmpl_thumbnail')" onMouseOut="hideTip()">
+                                    	<img src="./templates/template3/images/tmpl_thumbnail.jpg"  alt="Template #003" border="0" width="200" height="192" />
+                                        </a>
+                                    	
+                                    </div>
+                                	
+                                </td>
+                            </tr>
+                        </table>
+           	 		
                     </div>
-					<!--</form>-->
+					
                     
-                    <div class="segment-bottom">
-                    	
-                        <div style="position: relative;  margin: 0 auto; padding: 10px; width: auto; display: inline-block;">
-	                        <a href="createMsg.aspx" class="common-button">Create another message</a>
-                        </div>
-                        <div style="position: relative; margin: 0 auto; padding: 10px; width: auto; display: inline-block;">
-	                        <a href="emails.aspx" class="common-button">Go to My Messages page</a>
-                        </div>
+                    
+
+
                         
-                            
-                    </div> 
 
 						                        
                   </div>
@@ -206,8 +236,9 @@
 		    </li> 
 		</ul>	
 		-->
+    <asp:HiddenField ID="hdAutoID" runat="server" />
 	</form>
     
-
+   
 	</body>
 </html>

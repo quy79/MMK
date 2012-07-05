@@ -91,7 +91,7 @@
                     </div>
            	  	<div class="create-message-step1-container">
                     <div id="message-template-container">
-                        <a href="emails-create-message-template-step1.html">
+                        <a href="createTemplateEmail.aspx">
                             <div id="message-template-box">
                                 <div class="message-template-box-left">
                                 </div>

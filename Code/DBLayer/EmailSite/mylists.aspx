@@ -40,6 +40,15 @@
 
 	    });
 
+
+	    function confirm_delete(listId) {
+	        if (confirm('Do you really want to delete this contact list ?')) {
+	            window.location.href = "deleteList.aspx?id=" + listId;
+	            //return true;
+	        } else {
+	            //return false;	
+	        }
+	    }
 	</script>
     
     
@@ -94,6 +103,15 @@
 			font-size: 11px;
 		}
 		
+		
+		
+
+        .gvhspadding
+        {
+            padding:10px;
+            line-height: 150%;
+        }
+
 
 
 	</style>	
@@ -118,44 +136,43 @@
                 	<div class="my-lists-title">
                     <h2>My Lists</h2>
                     </div>
-           	 		
+                    <div id="infoDiv" runat="server" class="create-message-step1-container3"></div>
                         <div class="message-list" id="message-list">
-                            <asp:GridView ID="grvList" 
-                                CssClass="contact-grid" BackColor="White" Width="100%" CellPadding="1" 
-                                CellSpacing="1" BorderWidth="0px" GridLines="None"
-                                   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
-                                runat="server"  AutoGenerateColumns ="False" 
-                                onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" AllowPaging="True" 
-                                onpageindexchanging="grvList_PageIndexChanging" PageSize="20" 
-                               >
+                            <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" 
+                                   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"  GridLines="None"
+                                runat="server"  AutoGenerateColumns ="False" onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" AllowPaging="True" 
+                                onpageindexchanging="grvList_PageIndexChanging" PageSize="20">
                                 
-                                <AlternatingRowStyle BackColor="#D5D6D9" />
+<AlternatingRowStyle BackColor="#D5D6D9"></AlternatingRowStyle>
                                 
-                                <Columns>                               
-                                     <asp:TemplateField HeaderText="List Name">
+                                <Columns>
+                                    
+                                    <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
+                                           &nbsp;<a href='listdetail.aspx?id=<%# DataBinder.Eval(Container.DataItem, "ID")%>'><%# DataBinder.Eval(Container.DataItem, "LISTNAME")%></a>
                                         </ItemTemplate>
-                                        <HeaderStyle Width="50%"  />
+                                        <HeaderStyle Width="65%"  />                                            
                                     </asp:TemplateField>
-                           
+
+
                                     <asp:TemplateField HeaderText="Subscribers">
+                                        <ItemStyle CssClass="gvhspadding" />
                                         <ItemTemplate>
-                                            <asp:LinkButton  ID="lnkSubcrbes" runat="server">&nbsp;<%#DataBinder.Eval(Container.DataItem, "NUMSUBSCRIBES")%> Subscribers</asp:LinkButton ><br/>
-                                            &nbsp;<asp:LinkButton  ID="lnkAdd" runat="server">Add</asp:LinkButton >
+                                            <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TOTALSUBSCRIBES") %>'></asp:Label><br/>
+                                            <asp:LinkButton  ID="lnkAdd" runat="server"  PostBackUrl='<%#"addContacts.aspx?listid="+DataBinder.Eval(Container.DataItem, "ID")%>'>Add new contact</asp:LinkButton >
+
                                         </ItemTemplate>
-                                        <HeaderStyle Width="20%"  />
+                                        <HeaderStyle Width="15%"  />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
                                             <table class="message-action">
-                                            	<tr>
-                                                	<td width="50%"><asp:LinkButton  ID="linkListHealth" runat="server">List Health</asp:LinkButton ></td>
-                                                    <td width="50%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >Delete</asp:LinkButton ></td>
+                                            	<tr>                                                	
+                                                    <td><asp:LinkButton  ID="LinkDelete"  runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem'>Delete</asp:LinkButton ></td>
                                                 </tr>
                                             </table>
                                         </ItemTemplate>
-                                        <HeaderStyle Width="30%"  />                                            
+                                        <HeaderStyle Width="20%"  />                                            
                                     </asp:TemplateField>
                                 </Columns>
                                 
@@ -167,7 +184,7 @@
                                 
                             </asp:GridView>                          
                         </div>
-                        <div class="message-list-bottom">
+                         <div class="message-list-bottom">
                         	<div class="list-display-setting">
                             	
                                 Display&nbsp;
@@ -201,6 +218,7 @@
                                 </div>    
                             </div>
                         </div>
+                       
                        
 
 						                        

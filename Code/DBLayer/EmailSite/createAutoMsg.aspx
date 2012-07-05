@@ -91,7 +91,7 @@
                     </div>
            	  	<div class="create-message-step1-container">
                     <div id="message-template-container">
-                        <a href="emails-create-message-template-step1.html">
+                         <asp:LinkButton ID="lnkTemplate" runat="server" onclick="lnkTemplate_Click" >
                             <div id="message-template-box">
                                 <div class="message-template-box-left">
                                 </div>
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>                                            
                             </div>
-                        </a>
+                        </asp:LinkButton>
                     </div>                    
                     <div id="message-plaintext-container">
                         <asp:LinkButton ID="lnkTextMail" runat="server" onclick="lnkTextMail_Click" >

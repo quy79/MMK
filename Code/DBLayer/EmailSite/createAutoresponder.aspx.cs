@@ -12,11 +12,15 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                LoadContactLists();
+                if (!IsPostBack)
+                {
+                    LoadContactLists();
+                }
+                lblMsg.Text = "";
             }
-            lblMsg.Text = "";
+            catch { }
         }
 
         private void LoadContactLists()

@@ -1251,16 +1251,11 @@ font-size: 12px; font-weight: bold; color: #FFFFFF;
 .pagenav-container {position: relative; float: none; width: 400px;  padding: 0; margin: 0px auto; clear: both;  height: auto}
 .segment-title {font-size: 13px; font-weight: bold;}
 .segment-content {font-size: 12px; font-weight: normal;}
-.autoresponder-bottom {position: relative; float: none; width: 620px;  padding: 0; clear: both;  height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-}
+.autoresponder-bottom {position: relative; float: none; width: 620px;  padding: 0; margin: 10px auto; clear: both;  height: auto}
 
 .message-list-bottom {position: relative; float: none; width: 95%; margin: 0 auto; clear: both; }
 .page-nav-bottom {position: relative; float: right; width: 95%; margin: 0 0; clear: both; }
 .list-display-setting {position: relative; float: left; width: 200px; margin: 10px 0; }
-.list-display-setting1 {position: relative; float: left; width: 250px; margin: 10px 0; }
 .messages-filter {position: relative; float: left; width: 300px; margin: 10px 0; }
 
 .pagination {position: relative; float: right; width: 350px;}

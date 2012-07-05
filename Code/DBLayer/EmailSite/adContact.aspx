@@ -120,16 +120,33 @@
                     <h2>Add One Contact</h2><br/>
 
                     </div>
+                    <div id="infoDiv" runat="server" class="create-message-step1-container3"></div>
+                    <asp:Panel ID="pnlAddMore" runat="server" Visible="false">
+                    <div class="pagenav">
+                    	
+                        <div class="pagenav-container">
+                            <div style="position: relative;  margin: 0 auto; padding: 10px; width: auto; display: inline-block;">
+                                <a href="adContact.aspx" class="common-button">Create another Contact</a>
+                            </div>
+                            <div style="position: relative; margin: 0 auto; padding: 10px; width: auto; display: inline-block;">
+                                <a href="mylists.aspx" class="common-button">Go to Contacts List page</a>
+                            </div>
+						</div>                        
+                            
+                    </div> 
+                    </asp:Panel>
+
                     <div class="create-message-step1-container1">
                     <!--<form id="formID" name="form" class="formular" method="post" action="CreateContact.aspx">-->
-                        <span><asp:Label ID="lblMsg" runat="server" Font-Bold="True" ForeColor="#FF3300"></asp:Label></span>
+                        <span><asp:Label ID="lblMsg" runat="server" ></asp:Label></span>
                     	<fieldset>
                             <legend>
                                 Required fields(*)
                             </legend>
                             <label>
                             	<span>Email : </span>
-                                <asp:TextBox ID="txtEmail" CssClass="validate[required] text-input" runat="server"></asp:TextBox>                                
+                                <asp:TextBox ID="txtEmail" CssClass="validate[required] text-input" runat="server"></asp:TextBox>
+                                <div id="listsDiv" runat="server">
                                 Chooses a list to add or invite your contacts to :<br/>    
                                 <asp:Repeater ID="rptList" runat="server">                                    
                                     <ItemTemplate>
@@ -137,7 +154,7 @@
                                         <span class="checkbox"><%#Eval("LISTNAME")%></span><br/>                                        
                                     </ItemTemplate>
                                 </asp:Repeater>
-
+                                </div>
                             </label>
                          </fieldset>   
 	                    
@@ -177,10 +194,6 @@
                                     	                                                                                                                      
                                     </tr>
                                 </table>
-                                 <asp:CheckBox ID="chkAgree" runat="server" CssClass="checkbox" 
-                                Checked="True" />                                
-                                 <span class="checkbox">Require confirmation<br/>If checked, contacts are not added until you compose and send the confirmation-request email (steps follow). To confirm their subscription, contacts must click the link the confirmation-request email contains.</span>
-                                
                                 <asp:Button ID="btnAdd" CssClass="submit" runat="server" Text="Add Contact" 
                                 onclick="btnAdd_Click" /> 	
 								

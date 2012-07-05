@@ -210,6 +210,37 @@ namespace DatabaseLayer
         }
     }
 
+    public DataTable SelectListNonEmptyByUserID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",SqlDbType.Int)
+			};
+
+
+
+            if (USERID != null)
+            {
+                Params[0].Value = USERID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_LISTS_SelectListNonEmptybyUserID]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;//throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable SelectByID()
     {
         DataSet ds;
@@ -238,6 +269,43 @@ namespace DatabaseLayer
         catch (Exception ex)
         {
             return null;//throw new Exception(ex.Message);
+        }
+    }
+
+    public bool CheckListIsUsed()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",SqlDbType.Int)
+			};
+
+
+
+            if (USERID != null)
+            {
+                Params[0].Value = ID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_LISTS_CheckListIsUsed]", Params);
+            if (ds.Tables.Count > 0)
+            {
+                int cnt = Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+                if (cnt > 0) return true;
+                else return false;
+            }
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return true;//throw new Exception(ex.Message);
         }
     }
 
@@ -296,6 +364,31 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+
+    public bool UpdateTotalSubscribers()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@ID",ID),
+				new SqlParameter("@USERID",USERID),
+				new SqlParameter("@TOTALSUBSCRIBERS",TOTALSUBSCRIBES)
+
+			};
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_LISTS_UpdateTotalSub", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
 	public bool Delete()
 	{
 		try
@@ -331,6 +424,9 @@ namespace DatabaseLayer
         }
         return 0;
     }
+    
+	
+
 	#endregion
 
 	}

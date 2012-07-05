@@ -121,11 +121,10 @@
                 	<div class="common-title">
                     <h2>Create a new List</h2>
                     </div>
-
+                    <asp:Label ID="lblMsg" runat="server"></asp:Label>
                     <div class="create-message-step1-container1">
                     <br/>
-                        <span><asp:Label ID="lblMsg" runat="server" Font-Bold="True" 
-                            ForeColor="#FF3300"></asp:Label></span>
+                        
                         
            	 		<!--<form id="formID" name="form" class="formular" method="post" action="CreateList.aspx">-->
                         <span>List name : </span><br/>
@@ -137,8 +136,8 @@
 
 						<br/>
                         <label>                        
-                        <asp:CheckBox ID="chkAgree" Checked="true" runat="server" />
-                        <span class="checkbox">Send me email notifications when contacts are added to or removed from this list.</span>
+                      <!--  <asp:CheckBox ID="chkAgree" Checked="true" runat="server" />
+                        <span class="checkbox">Send me email notifications when contacts are added to or removed from this list.</span> -->
                         
 
                         </label>

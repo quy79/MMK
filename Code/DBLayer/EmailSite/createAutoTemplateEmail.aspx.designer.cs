@@ -10,7 +10,16 @@
 namespace EmailSite {
     
     
-    public partial class createMsgDone {
+    public partial class createAutoTemplateEmail {
+        
+        /// <summary>
+        /// formID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm formID;
         
         /// <summary>
         /// logo control.
@@ -31,12 +40,12 @@ namespace EmailSite {
         protected global::EmailSite.navigation navigation;
         
         /// <summary>
-        /// lblListName control.
+        /// hdAutoID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblListName;
+        protected global::System.Web.UI.WebControls.HiddenField hdAutoID;
     }
 }

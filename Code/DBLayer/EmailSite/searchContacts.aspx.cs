@@ -17,16 +17,20 @@ namespace EmailSite
         DataTable dtContactLists;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                LoadContactLists();
-                first.Visible = false;
-                last.Visible = false;
-                next.Visible = false;
-                prev.Visible = false;
+                if (!IsPostBack)
+                {
+                    LoadContactLists();
+                    first.Visible = false;
+                    last.Visible = false;
+                    next.Visible = false;
+                    prev.Visible = false;
+                }
+                lblMsg.Text = "";
+                BindPaging();
             }
-            lblMsg.Text = "";
-            BindPaging();
+            catch { }
         }
 
         private void LoadGridContacts(DataTable dtTable)
@@ -96,18 +100,21 @@ namespace EmailSite
                 else if (hdModeSearch.Value == "2")
                 {
                     DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    objContacts.USERID = Int32.Parse(Session["userID"].ToString());
                     dtContactLists = objContacts.SelectAll();
                 
                 }
                 else if (hdModeSearch.Value == "3")
                 {
                     DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    objContacts.USERID = Int32.Parse(Session["userID"].ToString());
                     dtContactLists = objContacts.QuickSearch(txtQSearch.Text.Trim());
                 
                 }
                 else if (hdModeSearch.Value == "4")
                 {
                     DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    objContacts.USERID = Int32.Parse(Session["userID"].ToString());
                     objContacts.PREFIX = txtPrefix.Text.Trim();
                     objContacts.SUFFIX = txtSuffix.Text.Trim();
                     objContacts.FIRSTNAME = txtFName.Text.Trim();
@@ -126,12 +133,16 @@ namespace EmailSite
 
                     DateTime dt1 = DateTime.Parse("01/01/2000");
                     try { 
-                        dt1 = DateTime.Parse(date1.Text.Trim()); 
+                        dt1 = DateTime.Parse(date1.Text.Trim());
+                        dt1 = dt1.AddMinutes(-1);
                     }
                     catch { }
 
                     DateTime dt2 = DateTime.MaxValue;
-                    try { dt2 = DateTime.Parse(date2.Text.Trim()); }
+                    try {
+                        dt2 = DateTime.Parse(date2.Text.Trim());
+                        dt2 = dt2.AddDays(1);
+                    }
                     catch { }
 
                     dtContactLists = objContacts.Select(dt1, dt2);
@@ -441,7 +452,8 @@ namespace EmailSite
             }
 
 
-            strBuild.AppendLine("Email,FirstName,LastName");
+            //strBuild.AppendLine("Email,FirstName,LastName");
+            strBuild.AppendLine("Email");
             for (int i = 0; i < arrListID.Count; i++)
             {
                 int iContactID = Int32.Parse(arrListID[i].ToString());
@@ -450,7 +462,7 @@ namespace EmailSite
                 DataTable objTab= objContacts.SelectContactsFromContactID();
                 try
                 {
-                    string strLine = objTab.Rows[0]["EMAIL"].ToString() + "," + objTab.Rows[0]["FIRSTNAME"].ToString() + "," + objTab.Rows[0]["LASTNAME"].ToString();
+                    string strLine = objTab.Rows[0]["EMAIL"].ToString();// +"," + objTab.Rows[0]["FIRSTNAME"].ToString() + "," + objTab.Rows[0]["LASTNAME"].ToString();
                     strBuild.AppendLine(strLine);
                 }
                 catch { }
