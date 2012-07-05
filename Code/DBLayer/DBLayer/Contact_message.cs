@@ -79,11 +79,11 @@ namespace DatabaseLayer
             }
             if (MESSAGEID >= 0)
             {
-                Params[0].Value = MESSAGEID;
+                Params[1].Value = MESSAGEID;
             }
             else
             {
-                Params[0].Value = DBNull.Value;
+                Params[1].Value = DBNull.Value;
             }
             int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_MESSAGESENT_Delete", Params);
 			if (result > 0)

@@ -30,7 +30,7 @@ namespace EmailSite
             if (String.IsNullOrEmpty(param))
             {
                 //"CONTACTID=" + contactID + "&LISTID=" + listID + "&REDIRECTURL=Unsubscribe";
-                param = param.Substring(0, param.Length - 1);
+               // param = param.Substring(0, param.Length - 1);
                 String paremdecode = Decode(param);
                 String[] temp = paremdecode.Split('&');
                 String _contactID = temp[0].Split('=')[1];

@@ -599,9 +599,9 @@ namespace EmailServices
                     {
                         int ctID = int.Parse(row[0].ToString());
                         int messageID = int.Parse(row[1].ToString());
-                        String email = row[2].ToString();
-                        String messageName = row[3].ToString();
-                        String emailfrom = row[4].ToString();
+                        String email = row[4].ToString();
+                        String messageName = row[2].ToString();
+                        String emailfrom = row[3].ToString();
                         String subject = row[5].ToString();
                         String body = row[6].ToString();
                         ct.CONTACTID = ctID;
@@ -612,7 +612,7 @@ namespace EmailServices
                         mailSV.SendHTMLEmail(emailfrom, emailList, null, null, subject, body);
 
                     }
-                    Thread.Sleep(10 * 60 * 1000);
+                    Thread.Sleep(2 * 60 * 1000);
                 }catch (Exception ee){
                 }
             }
