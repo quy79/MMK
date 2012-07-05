@@ -95,7 +95,7 @@ namespace DatabaseLayer
 			objclsSEGMENT.TOTALSUBSCRIBES = TOTALSUBSCRIBES;
 			objclsSEGMENT.MODIFIEDDATE = MODIFIEDDATE;
 		
-			if(objclsSEGMENT.Insert())
+			if(objclsSEGMENT.Insert()>0)
 			{
 				return true;
 			}

@@ -26,6 +26,7 @@ namespace EmailServices
             InitializeComponent();
         }
 
+        
         protected override void OnStart(string[] args)
         {
             base.OnStart(args);
@@ -36,11 +37,34 @@ namespace EmailServices
                 Debug.WriteLine("start auto responder");
                 Thread.Sleep(3000);
                 DBManager.initConnection();
-                Thread t = new Thread(OnStartMain);
+                Thread t = new Thread(MainTHreadLoop);
                 t.Start();
                 Debug.WriteLine("end onstart");
             }
         }
+
+        protected void MainTHreadLoop()
+        {
+            Thread autoEnginThread = new Thread(OnStartMain);
+            autoEnginThread.Start();
+            Thread sendMailThread = new Thread(OnSendMail);
+            sendMailThread.Start();
+            while(true){
+                Thread.Sleep(3600*1000);
+                if (!autoEnginThread.IsAlive)
+                {
+                    autoEnginThread = new Thread(OnStartMain);
+                autoEnginThread.Start();
+                }
+                if (!sendMailThread.IsAlive)
+                {
+                    sendMailThread = new Thread(OnSendMail);
+                    sendMailThread.Start();
+                }
+            }
+
+        }
+       
         protected  void OnStartMain()
         {
           
@@ -560,7 +584,35 @@ namespace EmailServices
             mailman = null;
         }
 
+        protected void OnSendMail()
+        {
+            MailServices mailSV = new MailServices();
+            while (true)
+            {
+                Contact_message ct = new Contact_message();
+                DataTable tb = ct.Select();
+              
 
+                foreach (DataRow row in tb.Rows)
+                {
+                    int ctID = int.Parse(row[0].ToString());
+                    int messageID = int.Parse(row[1].ToString());
+                    String email = row[2].ToString();
+                    String messageName=row[3].ToString(); 
+                    String emailfrom = row[4].ToString(); 
+                    String subject = row[5].ToString(); 
+                    String body = row[6].ToString();
+                    ct.CONTACTID = ctID;
+                    ct.MESSAGEID = messageID;
+                    ct.Delete();
+                    List<String> emailList = new List<string>();
+                    emailList.Add(email);
+                    mailSV.SendHTMLEmail(emailfrom, emailList, null, null, subject, body);
+
+                }
+                Thread.Sleep(10 * 60 * 1000);
+            }
+        }
         
     }
 }

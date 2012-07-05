@@ -1823,10 +1823,6 @@
       <Project>{36B5A67E-03F1-400D-B70A-53230B3E72CB}</Project>
       <Name>DBLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EmailServices\EmailServices.csproj">
-      <Project>{C98F4C6E-3B8F-4479-B28E-7DF4564CF3A9}</Project>
-      <Name>EmailServices</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\label.resx">
