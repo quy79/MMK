@@ -48,6 +48,7 @@
     <Compile Include="AutoresponderStatus.cs" />
     <Compile Include="Autoresponder_messages_detail.cs" />
     <Compile Include="Bounce.cs" />
+    <Compile Include="ClickOpenStatus.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Lists.cs" />
     <Compile Include="Messages.cs" />

@@ -22,12 +22,12 @@ namespace EmailServices
 
         public static void initConnection(){
             Globals.ConnectionString = new System.Data.SqlClient.SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["EmailConnectionString"].ToString());
-            ChilkatEmail.Utils.Constants.strSmtpHost = System.Configuration.ConfigurationManager.ConnectionStrings["SmtpServer"].ToString();
+            ChilkatEmail.Utils.Constants.strSmtpHost = System.Configuration.ConfigurationManager.AppSettings["SmtpServer"].ToString();
             ChilkatEmail.Utils.Constants.strSmtpUser = System.Configuration.ConfigurationManager.AppSettings["AuthenticationMailUser"].ToString();
             ChilkatEmail.Utils.Constants.strSmtpPass = System.Configuration.ConfigurationManager.AppSettings["AuthenticationMailPassword"].ToString();
-            ChilkatEmail.Utils.Constants.emailSentPerTime = int.Parse( System.Configuration.ConfigurationManager.ConnectionStrings["emailSentPerTime"].ToString());
-            ChilkatEmail.Utils.Constants.bounceEmailAddress = System.Configuration.ConfigurationManager.AppSettings["bounceEmailAddress"].ToString();
-            ChilkatEmail.Utils.Constants.bounceEmailPassword = System.Configuration.ConfigurationManager.AppSettings["bounceEmailPassword"].ToString();
+            ChilkatEmail.Utils.Constants.emailSentPerTime = int.Parse(System.Configuration.ConfigurationManager.AppSettings["emailSentPerTime"].ToString());
+            ChilkatEmail.Utils.Constants.bounceEmailAddress = System.Configuration.ConfigurationManager.AppSettings["BounceAddress"].ToString();
+            ChilkatEmail.Utils.Constants.bounceEmailPassword = System.Configuration.ConfigurationManager.AppSettings["BounceEmailPassword"].ToString();
             Debug.WriteLine("Globals.ConnectionString=" + Globals.ConnectionString);
             Debug.WriteLine("strSmtpHost" + ChilkatEmail.Utils.Constants.strSmtpHost);
             Debug.WriteLine("strSmtpUser=" + ChilkatEmail.Utils.Constants.strSmtpUser);

@@ -163,42 +163,57 @@ namespace ChilkatEmail
             return true;
         }
 
+        public bool AutoresponderSendEmail(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string subject, string htmlBody, String autoresponderID, String messageID,String listID, String contactID)
+        {
+            this.mailFrom = emailFrom;
+            this.listMailTo = emailsTo;
+            this.listMailCC = emailsCC;
+            this.listMailBCC = emailsBCC;
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
 
-        //public bool SendHtmlEmail(string subject, string htmlBody)
-        //{
-        //    //  The mailman object is used for receiving (POP3)
-        //    //  and sending (SMTP) email.
-        //    Chilkat.MailMan mailman = new Chilkat.MailMan();
+
+            bool success;
+            success = mailman.UnlockComponent(ChilkatEmailUnlock);
+            if (success != true) return false;
+
+            Chilkat.Email email = new Chilkat.Email();
+            email.BounceAddress = Constants.bounceEmailAddress;
+            email.Subject = subject;
+            MailUtils utilEmail = new MailUtils();
+            String body = utilEmail.ProcessHTMLBody(htmlBody, true, Constants.SERVER, autoresponderID, messageID, listID,contactID);
+            email.SetHtmlBody(body);
+            if (listMailTo != null && listMailTo.Count > 0)
+            {
+                email.AddMultipleTo(eUtils.mailParse(listMailTo));
+            }
+            if (listMailCC != null && listMailCC.Count > 0)
+            {
+                email.AddMultipleCC(eUtils.mailParse(listMailCC));
+            }
+            if (listMailBCC != null && listMailBCC.Count > 0)
+            {
+                email.AddMultipleBcc(eUtils.mailParse(listMailBCC));
+            }
+
+            email.From = mailFrom;
 
 
-        //    //  Note: This example requires licenses to both "Chilkat Email" and "Chilkat MHT".
-        //    //  Any string argument automatically begins the 30-day trial.
-        //    bool success;
-        //    success = mailman.UnlockComponent(ChilkatEmailUnlock);
-        //    if (success != true) return false;
+            mailman.SmtpHost = Constants.strSmtpHost;
+            mailman.SmtpUsername = Constants.strSmtpUser;
+            mailman.SmtpPassword = Constants.strSmtpPass;
+            mailman.SmtpPort = Constants.iSmtpPort;
+            /*mailman.StartTLS = startTLS;
+             if (Charset.Length != 0) email.Charset = Charset;*/
 
-        //    Chilkat.Email email = new Chilkat.Email();
+            success = mailman.SendEmail(email);
+            if (success != true) return false;
 
-        //    email.Subject = subject;
-        //    email.SetHtmlBody(htmlBody);
-        //    email.AddMultipleTo(eUtils.mailParse(listMailTo));
-        //    email.From = mailFrom;
-        //    email.AddMultipleCC(eUtils.mailParse(listMailCC));
+            success = mailman.CloseSmtpConnection();
 
-        //    mailman.SmtpHost = Constants.strSmtpHost;
-        //    //mailman.SmtpUsername = strSmtpUser;
-        //   // mailman.SmtpPassword = strSmtpPass;
-        //   // mailman.SmtpPort = iSmtpPort;
-        //    //mailman.StartTLS = startTLS;
-        //    //if (Charset.Length != 0) email.Charset = Charset;
+            return true;
+        }
 
-        //    success = mailman.SendEmail(email);
-        //    if (success != true) return false;
-
-        //    success = mailman.CloseSmtpConnection();
-
-        //    return true;
-        //}
+        
 
     }
 }

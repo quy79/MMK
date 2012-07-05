@@ -6,6 +6,7 @@ set PATH=%PATH%;%DOTNETFX2%
 
 echo Installing EmailServices...
 echo ---------------------------------------------------
-InstallUtil /i EmailServices.exe
+InstallUtil /i C:\code\Code\DBLayer\EmailServices\Install\EmailServices.exe
 echo ---------------------------------------------------
 echo Done.
+pause

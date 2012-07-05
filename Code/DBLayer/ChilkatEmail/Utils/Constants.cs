@@ -16,6 +16,7 @@ namespace ChilkatEmail.Utils
         public static string bounceEmailPassword = "123";
         public static int iSmtpPort = 110;
         public static int emailSentPerTime = 50;
+        public static string SERVER = "http://ns301845.ovh.net/OptMailMarketting";// "http://ns301845.ovh.net";
 
     }
 }
