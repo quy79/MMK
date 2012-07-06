@@ -35,8 +35,9 @@ namespace EmailServices
            // while (/*SERVICE_TO*/ true)
             {
                 Debug.WriteLine("start auto responder");
-                Thread.Sleep(30000);
+                
                 DBManager.initConnection();
+                Thread.Sleep(30000);
                 Thread t = new Thread(MainTHreadLoop);
                 t.Start();
                 Debug.WriteLine("end onstart");

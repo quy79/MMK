@@ -22,6 +22,7 @@ namespace ImageHandler
             int listID = 0;
 
             // Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID)
+            //empty.jpg?paramcode=QVVUT1JFU1BPTkRFUklEPTMmTUVTU0FHRUlEPTImTElTVElEPTMy
 
 
              String param = "";
@@ -36,7 +37,7 @@ namespace ImageHandler
                     param = "";
                 }
             }
-            if (String.IsNullOrEmpty(param))
+            if (!String.IsNullOrEmpty(param))
             {
                 // Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
                // param = param.Substring(0, param.Length - 1);
@@ -78,7 +79,7 @@ namespace ImageHandler
                 if (autoID > 0)
                 {
 
-                    ClickOpenStatus obj = new ClickOpenStatus();
+                        ClickOpenStatus obj = new ClickOpenStatus();
                     obj.AUTORESPONDERID = autoID;
                     obj.MESSAGEID = messageID;
                     obj.LISTID = listID;
@@ -87,7 +88,7 @@ namespace ImageHandler
                     DataTable dt = obj.Select();
                     bool newItem = true;
                     if (dt != null && dt.Rows.Count > 0)
-                    {
+                    {                   
                         DataRow row = dt.Rows[0];
                         countclick = int.Parse(row[4].ToString());
                         countopen = int.Parse(row[5].ToString());

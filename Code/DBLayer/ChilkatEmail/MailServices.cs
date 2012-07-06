@@ -180,7 +180,7 @@ namespace ChilkatEmail
             email.BounceAddress = Constants.bounceEmailAddress;
             email.Subject = subject;
             MailUtils utilEmail = new MailUtils();
-            String body = utilEmail.ProcessHTMLBody(htmlBody, true, Constants.SERVER, autoresponderID, messageID, listID,contactID);
+            String body = utilEmail.ProcessHTMLBody(htmlBody, true, Constants.SERVER, autoresponderID, messageID, listID, contactID, emailsTo[0]);
             email.SetHtmlBody(body);
             if (listMailTo != null && listMailTo.Count > 0)
             {

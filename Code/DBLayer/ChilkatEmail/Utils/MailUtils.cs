@@ -17,7 +17,7 @@ namespace ChilkatEmail.Utils
             }
             return result;
         }
-        public String ProcessHTMLBody(String body, bool isHTML, String serverName, String autoresponderID, String messageID, String listID, String contactID)
+        public String ProcessHTMLBody(String body, bool isHTML, String serverName, String autoresponderID, String messageID, String listID, String contactID, String emailTO)
         {
             String result = "";
             if (isHTML)
@@ -29,11 +29,14 @@ namespace ChilkatEmail.Utils
                    
                     if (link.IndexOf( "Unsubscribe")>=0)
                     {
+                        String patamcode = Encode("CONTACTID=" + contactID + "&LISTID=" + listID+"&EMAIL="+emailTO);
+                        String replaceString = "'" + serverName + "/unsubscribe.aspx?paramcode=" + patamcode + "' ";
+                       
                         //String replaceString = "'" + serverName + "/redirect.aspx?AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";
-                        String script = unsubscribeScript(serverName, messageID, listID, contactID);
+                        //String script = unsubscribeScript(serverName, messageID, listID, contactID);
                         //  String replaceString = "'" + serverName + "/unsubscribe.aspx?CONTACTID=" + contactID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";
-                        body = body.Replace(link, "'#'");
-                        body = body.Replace("<html>", "<html>" + script);
+                        body = body.Replace(link, replaceString);
+                       // body = body.Replace("<html>", "<html>" + script);
                     }
                     else if (link.IndexOf("mailto") >= 0)
                     {
