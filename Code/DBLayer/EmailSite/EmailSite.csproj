@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ImageHandler, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ImageHandler\ImageHandler.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -341,7 +337,6 @@
     <Content Include="HTMLEditor\jscripts\tiny_mce\utils\form_utils.js" />
     <Content Include="HTMLEditor\jscripts\tiny_mce\utils\mctabs.js" />
     <Content Include="HTMLEditor\jscripts\tiny_mce\utils\validate.js" />
-    <Content Include="ImageHandler\ImageHandler.dll" />
     <Content Include="img\333333_40x100_textures_02_glass_25.png" />
     <Content Include="img\444444_40x100_textures_02_glass_25.png" />
     <Content Include="img\999999_40x100_textures_02_glass_25.png" />
@@ -1675,7 +1670,10 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ImageHandler\ImageHandler.cs" />
+    <Content Include="imageHandler.ashx" />
+    <Compile Include="imageHandler.ashx.cs">
+      <DependentUpon>imageHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1835,7 +1833,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ImageHandler\mk.bat" />
     <None Include="ui\ckeditor\.htaccess" />
     <None Include="ui\ckeditor\ckeditor.pack" />
     <None Include="ui\ckeditor\ckeditor.php" />

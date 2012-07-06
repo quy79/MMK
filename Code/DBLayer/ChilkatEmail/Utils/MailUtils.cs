@@ -54,7 +54,7 @@ namespace ChilkatEmail.Utils
                     //unsubscribe.aspx
                 }
                 // Literal1.Text = a;
-                result = body.Replace("</html>", "<img alt='' src='" + serverName + "/empty.jpg?paramcode=" + Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID) + "'/>");
+                result = body.Replace("</html>", "<img alt='' src='" + serverName + "/imageHandler.ashx?paramcode=" + Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID) + "'/>");
                 result += "</html>";
             }
             else
