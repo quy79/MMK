@@ -109,7 +109,7 @@ namespace DatabaseLayer
 			//objclsAUTORESPONDER.STATUS = STATUS;
 			//objclsAUTORESPONDER.MODIFIEDDATE = MODIFIEDDATE;
 		
-			if(objclsAUTORESPONDER.Insert())
+			if(objclsAUTORESPONDER.Insert()>0)
 			{
 				return true;
 			}

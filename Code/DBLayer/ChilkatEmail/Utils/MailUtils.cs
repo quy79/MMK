@@ -17,7 +17,7 @@ namespace ChilkatEmail.Utils
             }
             return result;
         }
-        public String ProcessHTMLBody(String body, bool isHTML, String serverName, String autoresponderID, String messageID, String listID, String contactID)
+        public String ProcessHTMLBody(String body, bool isHTML, String serverName, String autoresponderID, String messageID, String listID, String contactID, String emailTO)
         {
             String result = "";
             if (isHTML)
@@ -25,13 +25,18 @@ namespace ChilkatEmail.Utils
                 List<String> templinks = FetchLinksFromSource(body);
                 for (int i = 0; i < templinks.Count; i++)
                 {
-                    String link = templinks[i];
-                    if (link != "Unsubscribe")
+                    String link = templinks[i].Replace("'","");
+                   
+                    if (link.IndexOf( "Unsubscribe")>=0)
                     {
+                        String patamcode = Encode("CONTACTID=" + contactID + "&LISTID=" + listID+"&EMAIL="+emailTO);
+                        String replaceString = "'" + serverName + "/unsubscribe.aspx?paramcode=" + patamcode + "' ";
+                       
                         //String replaceString = "'" + serverName + "/redirect.aspx?AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";
-                        String patamcode = Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
-                        String replaceString = "'" + serverName + "/redirect.aspx?paramcode=" + patamcode;
+                        //String script = unsubscribeScript(serverName, messageID, listID, contactID);
+                        //  String replaceString = "'" + serverName + "/unsubscribe.aspx?CONTACTID=" + contactID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";
                         body = body.Replace(link, replaceString);
+                       // body = body.Replace("<html>", "<html>" + script);
                     }
                     else if (link.IndexOf("mailto") >= 0)
                     {
@@ -39,17 +44,17 @@ namespace ChilkatEmail.Utils
                     }
                     else
                     {
-                        String script = unsubscribeScript(serverName, messageID, listID, contactID);
-                      //  String replaceString = "'" + serverName + "/unsubscribe.aspx?CONTACTID=" + contactID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";
-                        body = body.Replace(link, "#");
-                        body = body.Replace("<html>", "<html>"+script);
+                      
+                        String patamcode = Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
+                        String replaceString = "'" + serverName + "/redirect.aspx?paramcode=" + patamcode + "' ";
+                        body = body.Replace(link, replaceString);
                     }
 
 
                     //unsubscribe.aspx
                 }
                 // Literal1.Text = a;
-                result = body.Replace("</html>", "<img alt='' src='" + serverName + "/empty.jpg?paramcode=" + Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID) + "'/>");
+                result = body.Replace("</html>", "<img alt='' src='" + serverName + "/imageHandler.ashx?paramcode=" + Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID) + "'/>");
                 result += "</html>";
             }
             else
@@ -92,7 +97,7 @@ namespace ChilkatEmail.Utils
                               // construct a form with hidden inputs, targeting the iframe
                               "var form = document.createElement('form');" +
                               "form.target = uniqueString;" +
-                              "form.action = " + serverName + "/unsubscribe.aspx?paramcode=" + Encode(param) + ";" +
+                              "form.action = '" + serverName + "/unsubscribe.aspx?paramcode=" + Encode(param) + "';" +
                               "form.method = 'POST';" +
 
 

@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using DatabaseLayer;
 using System.Data;
 namespace EmailSite
 {
-    public partial class Redirect : System.Web.UI.Page
+    /// <summary>
+    /// Summary description for imageHandler
+    /// </summary>
+    public class imageHandler : IHttpHandler
     {
-        protected void Page_Load(object sender, EventArgs e)
+
+        
+            public void ProcessRequest(System.Web.HttpContext context)
         {
-            HttpContext context = HttpContext.Current;
             int autoID = 0;
             int messageID = 0;
             int listID = 0;
-            // String url = "";
-            String param = "";
+
+            // Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID)
+            //empty.jpg?paramcode=QVVUT1JFU1BPTkRFUklEPTMmTUVTU0FHRUlEPTImTElTVElEPTMy
+
+
+             String param = "";
             if (context.Request.Params["paramcode"] != null)
             {
                 try
@@ -39,7 +45,7 @@ namespace EmailSite
 
                 String _mesageID = temp[1].Split('=')[1];
                 String _listID = temp[2].Split('=')[1];
-                String url = temp[3].Split('=')[1];
+               // String url = temp[3].Split('=')[1];
                 try
                 {
                     autoID = int.Parse(_autoD);
@@ -71,10 +77,7 @@ namespace EmailSite
                 if (autoID > 0)
                 {
 
-
-
-
-                    ClickOpenStatus obj = new ClickOpenStatus();
+                        ClickOpenStatus obj = new ClickOpenStatus();
                     obj.AUTORESPONDERID = autoID;
                     obj.MESSAGEID = messageID;
                     obj.LISTID = listID;
@@ -83,7 +86,7 @@ namespace EmailSite
                     DataTable dt = obj.Select();
                     bool newItem = true;
                     if (dt != null && dt.Rows.Count > 0)
-                    {
+                    {                   
                         DataRow row = dt.Rows[0];
                         countclick = int.Parse(row[4].ToString());
                         countopen = int.Parse(row[5].ToString());
@@ -91,47 +94,35 @@ namespace EmailSite
                     }
                     if (newItem)
                     {
-                        if (String.IsNullOrEmpty(url))
-                        { // open
-                            obj.COUNTCLICK = 0;
-                            obj.COUNTOPEN = 1;
-                        }
-                        else
-                        { //click
-                            obj.COUNTCLICK = 1;
-                            obj.COUNTOPEN = 0;
-                        }
-
+                        obj.COUNTCLICK = 0;
+                        obj.COUNTOPEN = 1;
                         obj.Insert();
                     }
                     else
                     {
-                        if (String.IsNullOrEmpty(url))
-                        { // open
-                            obj.COUNTCLICK = countclick;
-                            obj.COUNTOPEN = countopen + 1;
-                        }
-                        else
-                        { //click
-                            obj.COUNTCLICK = countclick + 1;
-                            obj.COUNTOPEN = countopen;
-                        }
-
+                        obj.COUNTCLICK = countclick;
+                        obj.COUNTOPEN = countopen + 1;
                         obj.Update();
                     }
-                    context.Response.Redirect(url.Replace("'",""));
-
-                    // context.Response.End();
-                    return;
-
-
-
-
-
                 }
             }
+
+
+
+         
+            context.Response.Clear();
+            context.Response.ContentType = "Image/jpeg";
+            context.Response.WriteFile("empty.jpg");
+            context.Response.End();
         }
-            
+
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
+            }
+        }
         public string Decode(string str)
         {
             byte[] decbuff = Convert.FromBase64String(str);

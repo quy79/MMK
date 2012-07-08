@@ -112,11 +112,11 @@ namespace DatabaseLayer
 			objclsMESSAGES.SUBJECT = SUBJECT;
 			objclsMESSAGES.BODY = BODY;
 			objclsMESSAGES.WEBPAGE = WEBPAGE;
-			objclsMESSAGES.TYPE = TYPE;
+			objclsMESSAGES.TYPE = (TYPE)?1:0;
 			objclsMESSAGES.STATUS = STATUS;
 			objclsMESSAGES.MODIFIEDDATE = MODIFIEDDATE;
 		
-			if(objclsMESSAGES.Insert())
+			if(objclsMESSAGES.Insert()>0)
 			{
 				return true;
 			}
@@ -140,7 +140,7 @@ namespace DatabaseLayer
 			objclsMESSAGES.SUBJECT = SUBJECT;
 			objclsMESSAGES.BODY = BODY;
 			objclsMESSAGES.WEBPAGE = WEBPAGE;
-			objclsMESSAGES.TYPE = TYPE;
+            objclsMESSAGES.TYPE = (TYPE) ? 1 : 0; ;
 			objclsMESSAGES.STATUS = STATUS;
 			objclsMESSAGES.MODIFIEDDATE = MODIFIEDDATE;
 		

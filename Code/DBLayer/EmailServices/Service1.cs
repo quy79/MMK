@@ -10,13 +10,10 @@ using System.Threading;
 using System.Web;
 
 using DatabaseLayer;
-using System.Data;
 using System.Data.SqlClient;
-using System.Threading;
 using ChilkatEmail.Utils;
 using ChilkatEmail;
 using System.Collections;
-using System.Diagnostics;
 namespace EmailServices
 {
     public partial class Service1 : ServiceBase
@@ -26,6 +23,7 @@ namespace EmailServices
             InitializeComponent();
         }
 
+        
         protected override void OnStart(string[] args)
         {
             base.OnStart(args);
@@ -34,13 +32,38 @@ namespace EmailServices
            // while (/*SERVICE_TO*/ true)
             {
                 Debug.WriteLine("start auto responder");
-                Thread.Sleep(3000);
+                
                 DBManager.initConnection();
-                Thread t = new Thread(OnStartMain);
+                Thread.Sleep(30000);
+                Thread t = new Thread(MainTHreadLoop);
                 t.Start();
                 Debug.WriteLine("end onstart");
             }
         }
+
+        protected void MainTHreadLoop()
+        {
+            Thread autoEnginThread = new Thread(OnStartMain);
+            autoEnginThread.Start();
+            Thread.Sleep(600 * 1000);
+            Thread sendMailThread = new Thread(OnSendMail);
+            sendMailThread.Start();
+            while(true){
+                Thread.Sleep(3600*1000);
+                if (!autoEnginThread.IsAlive)
+                {
+                    autoEnginThread = new Thread(OnStartMain);
+                    autoEnginThread.Start();
+                }
+               if (!sendMailThread.IsAlive)
+                {
+                    sendMailThread = new Thread(OnSendMail);
+                    sendMailThread.Start();
+                }
+            }
+
+        }
+       
         protected  void OnStartMain()
         {
           
@@ -132,10 +155,10 @@ namespace EmailServices
         void newAutoResponderSendMessageToContactListThread(object data)
         {
             DataRow rowMessageDetail = (DataRow)data;
-
+            bool ENDOFLOOP = false;
             Debug.WriteLine("newAutoResponderSendMessageToContactListThread autoID=" + rowMessageDetail[1].ToString() + " messageID = " + rowMessageDetail[2].ToString());
             MailServices mailSV = new MailServices();
-            //Thread t = new Thread(GoSendMessagetoAutoResponder);
+           // Thread t = new Thread(GoSendMessagetoAutoResponder);
             //return;
             do
             {
@@ -162,7 +185,10 @@ namespace EmailServices
                         int status = int.Parse(rowMessageDetail[3].ToString());
                         int emailID = int.Parse(row[2].ToString());
                         int totalContact = int.Parse(row[4].ToString());
-
+                        if(status ==4){ //finish
+                            ENDOFLOOP = true;
+                            return;
+                        }
                         int sumContact = 0;
                         if (row[5] == DBNull.Value)
                         {
@@ -239,9 +265,8 @@ namespace EmailServices
                                 pending.Delete();
                                 listTo.Add(email);
                                 count++;
-                                if (count > ChilkatEmail.Utils.Constants.emailSentPerTime) break;
-                                mailSV.AutoresponderSendEmail(from, listTo, null, null, subject, body, "" + autoID, "" + emailID
-                                   , listID, rowPending[3].ToString());
+                               // if (count > ChilkatEmail.Utils.Constants.emailSentPerTime) break;
+                                mailSV.AutoresponderSendEmail(from, listTo, null, null, subject, body, "" + autoID, "" + emailID , listID, rowPending[3].ToString());
                             }
                             //if (listTo.Count > 0)
                            /// {
@@ -286,6 +311,7 @@ namespace EmailServices
 
                                     // au_message.DURATION = int.Parse(row1[5].ToString());
                                     au_message.Update();
+                                    ENDOFLOOP = true;
                                 }
 
 
@@ -309,7 +335,7 @@ namespace EmailServices
                 Thread.Sleep(30000); // 5 minutes
                 bounceMail();
                 Debug.WriteLine("End new thread ");
-            } while (true);
+            } while (!ENDOFLOOP);
 
 
         }
@@ -560,7 +586,39 @@ namespace EmailServices
             mailman = null;
         }
 
+        protected void OnSendMail()
+        {
+            MailServices mailSV = new MailServices();
+            while (true)
+            {
+                try
+                {
+                    Contact_message ct = new Contact_message();
+                    DataTable tb = ct.Select();
 
+
+                    foreach (DataRow row in tb.Rows)
+                    {
+                        int ctID = int.Parse(row[0].ToString());
+                        int messageID = int.Parse(row[1].ToString());
+                        String email = row[4].ToString();
+                        String messageName = row[2].ToString();
+                        String emailfrom = row[3].ToString();
+                        String subject = row[5].ToString();
+                        String body = row[6].ToString();
+                        ct.CONTACTID = ctID;
+                        ct.MESSAGEID = messageID;
+                        ct.Delete();
+                        List<String> emailList = new List<string>();
+                        emailList.Add(email);
+                        mailSV.SendHTMLEmail(emailfrom, emailList, null, null, subject, body);
+
+                    }
+                    Thread.Sleep(5 * 60 * 1000);
+                }catch (Exception ee){
+                }
+            }
+        }
         
     }
 }
