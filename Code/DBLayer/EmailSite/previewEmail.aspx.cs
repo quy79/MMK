@@ -13,6 +13,7 @@ namespace EmailSite
         {
             try
             {
+
                 Utils.CheckSecurity(Session, Response);
                 if (!IsPostBack) LoadData();
             }

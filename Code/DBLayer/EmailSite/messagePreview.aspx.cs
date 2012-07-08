@@ -12,14 +12,19 @@ namespace EmailSite
         public string strContent = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["currentTextEmail"] != null)
+            try
             {
-                TextMessage objMsg = (TextMessage)Session["currentTextEmail"];
-                strContent = objMsg.MsgBody;
-                
+                Utils.CheckSecurity(Session, Response);
+                if (Session["currentTextEmail"] != null)
+                {
+                    TextMessage objMsg = (TextMessage)Session["currentTextEmail"];
+                    strContent = objMsg.MsgBody;
 
-                //lblMsgBody.Text = objMsg.MsgBody;
+
+                    //lblMsgBody.Text = objMsg.MsgBody;
+                }
             }
+            catch { }
         }
     }
 }

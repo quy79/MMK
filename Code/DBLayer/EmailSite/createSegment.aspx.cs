@@ -14,6 +14,7 @@ namespace EmailSite
         {
             try
             {
+                Utils.CheckSecurity(Session, Response);
                 if (!IsPostBack) LoadContactLists();
                 lblMsg.Text = "";
             }

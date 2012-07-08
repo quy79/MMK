@@ -14,6 +14,7 @@ namespace EmailSite
         {
             try
             {
+                Utils.CheckSecurity(Session, Response);
                 int listID = Int32.Parse(Request["listid"]);
                 DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
                 objList.ID = listID;

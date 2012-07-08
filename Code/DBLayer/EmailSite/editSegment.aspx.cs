@@ -14,6 +14,7 @@ namespace EmailSite
         {
             try
             {
+                Utils.CheckSecurity(Session, Response);
                 if (!IsPostBack)
                 {
                     if (Request["id"] == null) lblMsg.Text = "Please choose a segment to edit !";

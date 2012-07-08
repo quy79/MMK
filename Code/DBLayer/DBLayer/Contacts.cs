@@ -144,7 +144,47 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
-    public DataTable QuickSearch(string text)
+    public DataTable ExecuteSql(string sql)
+    {
+        DataSet ds;
+        try
+        {
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.Text, sql );
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+    public DataTable SelectSummartContacts()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+				new SqlParameter("@USERID",USERID )				
+			};
+
+
+
+
+
+
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_SUMMARYCONTACT_INFO]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+    public DataTable QuickSearch(string text, bool subscribed)
     {
         DataSet ds;
         try
@@ -153,11 +193,12 @@ namespace DatabaseLayer
 			{ 				
 				new SqlParameter("@Text",SqlDbType.NVarChar),
                 new SqlParameter("@USERID",SqlDbType.Int),
+                new SqlParameter("@SUBSCRIBES",SqlDbType.Bit),
 			};
 
             Params[0].Value = text;
             Params[1].Value = USERID;
-
+            Params[2].Value = subscribed;
 
             ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_QSearch]", Params);
             return ds.Tables[0];
@@ -168,18 +209,19 @@ namespace DatabaseLayer
         }
     }
 
-    public DataTable SelectContactListsbyListIDs(string listIDs)
+    public DataTable SelectContactListsbyListIDs(int listIDs, bool subcribes)
     {
         DataSet ds;
         try
         {
             SqlParameter[] Params = 
 			{ 				
-				new SqlParameter("@ListIDs",SqlDbType.NVarChar)				
+				new SqlParameter("@ListIDs",SqlDbType.Int)		,		
+                new SqlParameter("@SUBSCRIBES",SqlDbType.Bit)				
 			};
 
             Params[0].Value = listIDs;
-
+            Params[1].Value = subcribes;
 
             ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_SelectContactListsbyListIDs]", Params);
             return ds.Tables[0];
@@ -189,6 +231,27 @@ namespace DatabaseLayer
             return null;// throw new Exception(ex.Message);
         }
     }
+
+    public DataTable GetListNamesForCountactID(int contactID)
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@CONTACTID",contactID)
+            };
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_GETLISTNAMESOFCONTACTS", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable SelectAll()
     {
         DataSet ds;
@@ -521,7 +584,7 @@ namespace DatabaseLayer
 		}
 	}
 
-       public int IsExistContactEmail()
+   public int IsExistContactEmail()
     {
         try
         {

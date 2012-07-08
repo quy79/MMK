@@ -13,6 +13,7 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Utils.CheckSecurity(Session, Response);
             if (Request.QueryString["listid"]!=null && !Request.QueryString["listid"].Equals(""))
                 listsDiv.Visible = false;
             lblMsg.Text = "";

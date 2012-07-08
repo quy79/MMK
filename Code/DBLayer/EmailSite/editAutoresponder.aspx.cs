@@ -14,6 +14,7 @@ namespace EmailSite
         {
             try
             {
+                Utils.CheckSecurity(Session, Response);
                 lblMsg.Text = "";
                 if (!IsPostBack)
                 {
