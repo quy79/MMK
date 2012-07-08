@@ -34,7 +34,7 @@ namespace EmailServices
                 Debug.WriteLine("start auto responder");
                 
                 DBManager.initConnection();
-                Thread.Sleep(10000);
+                Thread.Sleep(30000);
                 Thread t = new Thread(MainTHreadLoop);
                 t.Start();
                 Debug.WriteLine("end onstart");
@@ -46,8 +46,8 @@ namespace EmailServices
             Thread autoEnginThread = new Thread(OnStartMain);
             autoEnginThread.Start();
             Thread.Sleep(600 * 1000);
-           // Thread sendMailThread = new Thread(OnSendMail);
-            //sendMailThread.Start();
+            Thread sendMailThread = new Thread(OnSendMail);
+            sendMailThread.Start();
             while(true){
                 Thread.Sleep(3600*1000);
                 if (!autoEnginThread.IsAlive)
@@ -55,11 +55,11 @@ namespace EmailServices
                     autoEnginThread = new Thread(OnStartMain);
                     autoEnginThread.Start();
                 }
-               /*if (!sendMailThread.IsAlive)
+               if (!sendMailThread.IsAlive)
                 {
                     sendMailThread = new Thread(OnSendMail);
                     sendMailThread.Start();
-                }*/
+                }
             }
 
         }
@@ -158,7 +158,7 @@ namespace EmailServices
             bool ENDOFLOOP = false;
             Debug.WriteLine("newAutoResponderSendMessageToContactListThread autoID=" + rowMessageDetail[1].ToString() + " messageID = " + rowMessageDetail[2].ToString());
             MailServices mailSV = new MailServices();
-            //Thread t = new Thread(GoSendMessagetoAutoResponder);
+           // Thread t = new Thread(GoSendMessagetoAutoResponder);
             //return;
             do
             {
@@ -614,7 +614,7 @@ namespace EmailServices
                         mailSV.SendHTMLEmail(emailfrom, emailList, null, null, subject, body);
 
                     }
-                    Thread.Sleep(2 * 60 * 1000);
+                    Thread.Sleep(5 * 60 * 1000);
                 }catch (Exception ee){
                 }
             }
