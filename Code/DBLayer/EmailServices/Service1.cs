@@ -10,13 +10,10 @@ using System.Threading;
 using System.Web;
 
 using DatabaseLayer;
-using System.Data;
 using System.Data.SqlClient;
-using System.Threading;
 using ChilkatEmail.Utils;
 using ChilkatEmail;
 using System.Collections;
-using System.Diagnostics;
 namespace EmailServices
 {
     public partial class Service1 : ServiceBase
@@ -37,7 +34,7 @@ namespace EmailServices
                 Debug.WriteLine("start auto responder");
                 
                 DBManager.initConnection();
-                Thread.Sleep(30000);
+                Thread.Sleep(10000);
                 Thread t = new Thread(MainTHreadLoop);
                 t.Start();
                 Debug.WriteLine("end onstart");
@@ -48,8 +45,9 @@ namespace EmailServices
         {
             Thread autoEnginThread = new Thread(OnStartMain);
             autoEnginThread.Start();
-            Thread sendMailThread = new Thread(OnSendMail);
-            sendMailThread.Start();
+            Thread.Sleep(600 * 1000);
+           // Thread sendMailThread = new Thread(OnSendMail);
+            //sendMailThread.Start();
             while(true){
                 Thread.Sleep(3600*1000);
                 if (!autoEnginThread.IsAlive)
@@ -57,11 +55,11 @@ namespace EmailServices
                     autoEnginThread = new Thread(OnStartMain);
                     autoEnginThread.Start();
                 }
-               if (!sendMailThread.IsAlive)
+               /*if (!sendMailThread.IsAlive)
                 {
                     sendMailThread = new Thread(OnSendMail);
                     sendMailThread.Start();
-                }
+                }*/
             }
 
         }
@@ -157,7 +155,7 @@ namespace EmailServices
         void newAutoResponderSendMessageToContactListThread(object data)
         {
             DataRow rowMessageDetail = (DataRow)data;
-
+            bool ENDOFLOOP = false;
             Debug.WriteLine("newAutoResponderSendMessageToContactListThread autoID=" + rowMessageDetail[1].ToString() + " messageID = " + rowMessageDetail[2].ToString());
             MailServices mailSV = new MailServices();
             //Thread t = new Thread(GoSendMessagetoAutoResponder);
@@ -187,7 +185,10 @@ namespace EmailServices
                         int status = int.Parse(rowMessageDetail[3].ToString());
                         int emailID = int.Parse(row[2].ToString());
                         int totalContact = int.Parse(row[4].ToString());
-
+                        if(status ==4){ //finish
+                            ENDOFLOOP = true;
+                            return;
+                        }
                         int sumContact = 0;
                         if (row[5] == DBNull.Value)
                         {
@@ -264,9 +265,8 @@ namespace EmailServices
                                 pending.Delete();
                                 listTo.Add(email);
                                 count++;
-                                if (count > ChilkatEmail.Utils.Constants.emailSentPerTime) break;
-                                mailSV.AutoresponderSendEmail(from, listTo, null, null, subject, body, "" + autoID, "" + emailID
-                                   , listID, rowPending[3].ToString());
+                               // if (count > ChilkatEmail.Utils.Constants.emailSentPerTime) break;
+                                mailSV.AutoresponderSendEmail(from, listTo, null, null, subject, body, "" + autoID, "" + emailID , listID, rowPending[3].ToString());
                             }
                             //if (listTo.Count > 0)
                            /// {
@@ -311,6 +311,7 @@ namespace EmailServices
 
                                     // au_message.DURATION = int.Parse(row1[5].ToString());
                                     au_message.Update();
+                                    ENDOFLOOP = true;
                                 }
 
 
@@ -334,7 +335,7 @@ namespace EmailServices
                 Thread.Sleep(30000); // 5 minutes
                 bounceMail();
                 Debug.WriteLine("End new thread ");
-            } while (true);
+            } while (!ENDOFLOOP);
 
 
         }
