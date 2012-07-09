@@ -37,21 +37,17 @@
                        	<div class="message-content-box">
                         	<div class="message-title-box">
                             	<div class="message-title-text">
-                          			Let's increase rsfsdfevenue by joining to Rights Network !      	
+                                    <asp:Label ID="lblMsgName" runat="server" Text=""></asp:Label>
+                          			
                                 </div>
                             	
                             </div>
                             <div id="message-content-left">
                             	<div class="message-info">
                                 	<ul>
-                                    	<!--<span>Type :  Plain Text</span><br/>
-                                    	<span>Forwards :  0</span><br/>
-                                    	<span>Releases :  0</span><br/>
-                                        <span>Conplaints :  0</span><br/>
-                                        <span>Unsubscribes :  0</span><br/>
-                                        <span>Sent :  2012/05/21  15:26pm</span><br/>
-                                        <span>Target contact list(s) : <a href="">contact list #1</a>, <a href="">contact list #2</a>, <a href="">contact list #3</a>, <a href="">contact list #4</a></span><br/>
-                                        <span>Sending Complete :  2012/05/21  15:30pm</span><br/>        -->
+                                    	<span>Type :   <asp:Label ID="lblMsgType" runat="server" Text=""></asp:Label></span><br/>                                    	
+                                        <span>Target contact list(s) :  <asp:HyperLink ID="hlContactLink" runat="server"></asp:HyperLink></span><br/>
+                                        
 
                                     </ul>
                                 </div>
@@ -59,7 +55,7 @@
                             <div id="message-content-right">
                             	<div class="message-content-right-header">
                                 	<div class="message-content-right-header-body">
-                                    	<span class="message-content-delivered-num">1,000</span><br/>
+                                    	<span class="message-content-delivered-num"><asp:Label ID="lblMsgTotalContacts" runat="server" Text=""></asp:Label></span><br/>
                                         contacts received this message.
                                     </div>
                                 	
@@ -68,15 +64,15 @@
                                 	<table id="message-icons">
                                     	<tr>
                                         	<td class="opens"></td>
-                                            <td class="info">Opens : 5%</td>
+                                            <td class="info">Opens : <asp:Label ID="lblTotalOpen" runat="server" Text=""></asp:Label></td>
                                         </tr>
                                         <tr>
                                         	<td class="clicks"></td>
-                                            <td class="info">Clicks : 30%</td>
+                                            <td class="info">Clicks : <asp:Label ID="lblTotalClick" runat="server" Text=""></asp:Label></td>
                                         </tr>
                                         <tr>
                                         	<td class="bounces"></td>
-                                            <td class="info">Bounces : 10%</td>
+                                            <td class="info">Bounces : <asp:Label ID="lblTotalBounces" runat="server" Text=""></asp:Label></td>
                                         </tr>
                                     </table>
                                     	

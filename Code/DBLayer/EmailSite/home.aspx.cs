@@ -28,6 +28,59 @@ namespace EmailSite
 
         private void LoadData()
         {
+            //load latest msg
+            try
+            {
+                DatabaseLayer.Messages objMsg = new DatabaseLayer.Messages();
+                objMsg.USERID = Int32.Parse(Session["userID"].ToString());
+                DataTable dtMsg = objMsg.SummaryLatestMessage();
+                hlContactLink.Text = dtMsg.Rows[0]["LISTNAME"].ToString();
+                hlContactLink.NavigateUrl = "searchContacts.aspx?listId=" + dtMsg.Rows[0]["LISTID"].ToString();
+
+                lblMsgName.Text = dtMsg.Rows[0]["MESSAGENAME"].ToString();
+                try {
+                    int iType = Int32.Parse(dtMsg.Rows[0]["TYPE"].ToString());
+                    if (iType == 1) lblMsgType.Text = "Plain Text";
+                    else if (iType == 2) lblMsgType.Text = "HTML";
+                    else lblMsgType.Text = "Template";
+                }
+                catch { lblMsgType.Text = "Plain Text";}
+
+                try
+                {
+                    lblMsgTotalContacts.Text = dtMsg.Rows[0]["TOTALCONTACTS"].ToString();
+                }
+                catch { lblMsgTotalContacts.Text = "0"; }
+            }
+            catch {
+                hlContactLink.Text = "";
+                hlContactLink.NavigateUrl = "#";
+                lblMsgName.Text = "";
+                lblMsgTotalContacts.Text = "0";
+            }
+
+            //get bounce info
+            try
+            {
+                DatabaseLayer.Messages objMsg = new DatabaseLayer.Messages();
+                objMsg.USERID = Int32.Parse(Session["userID"].ToString());
+                DataTable dtMsg = objMsg.SummaryOpenClickAndBounce();
+                
+                try { lblTotalBounces.Text = dtMsg.Rows[0]["TOTALBOUNCE"].ToString(); }
+                catch { lblTotalBounces.Text = ""; }
+
+                try { lblTotalOpen.Text = dtMsg.Rows[0]["TOTALOPEN"].ToString(); }
+                catch { lblTotalOpen.Text = ""; }
+
+                try { lblTotalClick.Text = dtMsg.Rows[0]["TOTALCLICK"].ToString(); }
+                catch { lblTotalClick.Text = ""; }
+            }
+            catch {
+                lblTotalBounces.Text = "";
+                lblTotalOpen.Text = "";
+                lblTotalClick.Text = "";
+            }
+
             try
             {
                 DatabaseLayer.Contacts objContact = new DatabaseLayer.Contacts();
