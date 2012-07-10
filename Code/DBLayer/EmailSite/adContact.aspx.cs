@@ -123,8 +123,11 @@ namespace EmailSite
                             objContactList.CONTACTID = iContactID;
                             objContactList.LISTID = Int32.Parse(strID);
                             objContactList.SUBSCRIBES = true;
+                            int isDuplicate = 0;
 
-                            objContactList.Insert();
+                            isDuplicate = objContactList.CheckDuplicateContact();
+                            if (isDuplicate == 0) objContactList.Insert();
+
 
                         }
 

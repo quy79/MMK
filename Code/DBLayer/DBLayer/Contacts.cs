@@ -209,6 +209,30 @@ namespace DatabaseLayer
         }
     }
 
+    public DataTable BrowseAll( bool subscribed)
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+
+                new SqlParameter("@USERID",SqlDbType.Int),
+                new SqlParameter("@SUBSCRIBES",SqlDbType.Bit),
+			};
+
+            Params[0].Value = USERID;
+            Params[1].Value = subscribed;
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_BrowseAll]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable SelectContactListsbyListIDs(int listIDs, bool subcribes)
     {
         DataSet ds;

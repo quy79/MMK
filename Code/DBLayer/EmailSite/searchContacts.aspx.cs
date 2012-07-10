@@ -159,7 +159,9 @@ namespace EmailSite
                     if(strSelectedIDs.Equals("0")) { // select all lists and segments
                         DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
                         objContacts.USERID = Int32.Parse(Session["userID"].ToString());
-                        dtContactLists = objContacts.QuickSearch("", !chkUnSub1.Checked);
+                        //dtContactLists = objContacts.QuickSearch("", !chkUnSub1.Checked);
+                        if (chkUnSub1.Checked) dtContactLists = objContacts.BrowseAll(false);
+                        else dtContactLists = objContacts.BrowseAll( true);
                     } else {
                         if (strSelectedIDs[0]=='L') {
                             DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();

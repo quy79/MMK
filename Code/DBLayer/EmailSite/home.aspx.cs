@@ -87,7 +87,7 @@ namespace EmailSite
                 objContact.USERID = Int32.Parse(Session["userID"].ToString());
                 DataTable dtContact = objContact.SelectSummartContacts();
                 lblTotalContacts.Text = dtContact.Rows[0]["TOTALCONTACTS"].ToString();
-                lblTotalLists.Text = dtContact.Rows[0]["TOTALSUB"].ToString();
+                lblTotalLists.Text = dtContact.Rows[0]["TOTALLIST"].ToString();
                 lblTotalSegments.Text = dtContact.Rows[0]["TOTALSEG"].ToString();
             }
             catch { lblTotalContacts.Text = "0"; lblTotalLists.Text = "0"; lblTotalSegments.Text = "0"; }
