@@ -16,6 +16,7 @@ namespace EmailSite
             int autoID = 0;
             int messageID = 0;
             int listID = 0;
+            int contactID = 0;
             // String url = "";
             String param = "";
             if (context.Request.Params["paramcode"] != null)
@@ -39,7 +40,9 @@ namespace EmailSite
 
                 String _mesageID = temp[1].Split('=')[1];
                 String _listID = temp[2].Split('=')[1];
-                String url = temp[3].Split('=')[1];
+                String _contactID = temp[3].Split('=')[1];
+                String url = temp[4].Split('=')[1];
+
                 try
                 {
                     autoID = int.Parse(_autoD);
@@ -64,6 +67,15 @@ namespace EmailSite
                 catch
                 {
                     listID = 0;
+                }
+
+                try
+                {
+                    contactID = int.Parse(_contactID);
+                }
+                catch
+                {
+                    contactID = 0;
                 }
 
 
@@ -118,7 +130,7 @@ namespace EmailSite
                         }
 
                         obj.Update();
-                    }
+                    } 
                     context.Response.Redirect(url.Replace("'",""));
 
                     // context.Response.End();
@@ -128,6 +140,56 @@ namespace EmailSite
 
 
 
+                } else if(autoID ==-1){ // not belogings to autoresponder
+                    MessageClickOpenStatus obj = new MessageClickOpenStatus();
+                    obj.CONTACTID = contactID;
+                    obj.MESSAGEID = messageID;
+                    obj.LISTID = listID;
+                    int countclick = 0;
+                    int countopen = 0;
+                    DataTable dt = obj.Select();
+                    bool newItem = true;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        DataRow row = dt.Rows[0];
+                        countclick = int.Parse(row[3].ToString());
+                        countopen = int.Parse(row[4].ToString());
+                        newItem = false;
+                    }
+                    if (newItem)
+                    {
+                        if (String.IsNullOrEmpty(url))
+                        { // open
+                            obj.COUNTCLICK = 0;
+                            obj.COUNTOPEN = 1;
+                        }
+                        else
+                        { //click
+                            obj.COUNTCLICK = 1;
+                            obj.COUNTOPEN = 0;
+                        }
+
+                        obj.Insert();
+                    }
+                    else
+                    {
+                        if (String.IsNullOrEmpty(url))
+                        { // open
+                            obj.COUNTCLICK = countclick;
+                            obj.COUNTOPEN = countopen + 1;
+                        }
+                        else
+                        { //click
+                            obj.COUNTCLICK = countclick + 1;
+                            obj.COUNTOPEN = countopen;
+                        }
+
+                        obj.Update();
+                    }
+                    context.Response.Redirect(url.Replace("'", ""));
+
+                    // context.Response.End();
+                    return;
                 }
             }
         }

@@ -113,7 +113,7 @@ namespace ChilkatEmail
         /// <param name="subject"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        public bool SendHTMLEmail(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string subject, string htmlBody)
+        public bool SendHTMLEmailToListContact(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string listID, string contactID, string messageID,string subject, string htmlBody)
         {
             this.mailFrom = emailFrom;
             this.listMailTo = emailsTo;
@@ -131,7 +131,10 @@ namespace ChilkatEmail
             Chilkat.Email email = new Chilkat.Email();
             email.BounceAddress = Constants.bounceEmailAddress;
             email.Subject = subject;
-            email.SetHtmlBody(htmlBody);
+            MailUtils utilEmail = new MailUtils();
+            String body = utilEmail.ProcessHTMLBody(htmlBody, true, Constants.SERVER, "-1", messageID, listID, contactID, emailsTo[0]);
+            email.SetHtmlBody(body);
+            //email.SetHtmlBody(htmlBody);
             if (listMailTo != null && listMailTo.Count > 0)
             {
                 email.AddMultipleTo(eUtils.mailParse(listMailTo));
@@ -162,7 +165,79 @@ namespace ChilkatEmail
 
             return true;
         }
+       /// <summary>
+       /// /
+       /// </summary>
+       /// <param name="emailFrom"></param>
+       /// <param name="emailsTo"></param>
+       /// <param name="emailsCC"></param>
+       /// <param name="emailsBCC"></param>
+       /// <param name="subject"></param>
+       /// <param name="htmlBody"></param>
+       /// <returns></returns>
+        public bool SendHTMLEmail(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string subject, string htmlBody)
+        {
+            this.mailFrom = emailFrom;
+            this.listMailTo = emailsTo;
+            this.listMailCC = emailsCC;
+            this.listMailBCC = emailsBCC;
+            //  The mailman object is used for receiving (POP3)
+            //  and sending (SMTP) email.
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            
 
+            bool success;
+            success = mailman.UnlockComponent(ChilkatEmailUnlock);
+            if (success != true) return false;
+
+            Chilkat.Email email = new Chilkat.Email();
+            email.BounceAddress = Constants.bounceEmailAddress;
+            email.Subject = subject;
+            email.SetHtmlBody(htmlBody);
+            if (listMailTo != null && listMailTo.Count > 0)
+            {
+                email.AddMultipleTo(eUtils.mailParse(listMailTo));
+            }
+            if (listMailCC != null && listMailCC.Count > 0)
+            {
+                email.AddMultipleCC(eUtils.mailParse(listMailCC));
+            }
+            if (listMailBCC != null && listMailBCC.Count > 0)
+            {
+                email.AddMultipleBcc(eUtils.mailParse(listMailBCC));
+            }
+
+            email.From = mailFrom;
+
+
+            mailman.SmtpHost = Constants.strSmtpHost;
+            mailman.SmtpUsername = Constants.strSmtpUser;
+            mailman.SmtpPassword = Constants.strSmtpPass;
+            mailman.SmtpPort = Constants.iSmtpPort;
+            /*mailman.StartTLS = startTLS;
+             if (Charset.Length != 0) email.Charset = Charset;*/
+
+            success = mailman.SendEmail(email);
+            if (success != true) return false;
+
+            success = mailman.CloseSmtpConnection();
+
+            return true;
+        }
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="emailFrom"></param>
+       /// <param name="emailsTo"></param>
+       /// <param name="emailsCC"></param>
+       /// <param name="emailsBCC"></param>
+       /// <param name="subject"></param>
+       /// <param name="htmlBody"></param>
+       /// <param name="autoresponderID"></param>
+       /// <param name="messageID"></param>
+       /// <param name="listID"></param>
+       /// <param name="contactID"></param>
+       /// <returns></returns>
         public bool AutoresponderSendEmail(String emailFrom, List<String> emailsTo, List<String> emailsCC, List<String> emailsBCC, string subject, string htmlBody, String autoresponderID, String messageID,String listID, String contactID)
         {
             this.mailFrom = emailFrom;

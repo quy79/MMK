@@ -38,14 +38,14 @@ namespace ChilkatEmail.Utils
                         body = body.Replace(link, replaceString);
                        // body = body.Replace("<html>", "<html>" + script);
                     }
-                    else if (link.IndexOf("mailto") >= 0)
+                    else if (link.IndexOf("mailto") >= 0 || link.IndexOf("#") >= 0)
                     {
 
                     }
                     else
                     {
-                      
-                        String patamcode = Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
+
+                        String patamcode = Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&CONTACTID=" + contactID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
                         String replaceString = "'" + serverName + "/redirect.aspx?paramcode=" + patamcode + "' ";
                         body = body.Replace(link, replaceString);
                     }
@@ -54,8 +54,18 @@ namespace ChilkatEmail.Utils
                     //unsubscribe.aspx
                 }
                 // Literal1.Text = a;
-                result = body.Replace("</html>", "<img alt='' src='" + serverName + "/imageHandler.ashx?paramcode=" + Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID) + "'/>");
-                result += "</html>";
+                if (autoresponderID == "-1")
+                {
+                    result = body.Replace("</html>", "<img alt='' src='" + serverName + "/imageHandler.ashx?paramcode=" + Encode("AUTORESPONDERID=" + autoresponderID  +"&MESSAGEID=" + messageID + "&LISTID=" + listID + "&CONTACTID=" + contactID) + "'/>");
+                    result += "</html>";
+                }
+                else
+                {
+                    result = body.Replace("</html>", "<img alt='' src='" + serverName + "/imageHandler.ashx?paramcode=" + Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID) + "'/>");
+                    result += "</html>";
+                }
+
+                
             }
             else
             {
