@@ -61,6 +61,7 @@
         $("#dtdiv1").show();
         $("#date_range").change(function () {
             var dt = $(this).find(":selected").val();
+            if (dt != "dtdiv2")dt= "dtdiv1"
             $("div.dt").hide();
             $("#" + dt).show();
 
@@ -231,8 +232,8 @@
                                 <div style="position: relative; clear: both; width: 100%">
                                     <asp:DropDownList ID="date_range" runat="server" Width="150px" Height="22px">
                                         <asp:ListItem Value="dtdiv1">Added On</asp:ListItem>
-                                        <asp:ListItem Value="dtdiv1">Added Before</asp:ListItem>
-                                        <asp:ListItem Value="dtdiv1">Added After</asp:ListItem>
+                                        <asp:ListItem Value="dtdiv3">Added Before</asp:ListItem>
+                                        <asp:ListItem Value="dtdiv4">Added After</asp:ListItem>
                                         <asp:ListItem Value="dtdiv2">Added Between</asp:ListItem>
                                     </asp:DropDownList>                                    
                                 </div>

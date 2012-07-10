@@ -15,6 +15,7 @@ namespace EmailSite
         {
             try
             {
+                Utils.CheckSecurity(Session, Response);
                 hdAutoID.Value = Request["Aid"];
                 hdMsgID.Value = Request["Msgid"];
 

@@ -12,8 +12,12 @@ namespace EmailSite
         protected string listid;
         protected void Page_Load(object sender, EventArgs e)
         {
-            listid = (Request.QueryString["listid"] == null) ? "" : "?listid=" + Request.QueryString["listid"];
-            
+            try
+            {
+                Utils.CheckSecurity(Session, Response);
+                listid = (Request.QueryString["listid"] == null) ? "" : "?listid=" + Request.QueryString["listid"];
+            }
+            catch { }
         }
     }
 }

@@ -14,11 +14,15 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                Utils.CheckSecurity(Session, Response);
+                if (Request.QueryString["listid"] != null && !Request.QueryString["listid"].Equals(""))
+                    listsDiv.Visible = false;
 
-            if (!Request.QueryString["listid"].Equals(""))
-                listsDiv.Visible = false;
-
-            if (!Page.IsPostBack) LoadData();
+                if (!Page.IsPostBack) LoadData();
+            }
+            catch { }
         }
 
         private void LoadData()
@@ -34,7 +38,7 @@ namespace EmailSite
         {
 
             string strListSelected;
-            if (Request.QueryString["listid"].Equals(""))
+            if (Request.QueryString["listid"] == null || Request.QueryString["listid"].Equals(""))
                 strListSelected = Request["listContact"];
             else
                 strListSelected = Request.QueryString["listid"];
@@ -91,7 +95,7 @@ namespace EmailSite
                         {
                             //insert contact_list
                             string[] listIDs;
-                            if (Request.QueryString["listid"].Equals(""))
+                            if (Request.QueryString["listid"]==null || Request.QueryString["listid"].Equals(""))
                             {
                                 listIDs = strListSelected.Split(',');
                             }
@@ -121,7 +125,7 @@ namespace EmailSite
 
                     //update total subscribes in contact list table
                     string[] listIDs1;
-                    if (Request.QueryString["listid"].Equals(""))
+                    if (Request.QueryString["listid"] == null || Request.QueryString["listid"].Equals(""))
                     {
                         listIDs1 = strListSelected.Split(',');
                     }

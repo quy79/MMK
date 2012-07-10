@@ -79,7 +79,7 @@ namespace EmailSite
             objMsg.MESSAGENAME = txtMsgName.Text.Trim();
             objMsg.BODY = txtMsgBody.Text.Trim();
             objMsg.STATUS = 1;
-            objMsg.TYPE = 2;
+            objMsg.TYPE = 3;
             int idMsg = 0;
             if (hdMsgID.Value != "") //edit mode
             {

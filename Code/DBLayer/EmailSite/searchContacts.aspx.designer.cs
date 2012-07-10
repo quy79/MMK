@@ -49,13 +49,22 @@ namespace EmailSite {
         protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
+        /// pnlSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSearch;
+        
+        /// <summary>
         /// lstContactLists control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstContactLists;
+        protected global::System.Web.UI.WebControls.DropDownList lstContactLists;
         
         /// <summary>
         /// hdModeSearch control.
@@ -65,6 +74,33 @@ namespace EmailSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdModeSearch;
+        
+        /// <summary>
+        /// lblTotalContacts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalContacts;
+        
+        /// <summary>
+        /// lblTotalSub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalSub;
+        
+        /// <summary>
+        /// chkUnSub1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkUnSub1;
         
         /// <summary>
         /// btnBrowse control.
@@ -101,6 +137,15 @@ namespace EmailSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkBrowseAll;
+        
+        /// <summary>
+        /// chkUnsub2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkUnsub2;
         
         /// <summary>
         /// txtPrefix control.
@@ -247,13 +292,13 @@ namespace EmailSite {
         protected global::System.Web.UI.WebControls.Panel pnlSearchResutls;
         
         /// <summary>
-        /// grvContacts control.
+        /// selectContactContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvContacts;
+        protected global::System.Web.UI.WebControls.GridView selectContactContainer;
         
         /// <summary>
         /// ddlRowPage control.

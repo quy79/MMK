@@ -37,21 +37,17 @@
                        	<div class="message-content-box">
                         	<div class="message-title-box">
                             	<div class="message-title-text">
-                          			Let's increase rsfsdfevenue by joining to Rights Network !      	
+                                    <asp:Label ID="lblMsgName" runat="server" Text=""></asp:Label>
+                          			
                                 </div>
                             	
                             </div>
                             <div id="message-content-left">
                             	<div class="message-info">
                                 	<ul>
-                                    	<span>Type :  Plain Text</span><br/>
-                                    	<span>Forwards :  0</span><br/>
-                                    	<span>Releases :  0</span><br/>
-                                        <span>Conplaints :  0</span><br/>
-                                        <span>Unsubscribes :  0</span><br/>
-                                        <span>Sent :  2012/05/21  15:26pm</span><br/>
-                                        <span>Target contact list(s) : <a href="">contact list #1</a>, <a href="">contact list #2</a>, <a href="">contact list #3</a>, <a href="">contact list #4</a></span><br/>
-                                        <span>Sending Complete :  2012/05/21  15:30pm</span><br/>        
+                                    	<span>Type :   <asp:Label ID="lblMsgType" runat="server" Text=""></asp:Label></span><br/>                                    	
+                                        <span>Target contact list(s) :  <asp:HyperLink ID="hlContactLink" runat="server"></asp:HyperLink></span><br/>
+                                        
 
                                     </ul>
                                 </div>
@@ -59,7 +55,7 @@
                             <div id="message-content-right">
                             	<div class="message-content-right-header">
                                 	<div class="message-content-right-header-body">
-                                    	<span class="message-content-delivered-num">1,000</span><br/>
+                                    	<span class="message-content-delivered-num"><asp:Label ID="lblMsgTotalContacts" runat="server" Text=""></asp:Label></span><br/>
                                         contacts received this message.
                                     </div>
                                 	
@@ -68,24 +64,23 @@
                                 	<table id="message-icons">
                                     	<tr>
                                         	<td class="opens"></td>
-                                            <td class="info">Opens : 5%</td>
+                                            <td class="info">Opens : <asp:Label ID="lblTotalOpen" runat="server" Text=""></asp:Label></td>
                                         </tr>
                                         <tr>
                                         	<td class="clicks"></td>
-                                            <td class="info">Clicks : 30%</td>
+                                            <td class="info">Clicks : <asp:Label ID="lblTotalClick" runat="server" Text=""></asp:Label></td>
                                         </tr>
                                         <tr>
                                         	<td class="bounces"></td>
-                                            <td class="info">Bounces : 10%</td>
+                                            <td class="info">Bounces : <asp:Label ID="lblTotalBounces" runat="server" Text=""></asp:Label></td>
                                         </tr>
                                     </table>
                                     	
 								</div>
                                 <div id="navcontainer">
                                     <ul id="navlist">
-                                        <li id="active"><a href="#" id="current">Create Message</a></li>
-                                        <li><a href="#">Tracking message</a></li>
-                                        <li><a href="#">Re-use this message</a></li>
+                                        <li id="active"><a href="createMsg.aspx" id="current">Create Message</a></li>
+                                        
 
                                     </ul>
                                 </div>
@@ -109,39 +104,85 @@
                             -->
                         </div>
                         <div id="contacts-actions-menu">
-                        	<a href="" class="contacts-actions-nav">Create new Contact List</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="" class="contacts-actions-nav">Import Contacts</a>
+                        	<a href="createList.aspx" class="contacts-actions-nav">Create new Contact List</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="uploadContacts.aspx" class="contacts-actions-nav">Import Contacts</a>
                         </div>
+                         <asp:Panel ID="pnlContactList" runat="server">
                         <div class="message-content-box">
-                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                              <td>
-                                  <table class="contact-grid" bgcolor="#ffffff" width="100%" border="0" cellspacing="1" cellpadding="1">
-                                    <tr>
-                                      <th bgcolor="#9b82d6" width="80%">Contact List ID</td>
-                                      <th bgcolor="#9b82d6" width="20%">Total of contacts</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1"><a href="">My contact list #1</a></td>
-                                      <td class="r1">100</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r2"><a href="">Optlynx VIP member list</a></td>
-                                      <td class="r2">15</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r1"><a href="">sdfsf saf ssfs234sdf sf324 saf 234wds af saf  234 sdaf  sadf 日本語　中国語　英語　ベトナム語　中国語　英語　ベトナム語</a></td>
-                                      <td class="r1">3,000</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="r2"><a href="">sdfsf</a></td>
-                                      <td class="r2">1010</td>
-                                    </tr>
-                                  </table>
-                              </td>
-                            </tr>
-                          </table>
-                          
+                     
+                     
+                        <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" 
+                                   AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"  GridLines="None"
+                                runat="server"  AutoGenerateColumns ="False" onrowcommand="grvList_RowCommand" onrowdatabound="grvList_RowDataBound" AllowPaging="True" 
+                                onpageindexchanging="grvList_PageIndexChanging" PageSize="20">
+                                
+<AlternatingRowStyle BackColor="#D5D6D9"></AlternatingRowStyle>
+                                
+                                <Columns>
+                                    
+                                    <asp:TemplateField HeaderText="Contact List ID">
+                                        <ItemTemplate>
+                                           &nbsp;<a href='searchContacts.aspx?listID=<%# DataBinder.Eval(Container.DataItem, "ID")%>'><%# DataBinder.Eval(Container.DataItem, "LISTNAME")%></a>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="80%"  />                                            
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Total of contacts">
+                                        <ItemStyle CssClass="gvhspadding" />
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TOTALSUBSCRIBES") %>'></asp:Label><br/>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="20%"  />
+                                    </asp:TemplateField>
+                               
+                                </Columns>
+                                
+<HeaderStyle BackColor="#95949B"></HeaderStyle>
+
+                                <PagerSettings Visible="False" />
+
+<RowStyle CssClass="r1"></RowStyle>
+                                
+                            </asp:GridView>                          
+                     
+                        
                         </div>
+                         <div class="message-list-bottom">
+                        	<div class="list-display-setting">
+                            	
+                                Display&nbsp;
+                                 <asp:DropDownList ID="ddlRowPage" runat="server" AutoPostBack=true 
+                                    onselectedindexchanged="ddlRowPage_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem Selected="True">20</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                </asp:DropDownList>
+                                 lists / page
+                                
+                        	</div>
+                            <div class="pagination">
+                            	<div class="PgCounter">
+                                   Page <asp:Label ID="lblCurrentPage" runat="server" Text="Label"></asp:Label>/<asp:Label ID="lblTotalPages" runat="server" Text="Label"></asp:Label> 
+                                   <asp:LinkButton ID="first" runat="server" Text="<<"  CausesValidation="false" 
+                                        onclick="first_Click"></asp:LinkButton>
+                                   <asp:LinkButton ID="prev" runat="server" Text="<"  CausesValidation="false" 
+                                        onclick="prev_Click"></asp:LinkButton>
+                                   <asp:Label ID="lblPaging" runat="server"></asp:Label>
+
+                                   <asp:LinkButton ID="next" runat="server" Text=">" CausesValidation="false" 
+                                        onclick="next_Click" ></asp:LinkButton>  
+                                   <asp:LinkButton ID="last" runat="server" Text=">>"  CausesValidation="false" 
+                                        onclick="last_Click"></asp:LinkButton>
+
+                                    <input type="hidden" value="1" id="CurrentPage" runat="server"/>
+                                    <input type="hidden" id="TotalSize" runat="server"/>
+                                    <input type="hidden" id="TotalPages" runat="server"/>
+                                </div>    
+                            </div>
+                        </div>
+                        </asp:Panel>
+                        
                     
                     </div>
    
@@ -157,18 +198,14 @@
                         <div class="stat-content">
                         	<div id="stat-content-sub">
 								<ul class="p1">
-                                	<li>Total <span class="impression-txt">10,000</span> contacts splitted into :</li>
+                                	<li>Total 
+                                        <asp:Label ID="lblTotalContacts" runat="server" CssClass="impression-txt" Text="0"></asp:Label> contacts splitted into :</li>
                                 </ul>
                                 <ul class="p2">
-                                	<li class="node1">12 lists</li>
-                                    <li class="node2">3 segments</li>
-                                </ul>
-                                <ul class="p1">
-                                	<li>Total <span class="impression-txt">500</span> messages were sent to  <span class="impression-txt">10,352</span> contacts within 7 days.</li>
-                                </ul>
-                                <div class="moredetail">
-                                	<a href="/safsdaf">View more...</a>
-                                </div>
+                                	<li class="node1"><asp:Label ID="lblTotalLists" runat="server" Text="0"></asp:Label> lists</li>
+                                    <li class="node2"><asp:Label ID="lblTotalSegments" runat="server" Text="0"></asp:Label> segments</li>
+                                </ul>                                
+                                
                             </div>
                         </div>
                         <div class="stat-bottom">

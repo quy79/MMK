@@ -14,6 +14,7 @@ namespace EmailSite
         {
             try
             {
+                Utils.CheckSecurity(Session, Response);
                 if (!IsPostBack)
                 {
                     if (Request["id"] == null) lblMsg.Text = "Please choose a segment to add criterias !";
@@ -104,13 +105,34 @@ namespace EmailSite
                     DateTime dtDate1 = DateTime.Parse(date1.Text);
                     DateTime dtDate2 = DateTime.Parse(date2.Text);
                     strValue = date1.Text + " and " + date2.Text;
-                    strCondition = " ( MODIFIEDDATE BETWEEN '" + date1.Text + "' AND '" + date2.Text + "' ) ";
+                  //  strCondition = " ( MODIFIEDDATE BETWEEN '" + date1.Text + "' AND '" + date2.Text + "' ) ";
                 }
                 catch
                 {
                     lblMsg.Text = "Please select correct date";
                     return;
                 }
+            }
+
+            string strDate = date.Text + " 00:00:01";
+            string strDate1 = date1.Text + " 00:00:01";
+            string strDate2 = date2.Text + " 00:00:01";
+            switch (date_range.SelectedIndex)
+            {
+                case 0:
+                    strCondition = " ( DATEDIFF(day,ct.MODIFIEDDATE, Convert(datetime,'" + strDate + "',110 )) = 0 ) ";
+                    break;
+                case 1:
+                    strCondition = " ( DATEDIFF(day,ct.MODIFIEDDATE, Convert(datetime,'" + strDate + "',110 )) < 0 ) ";
+                    break;
+                case 2:
+                    strCondition = " ( DATEDIFF(day,ct.MODIFIEDDATE, Convert(datetime,'" + strDate + "',110 )) > 0 ) ";
+                    break;
+                case 3:
+                    strCondition = " ( ct.MODIFIEDDATE  BETWEEN Convert(datetime,'" + strDate1 + "',110 )  AND   Convert(datetime,'" + strDate2 + "',110 )  ) ";
+                    break;
+                default:
+                    break;
             }
 
             
@@ -127,7 +149,27 @@ namespace EmailSite
             string strConditionName = conditional.SelectedItem.Text;
             string strCondition = conditional.SelectedItem.Text;
             string strValue = "\""+ txtFV.Text.Trim()+"\"";
-           
+
+            switch (conditional.SelectedIndex) 
+            {
+                case 0:
+                    strCondition = " ( ct." + subscriber_fields.SelectedValue + " = '" + txtFV.Text.Trim() + "' ) ";
+                    break;
+                case 1:
+                    strCondition = " ( ct." + subscriber_fields.SelectedValue + " !='" + txtFV.Text.Trim() + "') ";
+                    break;
+                case 2:
+                    strCondition = " ( ct." + subscriber_fields.SelectedValue + " like '%" + txtFV.Text.Trim() + "%') ";
+                    break;
+                case 3:
+                    strCondition = " ( ct." + subscriber_fields.SelectedValue + " not like '%" + txtFV.Text.Trim() + "%') ";
+                    break;
+                default:
+                    break;
+            }
+
+            
+
             bool inSet = InsertSegmentCriteria(Int32.Parse(hdSegmentID.Value), strCriterion, strConditionName, strCondition, strValue);
             if (!inSet) lblMsg.Text = "new criteria is added unsucessful. Please try again";
         }

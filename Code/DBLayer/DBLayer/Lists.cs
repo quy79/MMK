@@ -77,6 +77,37 @@ namespace DatabaseLayer
 	#endregion
 
 	#region Public Methods
+
+    public DataTable SelectListsAndSegmentsByUserID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",SqlDbType.Int)
+			};
+
+
+
+            if (USERID != null)
+            {
+                Params[0].Value = USERID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_GETLIST_SEGMENTANDLISTS]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;//throw new Exception(ex.Message);
+        }
+    }
 	public DataTable Select()
 	{
 		DataSet ds;

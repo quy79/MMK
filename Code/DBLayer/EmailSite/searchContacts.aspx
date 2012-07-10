@@ -36,7 +36,7 @@
     function CheckAllDataGridCheckBoxes(aspCheckBoxID) {
         var checkVal = false;
         re = new RegExp(aspCheckBoxID + '$');
-        re1 = new RegExp('chk_SelectAll' + '$');
+        re1 = new RegExp('selectall' + '$');
         for (i = 0; i < document.forms[0].elements.length; i++) {
             elm1 = document.forms[0].elements[i]
             if (elm1.type == 'checkbox') {
@@ -113,44 +113,45 @@
             if ($("input[name$='selectall']").is(':checked')) {
                 checkedAmount = checkedAmount - 1;
             }
-            //total = ($("#selectContactContainer :not(:checked)").size());	
-            //alert($("#selectContactContainer :checked").size());
+            
+            total = ($("#selectContactContainer :not(:checked)").size());	
+            alert($("#selectContactContainer :checked").size());
             if (checkedAmount == 0) {
                 var option1 = $('<option></option>').attr("value", '-').text('Please select contacts');
-                var option2 = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
+                //var option2 = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
                 var option1a = $('<option></option>').attr("value", '-').text('Please select contacts');
-                var option2a = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
+                //var option2a = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
                 var option1b = $('<option></option>').attr("value", '-').text('Please select contacts');
-                var option2b = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
+                //var option2b = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
                 var option1c = $('<option></option>').attr("value", '-').text('Please select contacts');
-                var option2c = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
+                //var option2c = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
                 $("#c1").empty().append(option1);
-                $("#c1").append(option2);
+               // $("#c1").append(option2);
                 $("#c2").empty().append(option1a);
-                $("#c2").append(option2a);
+                //$("#c2").append(option2a);
                 $("#c3").empty().append(option1b);
-                $("#c3").append(option2b);
+               // $("#c3").append(option2b);
                 $("#c4").empty().append(option1c);
-                $("#c4").append(option2c);
+               // $("#c4").append(option2c);
                 $("#donotcontact_txt").text('Select contacts to mark as "Do Not Contact" for your account.');
             } else {
 
                 var option3 = $('<option></option>').attr("value", checkedAmount).text(checkedAmount + ' selected contacts');
-                var option4 = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
+                //var option4 = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
                 var option3a = $('<option></option>').attr("value", checkedAmount).text(checkedAmount + ' selected contacts');
-                var option4a = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
+               // var option4a = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
                 var option3b = $('<option></option>').attr("value", checkedAmount).text(checkedAmount + ' selected contacts');
-                var option4b = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
+               // var option4b = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
                 var option3c = $('<option></option>').attr("value", checkedAmount).text(checkedAmount + ' selected contacts');
-                var option4c = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
+               // var option4c = $('<option></option>').attr("value", '-').text('all ' + total + ' contacts');
                 $("#c1").empty().append(option3);
-                $("#c1").append(option4);
+                //$("#c1").append(option4);
                 $("#c2").empty().append(option3a);
-                $("#c2").append(option4a);
+                //$("#c2").append(option4a);
                 $("#c3").empty().append(option3b);
-                $("#c3").append(option4b);
+                //$("#c3").append(option4b);
                 $("#c4").empty().append(option3c);
-                $("#c4").append(option4c);
+                //$("#c4").append(option4c);
                 $("#donotcontact_txt").text('Mark ' + checkedAmount + ' selected contact as "Do Not Contact" for your account.');
 
             }
@@ -302,9 +303,9 @@
              <uc1:logo ID="logo" runat="server" />
 			 <uc2:navigation ID="navigation" MenuType="contacts" runat="server" />    
             <div id="content-main">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMsg" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+                <asp:Label ID="lblMsg" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
             	<div id="emails-common-panel">
-
+                 <asp:Panel ID="pnlSearch" runat="server">
 					<div id="contacts-search-container">
                         <!--
                         <div id="total-contacts-info">
@@ -317,7 +318,7 @@
                                 <li><a href="#fragment-2"><span>Search Contacts</span></a></li>
                             
                             </ul>
-                            <div id="fragment-1">
+                            <div id="fragment-1" style="position:relative; float: none; margin: 0 auto; width: 400px">
                                 
 								<table border="0" width="100%">
                                 	<tr>
@@ -327,28 +328,25 @@
                                             </div>
                                             <div style="position: relative; width: 100%; min-height: 50px; margin: 0 0">
                                             
-                                        	
-                                            <asp:ListBox ID="lstContactLists" runat="server" Width="400px" Height="200px" 
-                                                    SelectionMode="Multiple" DataTextField="LISTNAME" DataValueField="ID"></asp:ListBox>
+                                                <asp:DropDownList ID="lstContactLists" runat="server" Width="400px" DataTextField="NAME" DataValueField="ID">
+                                                </asp:DropDownList>
+                                            
                                                 <asp:HiddenField ID="hdModeSearch" runat="server" Value="0" />
                                             <br/>
-                                            <br/>
+                                              <div style="position: relative; width: 100%;  margin: 0 0; padding: 0; background: #fffeee; border-top: 1px dashed #000; border: 1px dashed #000;">
+                                        	<div style="margin: 10px; height: auto; line-height: 200%">
+                                                <asp:Label ID="lblTotalContacts" runat="server" Text="Label"></asp:Label> contacts in your account<br/>
+                                                <asp:Label ID="lblTotalSub" runat="server" Text="Label"></asp:Label> contacts subscribed to lists
+                                            </div>
+                                          </div><br/><br/>
+                                                <asp:CheckBox ID="chkUnSub1" runat="server" />Browse unsubscribed contacts only.
+                                            <p align="left">
                                             <asp:Button ID="btnBrowse" runat="server" Text="Browse" Width="120px" 
                                                     onclick="btnBrowse_Click" />
-                                            
+                                            </p>
                                             </div>
                                         </td>
-                                        <td valign="top" align="left" style="line-height: 200%" width="80%">                                
-                                        <div style="position: relative; width: 100%; height: 30px; margin: 0 0">
-                                            	
-                                            </div>
-                                        <div style="position: relative; width: 100%; min-height: 200px; margin: 0 0; padding: 0; background: #fffeee; border-top: 1px dashed #000; border-bottom: 1px dashed #000;">
-                                        	<div style="margin: 10px; height: auto; line-height: 200%">
-                                            	1 contact in your account<br/>
-                                                1 contacts subscribed to lists
-                                            </div>
-                                        </div>    
-                                        </td>
+                                       
                                     </tr>
                                 </table>
                                     
@@ -374,6 +372,8 @@
                                      <asp:LinkButton ID="lnkBrowseAll" runat="server" CssClass="common-button" 
                                          onclick="lnkBrowseAll_Click">Browse all my contacts</asp:LinkButton>
                                 </div>
+                                <br/>
+                                <asp:CheckBox ID="chkUnsub2" runat="server" />Browse unsubscribed contacts only.
                             </label>
                          </fieldset>   
 	                    
@@ -445,24 +445,30 @@
 
                                                
                     </div>
+                </asp:Panel>
                     <asp:Panel ID="pnlSearchResutls" runat="server" Visible="false">
                     <div id="contacts-search-container">
                     	
-                         <asp:GridView ID="grvContacts"  CssClass="contact-grid" BackColor="White" Width="100%" CellPadding="2" 
+                         <asp:GridView ID="selectContactContainer"  CssClass="contact-grid" 
+                             BackColor="White" Width="100%" CellPadding="2" 
                                 CellSpacing="1" BorderWidth="0px" GridLines="None"
                                    HeaderStyle-BackColor="#bcc1c4" RowStyle-CssClass="r1"   
-                                runat="server"  AutoGenerateColumns ="False"      AllowPaging="True"                                  PageSize="20" >
+                                runat="server"  AutoGenerateColumns ="False"      
+                             AllowPaging="True"                                  PageSize="20" 
+                             ondatabound="selectContactContainer_DataBound" 
+                             onrowdatabound="selectContactContainer_RowDataBound" >
 
                              <Columns>
                                  <asp:BoundField DataField="ID" Visible="False" />
                                  <asp:TemplateField>
-                                        <HeaderTemplate>
-                                                <asp:CheckBox ID="chk_SelectAll" name="chkSelectAll" runat="server" onclick="CheckAllDataGridCheckBoxes('Chk_select')"    />
-                                         </HeaderTemplate>
                                          <ItemTemplate>
-                                                    <asp:CheckBox ID="Chk_select" runat="server"  onclick="UnCheckDataGridCheckBoxes('chk_SelectAll','Chk_select')"  />
+                                                    <asp:CheckBox ID="selectContact" runat="server"  onclick="UnCheckDataGridCheckBoxes('chk_SelectAll','Chk_select')"  />
                                                   <asp:HiddenField ID="hdContactID" runat="server" Value='<%#DataBinder.Eval(Container.DataItem, "ID")%>'/>
                                           </ItemTemplate>
+                                        <HeaderTemplate>
+                                            <asp:CheckBox ID="selectall" runat="server" name="selectall" 
+                                                onclick="CheckAllDataGridCheckBoxes('Chk_select')" />
+                                        </HeaderTemplate>
                                         <HeaderStyle HorizontalAlign="Center" Width="5%" />
                                         <ItemStyle HorizontalAlign="Center" />
                                  </asp:TemplateField>
@@ -470,25 +476,36 @@
                                  <HeaderStyle Width="20%" />
                                  </asp:BoundField>
                                  <asp:BoundField DataField="FirstName" HeaderText="First Name" >
-                                 <HeaderStyle Width="20%" />
+                                 <HeaderStyle Width="15%" />
                                  </asp:BoundField>
                                  <asp:BoundField DataField="LastName" HeaderText="Last Name" >
-                                 <HeaderStyle Width="20%" />
+                                 <HeaderStyle Width="15%" />
                                  </asp:BoundField>
+                                 
+                                  <asp:TemplateField HeaderText="List Name">
+                                      <ItemTemplate>
+                                          <asp:Label ID="lblListName" runat="server" Text=""></asp:Label>
+                                      </ItemTemplate>
+                                     <HeaderStyle Width="20%" />
+                                 </asp:TemplateField>
+
+                                  
                                  <asp:BoundField DataField="ModifiedDate" DataFormatString="{0:g}" 
                                      HeaderText="Added on" >
                                  <HeaderStyle Width="15%" />
                                  </asp:BoundField>
-                                 <asp:TemplateField HeaderText="Actions">
-                                        <ItemTemplate>
-                                            <table class="message-action">
-                                            	<tr>
-                                                	<td width="50%"><asp:LinkButton  ID="linkListHealth" runat="server">Edit</asp:LinkButton ></td>
-                                                    <td width="50%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >History</asp:LinkButton ></td>
-                                                </tr>
-                                            </table>
-                                        </ItemTemplate>
-                                        <HeaderStyle Width="20%" />
+                                    <asp:TemplateField HeaderText="Actions">
+                                     <ItemTemplate>
+                                         <table class="message-action">
+                                             <tr>
+                                              
+                                                 <td width="100%">
+                                                     <asp:LinkButton ID="linkListHealth" runat="server">Edit</asp:LinkButton>
+                                                 </td>
+                                             </tr>
+                                         </table>
+                                     </ItemTemplate>
+                                     <HeaderStyle Width="10%" />
                                  </asp:TemplateField>
                              </Columns>
 
@@ -506,8 +523,7 @@
                         <div class="list-display-setting">
                             Display&nbsp;
                                  <asp:DropDownList ID="ddlRowPage" runat="server" AutoPostBack=true 
-                                    onselectedindexchanged="ddlRowPage_SelectedIndexChanged">
-                                    <asp:ListItem>10</asp:ListItem>
+                                    onselectedindexchanged="ddlRowPage_SelectedIndexChanged">                                    
                                     <asp:ListItem Selected="True">20</asp:ListItem>
                                     <asp:ListItem>50</asp:ListItem>
                                     <asp:ListItem>100</asp:ListItem>

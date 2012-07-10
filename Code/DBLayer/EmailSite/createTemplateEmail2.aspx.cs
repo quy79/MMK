@@ -66,7 +66,7 @@ namespace EmailSite
             objMsg.Subject = txtSubject.Text.Trim();
             objMsg.MsgName = txtMsgName.Text.Trim();
             objMsg.MsgBody = txtMsgBody.Text.Trim();
-            objMsg.TypeMsg = 2;
+            objMsg.TypeMsg = 3;
             Session["currentTextEmail"] = objMsg;
             Response.Redirect("chooseEmailList.aspx");
         }

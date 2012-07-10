@@ -149,7 +149,7 @@
                                     
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
-                                           &nbsp;<a href='listdetail.aspx?id=<%# DataBinder.Eval(Container.DataItem, "ID")%>'><%# DataBinder.Eval(Container.DataItem, "LISTNAME")%></a>
+                                           &nbsp;<a href='searchContacts.aspx?listID=<%# DataBinder.Eval(Container.DataItem, "ID")%>'><%# DataBinder.Eval(Container.DataItem, "LISTNAME")%></a>
                                         </ItemTemplate>
                                         <HeaderStyle Width="65%"  />                                            
                                     </asp:TemplateField>

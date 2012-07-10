@@ -92,7 +92,7 @@
     
 	<script language="javascript">
 	    function open_win(url) {
-	        window.open(url, 'Matching_Contacts', 'toolbar=0, location=0, directories=0, status=0, menubar=0, scrollbars=1, resizable=1, left=250, top=200, width=700, height=500');
+	        window.open(url, 'Matching_Contacts', 'toolbar=0, location=0, directories=0, status=0, menubar=0, scrollbars=1, resizable=1, left=250, top=200, width=1000, height=500');
 	    }
 
     </script>
@@ -135,7 +135,7 @@
                                 <Columns>                               
                                      <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                           <a href="editSegment.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>"><div class="segment-icon" title="Edit this segment"></div></a>
+                                           <a href="searchContacts.aspx?segmentID=<%#DataBinder.Eval(Container.DataItem, "ID")%>"><div class="segment-icon" title="Edit this segment"></div></a>
                                         </ItemTemplate>
                                         <HeaderStyle Width="10%"  />
                                     </asp:TemplateField>
@@ -162,7 +162,7 @@
                                             <table class="message-action">
                                             	<tr>
                                                     <td width="33%"><a href="editSegment.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>">Edit</a></td>
-                                                	<td width="34%"><a href="#" id="show2" onclick="open_win('showContacts.aspx?segmentID=<%#DataBinder.Eval(Container.DataItem, "ID")%>');">Show Contacts</a></td>
+                                                	<td width="34%"><a href="#" id="show2" onclick="open_win('searchContacts.aspx?hideMenu=true&segmentID=<%#DataBinder.Eval(Container.DataItem, "ID")%>');">Show Contacts</a></td>
                                                     <td width="33%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >Delete</asp:LinkButton ></td>
                                                 </tr>
                                             </table>

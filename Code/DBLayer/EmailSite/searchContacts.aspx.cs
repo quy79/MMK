@@ -19,8 +19,32 @@ namespace EmailSite
         {
             try
             {
+                Utils.CheckSecurity(Session, Response);
                 if (!IsPostBack)
                 {
+                    if (Request["listID"] != null 
+                        || Request["segmentID"] != null )
+                    {
+                        pnlSearch.Visible = false;
+                        if (Request["listID"] != null)
+                        {
+                            
+                            hdModeSearch.Value = "5";
+                        }
+
+                        if (Request["segmentID"] != null)
+                        {
+                            if (Request["hideMenu"] != null)
+                            {
+                                logo.Visible = false;
+                                navigation.Visible = false;
+                            }
+                            hdModeSearch.Value = "6";
+                        }
+                        LoadData();
+                    }
+                    else pnlSearch.Visible = true;
+
                     LoadContactLists();
                     first.Visible = false;
                     last.Visible = false;
@@ -29,14 +53,24 @@ namespace EmailSite
                 }
                 lblMsg.Text = "";
                 BindPaging();
+
+                try
+                {
+                    DatabaseLayer.Contacts objContact = new DatabaseLayer.Contacts();
+                    objContact.USERID = Int32.Parse(Session["userID"].ToString());
+                    DataTable dtContact = objContact.SelectSummartContacts();
+                    lblTotalContacts.Text = dtContact.Rows[0]["TOTALCONTACTS"].ToString();
+                    lblTotalSub.Text = dtContact.Rows[0]["TOTALSUB"].ToString();
+                }
+                catch { lblTotalContacts.Text = "0"; lblTotalSub.Text = "0"; }
             }
             catch { }
         }
 
         private void LoadGridContacts(DataTable dtTable)
         {
-            grvContacts.DataSource = dtTable;
-            grvContacts.DataBind();
+            selectContactContainer.DataSource = dtTable;
+            selectContactContainer.DataBind();
         }
         private void LoadContactLists()
         {
@@ -44,14 +78,19 @@ namespace EmailSite
             DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
             objList.USERID = Int32.Parse(Session["userID"].ToString());
             DataTable dtList = objList.SelectByUserID();
-            lstContactLists.DataSource = dtList;
-            lstContactLists.DataBind();
+            
 
             ddlCopyContacts.DataSource = dtList;
             ddlCopyContacts.DataBind();
 
             ddlUnsubContacts.DataSource = dtList;
             ddlUnsubContacts.DataBind();
+
+            dtList = objList.SelectListsAndSegmentsByUserID();
+            lstContactLists.DataSource = dtList;
+            lstContactLists.DataBind();
+            lstContactLists.Items.Insert(0, new ListItem("All lists and segments", "0"));
+           
         }
 
         protected void btnQSearch_Click(object sender, EventArgs e)
@@ -78,6 +117,29 @@ namespace EmailSite
             
         }
 
+        private DataTable GetContactsFromSegment(int segID, bool subcribes)
+        {
+            try
+            {
+                string sub = (subcribes) ? "1" : "0";
+                string strQuery = "select distinct ct.* from CONTACTS ct INNER JOIN CONTACT_LIST cl ON ct.ID = cl.CONTACTID WHERE ct.USERID = " + Session["userID"].ToString() + " AND ( cl.SUBSCRIBES = " + sub + " ) ";
+                
+                DatabaseLayer.SegmentCriterias objSegCri = new DatabaseLayer.SegmentCriterias();
+                objSegCri.SEGMENTID = segID;
+                DataTable dtSegCri = objSegCri.SelectBySegmentID();
+                foreach (DataRow row in dtSegCri.Rows)
+                {
+                    strQuery += "AND " + row["CONDITION"].ToString();
+
+                }
+                
+                DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                return objContacts.ExecuteSql(strQuery);
+            }
+            catch { }
+            return null;
+        }
+
         private void LoadData()
         {
             try
@@ -85,16 +147,27 @@ namespace EmailSite
             
                 if (hdModeSearch.Value == "1")
                 {
-                    string strSelectedIDs = "";
-                    foreach (ListItem item in lstContactLists.Items)
-                    {
-                        if (item.Selected)
-                            if (strSelectedIDs == "") strSelectedIDs = item.Value;
-                            else strSelectedIDs += "," + item.Value;
-                    }
+                    //string strSelectedIDs =  "";
+                    //foreach (ListItem item in lstContactLists.Items)
+                    //{
+                    //    if (item.Selected)
+                    //        if (strSelectedIDs == "") strSelectedIDs = item.Value;
+                    //        else strSelectedIDs += "," + item.Value;
+                    //}
 
-                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
-                    dtContactLists = objContacts.SelectContactListsbyListIDs(strSelectedIDs);
+                    string strSelectedIDs = lstContactLists.SelectedValue;
+                    if(strSelectedIDs.Equals("0")) { // select all lists and segments
+                        DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                        objContacts.USERID = Int32.Parse(Session["userID"].ToString());
+                        dtContactLists = objContacts.QuickSearch("", !chkUnSub1.Checked);
+                    } else {
+                        if (strSelectedIDs[0]=='L') {
+                            DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                            dtContactLists = objContacts.SelectContactListsbyListIDs(Int32.Parse(strSelectedIDs.Substring(1)), !chkUnSub1.Checked);
+                        } else {//segment
+                            dtContactLists =  GetContactsFromSegment(Int32.Parse(strSelectedIDs.Substring(1)), !chkUnSub1.Checked);
+                        }
+                    }
                 
                 }
                 else if (hdModeSearch.Value == "2")
@@ -108,7 +181,7 @@ namespace EmailSite
                 {
                     DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
                     objContacts.USERID = Int32.Parse(Session["userID"].ToString());
-                    dtContactLists = objContacts.QuickSearch(txtQSearch.Text.Trim());
+                    dtContactLists = objContacts.QuickSearch(txtQSearch.Text.Trim(), !chkUnsub2.Checked);
                 
                 }
                 else if (hdModeSearch.Value == "4")
@@ -146,7 +219,18 @@ namespace EmailSite
                     catch { }
 
                     dtContactLists = objContacts.Select(dt1, dt2);
-                
+
+                }
+                else if (hdModeSearch.Value == "5")
+                {
+                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    dtContactLists = objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]),true);
+
+                }
+                else if (hdModeSearch.Value == "6")
+                {
+                    dtContactLists = GetContactsFromSegment(Int32.Parse(Request["segmentID"]), !chkUnSub1.Checked);
+
                 }
                 LoadGridContacts(dtContactLists);
 
@@ -196,8 +280,8 @@ namespace EmailSite
         protected void ddlRowPage_SelectedIndexChanged(object sender, EventArgs e)
         {
             int pagesize = Int32.Parse(ddlRowPage.SelectedValue);
-            grvContacts.PageSize = pagesize;
-            grvContacts.PageIndex = 0;
+            selectContactContainer.PageSize = pagesize;
+            selectContactContainer.PageIndex = 0;
             CurrentPage.Value = "1";
             LoadData();
         }
@@ -292,8 +376,8 @@ namespace EmailSite
             }
 
             iCurrentPage = Int32.Parse(CurrentPage.Value);
-            grvContacts.PageIndex = iCurrentPage - 1;
-            grvContacts.PageSize = int.Parse(ddlRowPage.SelectedValue);
+            selectContactContainer.PageIndex = iCurrentPage - 1;
+            selectContactContainer.PageSize = int.Parse(ddlRowPage.SelectedValue);
             LoadData();
         }
 
@@ -340,7 +424,7 @@ namespace EmailSite
             string[] charval = { "lnk" };
             string[] strlId = (((LinkButton)sender).ID).Split(charval, StringSplitOptions.RemoveEmptyEntries);
             CurrentPage.Value = strlId[0];
-            grvContacts.PageIndex = Int32.Parse(strlId[0]) - 1;
+            selectContactContainer.PageIndex = Int32.Parse(strlId[0]) - 1;
             LoadData();
             //string xfdsf = (((LinkButton)sender).ID).Remove(0, 3);
             //if (!String.IsNullOrEmpty(xfdsf))
@@ -350,9 +434,9 @@ namespace EmailSite
         private ArrayList GetSelectedContactID()
         {
             ArrayList objIDs = new ArrayList();
-            foreach (GridViewRow row in grvContacts.Rows)
+            foreach (GridViewRow row in selectContactContainer.Rows)
             {
-                CheckBox chk = (CheckBox)row.FindControl("Chk_select");
+                CheckBox chk = (CheckBox)row.FindControl("selectContact");
                 HiddenField hd = (HiddenField)row.FindControl("hdContactID");
                 //int id =Int32.Parse(row.Cells[0].ToString());
                 if (chk.Checked) objIDs.Add(hd.Value);
@@ -366,13 +450,13 @@ namespace EmailSite
 
             if (arrListID.Count == 0)
             {
-                lblMsg.Text = "Please select aleast a contact !";
+                lblMsg.Text = Utils.ShowMessage("Please select aleast a contact !", true);
                 return;
             }
 
             if (ddlCopyContacts.Items.Count == 0 && txtCopyList.Text.Trim().Length == 0)
             {
-                lblMsg.Text = "Please select aleast a list !";
+                lblMsg.Text = Utils.ShowMessage("Please select aleast a list !", true);
                 return;
             }
             
@@ -410,7 +494,11 @@ namespace EmailSite
                 if (objContactList.Insert()) isUpdated = true;
             }
 
-            if(isUpdated) lblMsg.Text = "Selected contacts is copied sucessfully !";
+            if (isUpdated)
+            {
+                UpdateTotalSubscribers(ddlCopyContacts.SelectedValue);
+                lblMsg.Text = Utils.ShowMessage("Selected contacts is copied sucessfully !", false);
+            }
 
         }
 
@@ -420,7 +508,7 @@ namespace EmailSite
 
             if (arrListID.Count == 0)
             {
-                lblMsg.Text = "Please select aleast a contact !";
+                lblMsg.Text = Utils.ShowMessage("Please select aleast a contact !", true);
                 return;
             }
 
@@ -437,7 +525,11 @@ namespace EmailSite
                 LoadData();
             }
 
-            if(isUpdated)lblMsg.Text = "Selected contacts is deleted sucessfully !";
+            if (isUpdated)
+            {
+                //UpdateTotalSubscribers(ddlUnsubContacts.SelectedValue);
+                lblMsg.Text = Utils.ShowMessage("Selected contacts is deleted sucessfully !", false);
+            }
         }
 
         protected void btnExportContacts_Click(object sender, EventArgs e)
@@ -447,7 +539,7 @@ namespace EmailSite
 
             if (arrListID.Count == 0)
             {
-                lblMsg.Text = "Please select aleast a contact !";
+                lblMsg.Text = Utils.ShowMessage("Please select aleast a contact !", true);
                 return;
             }
 
@@ -484,13 +576,13 @@ namespace EmailSite
 
             if (arrListID.Count == 0)
             {
-                lblMsg.Text = "Please select aleast a contact !";
+                lblMsg.Text = Utils.ShowMessage("Please select aleast a contact !", true);
                 return;
             }
 
             if (ddlUnsubContacts.Items.Count == 0)
             {
-                lblMsg.Text = "Please select aleast a list !";
+                lblMsg.Text = Utils.ShowMessage("Please select aleast a list !", true);
                 return;
             }
 
@@ -509,7 +601,55 @@ namespace EmailSite
                 if (objContactList.Update()) isUpdated = true;
             }
 
-            if (isUpdated) lblMsg.Text = "Selected contacts is Unsubscribed sucessfully !";
+            if (isUpdated)
+            {
+                UpdateTotalSubscribers(ddlUnsubContacts.SelectedValue);
+                lblMsg.Text = Utils.ShowMessage("Selected contacts is Unsubscribed sucessfully !", false);
+            }
+        }
+
+        private void UpdateTotalSubscribers(string strID)
+        {
+            DatabaseLayer.Contact_list objContactList = new DatabaseLayer.Contact_list();
+            objContactList.LISTID = Int32.Parse(strID);
+            DataTable dt = objContactList.SelectByListID();
+            int totalSubscribes = dt.Rows.Count;
+
+            DatabaseLayer.Lists objList1 = new DatabaseLayer.Lists();
+            objList1.USERID = Int32.Parse(Session["userID"].ToString());
+            objList1.ID = Int32.Parse(strID);
+            objList1.TOTALSUBSCRIBES = totalSubscribes;
+            objList1.UpdateTotalSubscribers();
+        }
+
+        protected void selectContactContainer_DataBound(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void selectContactContainer_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                try
+                {
+                    Label lb = (Label)e.Row.FindControl("lblListName");
+
+                    lb.Text = "";
+                    DataRowView dataRow = (DataRowView)e.Row.DataItem;
+                    int contactID = Int32.Parse(dataRow["ID"].ToString());
+                    DatabaseLayer.Contacts objCt = new DatabaseLayer.Contacts();
+
+                    DataTable dt = objCt.GetListNamesForCountactID(contactID);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (lb.Text.Length == 0) lb.Text = row["LISTNAME"].ToString();
+                        else lb.Text += "," + row["LISTNAME"].ToString();
+                    }
+
+                }
+                catch { }
+            }
         }
 
 
