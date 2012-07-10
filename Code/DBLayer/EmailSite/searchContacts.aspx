@@ -115,7 +115,7 @@
             }
             
             total = ($("#selectContactContainer :not(:checked)").size());	
-            alert($("#selectContactContainer :checked").size());
+            
             if (checkedAmount == 0) {
                 var option1 = $('<option></option>').attr("value", '-').text('Please select contacts');
                 //var option2 = $('<option></option>').attr("value", total).text('all ' + total + ' contacts');
@@ -216,12 +216,27 @@
 
 
 
+        $("input[name$='chkUnsub1']").click(function () {
+            
+            if ($("input[name$='chkUnsub1']").is(':checked')) {
+                $("#subunsub-title").text("Subscribe");
+                $("#subunsub-action").text("Subscribe");
+                $("#subunsub-submit").prop('value', 'Subscribe Contacts back to their Lists');
+            } else {
+                $("#subunsub-title").text("Unsubscribe");
+                $("#subunsub-action").text("Unsubscribe");
+                $("#subunsub-submit").prop('value', 'Unsubscribe Contacts from their Lists');
+            }
+        });
+        //<input type="radio" name="actions" value="unsubscribe" />Unsubscribe
+
         $("a[title='browse_all']").live('click', function () {
             //alert("Link klicked ...");
             var $tabs = $('#tabs').tabs(); // first tab selected
-            $tabs.tabs('select', 0);
+            $tabs.tabs('select', 1);
             return false;
         });
+
 
         $("#date1").datepicker({ showOn: 'button', buttonImageOnly: true, buttonImage: './img/icon_cal.png' });
         $("#date2").datepicker({ showOn: 'button', buttonImageOnly: true, buttonImage: './img/icon_cal.png' });
@@ -500,7 +515,7 @@
                                              <tr>
                                               
                                                  <td width="100%">
-                                                     <asp:LinkButton ID="linkListHealth" runat="server">Edit</asp:LinkButton>
+                                                    <a href='adContact.aspx?mode=Edit&contactID=<%#DataBinder.Eval(Container.DataItem, "ID")%>' > Edit</a>
                                                  </td>
                                              </tr>
                                          </table>
@@ -559,7 +574,7 @@
                             Actions
                             </legend>
                             <input type="radio" name="actions" value="copy" />Copy<br/>
-                            <input type="radio" name="actions" value="unsubscribe" />Unsubscribe<br/>
+                            <input type="radio" name="actions" value="unsubscribe" /><asp:Label ID="lblUnSubscribe" runat="server" Text="Label">Unsubscribe</asp:Label><br/>
                             <input type="radio" name="actions" value="delete" />Delete<br/>
                             <input type="radio" name="actions" value="export" />Export<br/>
                             <!--<input type="radio" name="actions" value="donotcontact" />Do not contact -->

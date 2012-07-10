@@ -117,8 +117,12 @@
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
+                    <asp:Panel ID="pnlAddTitle" runat="server" Visible="true">
                     <h2>Add One Contact</h2><br/>
-
+                    </asp:Panel>
+                    <asp:Panel ID="pnlEditTitle" runat="server" Visible="false">
+                    <h2>Edit One Contact</h2><br/>
+                    </asp:Panel>
                     </div>
                     <div id="infoDiv" runat="server" class="create-message-step1-container3"></div>
                     <asp:Panel ID="pnlAddMore" runat="server" Visible="false">

@@ -40,6 +40,24 @@ namespace EmailSite {
         protected global::EmailSite.navigation navigation;
         
         /// <summary>
+        /// pnlAddTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAddTitle;
+        
+        /// <summary>
+        /// pnlEditTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEditTitle;
+        
+        /// <summary>
         /// infoDiv control.
         /// </summary>
         /// <remarks>

@@ -1670,7 +1670,6 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
-    <Content Include="imageHandler.ashx" />
     <Compile Include="imageHandler.ashx.cs">
       <DependentUpon>imageHandler.ashx</DependentUpon>
     </Compile>
@@ -1754,7 +1753,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redirect.aspx.cs">
       <DependentUpon>Redirect.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Redirect.aspx.designer.cs">
       <DependentUpon>Redirect.aspx</DependentUpon>
@@ -1833,6 +1831,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imageHandler.ashx" />
     <None Include="ui\ckeditor\.htaccess" />
     <None Include="ui\ckeditor\ckeditor.pack" />
     <None Include="ui\ckeditor\ckeditor.php" />

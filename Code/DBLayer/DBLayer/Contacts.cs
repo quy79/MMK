@@ -590,10 +590,10 @@ namespace DatabaseLayer
 				new SqlParameter("@CITY",CITY),
 				new SqlParameter("@PROVINCE",PROVINCE),
 				new SqlParameter("@ZIP",ZIP),
+                new SqlParameter("@BUSINESSNAME",BUSINESSNAME),
 				new SqlParameter("@PHONE",PHONE),
-				new SqlParameter("@FAX",FAX),
-				new SqlParameter("@REQUIRECONFIRM",CONFIRMED),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@FAX",FAX)
+				 
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACTS_Update",Params);
 			if (result > 0)
