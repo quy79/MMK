@@ -45,7 +45,7 @@ namespace ChilkatEmail.Utils
                     else
                     {
 
-                        String patamcode = Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "CONTACTID=" + contactID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
+                        String patamcode = Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&CONTACTID=" + contactID + "&REDIRECTURL=" + link.Replace("\"", "") + "'");
                         String replaceString = "'" + serverName + "/redirect.aspx?paramcode=" + patamcode + "' ";
                         body = body.Replace(link, replaceString);
                     }
