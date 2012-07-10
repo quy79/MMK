@@ -18,7 +18,7 @@ namespace EmailSite
             int autoID = 0;
             int messageID = 0;
             int listID = 0;
-
+            int contactID=0;
             // Encode("AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID)
             //empty.jpg?paramcode=QVVUT1JFU1BPTkRFUklEPTMmTUVTU0FHRUlEPTImTElTVElEPTMy
 
@@ -77,7 +77,7 @@ namespace EmailSite
                 if (autoID > 0)
                 {
 
-                        ClickOpenStatus obj = new ClickOpenStatus();
+                    ClickOpenStatus obj = new ClickOpenStatus();
                     obj.AUTORESPONDERID = autoID;
                     obj.MESSAGEID = messageID;
                     obj.LISTID = listID;
@@ -86,7 +86,7 @@ namespace EmailSite
                     DataTable dt = obj.Select();
                     bool newItem = true;
                     if (dt != null && dt.Rows.Count > 0)
-                    {                   
+                    {
                         DataRow row = dt.Rows[0];
                         countclick = int.Parse(row[4].ToString());
                         countopen = int.Parse(row[5].ToString());
@@ -104,6 +104,47 @@ namespace EmailSite
                         obj.COUNTOPEN = countopen + 1;
                         obj.Update();
                     }
+                }
+                else
+                {
+                    String _contactID = temp[3].Split('=')[1];
+                    try
+                    {
+                        contactID = int.Parse(_contactID);
+                    }
+                    catch
+                    {
+                        contactID = 0;
+                    }
+
+                    MessageClickOpenStatus obj = new MessageClickOpenStatus();
+                    obj.CONTACTID = contactID;
+                    obj.MESSAGEID = messageID;
+                    obj.LISTID = listID;
+                    int countclick = 0;
+                    int countopen = 0;
+                    DataTable dt = obj.Select();
+                    bool newItem = true;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        DataRow row = dt.Rows[0];
+                        countclick = int.Parse(row[3].ToString());
+                        countopen = int.Parse(row[4].ToString());
+                        newItem = false;
+                    }
+                    if (newItem)
+                    {
+                        obj.COUNTCLICK = 0;
+                        obj.COUNTOPEN = 1;
+                        obj.Insert();
+                    }
+                    else
+                    {
+                        obj.COUNTCLICK = countclick;
+                        obj.COUNTOPEN = countopen + 1;
+                        obj.Update();
+                    }
+
                 }
             }
 
