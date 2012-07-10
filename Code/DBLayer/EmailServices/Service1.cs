@@ -606,13 +606,14 @@ namespace EmailServices
                         String emailfrom = row[3].ToString();
                         String subject = row[5].ToString();
                         String body = row[6].ToString();
-                        String listID = row[7].ToString();
+                        int listID = int.Parse(row[7].ToString());
                         ct.CONTACTID = ctID;
                         ct.MESSAGEID = messageID;
+                        ct.LISTID = listID;
                         ct.Delete();
                         List<String> emailList = new List<string>();
                         emailList.Add(email);
-                        mailSV.SendHTMLEmailToListContact(emailfrom, emailList, null, null,listID,ctID+"",messageID+"", subject, body);
+                        mailSV.SendHTMLEmailToListContact(emailfrom, emailList, null, null,listID+"",ctID+"",messageID+"", subject, body);
 
                     }
                     Thread.Sleep(5 * 60 * 1000);
