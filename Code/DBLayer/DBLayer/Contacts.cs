@@ -305,13 +305,7 @@ namespace DatabaseLayer
 				new SqlParameter("@ID",ID )				
 			};
 
-
-
-
-
-
-
-
+            
             ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_SelectByContactID]", Params);
             return ds.Tables[0];
         }

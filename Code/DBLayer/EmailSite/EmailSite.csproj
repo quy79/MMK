@@ -1753,6 +1753,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redirect.aspx.cs">
       <DependentUpon>Redirect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Redirect.aspx.designer.cs">
       <DependentUpon>Redirect.aspx</DependentUpon>

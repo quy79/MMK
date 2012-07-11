@@ -88,8 +88,12 @@ namespace DatabaseLayer
         DataSet ds;
         try
         {
-
-            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_SUMMARY_OPENCLICKAndBOUNCE");
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",SqlDbType.Int)
+			};
+            Params[0].Value = USERID;
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_SUMMARY_OPENCLICKAndBOUNCE", Params);
             return ds.Tables[0];
         }
         catch (Exception ex)
