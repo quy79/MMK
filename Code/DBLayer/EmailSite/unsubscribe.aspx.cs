@@ -95,7 +95,7 @@ namespace EmailSite
                 ct.CONTACTID = contactID;
                 DataTable dt = ct.Select();
                 ct.SUBSCRIBES = false;
-                bool rs = ct.Update();
+                bool rs = ct.RemoveOutList();
                 if (rs)
                 {
                     errorMessage.Text = "Your email has been unsubscribed successfully";

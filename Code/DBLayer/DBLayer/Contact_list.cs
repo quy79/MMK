@@ -256,6 +256,47 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+    public bool RemoveOutList()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@CONTACTID",CONTACTID),
+				new SqlParameter("@LISTID",LISTID)
+				
+			};
+            if (CONTACTID != null)
+            {
+                Params[0].Value = CONTACTID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+            if (LISTID != null)
+            {
+                Params[1].Value = LISTID;
+            }
+            else
+            {
+                Params[1].Value = DBNull.Value;
+            }
+
+           
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_LIST_DeleteOutList", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 	#endregion
 
 	}
