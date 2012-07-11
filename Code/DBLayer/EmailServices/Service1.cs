@@ -45,7 +45,7 @@ namespace EmailServices
         {
             Thread autoEnginThread = new Thread(OnStartMain);
             autoEnginThread.Start();
-            Thread.Sleep(600 * 1000);
+            //Thread.Sleep(600 * 1000);
             Thread sendMailThread = new Thread(OnSendMail);
             sendMailThread.Start();
             while(true){
