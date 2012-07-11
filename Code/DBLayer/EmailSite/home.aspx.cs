@@ -66,19 +66,28 @@ namespace EmailSite
                 objMsg.USERID = Int32.Parse(Session["userID"].ToString());
                 DataTable dtMsg = objMsg.SummaryOpenClickAndBounce();
                 
-                try { lblTotalBounces.Text = dtMsg.Rows[0]["TOTALBOUNCE"].ToString(); }
-                catch { lblTotalBounces.Text = ""; }
+                try { 
+                    lblTotalBounces.Text = dtMsg.Rows[0]["TOTALBOUNCE"].ToString();
+                    if (lblTotalBounces.Text == "") lblTotalBounces.Text = "0";
+                }
+                catch { lblTotalBounces.Text = "0"; }
 
-                try { lblTotalOpen.Text = dtMsg.Rows[0]["TOTALOPEN"].ToString(); }
-                catch { lblTotalOpen.Text = ""; }
+                try {
+                    lblTotalOpen.Text = dtMsg.Rows[0]["TOTALOPEN"].ToString();
+                    if (lblTotalOpen.Text == "") lblTotalOpen.Text = "0";
+                }
+                catch { lblTotalOpen.Text = "0"; }
 
-                try { lblTotalClick.Text = dtMsg.Rows[0]["TOTALCLICK"].ToString(); }
-                catch { lblTotalClick.Text = ""; }
+                try { 
+                    lblTotalClick.Text = dtMsg.Rows[0]["TOTALCLICK"].ToString();
+                    if (lblTotalClick.Text == "") lblTotalClick.Text = "0";
+                }
+                catch { lblTotalClick.Text = "0"; }
             }
             catch {
-                lblTotalBounces.Text = "";
-                lblTotalOpen.Text = "";
-                lblTotalClick.Text = "";
+                lblTotalBounces.Text = "0";
+                lblTotalOpen.Text = "0";
+                lblTotalClick.Text = "0";
             }
 
             try
@@ -87,7 +96,7 @@ namespace EmailSite
                 objContact.USERID = Int32.Parse(Session["userID"].ToString());
                 DataTable dtContact = objContact.SelectSummartContacts();
                 lblTotalContacts.Text = dtContact.Rows[0]["TOTALCONTACTS"].ToString();
-                lblTotalLists.Text = dtContact.Rows[0]["TOTALSUB"].ToString();
+                lblTotalLists.Text = dtContact.Rows[0]["TOTALLIST"].ToString();
                 lblTotalSegments.Text = dtContact.Rows[0]["TOTALSEG"].ToString();
             }
             catch { lblTotalContacts.Text = "0"; lblTotalLists.Text = "0"; lblTotalSegments.Text = "0"; }

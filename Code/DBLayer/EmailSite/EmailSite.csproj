@@ -1670,7 +1670,6 @@
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
-    <Content Include="imageHandler.ashx" />
     <Compile Include="imageHandler.ashx.cs">
       <DependentUpon>imageHandler.ashx</DependentUpon>
     </Compile>
@@ -1833,6 +1832,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imageHandler.ashx" />
     <None Include="ui\ckeditor\.htaccess" />
     <None Include="ui\ckeditor\ckeditor.pack" />
     <None Include="ui\ckeditor\ckeditor.php" />

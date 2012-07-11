@@ -76,6 +76,50 @@ namespace DatabaseLayer
         }
     }
 
+    public int CheckDuplicateContact()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				
+				new SqlParameter("@CONTACTID",SqlDbType.Int),
+				new SqlParameter("@LISTID",SqlDbType.Int)
+				
+			};
+
+            if (CONTACTID != -1)
+            {
+                Params[0].Value = CONTACTID;
+            }
+            else
+            {
+                Params[0].Value = DBNull.Value;
+            }
+
+            if (LISTID != -1)
+            {
+                Params[1].Value = LISTID;
+            }
+            else
+            {
+                Params[1].Value = DBNull.Value;
+            }
+
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CHECK_DuplicateContactInList", Params);
+            DataTable dt =  ds.Tables[0];
+            return (int)dt.Rows[0]["cnt"];
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
+
 	public DataTable Select()
 	{
 		DataSet ds;

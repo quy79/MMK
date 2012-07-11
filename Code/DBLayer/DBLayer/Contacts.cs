@@ -209,6 +209,30 @@ namespace DatabaseLayer
         }
     }
 
+    public DataTable BrowseAll( bool subscribed)
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 				
+
+                new SqlParameter("@USERID",SqlDbType.Int),
+                new SqlParameter("@SUBSCRIBES",SqlDbType.Bit),
+			};
+
+            Params[0].Value = USERID;
+            Params[1].Value = subscribed;
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_BrowseAll]", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable SelectContactListsbyListIDs(int listIDs, bool subcribes)
     {
         DataSet ds;
@@ -281,13 +305,7 @@ namespace DatabaseLayer
 				new SqlParameter("@ID",ID )				
 			};
 
-
-
-
-
-
-
-
+            
             ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "[SP_CONTACTS_SelectByContactID]", Params);
             return ds.Tables[0];
         }
@@ -566,10 +584,10 @@ namespace DatabaseLayer
 				new SqlParameter("@CITY",CITY),
 				new SqlParameter("@PROVINCE",PROVINCE),
 				new SqlParameter("@ZIP",ZIP),
+                new SqlParameter("@BUSINESSNAME",BUSINESSNAME),
 				new SqlParameter("@PHONE",PHONE),
-				new SqlParameter("@FAX",FAX),
-				new SqlParameter("@REQUIRECONFIRM",CONFIRMED),
-				new SqlParameter("@MODIFIEDDATE",MODIFIEDDATE) 
+				new SqlParameter("@FAX",FAX)
+				 
 			};
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACTS_Update",Params);
 			if (result > 0)

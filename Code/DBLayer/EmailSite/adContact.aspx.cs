@@ -13,11 +13,13 @@ namespace EmailSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Utils.CheckSecurity(Session, Response);
-            if (Request.QueryString["listid"]!=null && !Request.QueryString["listid"].Equals(""))
-                listsDiv.Visible = false;
-            lblMsg.Text = "";
-            if(!Page.IsPostBack) LoadData();
+            try{
+                Utils.CheckSecurity(Session, Response);
+                if ((Request.QueryString["listid"]!=null && !Request.QueryString["listid"].Equals("")) || Request.QueryString["contactID"]!=null)
+                    listsDiv.Visible = false;
+                lblMsg.Text = "";
+                if(!Page.IsPostBack) LoadData();
+            }catch{}
         }
 
         private void LoadData()
@@ -27,10 +29,117 @@ namespace EmailSite
             DataTable dtList = objList.SelectByUserID();
             rptList.DataSource = dtList;
             rptList.DataBind();
+            //load contact 
+            if (Request.QueryString["contactID"] != null)
+            {
+                DatabaseLayer.Contacts objCt = new DatabaseLayer.Contacts();
+                objCt.ID = Int32.Parse(Request.QueryString["contactID"]);
+                DataTable dtContact = objCt.SelectContactsFromContactID();
+
+                txtEmail.Text = dtContact.Rows[0]["EMAIL"].ToString();
+
+                txtPrefix.Text = dtContact.Rows[0]["PREFIX"].ToString();
+                txtLastname.Text = dtContact.Rows[0]["LASTNAME"].ToString();
+                txtFirstname.Text = dtContact.Rows[0]["FIRSTNAME"].ToString();
+                txtSuffix.Text = dtContact.Rows[0]["SUFFIX"].ToString();
+
+                txtAddr1.Text = dtContact.Rows[0]["ADDRESS1"].ToString();
+                txtAddr2.Text = dtContact.Rows[0]["ADDRESS2"].ToString();
+
+                txtCity.Text = dtContact.Rows[0]["CITY"].ToString();
+                txtState.Text = dtContact.Rows[0]["PROVINCE"].ToString();
+                txtZip.Text = dtContact.Rows[0]["ZIP"].ToString();
+
+                txtBusinessname.Text = dtContact.Rows[0]["BUSINESSNAME"].ToString();
+                txtPhone.Text = dtContact.Rows[0]["PHONE"].ToString();
+                txtFax.Text = dtContact.Rows[0]["FAX"].ToString();
+                btnAdd.Text = "Edit Contact";
+                pnlAddTitle.Visible = false;
+                pnlEditTitle.Visible = true;
+
+            }
+
+        }
+
+        private void UpdateContact()
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl noticeContentDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+            noticeContentDiv.ID = "infoDivCode";
+            noticeContentDiv.Style.Add("position", "relative");
+            noticeContentDiv.Style.Add("margin", "20px auto");
+            noticeContentDiv.Style.Add("padding", "20px 0px 0px 80px");
+            noticeContentDiv.Style.Add("width", "520px");
+            noticeContentDiv.Style.Add("height", "40px");
+            noticeContentDiv.Style.Add("color", "#000000");
+            noticeContentDiv.Style.Add("background-color", "#fbf6d7");
+            noticeContentDiv.Style.Add("border", "1px solid #0b5d91");
+            noticeContentDiv.Style.Add("-moz-border-radius", "6px 6px 6px 6px");
+            noticeContentDiv.Style.Add("border-radius", "6px 6px 6px 6px");
+            noticeContentDiv.Style.Add("-webkit-border-radius", "6px 6px 6px 6px");
+            noticeContentDiv.Style.Add("background-repeat", "no-repeat");
+            noticeContentDiv.Style.Add("background-position", "10px center");
+            noticeContentDiv.Style.Add("font-size", "13px");
+            noticeContentDiv.Style.Add("font-weight", "500");
+            noticeContentDiv.Style.Add("text-align", "left");
+            noticeContentDiv.Style.Add("clear", "both");
+
+            DatabaseLayer.Contacts objContact = new DatabaseLayer.Contacts();
+            objContact.ID = Int32.Parse(Request.QueryString["contactID"]);
+            objContact.USERID = Int32.Parse(Session["userID"].ToString());
+            objContact.EMAIL = txtEmail.Text.Trim();
+
+            objContact.PREFIX = txtPrefix.Text.Trim();
+            objContact.LASTNAME = txtLastname.Text.Trim();
+            objContact.FIRSTNAME = txtFirstname.Text.Trim();
+            objContact.SUFFIX = txtSuffix.Text.Trim();
+
+            objContact.ADDRESS1 = txtAddr1.Text.Trim();
+            objContact.ADDRESS2 = txtAddr2.Text.Trim();
+
+            objContact.CITY = txtCity.Text.Trim();
+            objContact.PROVINCE = txtState.Text.Trim();
+            objContact.ZIP = txtZip.Text.Trim();
+
+            objContact.BUSINESSNAME = txtBusinessname.Text.Trim();
+            objContact.PHONE = txtPhone.Text.Trim();
+            objContact.FAX = txtFax.Text.Trim();
+
+
+            //objContact.CONFIRMED = true;
+            //objContact.SENDEMAIL = true;
+            //objContact.CONFIRMCODE = Guid.NewGuid().ToString().Replace("-", "");
+
+
+            int iContactID = objContact.IsExistContactEmail();
+            if (iContactID > 0 && objContact.ID != iContactID)
+            {
+
+                noticeContentDiv.Style.Add("background-image", "url(../../img/error.png)");
+                noticeContentDiv.InnerHtml = "Error : This Email Address already existed in the Contact List !";
+                infoDiv.Controls.Add(noticeContentDiv);
+                pnlAddMore.Visible = false;
+                return;
+            }
+            else
+            {
+                if (objContact.Update())
+                {
+                    noticeContentDiv.Style.Add("background-image", "url(../../img/check.png)");
+                    noticeContentDiv.InnerHtml = "Contact is successful saved.";
+                    infoDiv.Controls.Add(noticeContentDiv);
+                    pnlAddMore.Visible = false;
+                }
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+
+            if (Request.QueryString["contactID"] != null)
+            {
+                UpdateContact();
+                return;
+            }
 
             string strListSelected;
             if (Request.QueryString["listid"] == null || Request.QueryString["listid"].Equals(""))
@@ -123,8 +232,11 @@ namespace EmailSite
                             objContactList.CONTACTID = iContactID;
                             objContactList.LISTID = Int32.Parse(strID);
                             objContactList.SUBSCRIBES = true;
+                            int isDuplicate = 0;
 
-                            objContactList.Insert();
+                            isDuplicate = objContactList.CheckDuplicateContact();
+                            if (isDuplicate == 0) objContactList.Insert();
+
 
                         }
 
