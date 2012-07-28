@@ -373,7 +373,7 @@ namespace DatabaseLayer
                 // remove out of autoresponder
 
                 SqlParameter[] Params = { new SqlParameter("@ID", ID) };
-                Params[1].Value = ID;
+                Params[0].Value = ID;
                 int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_Delete", Params);
                 if (result > 0)
                 {

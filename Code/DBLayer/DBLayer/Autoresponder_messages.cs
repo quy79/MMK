@@ -346,7 +346,7 @@ namespace DatabaseLayer
             SqlParameter[] Params = { new SqlParameter("@AUTORESPONDERID", AUTORESPONDERID) };
             AUTORESPONDERID = autoresponderID;
 
-            Params[1].Value = AUTORESPONDERID;
+            Params[0].Value = AUTORESPONDERID;
 
             int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_MESSAGES_Delete_By_AutoresponderID", Params);
             if (result > 0)
