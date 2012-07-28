@@ -355,12 +355,31 @@ namespace DatabaseLayer
 	{
 		try
 		{
-			SqlParameter[] Params = { new SqlParameter("@ID",ID) };
-			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_Delete",Params);
-			if (result > 0)
-			{
-				return true;
-			}
+            if (ID != null)
+            {
+                // remove out of OPEN_CLICK_STATUS
+                ClickOpenStatus openclickCOntroller = new ClickOpenStatus();
+                openclickCOntroller.Delete_By_AutoresponderID(ID);
+                // REMOVE out of autoresponder-status
+                AutoresponderStatus autoStatusController = new AutoresponderStatus();
+                autoStatusController.Delete_By_AutoResponderID(ID);
+                // remove out of the autoresponder-messages
+                Autoresponder_messages autoMessageController = new Autoresponder_messages();
+                autoMessageController.Delete_By_AutoresponderID(ID);
+
+                //pending table
+                AutoresponderPending pendingController = new AutoresponderPending();
+                pendingController.Delete_By_AutoresponderID(ID);
+                // remove out of autoresponder
+
+                SqlParameter[] Params = { new SqlParameter("@ID", ID) };
+                Params[1].Value = ID;
+                int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_Delete", Params);
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
 			return false;
 		}
 		catch(Exception ex)

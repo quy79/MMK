@@ -269,6 +269,26 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+
+    public bool Delete_By_AutoresponderID(int autoresponderID)
+    {
+        try
+        {
+            SqlParameter[] Params = { new SqlParameter("@AUTOID", AUTOID) };
+            AUTOID = autoresponderID;
+            Params[0].Value = ID;
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_PENDING_Delete_By_AutoresponderID", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 	#endregion
 
 	}

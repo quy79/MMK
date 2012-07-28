@@ -290,6 +290,30 @@ namespace DatabaseLayer
         }
         return false;
     }
+    public void Delete_By_AutoresponderID(int autoresponderID)
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+
+				new SqlParameter("@AUTORESPONDERID",SqlDbType.Int),
+	
+			};
+
+            AUTORESPONDERID = autoresponderID;
+
+            Params[0].Value = autoresponderID;
+
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_OPEN_CLICK_STATUS_Delete_By_AutoresponderID", Params);
+
+        }
+        catch (Exception ex)
+        {
+            // throw new Exception(ex.Message);
+        }
+        
+    }
 	#endregion
 
 	}
