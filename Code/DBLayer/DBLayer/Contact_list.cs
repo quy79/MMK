@@ -262,8 +262,8 @@ namespace DatabaseLayer
         {
             SqlParameter[] Params = 
 			{ 
-				new SqlParameter("@CONTACTID",CONTACTID),
-				new SqlParameter("@LISTID",LISTID)
+				new SqlParameter("@CONTACTID",CONTACTID)
+				//new SqlParameter("@LISTID",LISTID)
 				
 			};
             if (CONTACTID != null)
@@ -275,14 +275,14 @@ namespace DatabaseLayer
                 Params[0].Value = DBNull.Value;
             }
 
-            if (LISTID != null)
+           /* if (LISTID != null)
             {
                 Params[1].Value = LISTID;
             }
             else
             {
                 Params[1].Value = DBNull.Value;
-            }
+            }*/
 
            
             int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_LIST_DeleteOutList", Params);

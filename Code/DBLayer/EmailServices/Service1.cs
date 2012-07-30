@@ -394,26 +394,21 @@ namespace EmailServices
 
                         if (status == 1 || (passedEndDate && status == 4))
                         {
-                            //Autoresponder_messages autoresponder_message = new Autoresponder_messages();
-                            // autoresponder_message.AUTORESPONDERID = auID;
-
-                            // DataTable dtAutoresponder_message = autoresponder_message.Select();
-                            //foreach (DataRow AM_row in dtAutoresponder_message.Rows)
-                            // {
-                            // int amID = int.Parse(AM_row[2].ToString());
-                            // messageID = amID;
-                            //Messages message = new Messages();
-                            // message.ID = amID;
-                            //DataTable dtMessages = message.Select();
-                            // foreach (DataRow M_row in dtMessages.Rows)
-                            //{
+                            DataTable dtContactList;
                             int mID = int.Parse(aU_DE_row[2].ToString());
                             //3.
-                            Contact_list contactList = new Contact_list();
-                            contactList.CONTACTID = -1;
-                            contactList.LISTID = int.Parse(row[4].ToString());
-                            contactList.SUBSCRIBES = true;
-                            DataTable dtContactList = contactList.Select();
+                            if (aU_DE_row[9].ToString().Equals("1"))
+                            {
+                                int userID = int.Parse(aU_DE_row[1].ToString());
+                                dtContactList = GetContactsFromSegment(userID, int.Parse(row[4].ToString()), true);
+                            } else{
+                                Contact_list contactList = new Contact_list();
+                                contactList.CONTACTID = -1;
+                                contactList.LISTID = int.Parse(row[4].ToString());
+                                contactList.SUBSCRIBES = true;
+                                dtContactList = contactList.Select();
+                            }
+                            
                             int totalContacts = 0;
                             foreach (DataRow rowContacts in dtContactList.Rows)
                             {
@@ -621,6 +616,27 @@ namespace EmailServices
                 }
             }
         }
-        
+        public DataTable GetContactsFromSegment(int userID,int segID, bool subcribes)
+        {
+            try
+            {
+               // string sub = (subcribes) ? "1" : "0";
+                string strQuery = "select distinct CL.CONTACTID,CL.LISTID,CL.SUBSCRIBES,CT.EMAIL from CONTACTS CT INNER JOIN CONTACT_LIST cl ON ct.ID = cl.CONTACTID WHERE ct.USERID = " + userID + "  ";
+
+                DatabaseLayer.SegmentCriterias objSegCri = new DatabaseLayer.SegmentCriterias();
+                objSegCri.SEGMENTID = segID;
+                DataTable dtSegCri = objSegCri.SelectBySegmentID();
+                foreach (DataRow row in dtSegCri.Rows)
+                {
+                    strQuery += "AND " + row["CONDITION"].ToString();
+
+                }
+
+                DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                return objContacts.ExecuteSql(strQuery);
+            }
+            catch { }
+            return null;
+        }
     }
 }
