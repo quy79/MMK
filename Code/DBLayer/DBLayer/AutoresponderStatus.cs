@@ -275,10 +275,10 @@ namespace DatabaseLayer
             }
         }
 	}
-	public bool Delete()
-	{
-		try
-		{
+    public bool Delete()
+    {
+        try
+        {
             lock (this)
             {
                 SqlParameter[] Params = 
@@ -318,12 +318,43 @@ namespace DatabaseLayer
                 }
                 return false;
             }
-		}
-		catch(Exception ex)
-		{
-			throw new Exception(ex.Message);
-		}
-	}
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public bool Delete_By_AutoResponderID(int AutoresponderID)
+    {
+        try
+        {
+            lock (this)
+            {
+                SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@AUTOID",SqlDbType.Int)
+               
+				 
+			};
+
+                AUTOID = AutoresponderID;
+
+                Params[0].Value = AutoresponderID;
+
+
+                int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_STATUS_Delete_By_AutoresponderID", Params);
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 	#endregion
 
 	}

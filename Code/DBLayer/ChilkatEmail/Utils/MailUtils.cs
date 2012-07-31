@@ -29,7 +29,7 @@ namespace ChilkatEmail.Utils
                    
                     if (link.IndexOf( "Unsubscribe")>=0)
                     {
-                        String patamcode = Encode("CONTACTID=" + contactID + "&LISTID=" + listID+"&EMAIL="+emailTO);
+                        String patamcode = Encode("CONTACTID=" + contactID /*+ "&LISTID=" + listID*/ + "&EMAIL="+emailTO);
                         String replaceString = "'" + serverName + "/unsubscribe.aspx?paramcode=" + patamcode + "' ";
                        
                         //String replaceString = "'" + serverName + "/redirect.aspx?AUTORESPONDERID=" + autoresponderID + "&MESSAGEID=" + messageID + "&LISTID=" + listID + "&REDIRECTURL=" + link.Replace("\"", "") + "'";

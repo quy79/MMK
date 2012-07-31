@@ -11,7 +11,7 @@ namespace EmailSite
     public partial class unsubscribe : System.Web.UI.Page
     {
         int contactID = 0;
-        int listID = 0;
+       // int listID = 0;
         string email = "";
         
         protected void Page_Load(object sender, EventArgs e)
@@ -41,8 +41,8 @@ namespace EmailSite
                     String paremdecode = Decode(param);
                     String[] temp = paremdecode.Split('&');
                     String _contactID = temp[0].Split('=')[1];
-                    String _email = temp[2].Split('=')[1];
-                    String _listID = temp[1].Split('=')[1];
+                    String _email = temp[1].Split('=')[1];
+                   // String _listID = temp[1].Split('=')[1];
                     try
                     {
                         contactID = int.Parse(_contactID);
@@ -52,7 +52,7 @@ namespace EmailSite
                         contactID = 0;
                     }
 
-                    try
+                   /* try
                     {
                         listID = int.Parse(_listID);
                     }
@@ -60,7 +60,7 @@ namespace EmailSite
                     {
                         listID = 0;
                     }
-
+                    */
                     email = _email;
                 }
                 catch (Exception eee)
@@ -88,10 +88,10 @@ namespace EmailSite
         {
             //String patamcode = Encode("CONTACTID=" + 12 + "&LISTID=" + 12+"&EMAIL="+"ndhieuvn212@yahoo.com");
            // String replaceString = "'" + "serverName" + "/unsubscribe.aspx?paramcode=" + patamcode + "' ";
-            if (contactID > 0 && listID > 0)
+            if (contactID > 0 )
             {
                 Contact_list ct = new Contact_list();
-                ct.LISTID = listID;
+               // ct.LISTID = listID;
                 ct.CONTACTID = contactID;
                 DataTable dt = ct.Select();
                 ct.SUBSCRIBES = false;

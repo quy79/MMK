@@ -338,6 +338,28 @@ namespace DatabaseLayer
 			throw new Exception(ex.Message);
 		}
 	}
+
+    public bool Delete_By_AutoresponderID(int autoresponderID)
+    {
+        try
+        {
+            SqlParameter[] Params = { new SqlParameter("@AUTORESPONDERID", AUTORESPONDERID) };
+            AUTORESPONDERID = autoresponderID;
+
+            Params[0].Value = AUTORESPONDERID;
+
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_MESSAGES_Delete_By_AutoresponderID", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 	#endregion
 
 	}
