@@ -143,7 +143,7 @@
                                         <ItemTemplate>
                                            <table class="message-action">
                                             	<tr>
-                                                	<td width="50%"><a href=editMessage.aspx?id='<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Edit</a></td>
+                                                	<td width="50%"><a href=editMessage.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>>Edit</a></td>
                                                     <td width="50%"><asp:LinkButton  ID="LinkDelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "ID")%>' CommandName='DelItem' >Delete</asp:LinkButton ></td>
                                                 </tr>
                                             </table>

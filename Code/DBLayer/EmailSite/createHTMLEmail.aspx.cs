@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,20 @@ namespace EmailSite
                 Utils.CheckSecurity(Session, Response);
                 if (!IsPostBack)
                 {
+                    if (Request["Msgid"] != null)
+                    {
+                        DatabaseLayer.Messages objMsg = new DatabaseLayer.Messages();
+                        objMsg.ID = Int32.Parse(Request["Msgid"]);
+                        DataTable objDT = objMsg.SelectByID();
+                        if (objDT != null)
+                        {
+                            txtFromEmail.Text = objDT.Rows[0]["FROM"].ToString();
+                            txtSubject.Text = objDT.Rows[0]["SUBJECT"].ToString();
+                            txtMsgName.Text = objDT.Rows[0]["MESSAGENAME"].ToString();
+                            txtMsgBody.Text = objDT.Rows[0]["BODY"].ToString();
+                        }
+
+                    }
                     if (Session["currentTextEmail"] != null)
                     {
                         TextMessage objMsg = (TextMessage)Session["currentTextEmail"];

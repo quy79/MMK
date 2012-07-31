@@ -292,6 +292,42 @@ namespace EmailSite {
         protected global::System.Web.UI.WebControls.Panel pnlSearchResutls;
         
         /// <summary>
+        /// pnlInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInfo;
+        
+        /// <summary>
+        /// lblListInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblListInfo;
+        
+        /// <summary>
+        /// lblSubscribeContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubscribeContact;
+        
+        /// <summary>
+        /// lnkShowUnsubscribe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkShowUnsubscribe;
+        
+        /// <summary>
         /// selectContactContainer control.
         /// </summary>
         /// <remarks>

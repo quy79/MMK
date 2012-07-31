@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,10 +30,21 @@ namespace EmailSite
                 lblSubject.Text = objMsg.Subject;
                 lblMsgName.Text = objMsg.MsgName;
 
-                DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
-                objList.ID = objMsg.ListID;
-                System.Data.DataTable dbTable =  objList.SelectByID();
-                if (dbTable.Rows.Count > 0) lblListName.Text = dbTable.Rows[0]["LISTNAME"].ToString();
+                if (!objMsg.IsSegment)
+                {
+                    DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
+                    objList.ID = objMsg.ListID;
+                    System.Data.DataTable dbTable = objList.SelectByID();
+                    if (dbTable.Rows.Count > 0) lblListName.Text = dbTable.Rows[0]["LISTNAME"].ToString();
+                }
+                else
+                {
+                    DatabaseLayer.Segment objSeg = new DatabaseLayer.Segment();
+                    objSeg.ID = objMsg.ListID;
+                    System.Data.DataTable dbTable = objSeg.SelectBySegmentID();
+                    if (dbTable.Rows.Count > 0) lblListName.Text = dbTable.Rows[0]["NAME"].ToString();
+                }
+
 
                 
             }
@@ -58,41 +70,45 @@ namespace EmailSite
                 objMsg.MESSAGENAME = dtMsg.MsgName;
                 objMsg.BODY = dtMsg.MsgBody;
                 objMsg.STATUS = 1;
+                objMsg.LISTID = dtMsg.ListID;
+                objMsg.ISSEGMENT = dtMsg.IsSegment;
                 objMsg.TYPE = dtMsg.TypeMsg;
-                int idMsg = objMsg.Insert();
+                int idMsg = objMsg.InsertWithoutAutoResponder();
                 DatabaseLayer.Messages oMsgs = new DatabaseLayer.Messages();
-                oMsgs.InsertContact_MessageSent(dtMsg.ListID, idMsg);
+               //is list --> add contact in ListID to Contact_MessageSent table
+                if (!objMsg.ISSEGMENT)
+                    oMsgs.InsertContact_MessageSent(dtMsg.ListID, dtMsg.IsSegment, idMsg);
+                else
+                {
+                    try {
+                    //get contacts from list and add to contact_messageSent.
+                    string strSql = "select distinct ct.ID from CONTACTS ct INNER JOIN CONTACT_LIST cl ON ct.ID = cl.CONTACTID WHERE ct.USERID = " + Session["userID"].ToString() + " AND ( cl.SUBSCRIBES = 1 ) ";
+                    DatabaseLayer.SegmentCriterias objSegCri = new DatabaseLayer.SegmentCriterias();
+                    objSegCri.SEGMENTID =  objMsg.LISTID;
+                    DataTable dtSegCri = objSegCri.SelectBySegmentID();
+                    foreach (DataRow row in dtSegCri.Rows)
+                    {
+                        strSql += "AND " + row["CONDITION"].ToString();
+                    }
+
+                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    DataTable objTable = objContacts.ExecuteSql(strSql);
+                    
+                    foreach (DataRow row in objTable.Rows)
+                    {
+                        int contactID = Int32.Parse(row["ID"].ToString());
+                        oMsgs.InsertContact_MessageSent2(contactID, dtMsg.ListID, dtMsg.IsSegment, idMsg);
+                    }
+
+                    } catch{}
+                }
 
                 Response.Redirect("createMsgDone.aspx?listid=" + dtMsg.ListID.ToString());
-                //DatabaseLayer.Contact_list objCList = new DatabaseLayer.Contact_list();
-                //objCList.LISTID = objMsg.ListID;
-                //System.Data.DataTable dbTable = objCList.SelectByListID();
-                ////if (dbTable.Rows.Count > 0) lblListName.Text = dbTable.Rows[0]["LISTNAME"].ToString();
-
-                //ChilkatEmail.MailServices mailServices = new ChilkatEmail.MailServices();
-                //List<String> listMailTo = new List<string>();
-                //List<String> listMailCC = new List<string>();
-                //List<String> listMailBCC = new List<string>();
-                //String mailFrom = "";
-                //mailFrom = objMsg.FromEmail;
-                //if (dbTable.Rows.Count > 0)
-                //{
-                //    foreach (System.Data.DataRow row in dbTable.Rows)
-                //    {
-                //        string emailContact = row["EMAIL"].ToString();
-                //        listMailTo.Add(emailContact);
-                //    }
-                //}
-                ////listMailTo.Add(txtToEmail.Text);
-
-
-                //if (objMsg.TypeMsg == 1) mailServices.SendEmail(mailFrom, listMailTo, listMailCC, listMailBCC, objMsg.Subject, objMsg.MsgBody);
-                //else
-                // mailServices.SendHTMLEmail(mailFrom, listMailTo, listMailCC, listMailBCC, objMsg.Subject, objMsg.MsgBody);
+                
 
                 Session["currentTextEmail"] = null;
                 Response.Redirect("createMsgDone.aspx");
-                //lblMsgBody.Text = objMsg.MsgBody;
+                
             }
         }
     }

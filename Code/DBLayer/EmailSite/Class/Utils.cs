@@ -29,6 +29,7 @@ namespace EmailSite
         public string MsgName;
         public string MsgBody;
         public int ListID;
+        public bool IsSegment;
         public int TypeMsg = 1;
     }
 }

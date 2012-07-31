@@ -70,10 +70,10 @@
                                         	<td class="clicks"></td>
                                             <td class="info">Clicks : <asp:Label ID="lblTotalClick" runat="server" Text=""></asp:Label></td>
                                         </tr>
-                                        <tr>
+                                       <!-- <tr>
                                         	<td class="bounces"></td>
                                             <td class="info">Bounces : <asp:Label ID="lblTotalBounces" runat="server" Text=""></asp:Label></td>
-                                        </tr>
+                                        </tr> -->
                                     </table>
                                     	
 								</div>
@@ -127,10 +127,10 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Total of contacts">
+                                    <asp:TemplateField HeaderText="Subscribers">
                                         <ItemStyle CssClass="gvhspadding" />
                                         <ItemTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TOTALSUBSCRIBES") %>'></asp:Label><br/>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "NUMSUBSCRIBES") %>'></asp:Label><br/>
                                         </ItemTemplate>
                                         <HeaderStyle Width="20%"  />
                                     </asp:TemplateField>

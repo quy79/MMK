@@ -461,9 +461,26 @@
                                                
                     </div>
                 </asp:Panel>
+                
                     <asp:Panel ID="pnlSearchResutls" runat="server" Visible="false">
+                     
                     <div id="contacts-search-container">
-                    	
+                    	<asp:Panel ID="pnlInfo" runat="server" Visible = "true">
+                                <div id="Div1">
+                               <h3>
+                                   <asp:Label ID="lblListInfo" runat="server" Text=""></asp:Label></h3><br/><br/>
+                         
+                                </div>
+                            	<div style="position:relative; float: left; padding-bottom: 10px; font-weight: bold; font-size: 13px; width: 200px;">
+                                	Total <asp:Label ID="lblSubscribeContact" runat="server" Text="0"></asp:Label>&nbsp;subscribed Contacts
+                                 </div>
+                                    <div style="position:relative; float: right;  padding-bottom: 10px; font-weight: bold; font-size: 13px; width: 300px; text-align: right">
+                                        <asp:LinkButton ID="lnkShowUnsubscribe" CssClass="common-link" runat="server" 
+                                            onclick="lnkShowUnsubscribe_Click">show 0 unsubscribed contacts </asp:LinkButton>
+                        	        
+                                </div>
+						        <div style="position:relative; float: none; clear: both;">
+                       </asp:Panel>
                          <asp:GridView ID="selectContactContainer"  CssClass="contact-grid" 
                              BackColor="White" Width="100%" CellPadding="2" 
                                 CellSpacing="1" BorderWidth="0px" GridLines="None"

@@ -41,6 +41,8 @@ namespace EmailSite
             TotalSize.Value = iTotalRecord.ToString();
             lblCurrentPage.Text = CurrentPage.Value;
             lblTotalPages.Text = iTotalPage.ToString();
+            if (iTotalRecord > 0) pnlGrid.Visible = true;
+            else pnlGrid.Visible = false;
             BindPaging();
         }
 

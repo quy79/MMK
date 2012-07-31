@@ -136,7 +136,7 @@
                             CssClass="validate[required] text-input" Height="120px" TextMode="MultiLine"></asp:TextBox><br/>
                         <span>Source List<br/>
                             <asp:DropDownList ID="ddlList" runat="server" Width="400px" 
-                            DataTextField="LISTNAME" DataValueField="ID">
+                            DataTextField="NAME" DataValueField="ID">
                             </asp:DropDownList>
                         <br/>
 						<span>Autoresponder From Name<br/></span>

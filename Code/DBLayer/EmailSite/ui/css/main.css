@@ -1271,7 +1271,10 @@ font-size: 12px; font-weight: bold; color: #FFFFFF;
 #message-content-container {position: relative; width: 100%; margin: 0 0; padding: 0; height: auto; background: #c2c7ca;}
 
 #message-content-right {float: right; position: relative; width: 200px; margin: 0px 0px; padding: 10px 0px 0px; min-height: 290px; background: #9aaecf}
-#message-content-left {float: left; position: relative; width: 360px; margin: 0px 0px; padding: 0; min-height: 150px;}
+#message-content-left {float: left; position: relative; width: 360px; margin: 0px 0px; padding: 0; min-height: 150px;
+    top: -10px;
+    left: 0px;
+}
 
 .message-content-right-header {position: relative; clear: both; width: 100%; border-bottom: 1px solid #000; line-height: 150%; color: #000; font-size :11px; height: 40px;}
 .message-content-right-header-body {margin: 5px auto; position: relative; width: 180px ; padding: 0}

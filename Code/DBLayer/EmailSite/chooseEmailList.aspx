@@ -125,24 +125,28 @@
                     </div>                  
                     <div class="message-list" id="message-list">
                     		
-                            <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" BorderStyle="NotSet" GridLines="None"
+                            <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" 
+                                Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" 
+                                BorderStyle="NotSet" GridLines="None"
                                    HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
                                 runat="server"  AutoGenerateColumns ="False"  
                                 AllowPaging="True" onpageindexchanged="grvList_PageIndexChanged" 
-                                onpageindexchanging="grvList_PageIndexChanging" PageSize="20">
+                                onpageindexchanging="grvList_PageIndexChanging" PageSize="20" 
+                                ondatabound="grvList_DataBound" onrowdatabound="grvList_RowDataBound">
                                 
 <AlternatingRowStyle BackColor="#D5D6D9"></AlternatingRowStyle>
                                 
                                             <Columns>                                                
                                                  <asp:TemplateField HeaderText="List Name">
                                                     <ItemTemplate>
-                                                         &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
+                                                         &nbsp;<%#DataBinder.Eval(Container.DataItem, "NAME")%>
                                                     </ItemTemplate>
                                                     <HeaderStyle Width="70%"  />                                            
                                                 </asp:TemplateField>                                               
                                                <asp:TemplateField HeaderText="Subscribers">
                                                     <ItemTemplate>
-                                                         &nbsp;<%#DataBinder.Eval(Container.DataItem, "NUMSUBSCRIBES")%>
+                                                         &nbsp;<asp:Label ID="lblNumSubscribes" runat="server" Text="0"></asp:Label>
+                                                          <!--DataBinder.Eval(Container.DataItem, "NUMSUBSCRIBES") -->
                                                     </ItemTemplate>
                                                     <HeaderStyle Width="10%"  />                                            
                                                 </asp:TemplateField>

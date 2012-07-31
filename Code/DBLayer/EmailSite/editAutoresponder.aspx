@@ -119,7 +119,7 @@
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
-                    <h2>Create an Autoresponder</h2><br/>
+                    <h2>Edit an Autoresponder</h2><br/>
                     <span>Use autoresponders to schedule a series of emails to be sent to new contacts. Schedule each email on the basis of the contact's subscription date.</span>
                     </div>                    
                     <div class="create-message-step1-container1">
@@ -136,7 +136,7 @@
                             CssClass="validate[required] text-input" Height="120px" TextMode="MultiLine"></asp:TextBox><br/>
                         <span>Source List<br/>
                             <asp:DropDownList ID="ddlList" runat="server" Width="400px" 
-                            DataTextField="LISTNAME" DataValueField="ID">
+                            DataTextField="NAME" DataValueField="ID">
                             </asp:DropDownList>
                         <br/>
 						<span>Autoresponder From Name<br/></span>

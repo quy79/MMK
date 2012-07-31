@@ -30,7 +30,8 @@ namespace EmailSite
         {
             DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
             objList.USERID = Int32.Parse(Session["userID"].ToString());
-            DataTable dtList = objList.SelectByUserID();
+            //DataTable dtList = objList.SelectByUserID();
+            DataTable dtList = objList.SelectListsAndSegmentsByUserID();
             grvList.DataSource = dtList;
             grvList.DataBind();
 
@@ -89,7 +90,9 @@ namespace EmailSite
                 if (Session["currentTextEmail"] != null)
                 {
                     TextMessage objMsg = (TextMessage)Session["currentTextEmail"];
-                    objMsg.ListID = Int32.Parse(strListSelected);
+                    objMsg.ListID = Int32.Parse(strListSelected.Substring(1));
+                    if (strListSelected[0] == 'L') objMsg.IsSegment = false;
+                    else objMsg.IsSegment = true;
                     Session["currentTextEmail"] = objMsg;
 
                     Response.Redirect("previewEmail.aspx");
@@ -241,6 +244,52 @@ namespace EmailSite
             //string xfdsf = (((LinkButton)sender).ID).Remove(0, 3);
             //if (!String.IsNullOrEmpty(xfdsf))
             // rptBindGrid_k(xfdsf);
+        }
+
+        protected void grvList_DataBound(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void grvList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                 Label lb = (Label)e.Row.FindControl("lblNumSubscribes");
+
+                try
+                {
+                    DataRowView dataRow = (DataRowView)e.Row.DataItem;
+                    int id = Int32.Parse(dataRow["ID"].ToString().Substring(1));
+                    string strSql;
+                    if (dataRow["ID"].ToString()[0] == 'L')
+                    { // List
+                        //select COUNT(*) from CONTACT_LIST cl where l.ID = cl.LISTID and SUBSCRIBES = 1
+                        strSql = "select COUNT(*) from CONTACT_LIST cl where SUBSCRIBES = 1 and LISTID = " + id.ToString();
+                    }
+                    else
+                    {
+
+                        strSql  = "select count(distinct ct.ID) from CONTACTS ct INNER JOIN CONTACT_LIST cl ON ct.ID = cl.CONTACTID WHERE ct.USERID = " + Session["userID"].ToString() + " AND ( cl.SUBSCRIBES = 1 ) ";
+
+                        DatabaseLayer.SegmentCriterias objSegCri = new DatabaseLayer.SegmentCriterias();
+                        objSegCri.SEGMENTID = id;
+                        DataTable dtSegCri = objSegCri.SelectBySegmentID();
+                        foreach (DataRow row in dtSegCri.Rows)
+                        {
+                            strSql += "AND " + row["CONDITION"].ToString();
+
+                        }
+
+                        
+                    }
+                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                    DataTable objTable = objContacts.ExecuteSql(strSql);
+                    lb.Text = objTable.Rows[0][0].ToString();
+                }
+                catch(Exception ex) { lb.Text = "0";}
+            }
+
         }
     }
 }

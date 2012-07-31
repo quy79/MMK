@@ -24,6 +24,8 @@ namespace DatabaseLayer
 	private string _BODY;
 	private string _WEBPAGE;
 	private int _TYPE;
+    private int _LISTID;
+    private bool _ISSEGMENT;
 	private int _STATUS;
 	private System.DateTime _MODIFIEDDATE;
 	 Messages  objclsMESSAGES;
@@ -70,6 +72,17 @@ namespace DatabaseLayer
 		get { return _TYPE; }
 		set { _TYPE = value; }
 	}
+    public int LISTID
+    {
+        get { return _LISTID; }
+        set { _LISTID = value; }
+    }
+
+    public bool ISSEGMENT
+    {
+        get { return _ISSEGMENT; }
+        set { _ISSEGMENT = value; }
+    }
 	public int STATUS
 	{ 
 		get { return _STATUS; }
@@ -333,17 +346,73 @@ namespace DatabaseLayer
 		}
 	}
 
-    public bool InsertContact_MessageSent(int listID, int messageID)
+    public int InsertWithoutAutoResponder()
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@USERID",USERID),
+				new SqlParameter("@MESSAGENAME",MESSAGENAME),
+				new SqlParameter("@FROM",FROM),
+				new SqlParameter("@SUBJECT",SUBJECT),
+				new SqlParameter("@BODY",BODY),
+				new SqlParameter("@TYPE",TYPE),
+                new SqlParameter("@LISTID",LISTID),
+                new SqlParameter("@ISSEGMENT",ISSEGMENT),
+				new SqlParameter("@STATUS",STATUS)
+			};
+
+            DataSet ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_MESSAGES_Insert2", Params);
+
+            if (ds.Tables.Count > 0) return Int32.Parse(ds.Tables[0].Rows[0][0].ToString());
+            return -1;
+
+        }
+        catch (Exception ex)
+        {
+            return -1;
+        }
+    }
+
+    public bool InsertContact_MessageSent(int listID,bool issegment, int messageID)
     {
         try
         {
             SqlParameter[] Params = 
 			{ 
 				new SqlParameter("@LISTID",listID),
+                new SqlParameter("@ISSEGMENT",issegment),
 				new SqlParameter("@MESSAGEID",messageID)
 			};
 
             int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_MESSAGESENT_Insert", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public bool InsertContact_MessageSent2(int contactId, int listID, bool issegment, int messageID)
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+                new SqlParameter("@CONTACTID",contactId),
+				new SqlParameter("@LISTID",listID),
+                new SqlParameter("@ISSEGMENT",issegment),
+				new SqlParameter("@MESSAGEID",messageID)
+			};
+
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_MESSAGESENT_Insert2", Params);
             if (result > 0)
             {
                 return true;

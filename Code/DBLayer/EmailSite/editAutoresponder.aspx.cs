@@ -32,7 +32,7 @@ namespace EmailSite
             //DatabaseLayer 
             DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
             objList.USERID = Int32.Parse(Session["userID"].ToString());
-            DataTable dtList = objList.SelectByUserID();
+            DataTable dtList = objList.SelectListsAndSegmentsByUserID();
             ddlList.DataSource = dtList;
             ddlList.DataBind();
 
@@ -46,7 +46,9 @@ namespace EmailSite
                 txtFromName.Text = objDT.Rows[0]["FROMNAME"].ToString();
                 txtFromEmail.Text = objDT.Rows[0]["FROMEMAIL"].ToString();
                 txtDuration.Text = objDT.Rows[0]["DURATION"].ToString();
-                ddlList.SelectedValue = objDT.Rows[0]["LISTID"].ToString();
+                if(objDT.Rows[0]["ISSEGMENT"].ToString().ToLower().Equals("true"))
+                    ddlList.SelectedValue = "S" + objDT.Rows[0]["LISTID"].ToString();
+                else ddlList.SelectedValue = "L" + objDT.Rows[0]["LISTID"].ToString();
             }
 
             //load list messages 
@@ -189,8 +191,10 @@ namespace EmailSite
                 objAuto.FROMNAME = txtFromName.Text.Trim();
                 objAuto.FROMEMAIL = txtFromEmail.Text.Trim();
                 objAuto.DURATION = Int32.Parse(txtDuration.Text.Trim());
-                objAuto.LISTID = Int32.Parse(ddlList.SelectedValue.ToString());
-
+                //objAuto.LISTID = Int32.Parse(ddlList.SelectedValue.ToString());
+                objAuto.LISTID = Int32.Parse(ddlList.SelectedValue.ToString().Substring(1));
+                if (ddlList.SelectedValue[0] == 'L') objAuto.ISSEGMENT = false;
+                else objAuto.ISSEGMENT = true;
                 bool isUpdate = objAuto.Update();
                 if (isUpdate) lblMsg.Text = Utils.ShowMessage("Autoresponder was successful updated.", false);
                 else lblMsg.Text = Utils.ShowMessage("Autoresponder was unsuccessful updated. Please try again !", true);               

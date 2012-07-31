@@ -137,6 +137,7 @@
                     <h2>My Lists</h2>
                     </div>
                     <div id="infoDiv" runat="server" class="create-message-step1-container3"></div>
+                     <asp:Panel ID="pnlGrid" runat="server">
                         <div class="message-list" id="message-list">
                             <asp:GridView ID="grvList"  CssClass="contact-grid" BackColor="#ffffff" Width="100%" CellPadding="1" CellSpacing="1" BorderWidth="0" 
                                    HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"  GridLines="None"
@@ -147,7 +148,7 @@
                                 
                                 <Columns>
                                     
-                                    <asp:TemplateField HeaderText="Action">
+                                    <asp:TemplateField HeaderText="List Name">
                                         <ItemTemplate>
                                            &nbsp;<a href='searchContacts.aspx?listID=<%# DataBinder.Eval(Container.DataItem, "ID")%>'><%# DataBinder.Eval(Container.DataItem, "LISTNAME")%></a>
                                         </ItemTemplate>
@@ -218,7 +219,7 @@
                                 </div>    
                             </div>
                         </div>
-                       
+                       </asp:Panel>
                        
 
 						                        

@@ -632,7 +632,9 @@ namespace DatabaseLayer
 	{
 		try
 		{
-			SqlParameter[] Params = { new SqlParameter("@ID",ID) };
+			SqlParameter[] Params = { new SqlParameter("@ID",ID),
+                                        new SqlParameter("@USERID",USERID)
+                                    };
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_CONTACTS_Delete",Params);
 			if (result > 0)
 			{

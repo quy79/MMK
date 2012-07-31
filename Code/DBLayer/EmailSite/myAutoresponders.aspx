@@ -134,7 +134,7 @@
                   
 						                        
 				</div>
-					
+					<asp:Panel ID="pnlGrid" runat="server">
                         <div class="message-list" id="message-list">
                             <asp:GridView ID="grvList" CssClass="contact-grid" BackColor="White" Width="100%" CellPadding="1" 
                                 CellSpacing="1" BorderWidth="0px" GridLines="None"   HeaderStyle-BackColor="#95949B" AlternatingRowStyle-BackColor="#d5d6d9" RowStyle-CssClass="r1"   
@@ -170,8 +170,8 @@
                                         <ItemTemplate>
                                             <table class="message-action">
                                             	<tr>
-                                                <td width="100%"><a href='#'>Delete</a> 
-                                                  <!--  <td width="100%"><a href='deleteAutoresponder.aspx?Aid=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Delete</a> -->
+                                                <!-- <td width="100%"><a href='#'>Delete</a>  -->
+                                                    <td width="100%"><a href='delAutoresponder.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>'>Delete</a> 
                                                 </tr>
                                             </table>
                                         </ItemTemplate>
@@ -221,8 +221,9 @@
                                 </div>    
                             </div>
                         </div>
-                       
-                    <br/><br/><br/><br/>
+                        <br/><br/><br/><br/>
+                      </asp:Panel> 
+                    
                     <div class="segment-bottom">
 	                    <div style="display: inline-block; margin: 0 0; padding: 2px 2px;  float: right; width: 200px;">
                             <a href="createAutoresponder.aspx" class="common-button">Create a new Autoresponder</a>

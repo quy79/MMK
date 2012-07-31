@@ -22,6 +22,7 @@ namespace DatabaseLayer
 	private string _NAME;
 	private string _DESCRIPTION;
 	private int _LISTID;
+    private bool _ISSEGMENT;
 	private string _FROMNAME;
 	private string _FROMEMAIL;
     private int _DURATION;
@@ -56,6 +57,11 @@ namespace DatabaseLayer
 		get { return _LISTID; }
 		set { _LISTID = value; }
 	}
+    public bool ISSEGMENT
+    {
+        get { return _ISSEGMENT; }
+        set { _ISSEGMENT = value; }
+    }
 	public string FROMNAME
 	{ 
 		get { return _FROMNAME; }
@@ -230,6 +236,7 @@ namespace DatabaseLayer
 				new SqlParameter("@NAME",NAME),
 				new SqlParameter("@DESCRIPTION",DESCRIPTION),
 				new SqlParameter("@LISTID",LISTID),
+                new SqlParameter("@ISSEGMENT",ISSEGMENT),
 				new SqlParameter("@FROMNAME",FROMNAME),
 				new SqlParameter("@FROMEMAIL",FROMEMAIL),
                 new SqlParameter("@DURATION",DURATION)
@@ -252,91 +259,19 @@ namespace DatabaseLayer
 		{
             SqlParameter[] Params = 
 			{ 
-				new SqlParameter("@ID",SqlDbType.Int),
-				new SqlParameter("@USERID",SqlDbType.Int),
-				new SqlParameter("@NAME",SqlDbType.NVarChar),
-				new SqlParameter("@DESCRIPTION",SqlDbType.NVarChar),
-				new SqlParameter("@LISTID",SqlDbType.Int),
-				new SqlParameter("@FROMNAME",SqlDbType.NVarChar),
-				new SqlParameter("@FROMEMAIL",SqlDbType.NVarChar),
-                new SqlParameter("@DURATION",SqlDbType.NVarChar)
-				
+                new SqlParameter("@ID",ID),
+				new SqlParameter("@USERID",USERID),
+				new SqlParameter("@NAME",NAME),
+				new SqlParameter("@DESCRIPTION",DESCRIPTION),
+				new SqlParameter("@LISTID",LISTID),
+                new SqlParameter("@ISSEGMENT",ISSEGMENT),
+				new SqlParameter("@FROMNAME",FROMNAME),
+				new SqlParameter("@FROMEMAIL",FROMEMAIL),
+                new SqlParameter("@DURATION",DURATION)
 				
 			};
 
-
-            if (ID != 0)
-            {
-                Params[0].Value = ID;
-            }
-            else
-            {
-                Params[0].Value = DBNull.Value;
-            }
-
-            if (USERID != 0)
-            {
-                Params[1].Value = USERID;
-            }
-            else
-            {
-                Params[1].Value = DBNull.Value;
-            }
-
-            if (NAME != null)
-            {
-                Params[2].Value = NAME;
-            }
-            else
-            {
-                Params[2].Value = DBNull.Value;
-            }
-
-            if (DESCRIPTION != null)
-            {
-                Params[3].Value = DESCRIPTION;
-            }
-            else
-            {
-                Params[3].Value = DBNull.Value;
-            }
-
-            if (LISTID != 0)
-            {
-                Params[4].Value = LISTID;
-            }
-            else
-            {
-                Params[4].Value = DBNull.Value;
-            }
-
-            if (FROMNAME != null)
-            {
-                Params[5].Value = FROMNAME;
-            }
-            else
-            {
-                Params[5].Value = DBNull.Value;
-            }
-
-            if (FROMEMAIL != null)
-            {
-                Params[6].Value = FROMEMAIL;
-            }
-            else
-            {
-                Params[6].Value = DBNull.Value;
-            }
-            if (DURATION != null)
-            {
-                Params[7].Value = DURATION;
-            }
-            else
-            {
-                Params[7].Value = DBNull.Value;
-            }
-           
-
+         
             
 
 			int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure,"SP_AUTORESPONDER_Update",Params);

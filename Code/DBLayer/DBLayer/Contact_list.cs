@@ -297,6 +297,30 @@ namespace DatabaseLayer
             throw new Exception(ex.Message);
         }
     }
+    public bool SubscribeContact(int contactID, bool issubscribe, int userID)
+    {
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				new SqlParameter("@CONTACTID",contactID),
+				new SqlParameter("@SUBSCRIBES",issubscribe),
+                new SqlParameter("@USERID",userID)
+			};
+
+            int result = SqlHelper.ExecuteNonQuery(Globals.ConnectionString, CommandType.StoredProcedure, "SP_CONTACT_LIST_Subscribes", Params);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
+           // throw new Exception(ex.Message);
+        }
+    }
 	#endregion
 
 	}

@@ -25,13 +25,23 @@ namespace EmailSite
                 //btnUnsubContacts.Text = "Unsubscribe Contacts from List";
                 if (!IsPostBack)
                 {
-                    if (Request["listID"] != null 
-                        || Request["segmentID"] != null )
+                    if (Request["listID"] != null
+                        || Request["segmentID"] != null)
                     {
                         pnlSearch.Visible = false;
+                       
                         if (Request["listID"] != null)
                         {
-                            
+                            //
+                            try
+                            {
+                                pnlInfo.Visible = true;
+                                DatabaseLayer.Lists objList = new DatabaseLayer.Lists();
+                                objList.ID = Int32.Parse(Request["listID"]);
+                                DataTable dtList = objList.SelectByID();
+                                lblListInfo.Text = "Contact List: " + dtList.Rows[0]["LISTNAME"];
+                            }
+                            catch { }
                             hdModeSearch.Value = "5";
                         }
 
@@ -46,7 +56,11 @@ namespace EmailSite
                         }
                         LoadData();
                     }
-                    else pnlSearch.Visible = true;
+                    else
+                    {
+                        pnlSearch.Visible = true;
+                        pnlInfo.Visible = false;
+                    }
 
                     LoadContactLists();
                     first.Visible = false;
@@ -66,6 +80,8 @@ namespace EmailSite
                     lblTotalSub.Text = dtContact.Rows[0]["TOTALSUB"].ToString();
                 }
                 catch { lblTotalContacts.Text = "0"; lblTotalSub.Text = "0"; }
+
+
             }
             catch { }
         }
@@ -150,14 +166,6 @@ namespace EmailSite
             
                 if (hdModeSearch.Value == "1")
                 {
-                    //string strSelectedIDs =  "";
-                    //foreach (ListItem item in lstContactLists.Items)
-                    //{
-                    //    if (item.Selected)
-                    //        if (strSelectedIDs == "") strSelectedIDs = item.Value;
-                    //        else strSelectedIDs += "," + item.Value;
-                    //}
-
                     string strSelectedIDs = lstContactLists.SelectedValue;
                     if(strSelectedIDs.Equals("0")) { // select all lists and segments
                         DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
@@ -250,14 +258,30 @@ namespace EmailSite
                 }
                 else if (hdModeSearch.Value == "5")
                 {
-                    DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
-                    dtContactLists = objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]),true);
-
+                    try
+                    {
+                        DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                        dtContactLists = objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]), true);
+                        lblSubscribeContact.Text = objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]), true).Rows.Count.ToString();
+                        lnkShowUnsubscribe.Text = "show " + objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]), false).Rows.Count.ToString() + " unsubscribed contacts";
+                    }
+                    catch { }
                 }
                 else if (hdModeSearch.Value == "6")
                 {
                     dtContactLists = GetContactsFromSegment(Int32.Parse(Request["segmentID"]), !chkUnSub1.Checked);
 
+                }
+                else if (hdModeSearch.Value == "7")
+                {
+                    try
+                    {
+                        DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                        dtContactLists = objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]), false);
+                        lblSubscribeContact.Text = objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]), true).Rows.Count.ToString();
+                        lnkShowUnsubscribe.Text = "show " + objContacts.SelectContactListsbyListIDs(Int32.Parse(Request["listID"]), false).Rows.Count.ToString() + " unsubscribed contacts";
+                    }
+                    catch { }
                 }
                 LoadGridContacts(dtContactLists);
 
@@ -294,6 +318,16 @@ namespace EmailSite
                 pnlAction.Visible = false;
                 pnlSearchResutls.Visible = false;
             }
+
+            try
+            {
+                DatabaseLayer.Contacts objContact = new DatabaseLayer.Contacts();
+                objContact.USERID = Int32.Parse(Session["userID"].ToString());
+                DataTable dtContact = objContact.SelectSummartContacts();
+                lblTotalContacts.Text = dtContact.Rows[0]["TOTALCONTACTS"].ToString();
+                lblTotalSub.Text = dtContact.Rows[0]["TOTALSUB"].ToString();
+            }
+            catch { lblTotalContacts.Text = "0"; lblTotalSub.Text = "0"; }
         }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
@@ -528,7 +562,7 @@ namespace EmailSite
 
             if (isUpdated)
             {
-                UpdateTotalSubscribers(ddlCopyContacts.SelectedValue);
+                UpdateTotalSubscribers(ddlCopyContacts.SelectedValue);                 
                 lblMsg.Text = Utils.ShowMessage("Selected contacts is copied sucessfully !", false);
             }
 
@@ -551,6 +585,7 @@ namespace EmailSite
                 int iContactID = Int32.Parse(arrListID[i].ToString());
                 DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
                 objContacts.ID = iContactID;
+                objContacts.USERID = Int32.Parse(Session["userID"].ToString());
 
 
                 if (objContacts.Delete()) isUpdated = true;
@@ -635,12 +670,14 @@ namespace EmailSite
                 if (strMode == "Unsubscribed")
                     objContactList.SUBSCRIBES = false;
                 else objContactList.SUBSCRIBES = true;
-                if (objContactList.Update()) isUpdated = true;
+               // if (objContactList.Update()) isUpdated = true;
+                if (objContactList.SubscribeContact(objContactList.CONTACTID, objContactList.SUBSCRIBES, Int32.Parse(Session["userID"].ToString()))) isUpdated = true;
             }
 
             if (isUpdated)
             {
-                UpdateTotalSubscribers(ddlUnsubContacts.SelectedValue);
+                //UpdateTotalSubscribers(ddlUnsubContacts.SelectedValue);
+                //we updated it in store procedure
                 lblMsg.Text = Utils.ShowMessage("Selected contacts is "+strMode+" sucessfully !", false);
                 LoadData();
             }
@@ -692,6 +729,14 @@ namespace EmailSite
                 }
                 catch { }
             }
+        }
+
+        protected void lnkShowUnsubscribe_Click(object sender, EventArgs e)
+        {
+            hdModeSearch.Value = "7";
+            lblUnSubscribe.Text = "Subscribe";
+            btnUnsubContacts.Text = "Subscribe Contacts from List";
+            LoadData();
         }
 
 

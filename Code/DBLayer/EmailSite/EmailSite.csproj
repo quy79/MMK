@@ -72,6 +72,7 @@
     <Content Include="createTemplateEmail.aspx" />
     <Content Include="createTemplateEmail2.aspx" />
     <Content Include="createTextEmail.aspx" />
+    <Content Include="delAutoresponder.aspx" />
     <Content Include="editAutoresponder.aspx" />
     <Content Include="editMessage.aspx" />
     <Content Include="editSegment.aspx" />
@@ -1624,6 +1625,13 @@
     </Compile>
     <Compile Include="createTextEmail.aspx.designer.cs">
       <DependentUpon>createTextEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="delAutoresponder.aspx.cs">
+      <DependentUpon>delAutoresponder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="delAutoresponder.aspx.designer.cs">
+      <DependentUpon>delAutoresponder.aspx</DependentUpon>
     </Compile>
     <Compile Include="editAutoresponder.aspx.cs">
       <DependentUpon>editAutoresponder.aspx</DependentUpon>

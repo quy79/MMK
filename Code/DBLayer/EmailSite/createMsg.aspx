@@ -172,7 +172,7 @@
 
                                      <asp:TemplateField HeaderText="Target List">
                                         <ItemTemplate>
-                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME")%>
+                                            &nbsp;<%#DataBinder.Eval(Container.DataItem, "LISTNAME", "{0:g}")%>
                                         </ItemTemplate>
                                         <HeaderStyle Width="25%"  />
                                     </asp:TemplateField>
