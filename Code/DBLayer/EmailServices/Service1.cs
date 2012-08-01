@@ -621,7 +621,7 @@ namespace EmailServices
             try
             {
                // string sub = (subcribes) ? "1" : "0";
-                string strQuery = "select distinct CL.CONTACTID,CL.LISTID,CL.SUBSCRIBES,CT.EMAIL from CONTACTS CT INNER JOIN CONTACT_LIST cl ON ct.ID = cl.CONTACTID WHERE ct.USERID = " + userID + "  ";
+                string strQuery = "select distinct CL.CONTACTID,CL.LISTID,CL.SUBSCRIBES,CT.EMAIL from CONTACTS CT INNER JOIN CONTACT_LIST cl ON ct.ID = cl.CONTACTID WHERE ct.USERID = " + userID + " AND CL.SUBSCRIBES=1 ";
 
                 DatabaseLayer.SegmentCriterias objSegCri = new DatabaseLayer.SegmentCriterias();
                 objSegCri.SEGMENTID = segID;

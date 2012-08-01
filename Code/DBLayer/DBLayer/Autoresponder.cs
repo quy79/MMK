@@ -78,11 +78,7 @@ namespace DatabaseLayer
         get { return _DURATION; }
         set { _DURATION = value; }
     }
-    public int ISSEGMENT
-    {
-        get { return _ISSEGGMEMT; }
-        set { _ISSEGGMEMT = value; }
-    }
+   
 	#endregion
 
 	#region Public Methods
