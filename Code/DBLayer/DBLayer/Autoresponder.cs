@@ -26,7 +26,7 @@ namespace DatabaseLayer
 	private string _FROMNAME;
 	private string _FROMEMAIL;
     private int _DURATION;
-    private int _ISSEGGMEMT;
+    
    
 	private System.DateTime _MODIFIEDDATE;
 	 Autoresponder  objclsAUTORESPONDER;
@@ -78,11 +78,7 @@ namespace DatabaseLayer
         get { return _DURATION; }
         set { _DURATION = value; }
     }
-    public int ISSEGMENT
-    {
-        get { return _ISSEGGMEMT; }
-        set { _ISSEGGMEMT = value; }
-    }
+  
 	#endregion
 
 	#region Public Methods

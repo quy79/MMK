@@ -135,7 +135,7 @@
                                 <Columns>                               
                                      <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                           <a href="searchContacts.aspx?segmentID=<%#DataBinder.Eval(Container.DataItem, "ID")%>"><div class="segment-icon" title="Edit this segment"></div></a>
+                                           <a href="editSegment.aspx?id=<%#DataBinder.Eval(Container.DataItem, "ID")%>"><div class="segment-icon" title="Edit this segment"></div></a>
                                         </ItemTemplate>
                                         <HeaderStyle Width="10%"  />
                                     </asp:TemplateField>

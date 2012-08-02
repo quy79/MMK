@@ -156,7 +156,7 @@
             	<div id="emails-common-panel">
 
                 	<div class="common-title">
-                    <h2>Create a Segment</h2>
+                    <h2>Edit a Segment</h2>
                         <div id="common-explain">
                         A segment is a list that can be used for sending targeted emails. You create the segment by supplying criterias, which are characteristics of your subscribers.
                         </div>
