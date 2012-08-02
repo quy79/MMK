@@ -78,7 +78,7 @@ namespace DatabaseLayer
         get { return _DURATION; }
         set { _DURATION = value; }
     }
-  
+
 	#endregion
 
 	#region Public Methods
