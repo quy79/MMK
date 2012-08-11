@@ -135,7 +135,7 @@
                                 <span>Add as many contacts as you need, one at a time.</span>
                                 </div></a></div></td>
                                 <td width="33%">
-                                <div id="add-contacts-box"><a href="copyContact.aspx<%=listid%>"><div id="copycontact"><div class="title">Copy & paste Contacts</div><br/>
+                                <div id="add-contacts-box"><a href="#"><div id="copycontact"><div class="title">Copy & paste Contacts</div><br/>
                                 <span>Copy and paste text containing email addresses using this form. This method will ignore any text surrounding the email addresses.</span>
                                 </div></a></div></td>
                             </tr>
