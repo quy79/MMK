@@ -154,12 +154,22 @@ namespace EmailSite
             {
 
                 int msgID = Convert.ToInt32(e.CommandArgument);
+
                 DatabaseLayer.Autoresponder_messages obj = new DatabaseLayer.Autoresponder_messages();
                 obj.MESSAGEID = msgID;
-                obj.STATUS = 2;
-                obj.UpdateStatusForMsg();
+                DataTable objDT = obj.SelectByMsgID();
+                if (!objDT.Rows[0]["STATUS"].ToString().Equals("1"))
+                {
+                    obj.STATUS = 2;
+                    obj.UpdateStatusForMsg();
+                    LoadData();
+                }
+                else
+                {
+                    lblMsg.Text = Utils.ShowMessage("This autoresponder message is initialized. Please wait for 5 minutes and try to start this message again !", true);               
+                }
 
-                LoadData();
+               
             }
 
         }

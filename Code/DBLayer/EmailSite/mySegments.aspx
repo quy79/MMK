@@ -147,7 +147,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Subscribed">
                                         <ItemTemplate>
-                                            &nbsp;0
+                                            &nbsp;<asp:Label ID="lblSubscribe" runat="server" Text="0"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle Width="10%"  />
                                     </asp:TemplateField>

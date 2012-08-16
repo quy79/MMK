@@ -39,6 +39,16 @@ namespace EmailSite
                 LinkButton l = (LinkButton)e.Row.FindControl("LinkDelete");
                 l.Attributes.Add("onclick", "javascript:return " +
                 "confirm('Are you sure you want to delete this segment? ')");
+                try
+                {
+                    Label lb = (Label)e.Row.FindControl("lblSubscribe");
+
+                    lb.Text = "0";
+                    DataRowView dataRow = (DataRowView)e.Row.DataItem;
+                    DataTable dtContacts = GetContactsFromSegment(Int32.Parse(dataRow["ID"].ToString()), true);
+                    if (dtContacts != null) lb.Text = dtContacts.Rows.Count.ToString();
+                }
+                catch { }
             }
         }
 
@@ -57,5 +67,29 @@ namespace EmailSite
             }
 
         }
+
+        private DataTable GetContactsFromSegment(int segID, bool subcribes)
+        {
+            try
+            {
+                string sub = (subcribes) ? "1" : "0";
+                string strQuery = "select distinct ct.* from CONTACTS ct INNER JOIN CONTACT_LIST cl ON ct.ID = cl.CONTACTID WHERE ct.USERID = " + Session["userID"].ToString() + " AND ( cl.SUBSCRIBES = " + sub + " ) ";
+
+                DatabaseLayer.SegmentCriterias objSegCri = new DatabaseLayer.SegmentCriterias();
+                objSegCri.SEGMENTID = segID;
+                DataTable dtSegCri = objSegCri.SelectBySegmentID();
+                foreach (DataRow row in dtSegCri.Rows)
+                {
+                    strQuery += "AND " + row["CONDITION"].ToString();
+
+                }
+
+                DatabaseLayer.Contacts objContacts = new DatabaseLayer.Contacts();
+                return objContacts.ExecuteSql(strQuery);
+            }
+            catch { }
+            return null;
+        }
+
     }
 }

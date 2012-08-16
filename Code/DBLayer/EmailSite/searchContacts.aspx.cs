@@ -52,6 +52,7 @@ namespace EmailSite
                                 logo.Visible = false;
                                 navigation.Visible = false;
                             }
+                            pnlInfo.Visible = false;
                             hdModeSearch.Value = "6";
                         }
                         LoadData();

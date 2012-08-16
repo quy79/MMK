@@ -79,6 +79,27 @@ namespace DatabaseLayer
             return null;// throw new Exception(ex.Message);
         }
     }
+    public DataTable SelectByMsgID()
+    {
+        DataSet ds;
+        try
+        {
+            SqlParameter[] Params = 
+			{ 
+				
+				new SqlParameter("@MESSAGEID",SqlDbType.Int)
+			};
+
+            Params[0].Value = MESSAGEID;
+
+            ds = SqlHelper.ExecuteDataset(Globals.ConnectionString, CommandType.StoredProcedure, "SP_AUTORESPONDER_MESSAGES_SelectByMsgID", Params);
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            return null;// throw new Exception(ex.Message);
+        }
+    }
 	public DataTable Select()
 	{
 		DataSet ds;

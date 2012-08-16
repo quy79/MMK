@@ -72,7 +72,10 @@ namespace EmailSite
             if (e.CommandName == "DelItem")
             {
 
-                //int listID = Convert.ToInt32(e.CommandArgument);
+                //int msgID = Convert.ToInt32(e.CommandArgument);
+                //DatabaseLayer.Messages objMsg = new DatabaseLayer.Messages();
+                //objMsg.ID = msgID;
+
                 ////delete all records in contact_list
                 //DatabaseLayer.Contact_list contlist = new DatabaseLayer.Contact_list();
                 //contlist.LISTID = listID;
